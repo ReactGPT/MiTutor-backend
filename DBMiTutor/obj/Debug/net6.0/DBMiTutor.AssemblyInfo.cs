@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DBMiTutor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5e320110c53ac5172334739e97401ca4f4e48c74")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4307ae064cba108bcfb09e875b4881177e3e71d4")]
 [assembly: System.Reflection.AssemblyProductAttribute("DBMiTutor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DBMiTutor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

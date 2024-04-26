@@ -71,5 +71,41 @@ namespace ReactGPTServices.Controllers
             }
             
         }
+
+        [HttpDelete("/eliminarEspecialidad/{id}")]
+        public async Task<IActionResult> EliminarEspecialidad(int id)
+        {
+            try
+            {
+                MiTutorDB basededatos = new();
+                int rows = basededatos.ESP_EliminarEspecialidad(id);
+                if (rows > 0)
+                    return Ok(new { success = true, message = "Se eliminó la especialidad correctamente" });
+                else
+                    return NotFound(new { success = false, message = "La especialidad no fue encontrada" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { mensaje = ex.ToString(), success = false });
+            }
+        }
+
+        [HttpPut("/actualizarEspecialidad/{id}")]
+        public async Task<IActionResult> ActualizarEspecialidad(int id, string nombre)
+        {
+            try
+            {
+                MiTutorDB basededatos = new();
+                int rows = basededatos.ESP_ActualizarEspecialidad(id, nombre);
+                if (rows > 0)
+                    return Ok(new { success = true, message = "Se actualizó la especialidad correctamente" });
+                else
+                    return NotFound(new { success = false, message = "La especialidad no fue encontrada" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { mensaje = ex.ToString(), success = false });
+            }
+        }
     }
 }
