@@ -1813,19 +1813,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Roberto\\.nuget\\packages\\": {}
+    "C:\\Users\\Diego\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Roberto\\Documents\\PUCP\\2024-1\\Software\\API\\ReactGPTServices\\DBMiTutor\\DBMiTutor.csproj",
+      "projectUniqueName": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\DBMiTutor\\DBMiTutor.csproj",
       "projectName": "DBMiTutor",
-      "projectPath": "C:\\Users\\Roberto\\Documents\\PUCP\\2024-1\\Software\\API\\ReactGPTServices\\DBMiTutor\\DBMiTutor.csproj",
-      "packagesPath": "C:\\Users\\Roberto\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Roberto\\Documents\\PUCP\\2024-1\\Software\\API\\ReactGPTServices\\DBMiTutor\\obj\\",
+      "projectPath": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\DBMiTutor\\DBMiTutor.csproj",
+      "packagesPath": "C:\\Users\\Diego\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\DBMiTutor\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Roberto\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
