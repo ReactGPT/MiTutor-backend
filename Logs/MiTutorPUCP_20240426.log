@@ -1,0 +1,383 @@
+2024-04-26 15:53:54.696 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-04-26 15:53:54.737 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/swagger/index.html - -
+2024-04-26 15:53:54.746 -05:00 [INF] Hosting environment: Development
+2024-04-26 15:53:54.746 -05:00 [INF] Content root path: C:\Users\Roberto\Documents\PUCP\2024-1\Software\API\ReactGPTServices\ReactGPTServices\
+2024-04-26 15:53:55.301 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/_framework/aspnetcore-browser-refresh.js - -
+2024-04-26 15:53:55.307 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/swagger/index.html - - - 200 - text/html;charset=utf-8 577.7147ms
+2024-04-26 15:53:55.327 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/_framework/aspnetcore-browser-refresh.js - - - 200 13770 application/javascript;+charset=utf-8 18.0863ms
+2024-04-26 15:53:55.358 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/_vs/browserLink - -
+2024-04-26 15:53:55.448 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 89.0776ms
+2024-04-26 15:53:55.510 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/swagger/v1/swagger.json - -
+2024-04-26 15:53:55.658 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 148.4550ms
+2024-04-26 15:56:50.761 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-04-26 15:56:50.791 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/swagger/index.html - -
+2024-04-26 15:56:50.802 -05:00 [INF] Hosting environment: Development
+2024-04-26 15:56:50.802 -05:00 [INF] Content root path: C:\Users\Roberto\Documents\PUCP\2024-1\Software\API\ReactGPTServices\ReactGPTServices\
+2024-04-26 15:56:51.258 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/_framework/aspnetcore-browser-refresh.js - -
+2024-04-26 15:56:51.260 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/swagger/index.html - - - 200 - text/html;charset=utf-8 477.2612ms
+2024-04-26 15:56:51.278 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/_framework/aspnetcore-browser-refresh.js - - - 200 13770 application/javascript;+charset=utf-8 13.8505ms
+2024-04-26 15:56:51.323 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/_vs/browserLink - -
+2024-04-26 15:56:51.398 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 74.9702ms
+2024-04-26 15:56:51.456 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/swagger/v1/swagger.json - -
+2024-04-26 15:56:51.602 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 146.4623ms
+2024-04-26 15:56:57.314 -05:00 [INF] Request starting HTTP/1.1 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 15:56:57.325 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 15:56:57.358 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 15:56:57.397 -05:00 [INF] Se listaron Especialidades
+2024-04-26 15:56:58.600 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 15:56:58.627 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 1264.295ms
+2024-04-26 15:56:58.630 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 15:56:58.630 -05:00 [INF] Request finished HTTP/1.1 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 1315.8087ms
+2024-04-26 15:58:50.867 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-04-26 15:58:50.904 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/swagger/index.html - -
+2024-04-26 15:58:50.911 -05:00 [INF] Hosting environment: Development
+2024-04-26 15:58:50.912 -05:00 [INF] Content root path: C:\Users\Roberto\Documents\PUCP\2024-1\Software\API\ReactGPTServices\ReactGPTServices\
+2024-04-26 15:58:51.377 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/swagger/index.html - - - 200 - text/html;charset=utf-8 482.4597ms
+2024-04-26 15:58:51.391 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/_framework/aspnetcore-browser-refresh.js - -
+2024-04-26 15:58:51.403 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/_framework/aspnetcore-browser-refresh.js - - - 200 13770 application/javascript;+charset=utf-8 5.6879ms
+2024-04-26 15:58:51.431 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/_vs/browserLink - -
+2024-04-26 15:58:51.513 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 81.9661ms
+2024-04-26 15:58:51.573 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/swagger/v1/swagger.json - -
+2024-04-26 15:58:51.733 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 160.4151ms
+2024-04-26 15:59:04.319 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 15:59:04.330 -05:00 [INF] CORS policy execution successful.
+2024-04-26 15:59:04.348 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 15:59:04.392 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 15:59:05.546 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 15:59:05.578 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 15:59:05.578 -05:00 [INF] CORS policy execution successful.
+2024-04-26 15:59:05.579 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 15:59:05.580 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 15:59:05.591 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 1184.4714ms
+2024-04-26 15:59:05.594 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 15:59:05.594 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 1275.4648ms
+2024-04-26 15:59:05.735 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 15:59:05.735 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 155.4636ms
+2024-04-26 15:59:05.735 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 15:59:05.735 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 157.4500ms
+2024-04-26 16:02:11.828 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:11.834 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:11.858 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:11.858 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:12.002 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:12.003 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 144.564ms
+2024-04-26 16:02:12.003 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:12.003 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 175.4463ms
+2024-04-26 16:02:12.016 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:12.016 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:12.016 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:12.017 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:12.117 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:12.117 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 100.6921ms
+2024-04-26 16:02:12.117 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:12.118 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 101.3189ms
+2024-04-26 16:02:14.110 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:14.110 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:14.110 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:14.111 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:14.224 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:14.225 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 113.9962ms
+2024-04-26 16:02:14.225 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:14.225 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 114.8698ms
+2024-04-26 16:02:14.226 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:14.227 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:14.227 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:14.227 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:14.327 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:14.328 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 100.6336ms
+2024-04-26 16:02:14.328 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:14.328 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 101.6599ms
+2024-04-26 16:02:15.535 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:15.535 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:15.535 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:15.535 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:15.662 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:15.662 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 127.0002ms
+2024-04-26 16:02:15.662 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:15.663 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 127.7175ms
+2024-04-26 16:02:15.663 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:15.664 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:15.664 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:15.664 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:15.764 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:15.764 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 100.1627ms
+2024-04-26 16:02:15.764 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:15.764 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 100.7991ms
+2024-04-26 16:02:16.268 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:16.268 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:16.268 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:16.268 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:16.372 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:16.372 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 103.9401ms
+2024-04-26 16:02:16.372 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:16.372 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 104.7415ms
+2024-04-26 16:02:16.374 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:16.374 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:16.374 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:16.374 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:16.474 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:16.475 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 100.9195ms
+2024-04-26 16:02:16.475 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:16.475 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 101.5897ms
+2024-04-26 16:02:17.336 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:17.336 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:17.336 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:17.336 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:17.440 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:17.441 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 104.1428ms
+2024-04-26 16:02:17.441 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:17.441 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 104.7941ms
+2024-04-26 16:02:17.442 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:17.442 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:17.442 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:17.442 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:17.544 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:17.545 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 103.1835ms
+2024-04-26 16:02:17.546 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:17.546 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 104.2342ms
+2024-04-26 16:02:29.554 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:29.554 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:29.554 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:29.554 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:29.700 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:29.700 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 145.9778ms
+2024-04-26 16:02:29.700 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:29.700 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 146.4923ms
+2024-04-26 16:02:29.702 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:29.702 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:29.702 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:29.702 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:29.831 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:29.847 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 145.0005ms
+2024-04-26 16:02:29.847 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:29.847 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 0 - application/json;+charset=utf-8 145.7700ms
+2024-04-26 16:02:29.920 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:29.921 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:29.921 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:29.921 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:30.056 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:30.057 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 136.0623ms
+2024-04-26 16:02:30.057 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:30.057 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 136.8393ms
+2024-04-26 16:02:30.061 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:30.061 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:30.062 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:30.062 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:30.167 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:30.167 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 104.985ms
+2024-04-26 16:02:30.167 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:30.168 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 107.1367ms
+2024-04-26 16:02:30.460 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:30.460 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:30.460 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:30.460 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:30.595 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:30.595 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 135.0697ms
+2024-04-26 16:02:30.595 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:30.596 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 135.8011ms
+2024-04-26 16:02:30.598 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:30.599 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:30.599 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:30.599 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:30.699 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:30.699 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 100.2757ms
+2024-04-26 16:02:30.699 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:30.699 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 101.1538ms
+2024-04-26 16:02:30.899 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:30.899 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:30.900 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:30.900 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:31.038 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:31.038 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 138.3702ms
+2024-04-26 16:02:31.038 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:31.038 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 139.0666ms
+2024-04-26 16:02:31.040 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:31.043 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:31.043 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:31.043 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:31.144 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:31.145 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 101.7252ms
+2024-04-26 16:02:31.145 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:31.145 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 104.9649ms
+2024-04-26 16:02:31.378 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:31.378 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:31.378 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:31.378 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:31.508 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:31.508 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 129.8656ms
+2024-04-26 16:02:31.508 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:31.508 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 130.4776ms
+2024-04-26 16:02:31.509 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:31.509 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:31.509 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:31.509 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:31.641 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:31.642 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 132.6424ms
+2024-04-26 16:02:31.642 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:31.642 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 0 - application/json;+charset=utf-8 133.0878ms
+2024-04-26 16:02:31.765 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:31.765 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:31.765 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:31.765 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:31.897 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:31.898 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 132.5247ms
+2024-04-26 16:02:31.898 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:31.898 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 133.2508ms
+2024-04-26 16:02:31.899 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:31.900 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:31.900 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:31.900 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:32.030 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:32.030 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 130.0772ms
+2024-04-26 16:02:32.030 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:32.030 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 130.6902ms
+2024-04-26 16:02:32.467 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:32.467 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:32.467 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:32.467 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:32.596 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:32.597 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 129.8913ms
+2024-04-26 16:02:32.597 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:32.597 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 130.5233ms
+2024-04-26 16:02:32.599 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:32.599 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:32.599 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:32.599 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:32.702 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:32.703 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 103.541ms
+2024-04-26 16:02:32.703 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:32.703 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 104.6608ms
+2024-04-26 16:02:33.882 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:33.883 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:33.883 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:33.883 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:34.020 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:34.021 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 138.6264ms
+2024-04-26 16:02:34.022 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:34.022 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 139.3845ms
+2024-04-26 16:02:34.254 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:34.254 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:34.255 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:34.255 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:34.389 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:34.389 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 134.3095ms
+2024-04-26 16:02:34.389 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:34.389 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 135.2013ms
+2024-04-26 16:02:34.390 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:34.390 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:34.391 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:34.391 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:34.521 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:34.522 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 131.4941ms
+2024-04-26 16:02:34.522 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:34.523 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 132.3189ms
+2024-04-26 16:02:35.139 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:35.139 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:35.139 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:35.139 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:35.269 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:35.269 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 130.1825ms
+2024-04-26 16:02:35.269 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:35.270 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 131.1022ms
+2024-04-26 16:02:35.271 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:35.271 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:35.271 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:35.271 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:35.394 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:35.394 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 122.8036ms
+2024-04-26 16:02:35.394 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:35.394 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 123.5090ms
+2024-04-26 16:02:35.826 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:35.826 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:35.826 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:35.826 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:35.961 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:35.962 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 135.5681ms
+2024-04-26 16:02:35.962 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:35.962 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 136.3049ms
+2024-04-26 16:02:35.963 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:35.963 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:35.963 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:35.964 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:36.100 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:36.101 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 137.42ms
+2024-04-26 16:02:36.102 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:36.102 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 0 - application/json;+charset=utf-8 138.4839ms
+2024-04-26 16:02:36.250 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:36.251 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:36.251 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:36.251 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:36.411 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:36.412 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 160.5968ms
+2024-04-26 16:02:36.412 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:36.412 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 161.4153ms
+2024-04-26 16:02:36.413 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:02:36.413 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:02:36.413 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:36.413 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:02:36.540 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:02:36.541 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 127.9454ms
+2024-04-26 16:02:36.541 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:02:36.541 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 128.5330ms
+2024-04-26 16:05:41.818 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44369/crearEspecialidad - -
+2024-04-26 16:05:41.819 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:05:41.822 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44369/crearEspecialidad - - - 204 - - 4.8438ms
+2024-04-26 16:05:41.826 -05:00 [INF] Request starting HTTP/2 POST https://localhost:44369/crearEspecialidad application/json 65
+2024-04-26 16:05:41.826 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:05:41.826 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.CrearEspecialidad (TutorPUCPServices)'
+2024-04-26 16:05:41.849 -05:00 [INF] Route matched with {action = "CrearEspecialidad", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CrearEspecialidad(TutorPUCPServices.Models.CrearEspecialidadRequest) on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:05:42.171 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`2[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:05:42.172 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.CrearEspecialidad (TutorPUCPServices) in 322.384ms
+2024-04-26 16:05:42.172 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.CrearEspecialidad (TutorPUCPServices)'
+2024-04-26 16:05:42.172 -05:00 [INF] Request finished HTTP/2 POST https://localhost:44369/crearEspecialidad application/json 65 - 200 - application/json;+charset=utf-8 346.0023ms
+2024-04-26 16:05:42.178 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:05:42.179 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:05:42.179 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:05:42.179 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:05:42.324 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:05:42.324 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 145.3412ms
+2024-04-26 16:05:42.324 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:05:42.324 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 146.0763ms
+2024-04-26 16:05:44.653 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:05:44.653 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:05:44.653 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:05:44.653 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:05:44.779 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:05:44.780 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 126.6765ms
+2024-04-26 16:05:44.780 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:05:44.780 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 127.6231ms
+2024-04-26 16:06:31.452 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:06:31.452 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:06:31.455 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:06:31.456 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:06:31.456 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:06:31.456 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:06:31.456 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:06:31.457 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:06:31.579 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:06:31.579 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 122.787ms
+2024-04-26 16:06:31.579 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:06:31.579 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 128.0361ms
+2024-04-26 16:06:32.084 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:06:32.086 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 623.568ms
+2024-04-26 16:06:32.086 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:06:32.086 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 630.7819ms
+2024-04-26 16:06:41.675 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44369/crearEspecialidad - -
+2024-04-26 16:06:41.675 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:06:41.675 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44369/crearEspecialidad - - - 204 - - 0.3505ms
+2024-04-26 16:06:41.677 -05:00 [INF] Request starting HTTP/2 POST https://localhost:44369/crearEspecialidad application/json 63
+2024-04-26 16:06:41.677 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:06:41.677 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.CrearEspecialidad (TutorPUCPServices)'
+2024-04-26 16:06:41.678 -05:00 [INF] Route matched with {action = "CrearEspecialidad", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CrearEspecialidad(TutorPUCPServices.Models.CrearEspecialidadRequest) on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:06:41.803 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`2[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:06:41.803 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.CrearEspecialidad (TutorPUCPServices) in 125.5372ms
+2024-04-26 16:06:41.803 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.CrearEspecialidad (TutorPUCPServices)'
+2024-04-26 16:06:41.803 -05:00 [INF] Request finished HTTP/2 POST https://localhost:44369/crearEspecialidad application/json 63 - 200 - application/json;+charset=utf-8 125.9705ms
+2024-04-26 16:06:41.809 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/listarEspecialidades - -
+2024-04-26 16:06:41.809 -05:00 [INF] CORS policy execution successful.
+2024-04-26 16:06:41.809 -05:00 [INF] Executing endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:06:41.809 -05:00 [INF] Route matched with {action = "ListarEspecialidades", controller = "MiTutorTest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ListarEspecialidades() on controller ReactGPTServices.Controllers.MiTutorTestController (TutorPUCPServices).
+2024-04-26 16:06:41.910 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-04-26 16:06:41.910 -05:00 [INF] Executed action ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices) in 101.3336ms
+2024-04-26 16:06:41.910 -05:00 [INF] Executed endpoint 'ReactGPTServices.Controllers.MiTutorTestController.ListarEspecialidades (TutorPUCPServices)'
+2024-04-26 16:06:41.910 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/listarEspecialidades - - - 200 - application/json;+charset=utf-8 101.7919ms
