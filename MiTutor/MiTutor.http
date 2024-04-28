@@ -1,0 +1,6 @@
+@MiTutor_HostAddress = http://localhost:5270
+
+GET {{MiTutor_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
