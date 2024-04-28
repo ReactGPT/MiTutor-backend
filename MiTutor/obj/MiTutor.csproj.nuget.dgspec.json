@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor_backend\\MiTutor\\MiTutor.csproj": {}
+    "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\MiTutor.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor_backend\\MiTutor\\MiTutor.csproj": {
+    "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\MiTutor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor_backend\\MiTutor\\MiTutor.csproj",
+        "projectUniqueName": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\MiTutor.csproj",
         "projectName": "MiTutor",
-        "projectPath": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor_backend\\MiTutor\\MiTutor.csproj",
+        "projectPath": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\MiTutor.csproj",
         "packagesPath": "C:\\Users\\Diego\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor_backend\\MiTutor\\obj\\",
+        "outputPath": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Diego\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -18,7 +18,8 @@ namespace MiTutor.Services
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
-                new SqlParameter("@nombre", SqlDbType.VarChar) { Value = especialidad.Nombre }
+                new SqlParameter("@nombre", SqlDbType.VarChar) { Value = especialidad.Nombre },
+                //new SqlParameter("@id", SqlDbType.Int) {Direction = ParameterDirection.Output}
             };
 
             try
@@ -57,6 +58,24 @@ namespace MiTutor.Services
             }
 
             return especialidades;
+        }
+
+        public async Task ActualizarEspecialidad(Especialidad especialidad)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@id", SqlDbType.Int) { Value = especialidad.Id },
+                new SqlParameter("@nombre", SqlDbType.VarChar) { Value = especialidad.Nombre }
+            };
+
+            try
+            {
+                await _databaseManager.ExecuteStoredProcedure(StoredProcedure.ACTUALIZAR_ESPECIALIDAD, parameters);
+            }
+            catch
+            {
+                throw new Exception("ERROR en ActualizarEspecialidadService");
+            }
         }
 
     }

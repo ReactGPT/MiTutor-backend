@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "myEvANDiB3o22oEBpJaSkKwKJ/KuJOJ03URpHCWkbbgjj79KTDL+qKLpnkhQtk0qIEYZ3BuaNyH8aI/JkXVe+g==",
+  "dgSpecHash": "OioEF2PEjaRw99/8wDOkqXGMNF7baeSj/uMBYUMr6nYIUYxddRXFzLatMmAdwyQV3jO9A8QcmDlSgoBumzMgdA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor_backend\\MiTutor\\MiTutor.csproj",
+  "projectFilePath": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\MiTutor.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Diego\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\Diego\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",

@@ -45,5 +45,19 @@ namespace MiTutor.Controllers
             }
             return Ok(new { success = true, data = especialidades });
         }
+
+        [HttpPut("/actualizarEspecialidad")]
+        public async Task<IActionResult> ActualizarEspecialidad([FromBody] Especialidad especialidad)
+        {
+            try
+            {
+                await _especialidadServices.ActualizarEspecialidad(especialidad);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, message = "Se actualizaron satisfactoriamente" });
+        }
     }
 }
