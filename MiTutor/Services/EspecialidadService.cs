@@ -9,6 +9,7 @@ namespace MiTutor.Services
     { 
         private readonly DatabaseManager _databaseManager;
 
+        /*
         public EspecialidadService()
         {
             _databaseManager = new DatabaseManager();
@@ -77,6 +78,9 @@ namespace MiTutor.Services
                 throw new Exception("ERROR en ActualizarEspecialidadService");
             }
         }
+        */
+
+
 
     }
 }

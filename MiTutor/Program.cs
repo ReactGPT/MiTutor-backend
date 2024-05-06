@@ -1,4 +1,5 @@
 using MiTutor.Services;
+using MiTutor.Services.Usuarios;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,9 @@ builder.Services.AddCors(options =>
 
 // Add Services
 services.AddScoped<EspecialidadService>();
+services.AddScoped<UsuarioService>();
+services.AddScoped<EstudianteService>();
+
 
 var app = builder.Build();
 
