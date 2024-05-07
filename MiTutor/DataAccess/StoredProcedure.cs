@@ -51,5 +51,12 @@
         public const string ACTUALIZAR_ARCHIVOS = "FILE_ACTUALIZAR_UPDATE";
         public const string ELIMINAR_ARCHIVO = "FILE_ELIMINAR_DELETE";
 
+
+        //DERIVATION
+        public const string CREAR_DERIVACION = "DERIVATION_INSERTAR_INSERT";
+        public const string LISTAR_DERIVACIONES = "DERIVATION_LISTAR_SELECT";
+        public const string ACTUALIZAR_DERIVACION = "DERIVATION_ACTUALIZAR_UPDATE";
+        public const string ELIMINAR_DERIVACION = "DERIVATION_ELIMINAR_DELETE";
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using MiTutor.Models.GestionUsuarios;
 using MiTutor.Models.UniversityUnitManagement;
+using System.Text.Json.Serialization;
 
 namespace MiTutor.Models.TutoringManagement
 {
@@ -13,14 +14,23 @@ namespace MiTutor.Models.TutoringManagement
 
         public string Status { get; set; }
 
-        public DateOnly CreationDate { get; set; }  
- 
+        public DateOnly CreationDate { get; set; }
+
+        public int UnitDerivationId { get; set; }
+
+        public int UserAccountId { get; set; }
+
+        public int AppointmentId { get; set; }
+
         public bool IsActive { get; set; }
 
+        [JsonIgnore]
         public Appointment Appointment { get; set; }
 
+        [JsonIgnore]
         public UnitDerivation UnitDerivation { get; set; }
 
+        [JsonIgnore]
         public UserAccount UserAccountDo { get; set; }
 
     }
