@@ -1,0 +1,92 @@
+﻿using MiTutor.DataAccess;
+using MiTutor.Models;
+using System.Data.SqlClient;
+using System.Data;
+using MiTutor.Models.UniversityUnitManagement;
+
+namespace MiTutor.Services.UniversityUnitManagement
+{
+    public class FacultyService
+    {
+        private readonly DatabaseManager _databaseManager;
+
+
+        public FacultyService()
+        {
+            _databaseManager = new DatabaseManager();
+        }
+
+        public async Task CrearFacultad(Faculty facultad)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@Name", SqlDbType.NVarChar) { Value = facultad.Name },
+                new SqlParameter("@Acronym", SqlDbType.NVarChar) { Value = facultad.Acronym }, 
+                new SqlParameter("@NumberOfStudents", SqlDbType.Int) { Value = facultad.NumberOfStudents },
+                new SqlParameter("@NumberOfTutors", SqlDbType.Int) { Value = facultad.NumberOfTutors }  
+            };
+
+            try
+            {
+                await _databaseManager.ExecuteStoredProcedure(StoredProcedure.CREAR_FACULTAD, parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al crear la facultad: " + ex.Message);
+            }
+        }
+
+        public async Task<List<Faculty>> ListarFacultades()
+        {
+            List<Faculty> facultades = new List<Faculty>();
+
+            try
+            {
+                // Ejecutar procedimiento almacenado para obtener las facultades
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_FACULTADES);
+
+                // Verificar si se obtuvieron datos
+                if (dataTable != null)
+                {
+                    // Recorrer cada fila del resultado y crear objetos Faculty
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        Faculty facultad = new Faculty
+                        {
+                            FacultyId = Convert.ToInt32(row["FacultyId"]),
+                            Name = row["Name"].ToString(),
+                            Acronym = row["Acronym"].ToString(),
+                            NumberOfStudents = Convert.ToInt32(row["NumberOfStudents"]),
+                            NumberOfTutors = Convert.ToInt32(row["NumberOfTutors"]),
+                        };
+                        if (row["FacultyManagerId"] != DBNull.Value)
+                        {
+                            facultad.FacultyManager = new Models.GestionUsuarios.UserAccount
+                            {
+                                Id = Convert.ToInt32(row["FacultyManagerId"]),
+                                InstitutionalEmail = row["InstitutionalEmail"].ToString(), // Agregar el correo electrónico del gerente de facultad
+                                PUCPCode = row["PUCPCode"].ToString(),
+                                Persona = new Models.GestionUsuarios.Person
+                                {
+                                    Name = row["Name"].ToString(),
+                                    LastName = row["LastName"].ToString()
+                                }
+                            };
+                            
+                        };
+
+                        facultades.Add(facultad);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al listar las facultades: " + ex.Message);
+            }
+
+            return facultades;
+        }
+
+
+    }
+}
