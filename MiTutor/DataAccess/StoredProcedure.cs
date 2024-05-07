@@ -34,8 +34,22 @@
         public const string CREAR_PROGRAMA_TUTOR_TIPO_TUTOR = "TUTOR_PROGRAM_TYPE_INSERTAR_INSERT";
         public const string LISTAR_PROGRAMA_TUTOR_TIPO_TUTOR = "TUTOR_PROGRAM_TYPE_LISTAR_SELECT";
 
-        //ESTUDIANTE-PROGRAMA
+        //ESTUDIANTE-PROGRAMA-no funciona
         public const string CREAR_ESTUDIANTE_PROGRAMA = "STUDENT_PROGRAM_INSERTAR_INSERT";
         public const string LISTAR_ESTUDIANTE_PROGRAMA = "STUDENT_PROGRAM_LISTAR_SELECT";
+
+        //COMENTARIO
+        public const string CREAR_COMENTARIO = "COMMENT_INSERTAR_INSERT";
+        public const string LISTAR_COMENTARIOS = "COMMENT_LISTAR_SELECT";
+        public const string ACTUALIZAR_COMENTARIO = "COMMENT_ACTUALIZAR_UPDATE";
+        public const string ELIMINAR_COMENTARIO = "COMMENT_ELIMINAR_DELETE";
+
+
+        //FILE
+        public const string CREAR_ARCHIVO = "FILE_INSERTAR_INSERT";
+        public const string LISTAR_ARCHIVOS = "FILE_LISTAR_SELECT";
+        public const string ACTUALIZAR_ARCHIVOS = "FILE_ACTUALIZAR_UPDATE";
+        public const string ELIMINAR_ARCHIVO = "FILE_ELIMINAR_DELETE";
+
     }
 }

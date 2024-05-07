@@ -10,6 +10,7 @@
 
         public int AppointmentResultId { get; set; }
 
+        public int PrivacyTypeId { get; set; }
         public PrivacyType PrivacyType { get; set; }
     }
 }

@@ -1,5 +1,4 @@
 using MiTutor.Controllers.TutoringManagement;
-using MiTutor.Services;
 using MiTutor.Services.GestionUsuarios;
 using MiTutor.Services.TutoringManagement;
 using MiTutor.Services.UniversityUnitManagement;
@@ -35,7 +34,7 @@ services.AddScoped<TutorService>();
 services.AddScoped<TutoringProgramService>();
 services.AddScoped<TutorProgramTutorTypeService>();
 services.AddScoped<StudentProgramService>();
-
+services.AddScoped<CommentService>();
 
 var app = builder.Build();
 
