@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{16346B74-927D-4232-859F-B62D2DBC23C9}|MiTutor\\MiTutor.csproj|c:\\users\\diego\\documents\\visual studio projects\\mitutor-backend\\mitutor\\services\\especialidadservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16346B74-927D-4232-859F-B62D2DBC23C9}|MiTutor\\MiTutor.csproj|solutionrelative:mitutor\\services\\especialidadservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{16346B74-927D-4232-859F-B62D2DBC23C9}|MiTutor\\MiTutor.csproj|c:\\users\\diego\\documents\\visual studio projects\\mitutor-backend\\mitutor\\mitutor.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{16346B74-927D-4232-859F-B62D2DBC23C9}|MiTutor\\MiTutor.csproj|solutionrelative:mitutor\\mitutor.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +19,13 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "EspecialidadService.cs",
-              "DocumentMoniker": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\Services\\EspecialidadService.cs",
-              "RelativeDocumentMoniker": "MiTutor\\Services\\EspecialidadService.cs",
-              "ToolTip": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\Services\\EspecialidadService.cs",
-              "RelativeToolTip": "MiTutor\\Services\\EspecialidadService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-28T13:34:07.834Z",
+              "Title": "MiTutor",
+              "DocumentMoniker": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\MiTutor.csproj",
+              "RelativeDocumentMoniker": "MiTutor\\MiTutor.csproj",
+              "ToolTip": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\MiTutor.csproj",
+              "RelativeToolTip": "MiTutor\\MiTutor.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-05-08T17:26:51.336Z",
               "EditorCaption": ""
             }
           ]
