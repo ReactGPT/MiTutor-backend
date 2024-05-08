@@ -8,6 +8,7 @@ namespace MiTutor.Controllers
     [ApiController]
     public class EspecialidadController : ControllerBase
     {
+        /*
         private readonly ILogger<EspecialidadController> _logger;
         private readonly EspecialidadService _especialidadServices;
 
@@ -59,5 +60,6 @@ namespace MiTutor.Controllers
             }
             return Ok(new { success = true, message = "Se actualizaron satisfactoriamente" });
         }
+        */
     }
 }

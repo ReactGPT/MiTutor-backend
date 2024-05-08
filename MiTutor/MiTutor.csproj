@@ -1,20 +1,53 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+    <Compile Remove="Controllers\GestionTutorias\**" />
+    <Compile Remove="Controllers\Unidades\**" />
+    <Compile Remove="Exceptions\**" />
+    <Compile Remove="Middlewares\**" />
+    <Compile Remove="Models\GestionTutorias\**" />
+    <Compile Remove="Models\Unidades\**" />
+    <Compile Remove="Services\GestionTutorias\**" />
+    <Compile Remove="Services\Unidades\**" />
+    <Compile Remove="Utilities\**" />
+    <Content Remove="Controllers\GestionTutorias\**" />
+    <Content Remove="Controllers\Unidades\**" />
+    <Content Remove="Exceptions\**" />
+    <Content Remove="Middlewares\**" />
+    <Content Remove="Models\GestionTutorias\**" />
+    <Content Remove="Models\Unidades\**" />
+    <Content Remove="Services\GestionTutorias\**" />
+    <Content Remove="Services\Unidades\**" />
+    <Content Remove="Utilities\**" />
+    <EmbeddedResource Remove="Controllers\GestionTutorias\**" />
+    <EmbeddedResource Remove="Controllers\Unidades\**" />
+    <EmbeddedResource Remove="Exceptions\**" />
+    <EmbeddedResource Remove="Middlewares\**" />
+    <EmbeddedResource Remove="Models\GestionTutorias\**" />
+    <EmbeddedResource Remove="Models\Unidades\**" />
+    <EmbeddedResource Remove="Services\GestionTutorias\**" />
+    <EmbeddedResource Remove="Services\Unidades\**" />
+    <EmbeddedResource Remove="Utilities\**" />
+    <None Remove="Controllers\GestionTutorias\**" />
+    <None Remove="Controllers\Unidades\**" />
+    <None Remove="Exceptions\**" />
+    <None Remove="Middlewares\**" />
+    <None Remove="Models\GestionTutorias\**" />
+    <None Remove="Models\Unidades\**" />
+    <None Remove="Services\GestionTutorias\**" />
+    <None Remove="Services\Unidades\**" />
+    <None Remove="Utilities\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Middlewares\" />
-    <Folder Include="Exceptions\" />
-    <Folder Include="Utilities\" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
 
 </Project>

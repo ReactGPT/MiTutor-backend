@@ -1,4 +1,8 @@
-using MiTutor.Services;
+using MiTutor.Controllers.TutoringManagement;
+using MiTutor.Services.GestionUsuarios;
+using MiTutor.Services.TutoringManagement;
+using MiTutor.Services.UniversityUnitManagement;
+using MiTutor.Services.UserManagement;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,8 +25,18 @@ builder.Services.AddCors(options =>
         });
 });
 
-// Add Services
-services.AddScoped<EspecialidadService>();
+// Add Services 
+services.AddScoped<StudentService>();
+services.AddScoped<UserAccountService>();
+services.AddScoped<FacultyService>();
+services.AddScoped<SpecialtyService>();
+services.AddScoped<TutorService>();
+services.AddScoped<TutoringProgramService>();
+services.AddScoped<TutorProgramTutorTypeService>();
+services.AddScoped<StudentProgramService>();
+services.AddScoped<CommentService>();
+services.AddScoped<DerivationService>();
+services.AddScoped<AppointmentService>();
 
 var app = builder.Build();
 
