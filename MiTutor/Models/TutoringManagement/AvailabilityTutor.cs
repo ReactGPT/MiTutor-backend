@@ -10,7 +10,7 @@
 
         public TimeOnly EndTime { get; set; }
 
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
 
         public Tutor Tutor { get; set; }
     }

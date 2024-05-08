@@ -1,4 +1,6 @@
-﻿namespace MiTutor.Models.GestionUsuarios
+﻿using System.Text.Json.Serialization;
+
+namespace MiTutor.Models.GestionUsuarios
 {
     public class Person
     {
@@ -8,6 +10,7 @@
         public string SecondLastName { get; set; }
         public string Phone { get; set; }
         public bool IsActive { get; set; }
+        [JsonIgnore]
         public UserAccount Usuario { get; set; }
     }
 }

@@ -2,7 +2,9 @@
 {
     public static class StoredProcedure
     {
-        
+
+        //PERSONA
+        public const string CREAR_PERSONA = "PERSON_INSERTAR_INSERT";
 
         //ESTUDIANTE
         public const string CREAR_ESTUDIANTE = "STUDENT_INSERTAR_INSERT";
@@ -53,6 +55,10 @@
         public const string LISTAR_ARCHIVOS = "FILE_LISTAR_SELECT";
         public const string ACTUALIZAR_ARCHIVOS = "FILE_ACTUALIZAR_UPDATE";
         public const string ELIMINAR_ARCHIVO = "FILE_ELIMINAR_DELETE";
+        
+        //AGREGAR_CITA
+        public const string AGREGAR_CITA = "APPOINTMENT_INSERTAR_INSERT";
+        public const string OBTENER_ID_STUDENT_PROGRAM = "GetStudentProgramId";
 
 
         //DERIVATION

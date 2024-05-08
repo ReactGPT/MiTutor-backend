@@ -2,26 +2,29 @@
 using MiTutor.Models.GestionUsuarios;
 using System.Data.SqlClient;
 using System.Data;
+using MiTutor.Services.GestionUsuarios;
 
 namespace MiTutor.Services.UserManagement
 {
     public class UserAccountService
     {
         private readonly DatabaseManager _databaseManager;
-
+        private readonly PersonService _personService;
+        private readonly StudentService _studentService;
         public UserAccountService()
         {
             _databaseManager = new DatabaseManager();
+            _personService = new PersonService();
+            _studentService = new StudentService();
         }
         public async Task CrearUsuario(UserAccount userAccount)
         {
+            await _personService.CrearPersona(userAccount.Persona);
+
             SqlParameter[] parameters = new SqlParameter[]
             {
-                //new SqlParameter("@UserAccountId", SqlDbType.Int) { Direction = ParameterDirection.Output },
-                new SqlParameter("@Name", SqlDbType.NVarChar) { Value = userAccount.Persona.Name },
-                new SqlParameter("@LastName", SqlDbType.NVarChar) { Value = userAccount.Persona.LastName },
-                new SqlParameter("@SecondLastName", SqlDbType.NVarChar) { Value = userAccount.Persona.SecondLastName },
-                new SqlParameter("@Phone", SqlDbType.NVarChar) { Value = userAccount.Persona.Phone }, 
+                new SqlParameter("@UserAccountId", SqlDbType.Int) { Value= userAccount.Persona.Id },
+                new SqlParameter("@Phone", SqlDbType.NVarChar) { Value = userAccount.Persona.Phone },
                 new SqlParameter("@InstitutionalEmail", SqlDbType.NVarChar) { Value = userAccount.InstitutionalEmail },
                 new SqlParameter("@PUCPCode", SqlDbType.NVarChar) { Value = userAccount.PUCPCode}
             };

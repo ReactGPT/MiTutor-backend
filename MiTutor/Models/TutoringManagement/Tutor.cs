@@ -1,4 +1,5 @@
 ﻿using MiTutor.Models.GestionUsuarios;
+using System.Text.Json.Serialization;
 
 namespace MiTutor.Models.TutoringManagement
 {
@@ -10,10 +11,10 @@ namespace MiTutor.Models.TutoringManagement
 
         public bool IsActive { get; set; } 
 
-        public UserAccount UserAccount { get; set; } 
-
+        public UserAccount UserAccount { get; set; }
+        [JsonIgnore]
         public ICollection<AvailabilityTutor> AvailabilityTutors { get; set; } = new List<AvailabilityTutor>();
-        
+        [JsonIgnore]
         public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
 
     }

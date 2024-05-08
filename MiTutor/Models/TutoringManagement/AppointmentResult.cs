@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using System.Text.Json.Serialization;
+using System.Xml.Linq;
 
 namespace MiTutor.Models.TutoringManagement
 {
@@ -11,11 +12,11 @@ namespace MiTutor.Models.TutoringManagement
         public DateTime EndTime { get; set; }
 
         public bool IsActive { get; set; }
-
+        [JsonIgnore]
         public ICollection<Comment> Comments { get; set; } = new List<Comment>();
-
+        [JsonIgnore]
         public  ICollection<File> Files { get; set; } = new List<File>();
-
+        [JsonIgnore]
         public Appointment Appointment { get; set; }
     }
 }

@@ -36,6 +36,7 @@ services.AddScoped<TutorProgramTutorTypeService>();
 services.AddScoped<StudentProgramService>();
 services.AddScoped<CommentService>();
 services.AddScoped<DerivationService>();
+services.AddScoped<AppointmentService>();
 
 var app = builder.Build();
 

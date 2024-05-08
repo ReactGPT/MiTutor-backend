@@ -18,14 +18,9 @@ namespace MiTutor.Services.GestionUsuarios
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
-                new SqlParameter("@Name", SqlDbType.NVarChar) { Value = student.Name },
-                new SqlParameter("@LastName", SqlDbType.NVarChar) { Value = student.LastName },
-                new SqlParameter("@SecondLastName", SqlDbType.NVarChar) { Value = student.SecondLastName },
-                new SqlParameter("@Phone", SqlDbType.NVarChar) { Value = student.Phone },
-                new SqlParameter("@InstitutionalEmail", SqlDbType.NVarChar) { Value = student.Usuario.InstitutionalEmail },
-                new SqlParameter("@PUCPCode", SqlDbType.NVarChar) { Value = student.Usuario.PUCPCode}, 
+                new SqlParameter("@StudentId", SqlDbType.Bit) { Value = student.Id },
                 new SqlParameter("@IsRisk", SqlDbType.Bit) { Value = student.IsRisk },
-                new SqlParameter("@SpecialtyId", SqlDbType.Int) { Value = student.SpecialityId } 
+                new SqlParameter("@SpecialtyId", SqlDbType.Int) { Value = student.SpecialityId }
             };
 
             try
