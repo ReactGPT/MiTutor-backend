@@ -49,5 +49,38 @@ namespace MiTutor.Controllers.TutoringManagement
             }
             return Ok(new { success = true, data = faculties });
         }
+
+        [HttpGet("/listarProgramasDeTutoriaPorTutor/{tutorId}")]
+        public async Task<IActionResult> ListarProgramasDeTutoriaPorTutor(int tutorId)
+        {
+            try
+            {
+                
+                var programas = await _TutoringProgramServices.ListarProgramasDeTutoriaPorTutor(tutorId);
+
+                
+                return Ok(new { success = true, data = programas });
+            }
+            catch (Exception ex)
+            {
+                
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("/listarProgramasDeTutoriaPorTipoUsuario/{userAccountTypeId}")]
+        public async Task<IActionResult> ListarProgramasDeTutoriaPorTipoUsuario(int userAccountTypeId)
+        {
+            try
+            {
+                var programas = await _TutoringProgramServices.ListarProgramasDeTutoriaPorTipoUsuario(userAccountTypeId);
+
+                return Ok(new { success = true, data = programas });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }
