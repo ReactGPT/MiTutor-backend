@@ -60,6 +60,10 @@
         public const string AGREGAR_CITA = "APPOINTMENT_INSERTAR_INSERT";
         public const string OBTENER_ID_STUDENT_PROGRAM = "GetStudentProgramId";
 
+        //LISTAR_CITA
+        public const string LISTAR_CITA_POR_TUTOR = "APPOINTMENT_LISTARXTUTOR_SELECT";
+        public const string LISTAR_CITA_POR_TUTOR_POR_ALUMNO = "APPOINTMENT_LISTARXTUTORXALUMNO_SELECT";
+
 
         //DERIVATION
         public const string CREAR_DERIVACION = "DERIVATION_INSERTAR_INSERT";

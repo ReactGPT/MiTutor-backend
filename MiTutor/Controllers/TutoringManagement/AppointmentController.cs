@@ -31,5 +31,41 @@ namespace MiTutor.Controllers.TutoringManagement
             }
             return Ok(new { success = true, message = "Se inserto satisfactoriamente" });
         }
+
+        [HttpGet("/listarCitasPorTutor/{tutorId}")]
+        public async Task<IActionResult> ListarCitasPorTutor(int tutorId)
+        {
+            try
+            {
+
+                var citas = await _appointmentServices.ListarCitasPorTutor(tutorId);
+
+
+                return Ok(new { success = true, data = citas });
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("/listarCitasPorTutorPorAlumno/{tutorId}/{studentId}")]
+        public async Task<IActionResult> ListarCitasPorTutorPorAlumno(int tutorId,int studentId)
+        {
+            try
+            {
+
+                var citas = await _appointmentServices.ListarCitasPorTutorPorAlumno(tutorId,studentId);
+
+
+                return Ok(new { success = true, data = citas });
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
