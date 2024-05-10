@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MiTutor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+21da6ebd5fe2cdaab9564ab1573be0ab7136aba6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+241b1e8ca6e0afa118065a52300ed8e5bba7850d")]
 [assembly: System.Reflection.AssemblyProductAttribute("MiTutor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MiTutor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
