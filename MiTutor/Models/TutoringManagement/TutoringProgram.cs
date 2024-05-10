@@ -33,4 +33,14 @@ namespace MiTutor.Models.TutoringManagement
         public Specialty Specialty { get; set; }
 
     }
+
+    public class ListarTutoringProgram
+    {
+        public int TutoringProgramId { get; set; }
+        public string ProgramName { get; set; }
+        public string Description { get; set; }
+        public string FacultyName { get; set; }
+        public string SpecialtyName { get; set; }
+        public string tutorType { get; set; }
+    }
 }

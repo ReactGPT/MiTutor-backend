@@ -126,9 +126,9 @@ namespace MiTutor.Services.TutoringManagement
 
             return programas;
         }
-        public async Task<List<TutoringProgram>> ListarProgramasDeTutoriaPorTutor(int tutorId)
+        public async Task<List<ListarTutoringProgram>> ListarProgramasDeTutoriaPorTutor(int tutorId)
         {
-            List<TutoringProgram> programas = new List<TutoringProgram>();
+            List<ListarTutoringProgram> programas = new List<ListarTutoringProgram>();
 
             try
             {
@@ -144,20 +144,14 @@ namespace MiTutor.Services.TutoringManagement
                 {
                     foreach (DataRow row in dataTable.Rows)
                     {
-                        TutoringProgram programa = new TutoringProgram
+                        ListarTutoringProgram programa = new ListarTutoringProgram
                         {
                             TutoringProgramId = Convert.ToInt32(row["TutoringProgramId"]),
-                            FaceToFace = Convert.ToBoolean(row["FaceToFace"]),
-                            Virtual = Convert.ToBoolean(row["Virtual"]),
-                            GroupBased = Convert.ToBoolean(row["GroupBased"]),
-                            IndividualBased = Convert.ToBoolean(row["IndividualBased"]),
-                            Optional = Convert.ToBoolean(row["Optional"]),
-                            Mandatory = Convert.ToBoolean(row["Mandatory"]),
-                            MembersCount = Convert.ToInt32(row["MembersCount"]),
                             ProgramName = row["ProgramName"].ToString(),
                             Description = row["Description"].ToString(),
-                            IsActive = Convert.ToBoolean(row["IsActive"]),
-                            Duration = (TimeSpan)row["Duration"]
+                            FacultyName = row["FacultyName"].ToString(),
+                            SpecialtyName = row["SpecialtyName"].ToString(),
+                            tutorType = row["TutorType"].ToString()
                         };
 
                         programas.Add(programa);
