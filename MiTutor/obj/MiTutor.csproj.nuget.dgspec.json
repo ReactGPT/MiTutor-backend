@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\MiTutor.csproj": {}
+    "C:\\Users\\Roberto\\Documents\\PUCP\\2024-1\\Software\\DEV_MiTutor\\Sync_Repo\\backend\\MiTutor-backend\\MiTutor\\MiTutor.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\MiTutor.csproj": {
+    "C:\\Users\\Roberto\\Documents\\PUCP\\2024-1\\Software\\DEV_MiTutor\\Sync_Repo\\backend\\MiTutor-backend\\MiTutor\\MiTutor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\MiTutor.csproj",
+        "projectUniqueName": "C:\\Users\\Roberto\\Documents\\PUCP\\2024-1\\Software\\DEV_MiTutor\\Sync_Repo\\backend\\MiTutor-backend\\MiTutor\\MiTutor.csproj",
         "projectName": "MiTutor",
-        "projectPath": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\MiTutor.csproj",
-        "packagesPath": "C:\\Users\\Diego\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\obj\\",
+        "projectPath": "C:\\Users\\Roberto\\Documents\\PUCP\\2024-1\\Software\\DEV_MiTutor\\Sync_Repo\\backend\\MiTutor-backend\\MiTutor\\MiTutor.csproj",
+        "packagesPath": "C:\\Users\\Roberto\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Roberto\\Documents\\PUCP\\2024-1\\Software\\DEV_MiTutor\\Sync_Repo\\backend\\MiTutor-backend\\MiTutor\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Roberto\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
