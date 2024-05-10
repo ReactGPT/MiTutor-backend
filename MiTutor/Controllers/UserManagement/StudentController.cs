@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MiTutor.Models.GestionUsuarios;
 using MiTutor.Services.GestionUsuarios;
+using MiTutor.Services.TutoringManagement;
 
 namespace MiTutor.Controllers.GestionUsuarios
 {
@@ -47,6 +48,24 @@ namespace MiTutor.Controllers.GestionUsuarios
                 return BadRequest(ex.Message);
             }
             return Ok(new { success = true, data = students });
+        }
+
+        [HttpGet("/listarEstudiantesPorProgramaDeTutoria/{tutoringProgramId}")]
+        public async Task<IActionResult> ListarProgramasDeTutoriaPorTutor(int tutoringProgramId)
+        {
+            try
+            {
+
+                var estudiantes = await _estudianteServices.ListarEstudiantesByTutoringProgram(tutoringProgramId);
+
+
+                return Ok(new { success = true, data = estudiantes });
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

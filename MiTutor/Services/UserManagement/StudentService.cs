@@ -3,6 +3,7 @@ using MiTutor.Models.GestionUsuarios;
 using System.Data.SqlClient;
 using System.Data;
 using MiTutor.Models;
+using MiTutor.Models.TutoringManagement;
 
 namespace MiTutor.Services.GestionUsuarios
 {
@@ -65,6 +66,48 @@ namespace MiTutor.Services.GestionUsuarios
             catch (Exception ex)
             {
                 throw new Exception("ERROR en ListarEstudiantes", ex);
+            }
+
+            return students;
+        }
+
+        public async Task<List<ListarStudentJSON>> ListarEstudiantesByTutoringProgram(int tutoringProgramId)
+        {
+            List<ListarStudentJSON> students = new List<ListarStudentJSON>();
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+                    new SqlParameter("@TutoringProgramId", SqlDbType.Int){
+                        Value = tutoringProgramId
+                    }
+                };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_ESTUDIANTES_POR_PROGRAMA, parameters);
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        ListarStudentJSON student = new ListarStudentJSON()
+                        {
+                            StudentId = Convert.ToInt32(row["StudentId"]),
+                            Name = row["Name"].ToString(),
+                            LastName = row["LastName"].ToString(),
+                            SecondLastName = row["SecondLastName"].ToString(),
+                            PUCPCode = row["PUCPCode"].ToString(),
+                            InstitutionalEmail = row["InstitutionalEmail"].ToString(),
+                            Phone = row["Phone"].ToString(),
+                            SpecialtyName = row["SpecialtyName"].ToString(),
+                            FacultyName = row["FacultyName"].ToString()
+                        };
+
+                        students.Add(student);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarEstudiantesByTutoringProgram", ex);
             }
 
             return students;

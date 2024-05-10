@@ -9,6 +9,7 @@
         //ESTUDIANTE
         public const string CREAR_ESTUDIANTE = "STUDENT_INSERTAR_INSERT";
         public const string LISTAR_ESTUDIANTES = "STUDENT_LISTAR_LIST";
+        public const string LISTAR_ESTUDIANTES_POR_PROGRAMA = "STUDENT_LISTARXTUTORINGPROGRAMXTUTOR_SELECT";
 
         //USUARIO
         public const string CREAR_USUARIO = "USER_ACCOUNT_INSERTAR_INSERT";
