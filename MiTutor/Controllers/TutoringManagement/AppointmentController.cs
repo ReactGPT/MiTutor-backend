@@ -1,0 +1,35 @@
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using MiTutor.Models.TutoringManagement;
+using MiTutor.Services.TutoringManagement;
+
+namespace MiTutor.Controllers.TutoringManagement
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AppointmentController : ControllerBase
+    {
+        private readonly ILogger<AppointmentController> _logger;
+        private readonly AppointmentService _appointmentServices;
+
+        public AppointmentController(ILogger<AppointmentController> logger, AppointmentService appointmentService)
+        {
+            _logger = logger;
+            _appointmentServices = appointmentService;
+        }
+
+        [HttpPost("/agregarCita")]
+        public async Task<IActionResult> AgregarCita([FromBody] RegisterAppointment registerAppointment)
+        {
+            try
+            {
+                await _appointmentServices.AgregarCita(registerAppointment);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, message = "Se inserto satisfactoriamente" });
+        }
+    }
+}

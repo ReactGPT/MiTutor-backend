@@ -9,6 +9,7 @@ namespace MiTutor.Services
     { 
         private readonly DatabaseManager _databaseManager;
 
+      
         public EspecialidadService()
         {
             _databaseManager = new DatabaseManager();
@@ -38,7 +39,7 @@ namespace MiTutor.Services
 
             try
             {
-                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_ESPECIALIDAD, null);
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_ESPECIALIDADES, null);
                 if (dataTable != null)
                 {
                     foreach (DataRow row in dataTable.Rows)
@@ -59,24 +60,7 @@ namespace MiTutor.Services
 
             return especialidades;
         }
-
-        public async Task ActualizarEspecialidad(Especialidad especialidad)
-        {
-            SqlParameter[] parameters = new SqlParameter[]
-            {
-                new SqlParameter("@id", SqlDbType.Int) { Value = especialidad.Id },
-                new SqlParameter("@nombre", SqlDbType.VarChar) { Value = especialidad.Nombre }
-            };
-
-            try
-            {
-                await _databaseManager.ExecuteStoredProcedure(StoredProcedure.ACTUALIZAR_ESPECIALIDAD, parameters);
-            }
-            catch
-            {
-                throw new Exception("ERROR en ActualizarEspecialidadService");
-            }
-        }
+ 
 
     }
 }
