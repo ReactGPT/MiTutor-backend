@@ -15,7 +15,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("MiTutorPUCPAppDev",
         builder =>
         {
-            builder.WithOrigins("http://localhost:3000") // Adjust the URL as needed
+            builder.WithOrigins("http://localhost:5173") // Adjust the URL as needed
                    .AllowAnyMethod()
                    .AllowAnyHeader();
         });
@@ -23,6 +23,8 @@ builder.Services.AddCors(options =>
 
 // Add Services
 services.AddScoped<EspecialidadService>();
+services.AddScoped<ActionPlanService>();
+services.AddScoped<CommitmentService>();
 
 var app = builder.Build();
 

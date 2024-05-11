@@ -887,19 +887,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Diego\\.nuget\\packages\\": {}
+    "C:\\Users\\LENOVO\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\MiTutor.csproj",
+      "projectUniqueName": "C:\\Repositorios\\ReactGPT\\MiTutor-backend\\MiTutor\\MiTutor.csproj",
       "projectName": "MiTutor",
-      "projectPath": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\MiTutor.csproj",
-      "packagesPath": "C:\\Users\\Diego\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\obj\\",
+      "projectPath": "C:\\Repositorios\\ReactGPT\\MiTutor-backend\\MiTutor\\MiTutor.csproj",
+      "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
+      "outputPath": "C:\\Repositorios\\ReactGPT\\MiTutor-backend\\MiTutor\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -958,7 +958,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
