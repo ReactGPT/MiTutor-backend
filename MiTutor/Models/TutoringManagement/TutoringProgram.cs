@@ -18,7 +18,7 @@ namespace MiTutor.Models.TutoringManagement
 
         public bool Mandatory { get; set; }
 
-        public int  MembersCount { get; set; }
+        public int MembersCount { get; set; }
 
         public string ProgramName { get; set; }
 
@@ -26,11 +26,16 @@ namespace MiTutor.Models.TutoringManagement
 
         public bool IsActive { get; set; }
 
-        public TimeSpan Duration { get; set; } 
-        
+        public TimeSpan Duration { get; set; }
+
         public Faculty Faculty { get; set; }
 
         public Specialty Specialty { get; set; }
+
+        public int StudentsNumber { get; set; }
+        public int TutorsNumber { get; set; }
+        public int TutorTypeId { get; set; }
+        public string TutorTypeDescription { get; set; }
 
     }
 
