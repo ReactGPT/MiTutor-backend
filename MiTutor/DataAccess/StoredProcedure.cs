@@ -21,6 +21,7 @@
         //ESTUDIANTE
         public const string CREAR_ESTUDIANTE = "STUDENT_INSERTAR_INSERT";
         public const string LISTAR_ESTUDIANTES = "STUDENT_LISTAR_LIST";
+        public const string LISTAR_ESTUDIANTES_POR_PROGRAMA = "STUDENT_LISTARXTUTORINGPROGRAMXTUTOR_SELECT";
 
         //USUARIO
         public const string CREAR_USUARIO = "USER_ACCOUNT_INSERTAR_INSERT";
@@ -71,6 +72,10 @@
         //AGREGAR_CITA
         public const string AGREGAR_CITA = "APPOINTMENT_INSERTAR_INSERT";
         public const string OBTENER_ID_STUDENT_PROGRAM = "GetStudentProgramId";
+
+        //LISTAR_CITA
+        public const string LISTAR_CITA_POR_TUTOR = "APPOINTMENT_LISTARXTUTOR_SELECT";
+        public const string LISTAR_CITA_POR_TUTOR_POR_ALUMNO = "APPOINTMENT_LISTARXTUTORXALUMNO_SELECT";
 
 
         //DERIVATION
