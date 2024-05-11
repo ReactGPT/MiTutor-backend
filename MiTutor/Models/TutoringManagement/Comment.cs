@@ -1,4 +1,6 @@
-﻿namespace MiTutor.Models.TutoringManagement
+﻿using System.Text.Json.Serialization;
+
+namespace MiTutor.Models.TutoringManagement
 {
     public class Comment
     {
@@ -11,6 +13,7 @@
         public int AppointmentResultId { get; set; }
 
         public int PrivacyTypeId { get; set; }
+        [JsonIgnore]
         public PrivacyType PrivacyType { get; set; }
     }
 }
