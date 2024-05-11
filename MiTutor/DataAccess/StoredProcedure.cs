@@ -2,6 +2,18 @@
 {
     public static class StoredProcedure
     {
+        public const string CREAR_ESPECIALIDAD = "ESP_CrearEspecialidad_Insert";
+        public const string LISTAR_ESPECIALIDAD = "ESP_ListarEspecialidades_Select";
+        public const string ACTUALIZAR_ESPECIALIDAD = "ESP_ActualizarEspecialidad_Update";
+        public const string LISTAR_PLAN_ACTIONS = "sp_GetActionPlans";
+        public const string CREAR_ACTION_PLAN = "sp_InsertActionPlan";
+        public const string OBTENER_ACTION_PLAN_X_ID = "sp_GetActionPlansById";
+        public const string LISTAR_COMMITMENT_X_ID_ACTION_PLAN = "sp_GetCommitmentsByActionPlanId";
+        public const string INSERTAR_COMMITMENT = "sp_InsertCommitment";
+        public const string ACTUALIZAR_PLAN = "sp_UpdateActionPlan";
+        public const string ACTUALIZAR_COMMITMENT = "sp_UpdateCommitment";
+        public const string DELETE_COMMITMENT = "sp_DeleteCommitment";
+        public const string ELIMINAR_ACTION_PLAN = "sp_DeleteActionPlan";
 
         //PERSONA
         public const string CREAR_PERSONA = "PERSON_INSERTAR_INSERT";
@@ -71,6 +83,13 @@
         public const string LISTAR_DERIVACIONES = "DERIVATION_LISTAR_SELECT";
         public const string ACTUALIZAR_DERIVACION = "DERIVATION_ACTUALIZAR_UPDATE";
         public const string ELIMINAR_DERIVACION = "DERIVATION_ELIMINAR_DELETE";
+
+        //RESULTADO-CITA CON COMENTARIOS
+        public const string INSERTAR_RESULTADO_CITA= "APPOINTMENTRESULT_INSERTAR_INSERT"; 
+        public const string ACTUALIZAR_RESULTADO_CITA = "APPOINTMENTRESULT_ACTUALIZAR_UPDATE";
+        public const string CONSULTAR_RESULTADO_CITA = "APPOINTMENTRESULT_CONSULTAR";
+        public const string CONSULTAR_COMENTARIOS_X_ID_RESULTADO_CITA = "COMMENT_CONSULTAR_POR_ID_APPOINMENT_RESULT";
+        public const string ACTUALIZAR_COMMENT_X_ID = "COMMENT_ACTUALIZAR_X_ID_UPDATE";
 
     }
 }

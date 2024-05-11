@@ -3,6 +3,7 @@ using MiTutor.Services.GestionUsuarios;
 using MiTutor.Services.TutoringManagement;
 using MiTutor.Services.UniversityUnitManagement;
 using MiTutor.Services.UserManagement;
+using MiTutor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,7 +26,9 @@ builder.Services.AddCors(options =>
         });
 });
 
-// Add Services 
+services.AddScoped<EspecialidadService>();
+services.AddScoped<ActionPlanService>();
+services.AddScoped<CommitmentService>();
 services.AddScoped<StudentService>();
 services.AddScoped<UserAccountService>();
 services.AddScoped<FacultyService>();
@@ -37,6 +40,7 @@ services.AddScoped<StudentProgramService>();
 services.AddScoped<CommentService>();
 services.AddScoped<DerivationService>();
 services.AddScoped<AppointmentService>();
+services.AddScoped<AppointmentResultService>();
 
 var app = builder.Build();
 
