@@ -20,12 +20,12 @@ namespace MiTutor.Controllers
         }
 
         [HttpGet("/listarActionPlans")]
-        public async Task<IActionResult> ListarActionPlans([FromQuery] int StudentProgramId, [FromQuery] int TutorId)
+        public async Task<IActionResult> ListarActionPlans([FromQuery] int studentId, [FromQuery] int programId, [FromQuery] int TutorId)
         {
             List<ActionPlan> actionPlans;
             try
             {
-                actionPlans = await _actionPlanService.ListarActionPlans(StudentProgramId, TutorId);
+                actionPlans = await _actionPlanService.ListarActionPlans(studentId,programId, TutorId);
                 return Ok(new { success = true, data = actionPlans });
             }
             catch (Exception ex)

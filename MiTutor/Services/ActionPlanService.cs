@@ -21,7 +21,8 @@ namespace MiTutor.Services
             {
                 new SqlParameter("@Name", SqlDbType.VarChar) { Value = actionPlan.Name },
                 new SqlParameter("@Description", SqlDbType.VarChar) {Value = actionPlan.Description},
-                new SqlParameter("@StudentProgramId", SqlDbType.Int) { Value = actionPlan.StudentProgramId },
+                new SqlParameter("@StudentId", SqlDbType.Int) { Value = actionPlan.StudentId },
+                new SqlParameter("@ProgramId", SqlDbType.Int) { Value = actionPlan.ProgramId },
                 new SqlParameter("@TutorId", SqlDbType.Int) { Value = actionPlan.TutorId }
             };
 
@@ -35,12 +36,15 @@ namespace MiTutor.Services
             }
         }
 
-        public async Task<List<ActionPlan>> ListarActionPlans(int studentProgramId, int tutorId)
+        public async Task<List<ActionPlan>> ListarActionPlans(int studentId, int programId, int tutorId)
         {
+
+
             List<ActionPlan> actionPlans = new List<ActionPlan>();
             SqlParameter[] parameters = new SqlParameter[]
             {
-                new SqlParameter("@StudentProgramId", SqlDbType.Int) { Value = studentProgramId},
+                new SqlParameter("@StudentId", SqlDbType.Int) { Value = studentId},
+                new SqlParameter("@TutoringProgramId", SqlDbType.Int) { Value = programId},
                 new SqlParameter("@TutorId", SqlDbType.Int) {Value = tutorId}
             };
 
