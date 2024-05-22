@@ -10,7 +10,8 @@ namespace MiTutor.Models.TutoringManagement
         public bool Asistio {  get; set; }
 
         public bool IsActive { get; set; }
-         
+        public TimeOnly StartTime { get; set; }
+        public TimeOnly EndTime { get; set; }
         public List<Comment> Comments { get; set; } = new List<Comment>();
         [JsonIgnore]
         public  ICollection<File> Files { get; set; } = new List<File>();

@@ -78,6 +78,8 @@ namespace MiTutor.Services.TutoringManagement
                         appointmentResult.appointmentResult.AppointmentResultId = Convert.ToInt32(row[0]);
                         appointmentResult.appointmentResult.IsActive = Convert.ToBoolean(row[1]); 
                         appointmentResult.appointmentResult.Asistio = Convert.ToBoolean(row[3]);
+                        appointmentResult.appointmentResult.StartTime = row["StartTime"] != DBNull.Value ? TimeOnly.FromTimeSpan(((DateTime)row["StartTime"]).TimeOfDay) : default;
+                        appointmentResult.appointmentResult.EndTime = row["EndTime"] != DBNull.Value ? TimeOnly.FromTimeSpan(((DateTime)row["EndTime"]).TimeOfDay) : default;
                     } 
                 }
                  
@@ -93,13 +95,14 @@ namespace MiTutor.Services.TutoringManagement
             return appointmentResult;
         }
         //ActualizarResultadoCita
-        public async Task ActualizarResultadoCita(int id_appointmentResult,bool asistio)
+        public async Task ActualizarResultadoCita(int id_appointmentResult, bool asistio, DateTime startTime, DateTime endTime)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
-                new SqlParameter("@asistio", SqlDbType.Bit) { Value = asistio},
-                new SqlParameter("@id_appointment_result", SqlDbType.Int) { Value = id_appointmentResult},
-                
+                new SqlParameter("@asistio", SqlDbType.Bit) { Value = asistio },
+                new SqlParameter("@id_appointment_result", SqlDbType.Int) { Value = id_appointmentResult },
+                new SqlParameter("@start_time", SqlDbType.DateTime) { Value = startTime },
+                new SqlParameter("@end_time", SqlDbType.DateTime) { Value = endTime }
             };
             try
             {

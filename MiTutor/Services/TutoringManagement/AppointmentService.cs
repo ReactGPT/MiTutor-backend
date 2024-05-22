@@ -131,17 +131,18 @@ namespace MiTutor.Services.TutoringManagement
                         ListarAppointment cita = new ListarAppointment
                         {
                             AppointmentId = Convert.ToInt32(row["AppointmentId"]),
+                            ProgramId = Convert.ToInt32(row["TutoringProgramId"]),
                             ProgramName = row["ProgramName"].ToString(),
                             AppointmentStatus = row["AppointmentStatus"].ToString(),
                             GroupBased = Convert.ToBoolean(row["GroupBased"]),
-                            CreationDate = row["CreationDate"] != DBNull.Value ? DateOnly.FromDateTime((DateTime)row["CreationDate"]) : default(DateOnly),
+                            CreationDate = row["CreationDate"] != DBNull.Value ? DateOnly.FromDateTime(((DateTime)row["CreationDate"])) : default,
                             PersonId = Convert.ToInt32(row["PersonId"]),
                             Name = row["Name"].ToString(),
                             LastName = row["LastName"].ToString(),
                             SecondLastName = row["SecondLastName"].ToString(),
                             IsInPerson = Convert.ToBoolean(row["IsInPerson"]),
-                            StartTime = row["StartTime"] != DBNull.Value ? TimeOnly.FromDateTime((DateTime)row["StartTime"]) : default(TimeOnly),
-                            EndTime = row["EndTime"] != DBNull.Value ? TimeOnly.FromDateTime((DateTime)row["EndTime"]) : default(TimeOnly),
+                            StartTime = row["StartTime"] != DBNull.Value ? TimeOnly.FromTimeSpan(((DateTime)row["StartTime"]).TimeOfDay) : default,
+                            EndTime = row["EndTime"] != DBNull.Value ? TimeOnly.FromTimeSpan(((DateTime)row["EndTime"]).TimeOfDay) : default,
                             Reason = row["Reason"].ToString()
                         };
 

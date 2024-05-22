@@ -49,11 +49,12 @@ namespace MiTutor.Controllers.TutoringManagement
         }
         /*APPOINTMENTRESULT_ACTUALIZAR_UPDATE*/
         [HttpPut("/actualizarResultadoCita")]
-        public async Task<IActionResult> ActualizarResultadoCita([FromQuery] int id_appointmentResult, [FromQuery] bool asistio)
+        public async Task<IActionResult> ActualizarResultadoCita([FromQuery] int id_appointmentResult, [FromQuery] bool asistio, [FromQuery] DateTime startTime, [FromQuery] DateTime endTime)
+        //ActualizarResultadoCita(int id_appointmentResult, bool asistio, DateTime startTime, DateTime endTime)
         {
             try
             {
-                await _appointmentResultServices.ActualizarResultadoCita(id_appointmentResult,asistio);
+                await _appointmentResultServices.ActualizarResultadoCita(id_appointmentResult,asistio, startTime, endTime);
             }
             catch (Exception ex)
             {

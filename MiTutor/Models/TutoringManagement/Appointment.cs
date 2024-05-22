@@ -40,6 +40,7 @@ namespace MiTutor.Models.TutoringManagement
     public class ListarAppointment
     {
         public int AppointmentId { get; set; }
+        public int ProgramId { get; set; }
         public string ProgramName { get; set; }
         public string AppointmentStatus { get; set; }
         public bool GroupBased { get; set; }
