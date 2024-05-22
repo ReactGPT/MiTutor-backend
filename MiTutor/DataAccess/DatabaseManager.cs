@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace MiTutor.DataAccess
 {
@@ -86,5 +87,29 @@ namespace MiTutor.DataAccess
                 }
             }
         }
+
+        public async Task<int> MeasureDatabaseResponseTimeAsync()
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("SELECT 1", connection))
+                {
+                    try
+                    {
+                        var stopwatch = Stopwatch.StartNew();
+                        await connection.OpenAsync();
+                        await command.ExecuteNonQueryAsync();
+                        stopwatch.Stop();
+                        return (int)stopwatch.ElapsedMilliseconds;
+                    }
+                    catch
+                    {
+                        return -1; // Indica un error
+                    }
+                }
+            }
+        }
+
+
     }
 }
