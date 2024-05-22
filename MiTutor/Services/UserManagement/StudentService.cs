@@ -55,7 +55,7 @@ namespace MiTutor.Services.GestionUsuarios
                         student.Phone = row["Phone"].ToString();
                         student.IsRisk = Convert.ToBoolean(row["IsRisk"]);
                         student.SpecialityId = Convert.ToInt32(row["SpecialtyId"]);
-                        student.IsActive = Convert.ToBoolean(row["IsActive"]); 
+                        student.IsActive = Convert.ToBoolean(row["IsActive"]);
                         student.Usuario.InstitutionalEmail = row["InstitutionalEmail"].ToString();
                         student.Usuario.PUCPCode = row["PUCPCode"].ToString();
 
@@ -111,6 +111,45 @@ namespace MiTutor.Services.GestionUsuarios
             }
 
             return students;
+        }
+
+        public async Task<ListarStudentJSON> SeleccionarDatosEstudiantesById(int studentId)
+        {
+            ListarStudentJSON student = null;
+            
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+                    new SqlParameter("@StudentId", SqlDbType.Int){
+                         Value = studentId
+                    }
+            };
+
+            DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.SELECCIONAR_ESTUDIANTE_X_ID, parameters);
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    DataRow row = dataTable.Rows[0]; // Selecciona la primera fila ya que esperas solo un estudiante
+
+                    student = new ListarStudentJSON()
+                    {
+                        Name = row["Name"].ToString(),
+                        LastName = row["LastName"].ToString(),
+                        SecondLastName = row["SecondLastName"].ToString(),
+                        PUCPCode = row["PUCPCode"].ToString(),
+                        InstitutionalEmail = row["InstitutionalEmail"].ToString(),
+                        Phone = row["Phone"].ToString(),
+                        SpecialtyName = row["SpecialtyName"].ToString(),
+                        FacultyName = row["FacultyName"].ToString()
+                    };
+                    student.StudentId = studentId;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en SeleccionarDatosEstudiantesById", ex);
+            }
+            
+            return student;
         }
 
     }

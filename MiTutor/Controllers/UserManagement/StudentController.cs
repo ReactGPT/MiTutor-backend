@@ -67,5 +67,23 @@ namespace MiTutor.Controllers.GestionUsuarios
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("/seleccionarEstudiantePorId/{studentId}")]
+        public async Task<IActionResult> SeleccionarDatosEstudiantesById(int studentId)
+        {
+            try
+            {
+
+                var estudiantes = await _estudianteServices.SeleccionarDatosEstudiantesById(studentId);
+
+
+                return Ok(new { success = true, data = estudiantes });
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
