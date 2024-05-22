@@ -60,5 +60,31 @@ namespace MiTutor.DataAccess
             }
             return dataTable;
         }
+
+        public async Task<int> ExecuteStoredProcedureWithRowsAffected(string storedProcedureName, SqlParameter[] parameters)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    if (parameters != null)
+                    {
+                        command.Parameters.AddRange(parameters);
+                    }
+
+                    try
+                    {
+                        await connection.OpenAsync();
+                        int rowsAffected = await command.ExecuteNonQueryAsync();
+                        return rowsAffected;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception($"Error al ejecutar el Stored Procedure: {storedProcedureName}", ex);
+                    }
+                }
+            }
+        }
     }
 }

@@ -134,14 +134,14 @@ namespace MiTutor.Services.TutoringManagement
                             ProgramName = row["ProgramName"].ToString(),
                             AppointmentStatus = row["AppointmentStatus"].ToString(),
                             GroupBased = Convert.ToBoolean(row["GroupBased"]),
-                            CreationDate = row["CreationDate"] != DBNull.Value ? (DateOnly)row["CreationDate"] : default(DateOnly),
+                            CreationDate = row["CreationDate"] != DBNull.Value ? DateOnly.FromDateTime((DateTime)row["CreationDate"]) : default(DateOnly),
                             PersonId = Convert.ToInt32(row["PersonId"]),
                             Name = row["Name"].ToString(),
                             LastName = row["LastName"].ToString(),
                             SecondLastName = row["SecondLastName"].ToString(),
                             IsInPerson = Convert.ToBoolean(row["IsInPerson"]),
-                            StartTime = row["StartTime"] != DBNull.Value ? (TimeOnly)row["StartTime"] : default(TimeOnly),
-                            EndTime = row["EndTime"] != DBNull.Value ? (TimeOnly)row["EndTime"] : default(TimeOnly),
+                            StartTime = row["StartTime"] != DBNull.Value ? TimeOnly.FromDateTime((DateTime)row["StartTime"]) : default(TimeOnly),
+                            EndTime = row["EndTime"] != DBNull.Value ? TimeOnly.FromDateTime((DateTime)row["EndTime"]) : default(TimeOnly),
                             Reason = row["Reason"].ToString()
                         };
 
@@ -184,14 +184,14 @@ namespace MiTutor.Services.TutoringManagement
                             ProgramName = row["ProgramName"].ToString(),
                             AppointmentStatus = row["AppointmentStatus"].ToString(),
                             GroupBased = Convert.ToBoolean(row["GroupBased"]),
-                            CreationDate = row["CreationDate"] != DBNull.Value ? (DateOnly)row["CreationDate"] : default(DateOnly),
+                            CreationDate = row["CreationDate"] != DBNull.Value ? DateOnly.FromDateTime((DateTime)row["CreationDate"]) : default(DateOnly),
                             PersonId = Convert.ToInt32(row["PersonId"]),
                             Name = row["Name"].ToString(),
                             LastName = row["LastName"].ToString(),
                             SecondLastName = row["SecondLastName"].ToString(),
                             IsInPerson = Convert.ToBoolean(row["IsInPerson"]),
-                            StartTime = row["StartTime"] != DBNull.Value ? (TimeOnly)row["StartTime"] : default(TimeOnly),
-                            EndTime = row["EndTime"] != DBNull.Value ? (TimeOnly)row["EndTime"] : default(TimeOnly),
+                            StartTime = row["StartTime"] != DBNull.Value ? TimeOnly.FromDateTime((DateTime)row["StartTime"]) : default(TimeOnly),
+                            EndTime = row["EndTime"] != DBNull.Value ? TimeOnly.FromDateTime((DateTime)row["EndTime"]) : default(TimeOnly),
                             Reason = row["Reason"].ToString()
                         };
 
