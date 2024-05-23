@@ -9,10 +9,24 @@ namespace MiTutor.Models.TutoringManagement
         public string State { get; set; }
 
         public int IsActive { get; set; }
+
+        public string Motivo { get; set; }
+
+        public int TutorId { get; set; }
         public int StudentProgramId { get; set; }
-        [JsonIgnore]
-        public StudentProgram StudentProgram { get; set; }
-        [JsonIgnore]
-        public Tutor Tutor { get; set; }
+         
+        //public StudentProgram StudentProgram { get; set; }
+         
+        //public Tutor Tutor { get; set; }
     }
+
+    public class TutorStudentProgramModificado
+    {
+        public int StudentId { get; set; }
+        public int ProgramId { get; set; }
+       
+        public TutorStudentProgram TutorStudentProgram { get; set; }
+
+}
+
 }

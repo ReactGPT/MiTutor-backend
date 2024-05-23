@@ -49,5 +49,20 @@ namespace MiTutor.Controllers.TutoringManagement
             }
             return Ok(new { success = true, data = faculties });
         }
+
+
+        [HttpGet("/listarTutoresTipo")]
+        public async Task<IActionResult> ListarTutoresTipos()
+        {
+            try
+            {
+                var tutores = await _tutorServices.ListarTutoresTipo();
+                return Ok(new { success = true, data = tutores });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, message = "Error al listar los tutores: " + ex.Message });
+            }
+        }
     }
 }

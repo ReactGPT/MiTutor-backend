@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\admin\\Desktop\\BACKEND\\MiTutor-backend\\MiTutor\\MiTutor.csproj": {}
+    "C:\\Users\\User\\Desktop\\Programa\\Software\\MiTutor-backend\\MiTutor\\MiTutor.csproj": {}
   },
   "projects": {
-    "C:\\Users\\admin\\Desktop\\BACKEND\\MiTutor-backend\\MiTutor\\MiTutor.csproj": {
+    "C:\\Users\\User\\Desktop\\Programa\\Software\\MiTutor-backend\\MiTutor\\MiTutor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\admin\\Desktop\\BACKEND\\MiTutor-backend\\MiTutor\\MiTutor.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\Programa\\Software\\MiTutor-backend\\MiTutor\\MiTutor.csproj",
         "projectName": "MiTutor",
-        "projectPath": "C:\\Users\\admin\\Desktop\\BACKEND\\MiTutor-backend\\MiTutor\\MiTutor.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\admin\\Desktop\\BACKEND\\MiTutor-backend\\MiTutor\\obj\\",
+        "projectPath": "C:\\Users\\User\\Desktop\\Programa\\Software\\MiTutor-backend\\MiTutor\\MiTutor.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\Programa\\Software\\MiTutor-backend\\MiTutor\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -60,6 +60,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.15, 7.0.15]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[7.0.15, 7.0.15]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.15, 7.0.15]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[7.0.15, 7.0.15]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -68,7 +86,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

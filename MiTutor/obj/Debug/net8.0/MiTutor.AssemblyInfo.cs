@@ -14,7 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MiTutor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< Updated upstream
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c7bf2a632300d8059f1e671c32b2008025e59c6f")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9c8cee17ec007100a2743a52ac08d42c7aa88f4c")]
+>>>>>>> Stashed changes
 [assembly: System.Reflection.AssemblyProductAttribute("MiTutor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MiTutor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

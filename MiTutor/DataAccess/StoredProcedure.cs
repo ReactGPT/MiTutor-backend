@@ -28,6 +28,10 @@
         public const string CREAR_TUTOR = "TUTOR_INSERTAR_INSERT";
         public const string LISTAR_TUTORES = "TUTOR_LISTAR_SELECT";
 
+        public const string LISTAR_TUTORES_TIPO = "TUTOR_LISTATIPO_SELECT";
+
+
+
         //TUTORIA PROGRAM
         public const string CREAR_PROGRAMA_DE_TUTORIA = "TUTORINGPROGRAM_INSERTAR_INSERT";
         public const string LISTAR_PROGRAMA_DE_TUTORIA = "TUTORINGPROGRAM_LISTAR_LIST";
@@ -67,5 +71,9 @@
         public const string ACTUALIZAR_DERIVACION = "DERIVATION_ACTUALIZAR_UPDATE";
         public const string ELIMINAR_DERIVACION = "DERIVATION_ELIMINAR_DELETE";
 
+
+        //TUTOR_STUDENT_PROGRAM
+        public const string CREAR_TUTOR_STUDENT_PROGRAM = "TUTOR_STUDENT_PROGRAM_INSERTAR_INSERT";
+        public const string CONSEGUIR_TUTOR_STUDENT_PROGRAM = "TUTOR_STUDENT_PROGRAM_Conseguir_FIND";
     }
 }
