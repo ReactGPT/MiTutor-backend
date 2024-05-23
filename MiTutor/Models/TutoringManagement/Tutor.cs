@@ -1,4 +1,5 @@
 ﻿using MiTutor.Models.GestionUsuarios;
+using MiTutor.Models.UniversityUnitManagement;
 using System.Text.Json.Serialization;
 
 namespace MiTutor.Models.TutoringManagement
@@ -16,6 +17,8 @@ namespace MiTutor.Models.TutoringManagement
         public ICollection<AvailabilityTutor> AvailabilityTutors { get; set; } = new List<AvailabilityTutor>();
         [JsonIgnore]
         public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
+        public Faculty Faculty { get; set; }
 
+        public TutoringProgram TutoringProgram { get; set; }
     }
 }

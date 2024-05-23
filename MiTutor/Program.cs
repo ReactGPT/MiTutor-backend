@@ -42,7 +42,7 @@ services.AddScoped<DerivationService>();
 services.AddScoped<AppointmentService>();
 services.AddScoped<AppointmentResultService>();
 services.AddScoped<AvailabilityTutorService>();
-
+services.AddScoped<TutorStudentProgramService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
