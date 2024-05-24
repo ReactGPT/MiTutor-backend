@@ -95,5 +95,22 @@ namespace MiTutor.Controllers.TutoringManagement
             }
         }
 
+        [HttpGet("/listarProgramasDeTutoriaPorAlumno/{studentId}")]
+        public async Task<IActionResult> ListarProgramasDeTutoriaPorAlumno(int studentId)
+        {
+            try
+            {
+
+                var programas = await _TutoringProgramServices.ListarProgramasDeTutoriaPorAlumno(studentId);
+
+
+                return Ok(new { success = true, data = programas });
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
