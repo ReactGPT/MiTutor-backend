@@ -127,5 +127,51 @@ namespace MiTutor.Services.TutoringManagement
 
             return tutores;
         }
+
+        public async Task<Tutor> SeleccionarTutorxID(int tutorId)
+        {
+            Tutor tutor = null;
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+                    new SqlParameter("@TutorId", SqlDbType.Int){
+                         Value = tutorId
+                    }
+            };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.SELECCIONAR_TUTOR_X_ID, parameters);
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    DataRow row = dataTable.Rows[0]; // Selecciona la primera fila ya que esperas solo un estudiante
+
+                    tutor = new Tutor()
+                    { 
+                        UserAccount = new UserAccount
+                        { 
+                            InstitutionalEmail = row["InstitutionalEmail"] == DBNull.Value ? null : row["InstitutionalEmail"].ToString(),
+                             
+                            Persona = new Person
+                            { 
+                                Name = row["PersonName"].ToString(),
+                                LastName = row["PersonLastName"].ToString(),
+                                SecondLastName = row["PersonSecondLastName"].ToString()
+                            }
+                        }  
+                    };
+                    tutor.TutorId = tutorId;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en SeleccionarTutor", ex);
+            }
+
+            return tutor;
+        }
+
+
     }
+
+
 }

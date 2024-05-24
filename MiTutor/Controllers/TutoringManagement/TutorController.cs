@@ -63,5 +63,23 @@ namespace MiTutor.Controllers.TutoringManagement
                 return BadRequest(new { success = false, message = "Error al listar los tutores: " + ex.Message });
             }
         }
+
+        [HttpGet("/seleccionarTutorPorId/{tutorId}")]
+        public async Task<IActionResult> SeleccionarTutorxID(int tutorId)
+        {
+            try
+            {
+
+                var estudiantes = await _tutorServices.SeleccionarTutorxID(tutorId);
+
+
+                return Ok(new { success = true, data = estudiantes });
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
