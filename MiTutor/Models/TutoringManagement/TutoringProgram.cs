@@ -48,4 +48,23 @@ namespace MiTutor.Models.TutoringManagement
         public string SpecialtyName { get; set; }
         public string tutorType { get; set; }
     }
+
+    public class TutoringProgramAlumno
+    {
+        public int TutoringProgramId { get; set; }
+        public string ProgramName { get; set; }
+        public string ProgramDescription { get; set; }
+        public int FacultyId { get; set; }
+        public string FacultyName { get; set; }
+        public int SpecialtyId { get; set; }
+        public string SpecialtyName { get; set; }
+        public int TutorTypeId { get; set; }
+        public string TutorName { get; set; }
+        public string TutorLastName { get; set; }
+        public string TutorSecondLastName { get; set; }
+        public int StudentId { get; set; }
+        public string TypeDescription { get; set; }
+        public string State { get; set; }
+
+    }
 }

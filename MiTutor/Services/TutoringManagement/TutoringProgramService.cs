@@ -3,6 +3,8 @@ using MiTutor.Models.TutoringManagement;
 using MiTutor.Models.UniversityUnitManagement;
 using System.Data.SqlClient;
 using System.Data;
+using MiTutor.Models.GestionUsuarios;
+using System.ComponentModel;
 
 namespace MiTutor.Services.TutoringManagement
 {
@@ -283,7 +285,53 @@ namespace MiTutor.Services.TutoringManagement
             return programas;
         }
 
+        public async Task<List<TutoringProgramAlumno>> ListarProgramasDeTutoriaPorAlumno(int studentId)
+        {
+            List<TutoringProgramAlumno> programas = new List<TutoringProgramAlumno>();
 
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+                    new SqlParameter("@StudentId", SqlDbType.Int){
+                        Value = studentId
+                    }
+                };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_PROGRAMA_POR_ALUMNO, parameters);
+
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        TutoringProgramAlumno programa = new TutoringProgramAlumno
+                        {
+                            TutoringProgramId = Convert.ToInt32(row["TutoringProgramId"]),
+                            ProgramName = row["ProgramName"].ToString(),
+                            ProgramDescription = row["ProgramDescription"].ToString(),
+                            FacultyId = Convert.ToInt32(row["FacultyId"]),
+                            FacultyName = row["FacultyName"].ToString(),
+                            SpecialtyId = Convert.ToInt32(row["SpecialtyId"]),
+                            SpecialtyName = row["SpecialtyName"].ToString(),
+                            TutorTypeId = Convert.ToInt32(row["TutorTypeId"]),
+                            TutorName = row["TutorName"].ToString(),
+                            TutorLastName = row["TutorLastName"].ToString(),
+                            TutorSecondLastName = row["TutorSecondLastName"].ToString(),
+                            StudentId = Convert.ToInt32(row["StudentId"]),
+                            TypeDescription = row["TypeDescription"].ToString(),
+                            State = row["State"].ToString()
+                        };
+
+                        programas.Add(programa);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al listar los programas de tutoría por alumno: " + ex.Message);
+            }
+
+            return programas;
+        }
 
     }
 }
