@@ -40,9 +40,10 @@
         //TUTOR
         public const string CREAR_TUTOR = "TUTOR_INSERTAR_INSERT";
         public const string LISTAR_TUTORES = "TUTOR_LISTAR_SELECT";
-
         public const string LISTAR_TUTORES_TIPO = "TUTOR_LISTATIPO_SELECT";
         public const string SELECCIONAR_TUTOR_X_ID = "TUTOR_SELECCIONAR_X_ID_SELECT";
+        public const string LISTAR_TUTORES_PROGRAM = "TUTOR_PROGRAM_LISTAR_SELECT";
+
 
         //TUTORIA PROGRAM
         public const string CREAR_PROGRAMA_DE_TUTORIA = "TUTORINGPROGRAM_INSERTAR_INSERT";
