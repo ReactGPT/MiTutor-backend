@@ -63,5 +63,20 @@ namespace MiTutor.Controllers.TutoringManagement
                 return BadRequest(new { success = false, message = "Error al listar los tutores: " + ex.Message });
             }
         }
+
+        [HttpGet("/listarTutoresPorPrograma/{idProgram}")]
+        public async Task<IActionResult> ListarTutoresPorProgramas(int idProgram)
+        {
+            try
+            {
+                List<Tutor> tutores = await _tutorServices.ListarTutoresPorPrograma(idProgram);
+                return Ok(new { success = true, data = tutores });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, message = "Error al listar los tutores por programa: " + ex.Message });
+            }
+        }
+
     }
 }

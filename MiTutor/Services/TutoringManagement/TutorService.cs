@@ -127,5 +127,69 @@ namespace MiTutor.Services.TutoringManagement
 
             return tutores;
         }
+        public async Task<List<Tutor>> ListarTutoresPorPrograma(int idProgram)
+        {
+            List<Tutor> tutores = new List<Tutor>();
+
+            try
+            {
+                // Crear los parámetros para el procedimiento almacenado
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+            new SqlParameter("@IdProgram", SqlDbType.Int) { Value = idProgram }
+                };
+
+                // Ejecutar el procedimiento almacenado y obtener el DataTable
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable("TUTOR_PROGRAM_LISTAR_SELECT", parameters);
+
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        Tutor tutor = new Tutor
+                        {
+                            TutorId = Convert.ToInt32(row["TutorId"]),
+                            MeetingRoom = row["MeetingRoom"] == DBNull.Value ? null : row["MeetingRoom"].ToString(),
+                            IsActive = Convert.ToBoolean(row["TutorIsActive"]),
+                            UserAccount = new UserAccount
+                            {
+                                Id = Convert.ToInt32(row["UserAccountId"]),
+                                InstitutionalEmail = row["InstitutionalEmail"] == DBNull.Value ? null : row["InstitutionalEmail"].ToString(),
+                                PUCPCode = row["PUCPCode"] == DBNull.Value ? null : row["PUCPCode"].ToString(),
+                                IsActive = Convert.ToBoolean(row["UserAccountIsActive"]),
+                                Persona = new Person
+                                {
+                                    Id = Convert.ToInt32(row["PersonId"]),
+                                    Name = row["PersonName"].ToString(),
+                                    LastName = row["PersonLastName"].ToString(),
+                                    SecondLastName = row["PersonSecondLastName"].ToString(),
+                                    Phone = row["Phone"] == DBNull.Value ? null : row["Phone"].ToString(),
+                                    IsActive = Convert.ToBoolean(row["PersonIsActive"])
+                                }
+                            },
+                            Faculty = new Faculty
+                            {
+                                FacultyId = Convert.ToInt32(row["FacultyId"]),
+                                Name = row["FacultyName"].ToString()
+                            },
+                            TutoringProgram = new TutoringProgram
+                            {
+                                TutoringProgramId = Convert.ToInt32(row["TutoringProgramId"]),
+                                ProgramName = row["ProgramName"].ToString()
+                            }
+                        };
+
+                        tutores.Add(tutor);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al listar los tutores por programa: " + ex.Message);
+            }
+
+            return tutores;
+        }
+
     }
 }

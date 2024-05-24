@@ -42,6 +42,8 @@
         public const string LISTAR_TUTORES = "TUTOR_LISTAR_SELECT";
 
         public const string LISTAR_TUTORES_TIPO = "TUTOR_LISTATIPO_SELECT";
+        public const string LISTAR_TUTORES_PROGRAM = "TUTOR_PROGRAM_LISTAR_SELECT";
+
 
         //TUTORIA PROGRAM
         public const string CREAR_PROGRAMA_DE_TUTORIA = "TUTORINGPROGRAM_INSERTAR_INSERT";
