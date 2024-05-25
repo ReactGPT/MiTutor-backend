@@ -4,6 +4,7 @@ using MiTutor.Services.TutoringManagement;
 using MiTutor.Services.UniversityUnitManagement;
 using MiTutor.Services.UserManagement;
 using MiTutor.Services;
+using MiTutor.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,6 +44,8 @@ services.AddScoped<AppointmentService>();
 services.AddScoped<AppointmentResultService>();
 services.AddScoped<AvailabilityTutorService>();
 services.AddScoped<TutorStudentProgramService>();
+services.AddScoped<ArchivosController>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
