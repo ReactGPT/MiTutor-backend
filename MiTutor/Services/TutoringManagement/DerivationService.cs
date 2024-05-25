@@ -2,6 +2,9 @@
 using MiTutor.Models.TutoringManagement;
 using System.Data.SqlClient;
 using System.Data;
+using MiTutor.Models.UniversityUnitManagement;
+using System.Xml.Linq;
+using MiTutor.Models.GestionUsuarios;
 
 namespace MiTutor.Services.TutoringManagement
 {
@@ -119,6 +122,35 @@ namespace MiTutor.Services.TutoringManagement
             {
                 throw new Exception("ERROR en EliminarDerivacion", ex);
             }
+        }
+
+        //Unidades de Derivación
+        public async Task<List<UnitDerivation>> ListarUnidadesDerivacion()
+        {
+            List<UnitDerivation> unitDerivations = new List<UnitDerivation>();
+
+            try
+            {
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_UNIDADES_DERIVACION, null);
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    { 
+                        UnitDerivation derivation = new UnitDerivation
+                        {
+                            UnitDerivationId= Convert.ToInt32(row["UnitDerivationId"]),
+                            Name= row["Name"].ToString()
+                        };
+                        unitDerivations.Add(derivation);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarUnidadesDerivacion", ex);
+            }
+
+            return unitDerivations;
         }
 
     }

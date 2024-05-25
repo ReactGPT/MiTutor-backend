@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MiTutor.Models.TutoringManagement;
 using MiTutor.Services.TutoringManagement;
+using MiTutor.Models.UniversityUnitManagement;
 
 namespace MiTutor.Controllers.TutoringManagement
 {
@@ -73,6 +74,21 @@ namespace MiTutor.Controllers.TutoringManagement
                 return BadRequest(ex.Message);
             }
             return Ok(new { success = true, message = "Se eliminó la derivación satisfactoriamente" });
+        }
+
+        [HttpGet("/listarUnidadesDerivacion")]
+        public async Task<IActionResult> ListarUnidadesDerivacion()
+        {
+            List<UnitDerivation> derivations;
+            try
+            {
+                derivations = await _derivationServices.ListarUnidadesDerivacion();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, data = derivations });
         }
     }
 }
