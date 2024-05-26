@@ -35,6 +35,22 @@ namespace MiTutor.Controllers
             }
         }
 
+        [HttpGet("/listarActionPlansStudent")]
+        public async Task<IActionResult> listarActionPlansStudent([FromQuery] int studentId, [FromQuery] int programId, [FromQuery] int TutorId)
+        {
+            List<ActionPlan> actionPlans;
+            try
+            {
+                actionPlans = await _actionPlanService.ListarActionPlansStudent(studentId, programId, TutorId);
+                return Ok(new { success = true, data = actionPlans });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en controller listarActionPlansStudent", ex);
+                //return BadRequest(new { success = false, message = ex.Message });
+            }
+        }
+
 
         [HttpGet("/listarActionPlansPorId")]
         public async Task<IActionResult> ListarActionPlansPorId([FromQuery] int ActionPlanId)
