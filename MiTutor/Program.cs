@@ -20,7 +20,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("MiTutorPUCPAppDev",
         builder =>
         {
-            builder.AllowAnyOrigin()//WithOrigins("http://localhost:5173") // Adjust the URL as needed
+            builder.AllowAnyOrigin()
                    .AllowAnyMethod()
                    .AllowAnyHeader();
         });
@@ -43,6 +43,7 @@ services.AddScoped<AppointmentService>();
 services.AddScoped<AppointmentResultService>();
 services.AddScoped<AvailabilityTutorService>();
 services.AddScoped<TutorStudentProgramService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -51,9 +52,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseSwagger();
-app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 

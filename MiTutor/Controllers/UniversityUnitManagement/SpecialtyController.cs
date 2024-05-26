@@ -18,7 +18,7 @@ namespace MiTutor.Controllers.UniversityUnitManagement
             _specialtyServices = specialtyService;
         }
 
-        [HttpPost("/crearEspecialidad")]
+        [HttpPost("crearEspecialidad")] // Cambiado a ruta relativa
         public async Task<IActionResult> CrearEspecialidad([FromBody] Specialty specialty)
         {
             try
@@ -32,7 +32,7 @@ namespace MiTutor.Controllers.UniversityUnitManagement
             return Ok(new { success = true, message = "Se inserto satisfactoriamente" });
         }
 
-        [HttpGet("/listarEspecialidad")]
+        [HttpGet("listarEspecialidad")] // Cambiado a ruta relativa
         public async Task<IActionResult> ListarEspecialidades()
         {
             List<Specialty> specialties;
