@@ -79,6 +79,49 @@ namespace MiTutor.Services
             return actionPlans;
         }
 
+        public async Task<List<ActionPlan>> ListarActionPlansStudent(int studentId, int programId, int tutorId)
+        {
+
+
+            List<ActionPlan> actionPlans = new List<ActionPlan>();
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@StudentId", SqlDbType.Int) { Value = studentId},
+                new SqlParameter("@TutoringProgramId", SqlDbType.Int) { Value = programId},
+                new SqlParameter("@TutorId", SqlDbType.Int) {Value = tutorId}
+            };
+
+            try
+            {
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_ACTION_PLAN_ALUMNO, parameters);
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        ActionPlan actionPlan = new ActionPlan
+                        {
+                            ActionPlanId = Convert.ToInt32(row[0]),
+                            Name = row[1].ToString(),
+                            Description = row[2].ToString(),
+                            IsActive = Convert.ToBoolean(row[3]),
+                            StudentProgramId = Convert.ToInt32(row[4]),
+                            TutorId = Convert.ToInt32(row[5]),
+                            CreationDate = Convert.ToDateTime(row[6]),
+                            ModificationDate = Convert.ToDateTime(row[7]),
+
+                        };
+                        actionPlans.Add(actionPlan);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarActionPlansStudent", ex);
+            }
+
+            return actionPlans;
+        }
+
         public async Task<List<ActionPlan>> ListarActionPlansPorId(int ActionPlanId)
         {
             List<ActionPlan> actionPlans = new List<ActionPlan>();
