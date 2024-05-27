@@ -10,7 +10,7 @@ namespace MiTutor.Models.TutoringManagement
 
         public string MeetingRoom { get; set; }
 
-        public bool IsActive { get; set; } 
+        public bool IsActive { get; set; }
 
         public UserAccount UserAccount { get; set; }
         [JsonIgnore]
