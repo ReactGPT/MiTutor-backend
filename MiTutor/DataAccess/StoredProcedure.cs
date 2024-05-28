@@ -26,6 +26,7 @@
         //USUARIO
         public const string CREAR_USUARIO = "USER_ACCOUNT_INSERTAR_INSERT";
         public const string LISTAR_USUARIOS = "USER_LISTAR_SELECT";
+        public const string OBTENERINFO_USUARIO = "USER_OBTENERINFOUSUARIO_SELECT";
 
         //FACULTAD
         public const string CREAR_FACULTAD = "FACULTY_INSERTAR_INSERT";
