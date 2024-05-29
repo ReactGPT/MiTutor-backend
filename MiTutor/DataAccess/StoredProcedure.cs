@@ -78,7 +78,11 @@
         public const string LISTAR_ARCHIVOS = "FILE_LISTAR_SELECT";
         public const string ACTUALIZAR_ARCHIVOS = "FILE_ACTUALIZAR_UPDATE";
         public const string ELIMINAR_ARCHIVO = "FILE_ELIMINAR_DELETE";
-        
+        public const string REACTIVAR_ARCHIVO = "FILE_ACTIVAR_UPDATE";
+        //REACTIVAR_ARCHIVO
+        public const string INSERTAR_ARCHIVO = "InsertarArchivo";
+        public const string LISTAR_ARCHIVOS_ID_RESULTADO_TIPO = "FILES_LISTAR_POR_ID_RESULTADOCITA_TIPOPRIVACIDAD_SELECT";
+
         //AGREGAR_CITA
         public const string AGREGAR_CITA = "APPOINTMENT_INSERTAR_INSERT";
         public const string OBTENER_ID_STUDENT_PROGRAM = "GetStudentProgramId";
@@ -94,6 +98,7 @@
         public const string ACTUALIZAR_DERIVACION = "DERIVATION_ACTUALIZAR_UPDATE";
         public const string ELIMINAR_DERIVACION = "DERIVATION_ELIMINAR_DELETE";
         public const string LISTAR_UNIDADES_DERIVACION = "UNITDERIVATION_LISTAR_SELECT";
+        public const string SELECCIONAR_DERIVATION_ID_CITA = "DERIVATION_SELECCIONAR_X_ID_CITA_SELECT";
 
         //RESULTADO-CITA CON COMENTARIOS
         public const string INSERTAR_RESULTADO_CITA= "APPOINTMENTRESULT_INSERTAR_INSERT"; 

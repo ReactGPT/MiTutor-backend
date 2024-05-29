@@ -13,8 +13,8 @@ namespace MiTutor.Models.TutoringManagement
         public TimeOnly StartTime { get; set; }
         public TimeOnly EndTime { get; set; }
         public List<Comment> Comments { get; set; } = new List<Comment>();
-        [JsonIgnore]
-        public  ICollection<File> Files { get; set; } = new List<File>();
+        //[JsonIgnore]
+        //public  ICollection<File> Files { get; set; } = new List<File>();
          
         //tienes el id de cita, alumno y el programa
     }

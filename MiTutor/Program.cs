@@ -45,6 +45,7 @@ services.AddScoped<AppointmentResultService>();
 services.AddScoped<AvailabilityTutorService>();
 services.AddScoped<TutorStudentProgramService>();
 services.AddScoped<ArchivosController>();
+services.AddScoped<FilesService>();
 
 var app = builder.Build();
 
