@@ -252,7 +252,8 @@ namespace MiTutor.Services.TutoringManagement
 
                 if (dataTable != null)
                 {
-                    if (dataTable.Rows.Count != 0) {
+                    if (dataTable.Rows.Count != 0)
+                    {
                         foreach (DataRow row in dataTable.Rows)
                         {
                             TutorXtutoringProgramXalumno tutor = new TutorXtutoringProgramXalumno
@@ -265,21 +266,10 @@ namespace MiTutor.Services.TutoringManagement
                             };
 
                             tutores.Add(tutor);
+
                         }
                     }
-                    else
-                    {
-                        TutorXtutoringProgramXalumno tutor = new TutorXtutoringProgramXalumno
-                        {
-                            TutorId = 0,
-                            TutorName = "Pendiente",
-                            TutorLastName = "",
-                            TutorSecondLastName = "",
-                            State = "solicitado"
-                        };
-                        tutores.Add(tutor);
-                    }
-
+                        
                 }
 
             }

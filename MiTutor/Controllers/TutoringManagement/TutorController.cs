@@ -102,8 +102,26 @@ namespace MiTutor.Controllers.TutoringManagement
         {
             try
             {
+                string estado = null;
+
                 List<TutorXtutoringProgramXalumno> tutores = await _tutorServices.ListarTutoresPorTutoriaPorAlumno(idProgram, studentId);
-                return Ok(new { success = true, data = tutores });
+                if (tutores.Count == 0)
+                {
+                    //no hay tutor
+                    estado = "SIN_TUTOR";
+                }
+                else {
+                    if (tutores[0].State == "ASIGNADO") {
+                        //tutor asignado
+                        estado = "TUTOR_ASIGNADO";
+                    }
+                    else if(tutores[0].State == "SOLICITADO"){
+                        //tutor solicitado
+                        estado = "SOLICITUD_PENDIENTE";
+                    }
+                }
+
+                return Ok(new { success = true, data = new { estado = estado, tutores = tutores } });
             }
             catch (Exception ex)
             {
