@@ -32,16 +32,21 @@ namespace MiTutor.Services.TutoringManagement
                 {
                     foreach (DataRow row in dataTable.Rows)
                     {
-                        ListAvailabilityTutor disponibilidad = new ListAvailabilityTutor
-                        {
-                            AvailabilityTutorId = Convert.ToInt32(row["AvailabilityTutorId"]),
-                            AvailabilityDate = row["AvailabilityDate"] != DBNull.Value ? DateOnly.FromDateTime((DateTime)row["AvailabilityDate"]) : default(DateOnly),
-                            StartTime = row["StartTime"] != DBNull.Value ? TimeOnly.FromTimeSpan((TimeSpan)row["StartTime"]) : default(TimeOnly),
-                            EndTime = row["EndTime"] != DBNull.Value ? TimeOnly.FromTimeSpan((TimeSpan)row["EndTime"]) : default(TimeOnly),
-                            IsActive = Convert.ToBoolean(row["IsActive"])
-                        };
+                        DateOnly availabilityDate = row["AvailabilityDate"] != DBNull.Value ? DateOnly.FromDateTime((DateTime)row["AvailabilityDate"]) : default(DateOnly);
 
-                        disponibilidades.Add(disponibilidad);
+                        if (availabilityDate >= DateOnly.FromDateTime(DateTime.Today))
+                        {
+                            ListAvailabilityTutor disponibilidad = new ListAvailabilityTutor
+                            {
+                                AvailabilityTutorId = Convert.ToInt32(row["AvailabilityTutorId"]),
+                                AvailabilityDate = availabilityDate,
+                                StartTime = row["StartTime"] != DBNull.Value ? TimeOnly.FromTimeSpan((TimeSpan)row["StartTime"]) : default(TimeOnly),
+                                EndTime = row["EndTime"] != DBNull.Value ? TimeOnly.FromTimeSpan((TimeSpan)row["EndTime"]) : default(TimeOnly),
+                                IsActive = Convert.ToBoolean(row["IsActive"])
+                            };
+
+                            disponibilidades.Add(disponibilidad);
+                        }
                     }
                 }
             }

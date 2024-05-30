@@ -24,13 +24,14 @@ namespace MiTutor.Controllers.TutoringManagement
         {
             try
             {
-                await _derivationServices.CrearDerivacion(derivation);
+                int derivationId = await _derivationServices.CrearDerivacion(derivation);
+                // Devolver el ID de la derivación creada en la respuesta
+                return Ok(new { success = true, message = "Se insertaron satisfactoriamente", data = derivationId });
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
-            return Ok(new { success = true, message = "Se insertaron satisfactoriamente" });
         }
 
         [HttpGet("/listarDerivaciones")]
@@ -89,6 +90,22 @@ namespace MiTutor.Controllers.TutoringManagement
                 return BadRequest(ex.Message);
             }
             return Ok(new { success = true, data = derivations });
+        }
+
+        [HttpGet("/seleccionarDerivacionByIdAppointment/{appointmentId}")]
+        public async Task<IActionResult> SeleccionarDerivacionByIdAppointment(int appointmentId)
+        {
+            Derivation derivation;
+            try
+            {
+                derivation = await _derivationServices.SeleccionarDerivacionByIdAppointment(appointmentId);
+                return Ok(new { success = true, data = derivation });
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

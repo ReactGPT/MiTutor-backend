@@ -97,6 +97,51 @@ namespace MiTutor.Controllers.TutoringManagement
             }
         }
 
+        [HttpGet("/listarTutoresPorProgramaPorAlumno/{idProgram}/{studentId}")]
+        public async Task<IActionResult> ListarTutoresPorProgramasPorAlumno(int idProgram,int studentId)
+        {
+            try
+            {
+                string estado = null;
+
+                List<TutorXtutoringProgramXalumno> tutores = await _tutorServices.ListarTutoresPorTutoriaPorAlumno(idProgram, studentId);
+                if (tutores.Count == 0)
+                {
+                    //no hay tutor
+                    estado = "SIN_TUTOR";
+                }
+                else {
+                    if (tutores[0].State == "ASIGNADO") {
+                        //tutor asignado
+                        estado = "TUTOR_ASIGNADO";
+                    }
+                    else if(tutores[0].State == "SOLICITADO"){
+                        //tutor solicitado
+                        estado = "SOLICITUD_PENDIENTE";
+                    }
+                }
+
+                return Ok(new { success = true, data = new { estado = estado, tutores = tutores } });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, message = "Error al listar los tutores por programa por alumno: " + ex.Message });
+            }
+        }
+
+        [HttpGet("/listarTutoresPorProgramaVariable/{idProgram}")]
+        public async Task<IActionResult> ListarTutoresPorProgramasVariable(int idProgram)
+        {
+            try
+            {
+                List<TutorXtutoringProgramXalumno> tutores = await _tutorServices.ListarTutoresPorTutoriaVariable(idProgram);
+                return Ok(new { success = true, data = tutores });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, message = "Error al listar los tutores por programa variable: " + ex.Message });
+            }
+        }
 
     }
 }

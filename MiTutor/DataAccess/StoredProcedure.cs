@@ -4,15 +4,20 @@
     {
         public const string LISTAR_ESPECIALIDAD = "ESP_ListarEspecialidades_Select";
         public const string ACTUALIZAR_ESPECIALIDAD = "ESP_ActualizarEspecialidad_Update";
+
+        //PLAN DE ACCIÓN
         public const string LISTAR_PLAN_ACTIONS = "sp_GetActionPlans";
         public const string CREAR_ACTION_PLAN = "sp_InsertActionPlan";
         public const string OBTENER_ACTION_PLAN_X_ID = "sp_GetActionPlansById";
+        public const string ACTUALIZAR_PLAN = "sp_UpdateActionPlan";
+        public const string LISTAR_ACTION_PLAN_ALUMNO = "sp_GetActionPlansStudent";
+        public const string ELIMINAR_ACTION_PLAN = "sp_DeleteActionPlan";
+
+        //COMPROMISOS
         public const string LISTAR_COMMITMENT_X_ID_ACTION_PLAN = "sp_GetCommitmentsByActionPlanId";
         public const string INSERTAR_COMMITMENT = "sp_InsertCommitment";
-        public const string ACTUALIZAR_PLAN = "sp_UpdateActionPlan";
         public const string ACTUALIZAR_COMMITMENT = "sp_UpdateCommitment";
-        public const string DELETE_COMMITMENT = "sp_DeleteCommitment";
-        public const string ELIMINAR_ACTION_PLAN = "sp_DeleteActionPlan";
+        public const string DELETE_COMMITMENT = "sp_DeleteCommitment";     
 
         //PERSONA
         public const string CREAR_PERSONA = "PERSON_INSERTAR_INSERT";
@@ -43,7 +48,8 @@
         public const string LISTAR_TUTORES_TIPO = "TUTOR_LISTATIPO_SELECT";
         public const string SELECCIONAR_TUTOR_X_ID = "TUTOR_SELECCIONAR_X_ID_SELECT";
         public const string LISTAR_TUTORES_PROGRAM = "TUTOR_PROGRAM_LISTAR_SELECT";
-
+        public const string LISTAR_TUTORES_PROGRAM_ALUMNO = "TUTOR_LISTARXIDPROGRAM";
+        public const string LISTAR_TUTORES_PROGRAM_VARIABLE = "TUTOR_LISTARXIDPROGRAMVARIABLE";
 
         //TUTORIA PROGRAM
         public const string CREAR_PROGRAMA_DE_TUTORIA = "TUTORINGPROGRAM_INSERTAR_INSERT";
@@ -73,7 +79,10 @@
         public const string LISTAR_ARCHIVOS = "FILE_LISTAR_SELECT";
         public const string ACTUALIZAR_ARCHIVOS = "FILE_ACTUALIZAR_UPDATE";
         public const string ELIMINAR_ARCHIVO = "FILE_ELIMINAR_DELETE";
-        
+        public const string REACTIVAR_ARCHIVO = "FILE_ACTIVAR_UPDATE";
+        public const string INSERTAR_ARCHIVO = "InsertarArchivo";
+        public const string LISTAR_ARCHIVOS_ID_RESULTADO_TIPO = "FILES_LISTAR_POR_ID_RESULTADOCITA_TIPOPRIVACIDAD_SELECT";
+
         //AGREGAR_CITA
         public const string AGREGAR_CITA = "APPOINTMENT_INSERTAR_INSERT";
         public const string OBTENER_ID_STUDENT_PROGRAM = "GetStudentProgramId";
@@ -89,6 +98,7 @@
         public const string ACTUALIZAR_DERIVACION = "DERIVATION_ACTUALIZAR_UPDATE";
         public const string ELIMINAR_DERIVACION = "DERIVATION_ELIMINAR_DELETE";
         public const string LISTAR_UNIDADES_DERIVACION = "UNITDERIVATION_LISTAR_SELECT";
+        public const string SELECCIONAR_DERIVATION_ID_CITA = "DERIVATION_SELECCIONAR_X_ID_CITA_SELECT";
 
         //RESULTADO-CITA CON COMENTARIOS
         public const string INSERTAR_RESULTADO_CITA= "APPOINTMENTRESULT_INSERTAR_INSERT"; 
