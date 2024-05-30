@@ -14,7 +14,7 @@ namespace MiTutor.Models.TutoringManagement
         public TimeOnly EndTime { get; set; }
         public List<Comment> Comments { get; set; } = new List<Comment>();
         [JsonIgnore]
-        public  ICollection<File> Files { get; set; } = new List<File>();
+        public  ICollection<Files> Files { get; set; } = new List<Files>();
          
         //tienes el id de cita, alumno y el programa
     }
