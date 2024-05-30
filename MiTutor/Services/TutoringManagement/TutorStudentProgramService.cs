@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MiTutor.Models.GestionUsuarios;
 
 namespace MiTutor.Services.TutoringManagement
 {
@@ -38,17 +39,19 @@ namespace MiTutor.Services.TutoringManagement
 
         public async Task GetStudentProgramIdAsync(TutorStudentProgramModificado tutorStudentProgramModificado)
         {
-            SqlParameter[] parameters = new SqlParameter[]
-            {
-                new SqlParameter("@studentId", SqlDbType.Int) { Value = tutorStudentProgramModificado.StudentId },
-                new SqlParameter("@ProgramId", SqlDbType.Int) { Value = tutorStudentProgramModificado.ProgramId },
-                new SqlParameter("@SelectedStudentProgramId", SqlDbType.Int) { Direction = ParameterDirection.Output }
-            };
-
             try
             {
-                await _databaseManager.ExecuteStoredProcedure("TUTOR_STUDENT_PROGRAM_Conseguir_FIND", parameters);
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@StudentId", SqlDbType.Int) { Value = tutorStudentProgramModificado.StudentId },
+                    new SqlParameter("@TutoringProgramId", SqlDbType.Int) { Value = tutorStudentProgramModificado.ProgramId },
+                    new SqlParameter("@StudentProgramId", SqlDbType.Int) { Direction = ParameterDirection.Output }
+                };
+
+                await _databaseManager.ExecuteStoredProcedure("GetStudentProgramId", parameters);
+
                 tutorStudentProgramModificado.TutorStudentProgram.StudentProgramId = Convert.ToInt32(parameters[parameters.Length - 1].Value);
+
             }
             catch (Exception ex)
             {
