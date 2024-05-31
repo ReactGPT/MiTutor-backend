@@ -75,6 +75,18 @@ namespace MiTutor.Controllers.TutoringManagement
             return Ok(new { success = true, message = "Se eliminó el comentario satisfactoriamente" });
         }
 
-
+        [HttpPut("/actualizarComentarioxID")]
+        public async Task<IActionResult> ActualizarComentarioxID([FromQuery] int id_comment, [FromQuery] string message)
+        {
+            try
+            {
+                await _commentServices.ActualizarComentarioxID(id_comment,message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, message = "Se actualizaron satisfactoriamente" });
+        }
     }
 }

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\MiTutor.csproj": {}
+    "C:\\Users\\JOHAN\\Desktop\\PUCP Johan\\MiTutor\\MiTutor-backend\\MiTutor\\MiTutor.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\MiTutor.csproj": {
+    "C:\\Users\\JOHAN\\Desktop\\PUCP Johan\\MiTutor\\MiTutor-backend\\MiTutor\\MiTutor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\MiTutor.csproj",
+        "projectUniqueName": "C:\\Users\\JOHAN\\Desktop\\PUCP Johan\\MiTutor\\MiTutor-backend\\MiTutor\\MiTutor.csproj",
         "projectName": "MiTutor",
-        "projectPath": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\MiTutor.csproj",
-        "packagesPath": "C:\\Users\\Diego\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\obj\\",
+        "projectPath": "C:\\Users\\JOHAN\\Desktop\\PUCP Johan\\MiTutor\\MiTutor-backend\\MiTutor\\MiTutor.csproj",
+        "packagesPath": "C:\\Users\\JOHAN\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\JOHAN\\Desktop\\PUCP Johan\\MiTutor\\MiTutor-backend\\MiTutor\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\JOHAN\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -73,7 +74,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

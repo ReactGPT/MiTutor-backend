@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System.Data;
 using MiTutor.Models.TutoringManagement;
+using MiTutor.Models.GestionUsuarios;
 
 namespace MiTutor.Services.TutoringManagement
 {
@@ -108,5 +109,200 @@ namespace MiTutor.Services.TutoringManagement
                 }
             }
         }
+
+        public async Task<List<ListarAppointment>> ListarCitasPorTutor(int tutorId)
+        {
+            List<ListarAppointment> citas = new List<ListarAppointment>();
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+                    new SqlParameter("@TutorId", SqlDbType.Int){
+                        Value = tutorId
+                    }
+                };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_CITA_POR_TUTOR, parameters);
+
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        ListarAppointment cita = new ListarAppointment
+                        {
+                            AppointmentId = Convert.ToInt32(row["AppointmentId"]),
+                            ProgramId = Convert.ToInt32(row["TutoringProgramId"]),
+                            ProgramName = row["ProgramName"].ToString(),
+                            AppointmentStatus = row["AppointmentStatus"].ToString(),
+                            GroupBased = Convert.ToBoolean(row["GroupBased"]),
+                            CreationDate = row["CreationDate"] != DBNull.Value ? DateOnly.FromDateTime(((DateTime)row["CreationDate"])) : default,
+                            PersonId = Convert.ToInt32(row["PersonId"]),
+                            Name = row["Name"].ToString(),
+                            LastName = row["LastName"].ToString(),
+                            SecondLastName = row["SecondLastName"].ToString(),
+                            IsInPerson = Convert.ToBoolean(row["IsInPerson"]),
+                            StartTime = row["StartTime"] != DBNull.Value ? TimeOnly.FromTimeSpan(((DateTime)row["StartTime"]).TimeOfDay) : default,
+                            EndTime = row["EndTime"] != DBNull.Value ? TimeOnly.FromTimeSpan(((DateTime)row["EndTime"]).TimeOfDay) : default,
+                            Reason = row["Reason"].ToString()
+                        };
+
+                        citas.Add(cita);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al listar las citas por tutor: " + ex.Message);
+            }
+
+            return citas;
+        }
+
+        public async Task<List<ListarAppointment>> ListarCitasPorTutorPorAlumno(int tutorId, int studentId)
+        {
+            List<ListarAppointment> citas = new List<ListarAppointment>();
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+                    new SqlParameter("@TutorId", SqlDbType.Int){
+                        Value = tutorId
+                    },
+                    new SqlParameter("@StudentId", SqlDbType.Int){
+                        Value = studentId
+                    }
+                };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_CITA_POR_TUTOR_POR_ALUMNO, parameters);
+
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        ListarAppointment cita = new ListarAppointment
+                        {
+                            AppointmentId = Convert.ToInt32(row["AppointmentId"]),
+                            ProgramName = row["ProgramName"].ToString(),
+                            AppointmentStatus = row["AppointmentStatus"].ToString(),
+                            GroupBased = Convert.ToBoolean(row["GroupBased"]),
+                            CreationDate = row["CreationDate"] != DBNull.Value ? DateOnly.FromDateTime((DateTime)row["CreationDate"]) : default(DateOnly),
+                            PersonId = Convert.ToInt32(row["PersonId"]),
+                            Name = row["Name"].ToString(),
+                            LastName = row["LastName"].ToString(),
+                            SecondLastName = row["SecondLastName"].ToString(),
+                            IsInPerson = Convert.ToBoolean(row["IsInPerson"]),
+                            StartTime = row["StartTime"] != DBNull.Value ? TimeOnly.FromDateTime((DateTime)row["StartTime"]) : default(TimeOnly),
+                            EndTime = row["EndTime"] != DBNull.Value ? TimeOnly.FromDateTime((DateTime)row["EndTime"]) : default(TimeOnly),
+                            Reason = row["Reason"].ToString()
+                        };
+
+                        citas.Add(cita);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al listar las citas por tutor y alumno: " + ex.Message);
+            }
+
+            return citas;
+        }
+
+
+        public async Task<List<ListarAppointment>> ListarCitasPorAlumno(int studentId)
+        {
+            List<ListarAppointment> citas = new List<ListarAppointment>();
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+                    new SqlParameter("@StudentId", SqlDbType.Int){
+                        Value = studentId
+                    }
+                };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_CITA_POR_ALUMNO, parameters);
+
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        ListarAppointment cita = new ListarAppointment
+                        {
+                            AppointmentId = Convert.ToInt32(row["AppointmentId"]),
+                            ProgramName = row["ProgramName"].ToString(),
+                            AppointmentStatus = row["AppointmentStatus"].ToString(),
+                            GroupBased = Convert.ToBoolean(row["GroupBased"]),
+                            CreationDate = row["CreationDate"] != DBNull.Value ? DateOnly.FromDateTime((DateTime)row["CreationDate"]) : default(DateOnly),
+                            PersonId = Convert.ToInt32(row["PersonId"]),
+                            Name = row["Name"].ToString(),
+                            LastName = row["LastName"].ToString(),
+                            SecondLastName = row["SecondLastName"].ToString(),
+                            IsInPerson = Convert.ToBoolean(row["IsInPerson"]),
+                            StartTime = row["StartTime"] != DBNull.Value ? TimeOnly.FromDateTime((DateTime)row["StartTime"]) : default(TimeOnly),
+                            EndTime = row["EndTime"] != DBNull.Value ? TimeOnly.FromDateTime((DateTime)row["EndTime"]) : default(TimeOnly),
+                            Reason = row["Reason"].ToString()
+                        };
+
+                        citas.Add(cita);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al listar las citas por alumno: " + ex.Message);
+            }
+
+            return citas;
+        }
+
+        public async Task<List<ListarAppointment>> ListarCitasPorID(int appointId)
+        {
+            List<ListarAppointment> citas = new List<ListarAppointment>();
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+                    new SqlParameter("@AppointId", SqlDbType.Int){
+                        Value = appointId
+                    }
+                };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_CITA_POR_ID, parameters);
+
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        ListarAppointment cita = new ListarAppointment
+                        {
+                            AppointmentId = Convert.ToInt32(row["AppointmentId"]),
+                            ProgramName = row["ProgramName"].ToString(),
+                            AppointmentStatus = row["AppointmentStatus"].ToString(),
+                            GroupBased = Convert.ToBoolean(row["GroupBased"]),
+                            CreationDate = row["CreationDate"] != DBNull.Value ? DateOnly.FromDateTime((DateTime)row["CreationDate"]) : default(DateOnly),
+                            PersonId = Convert.ToInt32(row["PersonId"]),
+                            Name = row["Name"].ToString(),
+                            LastName = row["LastName"].ToString(),
+                            SecondLastName = row["SecondLastName"].ToString(),
+                            IsInPerson = Convert.ToBoolean(row["IsInPerson"]),
+                            StartTime = row["StartTime"] != DBNull.Value ? TimeOnly.FromDateTime((DateTime)row["StartTime"]) : default(TimeOnly),
+                            EndTime = row["EndTime"] != DBNull.Value ? TimeOnly.FromDateTime((DateTime)row["EndTime"]) : default(TimeOnly),
+                            Reason = row["Reason"].ToString()
+                        };
+
+                        citas.Add(cita);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al listar las citas por alumno: " + ex.Message);
+            }
+
+            return citas;
+        }
+
     }
 }
+

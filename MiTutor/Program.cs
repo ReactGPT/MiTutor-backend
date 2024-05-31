@@ -3,6 +3,7 @@ using MiTutor.Services.GestionUsuarios;
 using MiTutor.Services.TutoringManagement;
 using MiTutor.Services.UniversityUnitManagement;
 using MiTutor.Services.UserManagement;
+using MiTutor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,13 +20,15 @@ builder.Services.AddCors(options =>
     options.AddPolicy("MiTutorPUCPAppDev",
         builder =>
         {
-            builder.WithOrigins("http://localhost:3000") // Adjust the URL as needed
+            builder.AllowAnyOrigin()//WithOrigins("http://localhost:5173") // Adjust the URL as needed
                    .AllowAnyMethod()
                    .AllowAnyHeader();
         });
 });
 
-// Add Services 
+services.AddScoped<EspecialidadService>();
+services.AddScoped<ActionPlanService>();
+services.AddScoped<CommitmentService>();
 services.AddScoped<StudentService>();
 services.AddScoped<UserAccountService>();
 services.AddScoped<FacultyService>();
@@ -37,6 +40,8 @@ services.AddScoped<StudentProgramService>();
 services.AddScoped<CommentService>();
 services.AddScoped<DerivationService>();
 services.AddScoped<AppointmentService>();
+services.AddScoped<AppointmentResultService>();
+services.AddScoped<AvailabilityTutorService>();
 
 var app = builder.Build();
 
@@ -46,6 +51,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
