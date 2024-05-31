@@ -116,24 +116,24 @@ namespace MiTutor.Services.TutoringManagement
                     TutorStudentProgram tutorStudentProgram = new TutorStudentProgram
                     {
                         TutorStudentProgramId = Convert.ToInt32(row["TutorStudentProgramId"]),
-                        StudentId = Convert.ToInt32(row["StudentId"]),
-                        StudentFirstName = row["StudentFirstName"].ToString(),
-                        StudentLastName = row["StudentLastName"].ToString(),
-                        StudentCode = row["StudentCode"].ToString(),
-                        SpecialtyId = Convert.ToInt32(row["SpecialtyId"]),
-                        SpecialtyName = row["SpecialtyName"].ToString(),
-                        SpecialtyAcronym = row["SpecialtyAcronym"].ToString(),
-                        TutorId = Convert.ToInt32(row["TutorId"]),
-                        TutorFirstName = row["TutorFirstName"].ToString(),
-                        TutorLastName = row["TutorLastName"].ToString(),
-                        ProgramName = row["ProgramName"].ToString(),
-                        ProgramDescription = row["ProgramDescription"].ToString(),
-                        RequestDate = Convert.ToDateTime(row["RequestDate"]).ToString("yyyy-MM-dd"),
                         State = row["State"].ToString(),
                         IsActive = Convert.ToInt32(row["IsActive"]),
-                        Motivo = row["Motivo"].ToString(),
-                        StudentProgramId = Convert.ToInt32(row["StudentProgramId"])
+                        TutorId = Convert.ToInt32(row["TutorId"]),
+                        StudentProgramId = Convert.ToInt32(row["StudentProgramId"]),
+                        Motivo = row.Table.Columns.Contains("Motivo") ? row["Motivo"].ToString() : null,
+                        // Cargar objetos relacionados
+                        StudentProgram = new StudentProgram
+                        {
+                            StudentProgramId = Convert.ToInt32(row["StudentProgramId"]),
+                            // Cargar otras propiedades si es necesario
+                        },
+                        Tutor = new Tutor
+                        {
+                            TutorId = Convert.ToInt32(row["TutorId"]),
+                            // Cargar otras propiedades si es necesario
+                        }
                     };
+
                     tutorStudentPrograms.Add(tutorStudentProgram);
                 }
             }

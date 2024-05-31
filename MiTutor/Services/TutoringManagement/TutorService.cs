@@ -374,7 +374,38 @@ namespace MiTutor.Services.TutoringManagement
             return tutores;
         }
 
+        public async Task<Tutor> ObtenerTutorPorId(int tutorId)
+        {
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@TutorId", SqlDbType.Int) { Value = tutorId }
+                };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable("OBTENER_TUTOR_POR_ID", parameters);
+
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    DataRow row = dataTable.Rows[0];
+
+                    Tutor tutor = new Tutor
+                    {
+                        TutorId = Convert.ToInt32(row["TutorId"]),
+                        // Asigna los demás campos según la estructura de tu tabla
+                    };
+
+                    return tutor;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el Tutor: " + ex.Message);
+            }
+        }
     }
-
-
 }
