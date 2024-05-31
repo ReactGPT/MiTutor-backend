@@ -36,12 +36,12 @@ namespace MiTutor.Controllers.TutoringManagement
         }
 
         [HttpGet("/listarTutores")]
-        public async Task<IActionResult> ListarTutores()
+        public async Task<IActionResult> ListarTutores(int idProgramaTutoria=-1)
         {
             List<Tutor> faculties;
             try
             {
-                faculties = await _tutorServices.ListarTutores();
+                faculties = await _tutorServices.ListarTutores(idProgramaTutoria);
             }
             catch (Exception ex)
             {
