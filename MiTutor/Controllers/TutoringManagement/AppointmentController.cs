@@ -51,12 +51,12 @@ namespace MiTutor.Controllers.TutoringManagement
         }
 
         [HttpGet("/listarCitasPorTutorPorAlumno/{tutorId}/{studentId}")]
-        public async Task<IActionResult> ListarCitasPorTutorPorAlumno(int tutorId,int studentId)
+        public async Task<IActionResult> ListarCitasPorTutorPorAlumno(int tutorId, int studentId)
         {
             try
             {
 
-                var citas = await _appointmentServices.ListarCitasPorTutorPorAlumno(tutorId,studentId);
+                var citas = await _appointmentServices.ListarCitasPorTutorPorAlumno(tutorId, studentId);
 
 
                 return Ok(new { success = true, data = citas });
@@ -67,5 +67,42 @@ namespace MiTutor.Controllers.TutoringManagement
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("/listarCitasPorAlumno/{studentId}")]
+        public async Task<IActionResult> ListarCitasPorAlumno(int studentId)
+        {
+            try
+            {
+
+                var citas = await _appointmentServices.ListarCitasPorAlumno(studentId);
+
+
+                return Ok(new { success = true, data = citas });
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("/listarCitasPorID/{appointId}")]
+        public async Task<IActionResult> ListarCitasPorID(int appointId)
+        {
+            try
+            {
+
+                var citas = await _appointmentServices.ListarCitasPorID(appointId);
+
+
+                return Ok(new { success = true, data = citas });
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }
