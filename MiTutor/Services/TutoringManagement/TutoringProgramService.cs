@@ -11,6 +11,7 @@ namespace MiTutor.Services.TutoringManagement
     public class TutoringProgramService
     {
         private readonly DatabaseManager _databaseManager;
+        private readonly TutorService _tutorServices;
 
         public TutoringProgramService()
         {
@@ -308,17 +309,11 @@ namespace MiTutor.Services.TutoringManagement
                             TutoringProgramId = Convert.ToInt32(row["TutoringProgramId"]),
                             ProgramName = row["ProgramName"].ToString(),
                             ProgramDescription = row["ProgramDescription"].ToString(),
-                            FacultyId = Convert.ToInt32(row["FacultyId"]),
+                            FaceToFace = Convert.ToBoolean(row["FaceToFace"]),
+                            Virtual = Convert.ToBoolean(row["Virtual"]),
                             FacultyName = row["FacultyName"].ToString(),
-                            SpecialtyId = Convert.ToInt32(row["SpecialtyId"]),
                             SpecialtyName = row["SpecialtyName"].ToString(),
-                            TutorTypeId = Convert.ToInt32(row["TutorTypeId"]),
-                            TutorName = row["TutorName"].ToString(),
-                            TutorLastName = row["TutorLastName"].ToString(),
-                            TutorSecondLastName = row["TutorSecondLastName"].ToString(),
-                            StudentId = Convert.ToInt32(row["StudentId"]),
-                            TypeDescription = row["TypeDescription"].ToString(),
-                            State = row["State"].ToString()
+                            TutorType = row["TutorType"].ToString(),
                         };
 
                         programas.Add(programa);

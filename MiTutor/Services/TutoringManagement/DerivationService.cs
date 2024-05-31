@@ -18,7 +18,7 @@ namespace MiTutor.Services.TutoringManagement
             _databaseManager = new DatabaseManager();
         }
 
-        public async Task CrearDerivacion(Derivation derivation)
+        public async Task<int> CrearDerivacion(Derivation derivation)
         {
             // Convertir DateOnly a DateTime
             DateTime creationDate = DateTime.Parse(derivation.CreationDate.ToString());
@@ -31,12 +31,15 @@ namespace MiTutor.Services.TutoringManagement
                 new SqlParameter("@CreationDate", SqlDbType.DateTime) { Value = creationDate },
                 new SqlParameter("@UnitDerivationId", SqlDbType.Int) { Value = derivation.UnitDerivationId },
                 new SqlParameter("@UserAccountId", SqlDbType.Int) { Value = derivation.UserAccountId },
-                new SqlParameter("@AppointmentId", SqlDbType.Int) { Value = derivation.AppointmentId }
+                new SqlParameter("@AppointmentId", SqlDbType.Int) { Value = derivation.AppointmentId },
+                new SqlParameter("@DerivationId", SqlDbType.Int) { Direction = ParameterDirection.Output }
             };
 
             try
             {
                 await _databaseManager.ExecuteStoredProcedure(StoredProcedure.CREAR_DERIVACION, parameters);
+                // Obtener el ID del resultado recién insertado
+                return Convert.ToInt32(parameters[parameters.Length - 1].Value);
             }
             catch (Exception ex)
             {
@@ -90,11 +93,8 @@ namespace MiTutor.Services.TutoringManagement
                 new SqlParameter("@DerivationId", SqlDbType.Int) { Value = derivation.DerivationId },
                 new SqlParameter("@Reason", SqlDbType.NVarChar) { Value = derivation.Reason },
                 new SqlParameter("@Comment", SqlDbType.NVarChar) { Value = derivation.Comment },
-                new SqlParameter("@Status", SqlDbType.NVarChar) { Value = derivation.Status },
                 new SqlParameter("@CreationDate", SqlDbType.DateTime) { Value = creationDate },
-                new SqlParameter("@UnitDerivationId", SqlDbType.Int) { Value = derivation.UnitDerivationId },
-                new SqlParameter("@UserAccountId", SqlDbType.Int) { Value = derivation.UserAccountId },
-                new SqlParameter("@AppointmentId", SqlDbType.Int) { Value = derivation.AppointmentId }
+                new SqlParameter("@UnitDerivationId", SqlDbType.Int) { Value = derivation.UnitDerivationId }
             };
 
             try
@@ -135,11 +135,11 @@ namespace MiTutor.Services.TutoringManagement
                 if (dataTable != null)
                 {
                     foreach (DataRow row in dataTable.Rows)
-                    { 
+                    {
                         UnitDerivation derivation = new UnitDerivation
                         {
-                            UnitDerivationId= Convert.ToInt32(row["UnitDerivationId"]),
-                            Name= row["Name"].ToString()
+                            UnitDerivationId = Convert.ToInt32(row["UnitDerivationId"]),
+                            Name = row["Name"].ToString()
                         };
                         unitDerivations.Add(derivation);
                     }
@@ -153,5 +153,45 @@ namespace MiTutor.Services.TutoringManagement
             return unitDerivations;
         }
 
+        public async Task<Derivation> SeleccionarDerivacionByIdAppointment(int appointmentId)
+        {
+            Derivation derivation = null;
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+                    new SqlParameter("@AppoinmentId", SqlDbType.Int){
+                         Value = appointmentId
+                    }
+            };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.SELECCIONAR_DERIVATION_ID_CITA, parameters);
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    DataRow row = dataTable.Rows[0]; // Selecciona la primera fila ya que esperas solo un estudiante
+                    DateTime dateTime = Convert.ToDateTime(row["CreationDate"]);
+                    DateOnly creationDate = new DateOnly(dateTime.Year, dateTime.Month, dateTime.Day); // Crear DateOnly a partir de DateTime
+                    derivation = new Derivation()
+                    {
+                        DerivationId = Convert.ToInt32(row["DerivationId"]),
+                        Reason = row["Reason"].ToString(),
+                        Comment = row["Comment"].ToString(),
+                        Status = row["Status"].ToString(),
+                        CreationDate = creationDate,
+                        UnitDerivationId = Convert.ToInt32(row["UnitDerivationId"]),
+                        UserAccountId = Convert.ToInt32(row["UserAccountId"]),
+                        AppointmentId = Convert.ToInt32(row["AppointmentId"]),
+                        IsActive = Convert.ToBoolean(row["IsActive"])
+                    };
+                    derivation.AppointmentId = appointmentId;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en SeleccionarDatosEstudiantesById", ex);
+            }
+
+            return derivation;
+        }
     }
 }

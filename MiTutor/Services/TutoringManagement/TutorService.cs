@@ -234,7 +234,93 @@ namespace MiTutor.Services.TutoringManagement
 
             return tutores;
         }
- 
+
+        public async Task<List<TutorXtutoringProgramXalumno>> ListarTutoresPorTutoriaPorAlumno(int idProgram, int studentId)
+        {
+            List<TutorXtutoringProgramXalumno> tutores = new List<TutorXtutoringProgramXalumno>();
+
+            try
+            {
+
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@TutoringProgramId", SqlDbType.Int) { Value = idProgram },
+                    new SqlParameter("@StudentId", SqlDbType.Int) { Value = studentId }
+                };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_TUTORES_PROGRAM_ALUMNO, parameters);
+
+                if (dataTable != null)
+                {
+                    if (dataTable.Rows.Count != 0)
+                    {
+                        foreach (DataRow row in dataTable.Rows)
+                        {
+                            TutorXtutoringProgramXalumno tutor = new TutorXtutoringProgramXalumno
+                            {
+                                TutorId = Convert.ToInt32(row["TutorId"]),
+                                TutorName = row["TutorName"].ToString(),
+                                TutorLastName = row["TutorLastName"].ToString(),
+                                TutorSecondLastName = row["TutorSecondLastName"].ToString(),
+                                State = row["State"].ToString()
+                            };
+
+                            tutores.Add(tutor);
+
+                        }
+                    }
+                        
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al listar los tutores: " + ex.Message);
+            }
+
+            return tutores;
+        }
+
+        public async Task<List<TutorXtutoringProgramXalumno>> ListarTutoresPorTutoriaVariable(int idProgram)
+        {
+            List<TutorXtutoringProgramXalumno> tutores = new List<TutorXtutoringProgramXalumno>();
+
+            try
+            {
+
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@TutoringProgramId", SqlDbType.Int) { Value = idProgram }
+                };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_TUTORES_PROGRAM_VARIABLE, parameters);
+
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        TutorXtutoringProgramXalumno tutor = new TutorXtutoringProgramXalumno
+                        {
+                            TutorId = Convert.ToInt32(row["TutorId"]),
+                            TutorName = row["TutorName"].ToString(),
+                            TutorLastName = row["TutorLastName"].ToString(),
+                            TutorSecondLastName = row["TutorSecondLastName"].ToString(),
+                            State = "VARIABLE"
+                        };
+
+                            tutores.Add(tutor);
+                        }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al listar los tutores: " + ex.Message);
+            }
+
+            return tutores;
+        }
+
     }
 
 
