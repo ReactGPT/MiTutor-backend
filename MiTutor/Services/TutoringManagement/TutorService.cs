@@ -73,6 +73,59 @@ namespace MiTutor.Services.TutoringManagement
 
             return tutores;
         }
+        public async Task<List<Tutor>> ListarTutoresPorNombreApellido(string nombreApellido)
+        {
+            List<Tutor> tutores = new List<Tutor>();
+
+            try
+            {
+                DataTable dataTable;
+
+                if (string.IsNullOrWhiteSpace(nombreApellido))
+                {
+                    dataTable = await _databaseManager.ExecuteStoredProcedureDataTable("TUTOR_LISTAR_SELECT_TODOS");
+                }
+                else
+                {
+                    SqlParameter[] parameters = new SqlParameter[]
+                    {
+                        new SqlParameter("@NombreApellido", SqlDbType.NVarChar) { Value = nombreApellido }
+                    };
+
+                    dataTable = await _databaseManager.ExecuteStoredProcedureDataTable("TUTOR_LISTAR_SELECT_NOMBRE_APELLIDO", parameters);
+                }
+
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        Tutor tutor = new Tutor
+                        {
+                            TutorId = Convert.ToInt32(row["TutorId"]),
+                            MeetingRoom = row["MeetingRoom"].ToString(),
+                            UserAccount = new UserAccount
+                            {
+                                Id = Convert.ToInt32(row["UserAccountId"]),
+                                Persona = new Person
+                                {
+                                    Name = row["PersonName"].ToString(),
+                                    LastName = row["PersonLastName"].ToString(),
+                                    SecondLastName = row["PersonSecondLastName"].ToString()
+                                }
+                            }
+                        };
+
+                        tutores.Add(tutor);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al listar los tutores: " + ex.Message);
+            }
+
+            return tutores;
+        }
         public async Task<List<Tutor>> ListarTutoresTipo()
         {
             List<Tutor> tutores = new List<Tutor>();
@@ -321,7 +374,38 @@ namespace MiTutor.Services.TutoringManagement
             return tutores;
         }
 
+        public async Task<Tutor> ObtenerTutorPorId(int tutorId)
+        {
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@TutorId", SqlDbType.Int) { Value = tutorId }
+                };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable("OBTENER_TUTOR_POR_ID", parameters);
+
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    DataRow row = dataTable.Rows[0];
+
+                    Tutor tutor = new Tutor
+                    {
+                        TutorId = Convert.ToInt32(row["TutorId"]),
+                        // Asigna los demás campos según la estructura de tu tabla
+                    };
+
+                    return tutor;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el Tutor: " + ex.Message);
+            }
+        }
     }
-
-
 }

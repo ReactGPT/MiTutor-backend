@@ -48,7 +48,7 @@ namespace MiTutor.Controllers.TutoringManagement
             return Ok(new { success = true, message = "Se inserto satisfactoriamente" });
         }
 
-        [HttpGet("/listarProgramasDeTutoria")]
+        [HttpGet("listarProgramasDeTutoria")]   // Para Verificar el Endpoint en el Controlador
         public async Task<IActionResult> ListarProgramasDeTutoria()
         {
             List<TutoringProgram> faculties;
