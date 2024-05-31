@@ -59,7 +59,7 @@ namespace MiTutor.Controllers.TutoringManagement
 
                 if (string.IsNullOrWhiteSpace(nombreApellido))
                 {
-                    tutores = await _tutorServices.ListarTutores(); // Llama al método para listar todos los tutores si no hay query
+                    tutores = await _tutorServices.ListarTutores(-1); // Llama al método para listar todos los tutores si no hay query
                 }
                 else
                 {
