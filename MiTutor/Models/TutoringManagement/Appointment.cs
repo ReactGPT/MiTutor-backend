@@ -56,5 +56,13 @@ namespace MiTutor.Models.TutoringManagement
         public TimeOnly EndTime { get; set; }
         public string Reason { get; set; }
 
+        public int TutorId { get; set; }
+        public string TutorName { get; set; }
+        public string TutorLastName { get; set; }
+        public string TutorSecondLastName { get; set; }
+        public string TutorEmail { get; set; }
+        public string TutorMeetingRoom { get; set; }
+        /*public int CommentId { get; set; }
+        public string CommentMessage { get; set; }*/
     }
 }

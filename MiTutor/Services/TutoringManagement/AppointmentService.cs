@@ -204,5 +204,58 @@ namespace MiTutor.Services.TutoringManagement
             return citas;
         }
 
+        public async Task<List<ListarAppointment>> ListarCitasPorAlumno(int studentId)
+        {
+            List<ListarAppointment> citas = new List<ListarAppointment>();
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{ 
+                    new SqlParameter("@StudentId", SqlDbType.Int){
+                        Value = studentId
+                    }
+                };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_CITA_POR_ALUMNO, parameters);
+
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        ListarAppointment cita = new ListarAppointment
+                        {
+                            AppointmentId = Convert.ToInt32(row["AppointmentId"]),
+                            ProgramId = Convert.ToInt32(row["TutoringProgramId"]),
+                            ProgramName = row["ProgramName"].ToString(),
+                            AppointmentStatus = row["AppointmentStatus"].ToString(),
+                            GroupBased = Convert.ToBoolean(row["GroupBased"]),
+                            CreationDate = row["CreationDate"] != DBNull.Value ? DateOnly.FromDateTime((DateTime)row["CreationDate"]) : default(DateOnly),
+                            PersonId = Convert.ToInt32(row["PersonId"]),
+                            Name = row["Name"].ToString(),
+                            LastName = row["LastName"].ToString(),
+                            SecondLastName = row["SecondLastName"].ToString(),
+                            IsInPerson = Convert.ToBoolean(row["IsInPerson"]),
+                            StartTime = row["StartTime"] != DBNull.Value ? TimeOnly.FromDateTime((DateTime)row["StartTime"]) : default(TimeOnly),
+                            EndTime = row["EndTime"] != DBNull.Value ? TimeOnly.FromDateTime((DateTime)row["EndTime"]) : default(TimeOnly),
+                            Reason = row["Reason"].ToString(),
+                            TutorId = Convert.ToInt32(row["TutorId"]),
+                            TutorName = row["TutorName"].ToString(),
+                            TutorLastName = row["TutorLastName"].ToString(),
+                            TutorSecondLastName = row["TutorSecondLastName"].ToString(),
+                            TutorEmail = row["TutorEmail"].ToString(),
+                            TutorMeetingRoom = row["MeetingRoom"].ToString() 
+                        };
+
+                        citas.Add(cita);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al listar las citas por tutor y alumno: " + ex.Message);
+            }
+
+            return citas;
+        }
     }
 }
