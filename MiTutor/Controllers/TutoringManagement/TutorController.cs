@@ -50,6 +50,30 @@ namespace MiTutor.Controllers.TutoringManagement
             return Ok(new { success = true, data = faculties });
         }
 
+        [HttpGet("listarTutoresPorNombreApellido/{nombreApellido?}")]
+        public async Task<IActionResult> ListarTutoresPorNombreApellido(string nombreApellido = "")
+        {
+            try
+            {
+                List<Tutor> tutores;
+
+                if (string.IsNullOrWhiteSpace(nombreApellido))
+                {
+                    tutores = await _tutorServices.ListarTutores(); // Llama al método para listar todos los tutores si no hay query
+                }
+                else
+                {
+                    tutores = await _tutorServices.ListarTutoresPorNombreApellido(nombreApellido);
+                }
+
+                return Ok(new { success = true, data = tutores });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, message = "Error al listar los tutores: " + ex.Message });
+            }
+        }
+
         [HttpGet("/listarTutoresTipo")]
         public async Task<IActionResult> ListarTutoresTipos()
         {

@@ -15,9 +15,9 @@ namespace MiTutor.Models.TutoringManagement
         public int TutorId { get; set; }
         public int StudentProgramId { get; set; }
 
-        //public StudentProgram StudentProgram { get; set; }
+        public StudentProgram StudentProgram { get; set; }
 
-        //public Tutor Tutor { get; set; }
+        public Tutor Tutor { get; set; }
     }
 
     public class TutorStudentProgramModificado

@@ -5,6 +5,7 @@ using System.Data;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MiTutor.Models.GestionUsuarios;
+using System;
 
 namespace MiTutor.Services.TutoringManagement
 {
@@ -92,6 +93,74 @@ namespace MiTutor.Services.TutoringManagement
             }
 
             return solicitudes;
+        }
+
+        public async Task<List<TutorStudentProgram>> ListarTutorStudentProgram(string tutorFirstName, string tutorLastName, string state, int? tutoringProgramId)
+        {
+            List<TutorStudentProgram> tutorStudentPrograms = new List<TutorStudentProgram>();
+
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@TutorFirstName", SqlDbType.NVarChar) { Value = (object)tutorFirstName ?? DBNull.Value },
+                new SqlParameter("@TutorLastName", SqlDbType.NVarChar) { Value = (object)tutorLastName ?? DBNull.Value },
+                new SqlParameter("@State", SqlDbType.NVarChar) { Value = (object)state ?? DBNull.Value },
+                new SqlParameter("@TutoringProgramId", SqlDbType.Int) { Value = (object)tutoringProgramId ?? DBNull.Value }
+            };
+
+            try
+            {
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable("TUTOR_STUDENT_PROGRAM_LISTAR_X_FILTROS", parameters);
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    TutorStudentProgram tutorStudentProgram = new TutorStudentProgram
+                    {
+                        TutorStudentProgramId = Convert.ToInt32(row["TutorStudentProgramId"]),
+                        State = row["State"].ToString(),
+                        IsActive = Convert.ToInt32(row["IsActive"]),
+                        TutorId = Convert.ToInt32(row["TutorId"]),
+                        StudentProgramId = Convert.ToInt32(row["StudentProgramId"]),
+                        Motivo = row.Table.Columns.Contains("Motivo") ? row["Motivo"].ToString() : null,
+                        // Cargar objetos relacionados
+                        StudentProgram = new StudentProgram
+                        {
+                            StudentProgramId = Convert.ToInt32(row["StudentProgramId"]),
+                            // Cargar otras propiedades si es necesario
+                        },
+                        Tutor = new Tutor
+                        {
+                            TutorId = Convert.ToInt32(row["TutorId"]),
+                            // Cargar otras propiedades si es necesario
+                        }
+                    };
+
+                    tutorStudentPrograms.Add(tutorStudentProgram);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al listar los TutorStudentProgram: " + ex.Message);
+            }
+
+            return tutorStudentPrograms;
+        }
+        
+        public async Task ActualizarEstadoTutorStudentProgram(string tutorStudentProgramIds, string newState)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@TutorStudentProgramIds", SqlDbType.NVarChar) { Value = tutorStudentProgramIds },
+                new SqlParameter("@NewState", SqlDbType.NVarChar) { Value = newState }
+            };
+
+            try
+            {
+                await _databaseManager.ExecuteStoredProcedure("TUTOR_STUDENT_PROGRAM_UPDATE_ESTADO", parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al actualizar el estado: " + ex.Message);
+            }
         }
     }
 }
