@@ -4,6 +4,8 @@ using MiTutor.Models.TutoringManagement;
 using MiTutor.Services.TutoringManagement;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using System;
 
 namespace MiTutor.Controllers.TutoringManagement
 {
@@ -48,5 +50,40 @@ namespace MiTutor.Controllers.TutoringManagement
             }
             return Ok(new { success = true, data = solicitudes });
         }
+
+        [HttpGet("listarTutorStudentProgram")]
+        public async Task<IActionResult> ListarTutorStudentProgram([FromQuery] string tutorFirstName = null, [FromQuery] string tutorLastName = null, [FromQuery] string state = null, [FromQuery] int? tutoringProgramId = null)
+        {
+            List<TutorStudentProgram> tutorStudentPrograms;
+            try
+            {
+                tutorStudentPrograms = await _tutorServices.ListarTutorStudentProgram(tutorFirstName, tutorLastName, state, tutoringProgramId);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, message = "Error al listar los TutorStudentPrograms: " + ex.Message });
+            }
+            return Ok(new { success = true, data = tutorStudentPrograms });
+        }
+
+        [HttpPost("UpdateEstado")]
+        public async Task<IActionResult> UpdateEstado([FromBody] UpdateEstadoRequest request)
+        {
+            try
+            {
+                await _tutorServices.ActualizarEstadoTutorStudentProgram(request.TutorStudentProgramIds, request.NewState);
+                return Ok(new { success = true, message = "Estado actualizado correctamente" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, message = ex.Message });
+            }
+        }
+    }
+
+    public class UpdateEstadoRequest
+    {
+        public string TutorStudentProgramIds { get; set; }
+        public string NewState { get; set; }
     }
 }
