@@ -1,4 +1,3 @@
-using MiTutor.Controllers.TutoringManagement;
 using MiTutor.Services.GestionUsuarios;
 using MiTutor.Services.TutoringManagement;
 using MiTutor.Services.UniversityUnitManagement;
@@ -6,8 +5,20 @@ using MiTutor.Services.UserManagement;
 using MiTutor.Services;
 using MiTutor.Controllers;
 using MiTutor.DataAccess;
+using MiTutor.Middleware;
+using Serilog;
+using Serilog.Events;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Debug()
+    .WriteTo.Console()
+    .WriteTo.File("logs/info-.txt", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Information)
+    .WriteTo.File("logs/error-.txt", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Error)
+    .CreateLogger();
+
+builder.Host.UseSerilog();
 
 // Add services to the container.
 var services = builder.Services;
@@ -22,7 +33,6 @@ services.AddSingleton(configuration);
 services.AddTransient<DatabaseManager>();
 
 services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 
@@ -71,6 +81,10 @@ app.UseHttpsRedirection();
 app.UseCors("MiTutorPUCPAppDev");
 
 app.UseAuthorization();
+
+app.UseRequestLogging();
+
+app.UseCustomErrorHandler();
 
 app.MapControllers();
 

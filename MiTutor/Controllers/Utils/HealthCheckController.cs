@@ -10,35 +10,43 @@ namespace MiTutor.Controllers.Utils
     [ApiController]
     public class HealthCheckController : ControllerBase
     {
+        private readonly ILogger<HealthCheckController> _logger;
         private static readonly Stopwatch _uptimeStopwatch = Stopwatch.StartNew();
         private readonly DatabaseManager _databaseManager;
 
-        public HealthCheckController(DatabaseManager databaseManager)
+        public HealthCheckController(DatabaseManager databaseManager, ILogger<HealthCheckController> logger)
         {
             _databaseManager = databaseManager ?? throw new ArgumentNullException(nameof(databaseManager));
+            _logger = logger;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var databaseResponseTime = await _databaseManager.MeasureDatabaseResponseTimeAsync();
-
-            var response = new HealthCheckResponse
+            try
             {
-                Status = "ok",
-                Uptime = (long)_uptimeStopwatch.Elapsed.TotalSeconds,
-                Timestamp = DateTime.UtcNow,
-                Dependencies = new Dependencies
+                var databaseResponseTime = await _databaseManager.MeasureDatabaseResponseTimeAsync();
+                var response = new HealthCheckResponse
                 {
-                    Database = new ServiceStatus
+                    Status = "ok",
+                    Uptime = (long)_uptimeStopwatch.Elapsed.TotalSeconds,
+                    Timestamp = DateTime.UtcNow,
+                    Dependencies = new Dependencies
                     {
-                        Status = databaseResponseTime >= 0 ? "ok" : "error",
-                        ResponseTimeMs = databaseResponseTime
+                        Database = new ServiceStatus
+                        {
+                            Status = databaseResponseTime >= 0 ? "ok" : "error",
+                            ResponseTimeMs = databaseResponseTime
+                        }
                     }
-                }
-            };
-
-            return Ok(response);
+                };
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred in HealthCheckController GET method at {Time}", DateTime.UtcNow);
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing your request.");
+            }
         }
     }
 }
