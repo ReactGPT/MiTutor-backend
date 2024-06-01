@@ -12,10 +12,9 @@ namespace MiTutor.Services.TutoringManagement
     {
         private readonly DatabaseManager _databaseManager;
 
-
-        public DerivationService()
+        public DerivationService(DatabaseManager databaseManager)
         {
-            _databaseManager = new DatabaseManager();
+            _databaseManager = databaseManager ?? throw new ArgumentNullException(nameof(databaseManager));
         }
 
         public async Task<int> CrearDerivacion(Derivation derivation)

@@ -5,11 +5,21 @@ using MiTutor.Services.UniversityUnitManagement;
 using MiTutor.Services.UserManagement;
 using MiTutor.Services;
 using MiTutor.Controllers;
+using MiTutor.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var services = builder.Services;
+
+var configuration = new ConfigurationBuilder()
+    .SetBasePath(builder.Environment.ContentRootPath)
+    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+    .Build();
+
+services.AddSingleton(configuration);
+
+services.AddTransient<DatabaseManager>();
 
 services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

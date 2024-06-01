@@ -9,10 +9,10 @@ namespace MiTutor.Services.TutoringManagement
     public class TutorProgramTutorTypeService
     {
         private readonly DatabaseManager _databaseManager;
-         
-        public TutorProgramTutorTypeService()
+
+        public TutorProgramTutorTypeService(DatabaseManager databaseManager)
         {
-            _databaseManager = new DatabaseManager();
+            _databaseManager = databaseManager ?? throw new ArgumentNullException(nameof(databaseManager));
         }
 
         public async Task CrearTutorProgramTutorType(TutorProgramTutorType tutorProgramTutorType)

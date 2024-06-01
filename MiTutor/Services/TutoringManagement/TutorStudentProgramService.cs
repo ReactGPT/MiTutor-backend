@@ -13,9 +13,9 @@ namespace MiTutor.Services.TutoringManagement
     {
         private readonly DatabaseManager _databaseManager;
 
-        public TutorStudentProgramService()
+        public TutorStudentProgramService(DatabaseManager databaseManager)
         {
-            _databaseManager = new DatabaseManager();
+            _databaseManager = databaseManager ?? throw new ArgumentNullException(nameof(databaseManager));
         }
 
         public async Task CrearTutorStudentProgram(TutorStudentProgramModificado tutorStudentProgramModificado)

@@ -13,9 +13,9 @@ namespace MiTutor.Controllers.Utils
         private static readonly Stopwatch _uptimeStopwatch = Stopwatch.StartNew();
         private readonly DatabaseManager _databaseManager;
 
-        public HealthCheckController()
+        public HealthCheckController(DatabaseManager databaseManager)
         {
-            _databaseManager = new DatabaseManager();
+            _databaseManager = databaseManager ?? throw new ArgumentNullException(nameof(databaseManager));
         }
 
         [HttpGet]

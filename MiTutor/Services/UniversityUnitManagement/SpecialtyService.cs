@@ -8,11 +8,10 @@ namespace MiTutor.Services.UniversityUnitManagement
     public class SpecialtyService
     {
         private readonly DatabaseManager _databaseManager;
-
-
-        public SpecialtyService()
+        
+        public SpecialtyService(DatabaseManager databaseManager)
         {
-            _databaseManager = new DatabaseManager();
+            _databaseManager = databaseManager ?? throw new ArgumentNullException(nameof(databaseManager));
         }
 
         public async Task CrearEspecialidad(Specialty specialty)
