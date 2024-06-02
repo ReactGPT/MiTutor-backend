@@ -17,11 +17,19 @@ namespace MiTutor.Services.TutoringManagement
 
         public async Task AgregarCita(RegisterAppointment registerAppointment)
         {
+            DateTime creationDate = DateTime.Parse(registerAppointment.Appointment.CreationDate);
+            DateTime startTime = DateTime.Parse(registerAppointment.Appointment.StartTime);
+            DateTime endTime = DateTime.Parse(registerAppointment.Appointment.EndTime);
+
+            startTime = new DateTime(creationDate.Year, creationDate.Month, creationDate.Day, startTime.Hour, startTime.Minute, startTime.Second);
+            endTime = new DateTime(creationDate.Year, creationDate.Month, creationDate.Day, endTime.Hour, endTime.Minute, endTime.Second);
+
+
             SqlParameter[] parameters = new SqlParameter[]
             {
-               // new SqlParameter("@StartTime", SqlDbType.DateTime) { Value = registerAppointment.Appointment.StartTime },
-               // new SqlParameter("@EndTime", SqlDbType.DateTime) { Value = registerAppointment.Appointment.EndTime},
-               // new SqlParameter("@CreationDate", SqlDbType.Date) { Value = registerAppointment.Appointment.CreationDate },
+                new SqlParameter("@StartTime", SqlDbType.DateTime) { Value = startTime },
+                new SqlParameter("@EndTime", SqlDbType.DateTime) { Value = endTime},
+                new SqlParameter("@CreationDate", SqlDbType.Date) { Value = creationDate },
                 new SqlParameter("@Reason", SqlDbType.NVarChar, 255) { Value = registerAppointment.Appointment.Reason},
                 new SqlParameter("@TutorId", SqlDbType.Int) { Value = registerAppointment.IdTutor },
                 new SqlParameter("@AppointmentStatusId", SqlDbType.Int) { Value = 1 },
@@ -45,28 +53,10 @@ namespace MiTutor.Services.TutoringManagement
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al agregar cita: " + registerAppointment.Appointment.AppointmentId + ex.Message);
+                throw new Exception("Error al agregar cita: " + registerAppointment.Appointment.AppointmentId + "\n" + ex.Message);
             }
         }
-        /*{
-  "appointment": {
-    "appointmentId": 0,
-    "reason": "Razón de la cita",
-    "isActive": true,
-    "isInPerson": true,
-    "classroom": "Salón 101",
-    "appointmentStatus": {
-      "appointmentStatusId": 0,
-      "name": "string",
-      "isActive": true
-    }
-  },
-  "idProgramTutoring": 4,
-  "idTutor": 2,
-  "idStudent": [
-    2
-  ]
-}*/
+
         private async Task RealizarOtraOperacionConCitaId(RegisterAppointment registerAppointment)
         {
 
@@ -74,21 +64,30 @@ namespace MiTutor.Services.TutoringManagement
             // Llamar al procedimiento almacenado para obtener el ID del StudentProgram
             foreach (int studentId in registerAppointment.IdStudent)
             {
-                // Crear parámetros para llamar al procedimiento almacenado
-                SqlParameter[] parameters = new SqlParameter[]
-                {
-                    new SqlParameter("@StudentId", SqlDbType.Int) { Value = studentId },
-                    new SqlParameter("@TutoringProgramId", SqlDbType.Int) { Value = registerAppointment.IdProgramTutoring},
-                    new SqlParameter("@StudentProgramId", SqlDbType.Int) { Direction = ParameterDirection.Output }
-                };
-
+                int studentProgramId = -1;
                 try
                 {
+                    // Crear parámetros para llamar al procedimiento almacenado
+                    SqlParameter[] parameters = new SqlParameter[]
+                    {
+                        new SqlParameter("@StudentId", SqlDbType.Int) { Value = studentId },
+                        new SqlParameter("@TutoringProgramId", SqlDbType.Int) { Value = registerAppointment.IdProgramTutoring},
+                        new SqlParameter("@StudentProgramId", SqlDbType.Int) { Direction = ParameterDirection.Output }
+                    };
+
                     // Ejecutar el procedimiento almacenado
                     await _databaseManager.ExecuteStoredProcedure("GetStudentProgramId", parameters);
                     // Obtener el ID del StudentProgram generado
-                    int studentProgramId = Convert.ToInt32(parameters[parameters.Length - 1].Value);
+                    studentProgramId = Convert.ToInt32(parameters[parameters.Length - 1].Value);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error al obtener el ID del StudentProgram: " + ex.Message);
+                }
 
+                try
+                {
+                    if (studentProgramId == -1) throw new Exception("studentProgramId no tiene un id asignado\n");
 
                     // Crear nuevos parámetros para el procedimiento InsertarAppointmentStudentProgram
                     SqlParameter[] insertParameters = new SqlParameter[]
@@ -99,13 +98,10 @@ namespace MiTutor.Services.TutoringManagement
 
                     // Ejecutar el procedimiento almacenado para insertar en la tabla AppointmentStudentProgram
                     await _databaseManager.ExecuteStoredProcedure("InsertarAppointmentStudentProgram", insertParameters);
-
-
-                    // Aquí puedes realizar cualquier operación adicional con el ID del StudentProgram
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Error al obtener el ID del StudentProgram: " + ex.Message);
+                    throw new Exception("Error al insertar en AppointmentStudentProgram: " + ex.Message);
                 }
             }
         }
