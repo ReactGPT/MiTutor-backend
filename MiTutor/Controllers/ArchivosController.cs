@@ -31,24 +31,32 @@ namespace MiTutor.Controllers
 
             var sftpRemotePath = $"/home/ubuntu/{carpeta}/{fileName}";
 
-            using (var sftp = new SftpClient(sftpHost, sftpUsername, new PrivateKeyFile(sftpPrivateKeyPath)))
+            try
             {
-                sftp.Connect();
-                if (sftp.IsConnected)
+                using (var sftp = new SftpClient(sftpHost, sftpUsername, new PrivateKeyFile(sftpPrivateKeyPath)))
                 {
-                    using (var memoryStream = new MemoryStream())
+                    sftp.Connect();
+                    if (sftp.IsConnected)
                     {
-                        sftp.DownloadFile(sftpRemotePath, memoryStream);
-                        sftp.Disconnect();
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            sftp.DownloadFile(sftpRemotePath, memoryStream);
+                            sftp.Disconnect();
 
-                        return File(memoryStream.ToArray(), "application/octet-stream", fileName);
+                            return File(memoryStream.ToArray(), "application/octet-stream", fileName);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No se logró conectar");
+                        return StatusCode(StatusCodes.Status500InternalServerError, "No se logró conectar al servidor SFTP");
                     }
                 }
-                else
-                {
-                    Console.WriteLine("no se logro conectar");
-                    return null;
-                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ocurrió un error: {ex.Message}");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Ocurrió un error al intentar descargar el archivo: {ex.Message}");
             }
 
         }
@@ -65,26 +73,34 @@ namespace MiTutor.Controllers
 
             var sftpRemotePath = $"/home/ubuntu/{carpeta}/{fileNameReal}";
 
-            using (var sftp = new SftpClient(sftpHost, sftpUsername, new PrivateKeyFile(sftpPrivateKeyPath)))
+            try
             {
-
-
-                sftp.Connect();
-                if (sftp.IsConnected)
+                using (var sftp = new SftpClient(sftpHost, sftpUsername, new PrivateKeyFile(sftpPrivateKeyPath)))
                 {
-                    using (var memoryStream = new MemoryStream())
-                    {
-                        sftp.DownloadFile(sftpRemotePath, memoryStream);
-                        sftp.Disconnect();
 
-                        return File(memoryStream.ToArray(), "application/octet-stream", fileNameFalso);
+
+                    sftp.Connect();
+                    if (sftp.IsConnected)
+                    {
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            sftp.DownloadFile(sftpRemotePath, memoryStream);
+                            sftp.Disconnect();
+
+                            return File(memoryStream.ToArray(), "application/octet-stream", fileNameFalso);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("no se logro conectar");
+                        return null;
                     }
                 }
-                else
-                {
-                    Console.WriteLine("no se logro conectar");
-                    return null;
-                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ocurrió un error: {ex.Message}");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Ocurrió un error al intentar descargar el archivo: {ex.Message}");
             }
 
         }
@@ -94,27 +110,38 @@ namespace MiTutor.Controllers
         {
             var sftpHost = "3.218.128.38";
             var sftpUsername = "ubuntu";
-            var sftpPrivateKeyPath = "C:\\Users\\admin\\Desktop\\22-05-2024-miTutor\\MiTutor-backend\\MiTutor\\Controllers\\nuevo.pem";
+            //var sftpPrivateKeyPath = "C:\\Users\\admin\\Desktop\\22-05-2024-miTutor\\MiTutor-backend\\MiTutor\\Controllers\\nuevo.pem";
+            var projectDirectory = Directory.GetCurrentDirectory();
+            var sftpPrivateKeyRelativePath = Path.Combine("Controllers", "nuevo.pem");
+            var sftpPrivateKeyPath = Path.Combine(projectDirectory, sftpPrivateKeyRelativePath);
             var sftpRemotePath = "/home/ubuntu/archivos/" + file.FileName;
 
-            using (var sftp = new SftpClient(sftpHost, sftpUsername, new PrivateKeyFile(sftpPrivateKeyPath)))
+            try
             {
-                sftp.Connect();
-                if (sftp.IsConnected)
+                using (var sftp = new SftpClient(sftpHost, sftpUsername, new PrivateKeyFile(sftpPrivateKeyPath)))
                 {
-                    using (var fileStream = file.OpenReadStream())
+                    sftp.Connect();
+                    if (sftp.IsConnected)
                     {
-                        sftp.UploadFile(fileStream, sftpRemotePath);
-                        sftp.Disconnect();
+                        using (var fileStream = file.OpenReadStream())
+                        {
+                            sftp.UploadFile(fileStream, sftpRemotePath);
+                            sftp.Disconnect();
 
-                        return Ok("Archivo cargado exitosamente.");
+                            return Ok("Archivo cargado exitosamente.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No se logró conectar");
+                        return StatusCode(StatusCodes.Status500InternalServerError, "No se logró conectar al servidor SFTP.");
                     }
                 }
-                else
-                {
-                    Console.WriteLine("No se logró conectar");
-                    return StatusCode(StatusCodes.Status500InternalServerError, "No se logró conectar al servidor SFTP.");
-                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ocurrió un error: {ex.Message}");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Ocurrió un error al intentar descargar el archivo: {ex.Message}");
             }
         }
 
@@ -125,30 +152,40 @@ namespace MiTutor.Controllers
         {
             var sftpHost = "3.218.128.38";
             var sftpUsername = "ubuntu";
-            var sftpPrivateKeyPath = "C:\\Users\\admin\\Desktop\\22-05-2024-miTutor\\MiTutor-backend\\MiTutor\\Controllers\\nuevo.pem";
-            //var sftpRemotePath = "/home/ubuntu/archivos/" + file.FileName;
+            var projectDirectory = Directory.GetCurrentDirectory();
+            var sftpPrivateKeyRelativePath = Path.Combine("Controllers", "nuevo.pem");
+            var sftpPrivateKeyPath = Path.Combine(projectDirectory, sftpPrivateKeyRelativePath);
             var sftpRemotePath = $"/home/ubuntu/{carpeta}/{fileName}";
-            using (var sftp = new SftpClient(sftpHost, sftpUsername, new PrivateKeyFile(sftpPrivateKeyPath)))
-            {
-                sftp.Connect();
-                if (sftp.IsConnected)
-                {
-                    using (var fileStream = file.OpenReadStream())
-                    {
-                        sftp.UploadFile(fileStream, sftpRemotePath);
-                        sftp.Disconnect();
 
-                        return Ok("Archivo cargado exitosamente.");
+            try
+            {
+                using (var sftp = new SftpClient(sftpHost, sftpUsername, new PrivateKeyFile(sftpPrivateKeyPath)))
+                {
+                    sftp.Connect();
+                    if (sftp.IsConnected)
+                    {
+                        using (var fileStream = file.OpenReadStream())
+                        {
+                            sftp.UploadFile(fileStream, sftpRemotePath);
+                            sftp.Disconnect();
+
+                            return Ok("Archivo cargado exitosamente.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No se logró conectar");
+                        return StatusCode(StatusCodes.Status500InternalServerError, "No se logró conectar al servidor SFTP.");
                     }
                 }
-                else
-                {
-                    Console.WriteLine("No se logró conectar");
-                    return StatusCode(StatusCodes.Status500InternalServerError, "No se logró conectar al servidor SFTP.");
-                }
             }
-        }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ocurrió un error: {ex.Message}");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Ocurrió un error al intentar descargar el archivo: {ex.Message}");
+            }
 
+        }  
 
     }
 }

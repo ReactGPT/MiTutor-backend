@@ -1,0 +1,46 @@
+2024-06-02 12:08:21.967 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-06-02 12:08:22.104 -05:00 [INF] Hosting environment: Development
+2024-06-02 12:08:22.104 -05:00 [INF] Content root path: C:\Users\admin\Desktop\REACT-LAB3\MiTutor-backend\MiTutor
+2024-06-02 12:08:22.165 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/swagger/index.html - null null
+2024-06-02 12:08:22.510 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/_framework/aspnetcore-browser-refresh.js - null null
+2024-06-02 12:08:22.511 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/swagger/index.html - 200 null text/html;charset=utf-8 349.9771ms
+2024-06-02 12:08:22.516 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/_framework/aspnetcore-browser-refresh.js - 200 13750 application/javascript; charset=utf-8 2.837ms
+2024-06-02 12:08:22.524 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/_vs/browserLink - null null
+2024-06-02 12:08:22.590 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/_vs/browserLink - 200 null text/javascript; charset=UTF-8 65.5909ms
+2024-06-02 12:08:22.626 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/swagger/v1/swagger.json - null null
+2024-06-02 12:08:22.788 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 162.2763ms
+2024-06-02 12:08:41.402 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/api/Archivos/download/derivaciones?carpeta=derivacion_0.pdf - null null
+2024-06-02 12:08:41.416 -05:00 [INF] HANDLING REQUEST: GET /api/Archivos/download/derivaciones
+2024-06-02 12:08:41.418 -05:00 [INF] Executing endpoint 'MiTutor.Controllers.ArchivosController.DownloadFile (MiTutor)'
+2024-06-02 12:08:41.435 -05:00 [INF] Route matched with {action = "DownloadFile", controller = "Archivos"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult DownloadFile(System.String, System.String) on controller MiTutor.Controllers.ArchivosController (MiTutor).
+2024-06-02 12:10:37.021 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-06-02 12:10:37.049 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/swagger/index.html - null null
+2024-06-02 12:10:37.053 -05:00 [INF] Hosting environment: Development
+2024-06-02 12:10:37.054 -05:00 [INF] Content root path: C:\Users\admin\Desktop\REACT-LAB3\MiTutor-backend\MiTutor
+2024-06-02 12:10:37.225 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/_framework/aspnetcore-browser-refresh.js - null null
+2024-06-02 12:10:37.226 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/swagger/index.html - 200 null text/html;charset=utf-8 181.0489ms
+2024-06-02 12:10:37.231 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/_framework/aspnetcore-browser-refresh.js - 200 13750 application/javascript; charset=utf-8 2.5356ms
+2024-06-02 12:10:37.238 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/_vs/browserLink - null null
+2024-06-02 12:10:37.265 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/_vs/browserLink - 200 null text/javascript; charset=UTF-8 27.4981ms
+2024-06-02 12:10:37.310 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/swagger/v1/swagger.json - null null
+2024-06-02 12:10:37.424 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 114.6454ms
+2024-06-02 12:11:05.084 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/api/Archivos/download/derivaciones?carpeta=derivacion.pdf - null null
+2024-06-02 12:11:05.104 -05:00 [INF] HANDLING REQUEST: GET /api/Archivos/download/derivaciones
+2024-06-02 12:11:05.105 -05:00 [INF] Executing endpoint 'MiTutor.Controllers.ArchivosController.DownloadFile (MiTutor)'
+2024-06-02 12:11:05.118 -05:00 [INF] Route matched with {action = "DownloadFile", controller = "Archivos"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult DownloadFile(System.String, System.String) on controller MiTutor.Controllers.ArchivosController (MiTutor).
+2024-06-02 12:11:26.255 -05:00 [INF] Executing ObjectResult, writing value of type 'System.String'.
+2024-06-02 12:11:26.259 -05:00 [INF] Executed action MiTutor.Controllers.ArchivosController.DownloadFile (MiTutor) in 21136.857ms
+2024-06-02 12:11:26.259 -05:00 [INF] Executed endpoint 'MiTutor.Controllers.ArchivosController.DownloadFile (MiTutor)'
+2024-06-02 12:11:26.259 -05:00 [INF] FINISHED HANDLING REQUEST.
+2024-06-02 12:11:26.260 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/api/Archivos/download/derivaciones?carpeta=derivacion.pdf - 500 null text/plain; charset=utf-8 21175.4595ms
+2024-06-02 12:14:56.122 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-06-02 12:14:56.151 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/swagger/index.html - null null
+2024-06-02 12:14:56.154 -05:00 [INF] Hosting environment: Development
+2024-06-02 12:14:56.156 -05:00 [INF] Content root path: C:\Users\admin\Desktop\REACT-LAB3\MiTutor-backend\MiTutor
+2024-06-02 12:14:56.321 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/_framework/aspnetcore-browser-refresh.js - null null
+2024-06-02 12:14:56.322 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/swagger/index.html - 200 null text/html;charset=utf-8 175.0418ms
+2024-06-02 12:14:56.325 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/_framework/aspnetcore-browser-refresh.js - 200 13750 application/javascript; charset=utf-8 2.6901ms
+2024-06-02 12:14:56.336 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/_vs/browserLink - null null
+2024-06-02 12:14:56.395 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/_vs/browserLink - 200 null text/javascript; charset=UTF-8 58.9713ms
+2024-06-02 12:14:56.429 -05:00 [INF] Request starting HTTP/2 GET https://localhost:44369/swagger/v1/swagger.json - null null
+2024-06-02 12:14:56.535 -05:00 [INF] Request finished HTTP/2 GET https://localhost:44369/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 106.3143ms
