@@ -10,13 +10,13 @@ namespace MiTutor.Services.TutoringManagement
     {
         private readonly DatabaseManager _databaseManager;
 
-        public AppointmentService()
+        public AppointmentService(DatabaseManager databaseManager)
         {
-            _databaseManager = new DatabaseManager();
+            _databaseManager = databaseManager ?? throw new ArgumentNullException(nameof(databaseManager));
         }
 
         public async Task AgregarCita(RegisterAppointment registerAppointment)
-        { 
+        {
             DateTime creationDate = DateTime.Parse(registerAppointment.Appointment.CreationDate);
             DateTime startTime = DateTime.Parse(registerAppointment.Appointment.StartTime);
             DateTime endTime = DateTime.Parse(registerAppointment.Appointment.EndTime);
@@ -88,7 +88,7 @@ namespace MiTutor.Services.TutoringManagement
                 try
                 {
                     if (studentProgramId == -1) throw new Exception("studentProgramId no tiene un id asignado\n");
-                    
+
                     // Crear nuevos parámetros para el procedimiento InsertarAppointmentStudentProgram
                     SqlParameter[] insertParameters = new SqlParameter[]
                     {
@@ -99,7 +99,7 @@ namespace MiTutor.Services.TutoringManagement
                     // Ejecutar el procedimiento almacenado para insertar en la tabla AppointmentStudentProgram
                     await _databaseManager.ExecuteStoredProcedure("InsertarAppointmentStudentProgram", insertParameters);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     throw new Exception("Error al insertar en AppointmentStudentProgram: " + ex.Message);
                 }
@@ -204,13 +204,17 @@ namespace MiTutor.Services.TutoringManagement
             return citas;
         }
 
+
+
         public async Task<List<ListarAppointment>> ListarCitasPorAlumno(int studentId)
         {
             List<ListarAppointment> citas = new List<ListarAppointment>();
 
             try
             {
+
                 SqlParameter[] parameters = new SqlParameter[]{ 
+
                     new SqlParameter("@StudentId", SqlDbType.Int){
                         Value = studentId
                     }
@@ -225,7 +229,9 @@ namespace MiTutor.Services.TutoringManagement
                         ListarAppointment cita = new ListarAppointment
                         {
                             AppointmentId = Convert.ToInt32(row["AppointmentId"]),
+
                             ProgramId = Convert.ToInt32(row["TutoringProgramId"]),
+
                             ProgramName = row["ProgramName"].ToString(),
                             AppointmentStatus = row["AppointmentStatus"].ToString(),
                             GroupBased = Convert.ToBoolean(row["GroupBased"]),
@@ -237,6 +243,7 @@ namespace MiTutor.Services.TutoringManagement
                             IsInPerson = Convert.ToBoolean(row["IsInPerson"]),
                             StartTime = row["StartTime"] != DBNull.Value ? TimeOnly.FromDateTime((DateTime)row["StartTime"]) : default(TimeOnly),
                             EndTime = row["EndTime"] != DBNull.Value ? TimeOnly.FromDateTime((DateTime)row["EndTime"]) : default(TimeOnly),
+
                             Reason = row["Reason"].ToString(),
                             TutorId = Convert.ToInt32(row["TutorId"]),
                             TutorName = row["TutorName"].ToString(),
@@ -244,6 +251,7 @@ namespace MiTutor.Services.TutoringManagement
                             TutorSecondLastName = row["TutorSecondLastName"].ToString(),
                             TutorEmail = row["TutorEmail"].ToString(),
                             TutorMeetingRoom = row["MeetingRoom"].ToString() 
+
                         };
 
                         citas.Add(cita);
@@ -252,10 +260,15 @@ namespace MiTutor.Services.TutoringManagement
             }
             catch (Exception ex)
             {
+
                 throw new Exception("Error al listar las citas por tutor y alumno: " + ex.Message);
+
             }
 
             return citas;
         }
+
+
     }
 }
+

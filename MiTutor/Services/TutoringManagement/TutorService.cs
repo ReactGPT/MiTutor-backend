@@ -11,10 +11,9 @@ namespace MiTutor.Services.TutoringManagement
     {
         private readonly DatabaseManager _databaseManager;
 
-
-        public TutorService()
+        public TutorService(DatabaseManager databaseManager)
         {
-            _databaseManager = new DatabaseManager();
+            _databaseManager = databaseManager ?? throw new ArgumentNullException(nameof(databaseManager));
         }
 
         public async Task CrearTutor(Tutor tutor)
@@ -35,15 +34,15 @@ namespace MiTutor.Services.TutoringManagement
             }
         }
 
-        public async Task<List<Tutor>> ListarTutores()
+        public async Task<List<Tutor>> ListarTutores(int IdProgramaTutoria)
         {
             List<Tutor> tutores = new List<Tutor>();
-
+            
             try
             {
-                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_TUTORES, null);
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_TUTORES, IdProgramaTutoria==-1?null:new SqlParameter[] {new SqlParameter("@idProgramaTutoria",SqlDbType.Int) {Value=IdProgramaTutoria } });
 
-                if (dataTable != null)
+                if (dataTable != null && dataTable.Rows.Count>0)
                 {
                     foreach (DataRow row in dataTable.Rows)
                     {
@@ -52,13 +51,14 @@ namespace MiTutor.Services.TutoringManagement
                             TutorId = Convert.ToInt32(row["TutorId"]),
                             MeetingRoom = row["MeetingRoom"].ToString(),
                             UserAccount = new UserAccount {
-                                Id = Convert.ToInt32(row["UserAccountId"]), 
+                                Id = Convert.ToInt32(row["UserAccountId"]),
                                 Persona = new Person
                                 {
                                     Name = row["PersonName"].ToString(),
                                     LastName = row["PersonLastName"].ToString(),
                                     SecondLastName = row["PersonSecondLastName"].ToString()
-                                } 
+                                },
+                                InstitutionalEmail = row["InstitutionalEmail"].ToString()
                             }
                         };
 

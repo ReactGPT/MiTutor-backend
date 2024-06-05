@@ -13,9 +13,9 @@ namespace MiTutor.Services.TutoringManagement
         private readonly DatabaseManager _databaseManager;
         private readonly TutorService _tutorServices;
 
-        public TutoringProgramService()
+        public TutoringProgramService(DatabaseManager databaseManager)
         {
-            _databaseManager = new DatabaseManager();
+            _databaseManager = databaseManager ?? throw new ArgumentNullException(nameof(databaseManager));
         }
 
         public async Task CrearProgramaDeTutoria(TutoringProgram programa)

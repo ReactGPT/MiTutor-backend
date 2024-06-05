@@ -9,9 +9,9 @@ namespace MiTutor.Services.TutoringManagement
     {
         private readonly DatabaseManager _databaseManager;
 
-        public AvailabilityTutorService()
+        public AvailabilityTutorService(DatabaseManager databaseManager)
         {
-            _databaseManager = new DatabaseManager();
+            _databaseManager = databaseManager ?? throw new ArgumentNullException(nameof(databaseManager));
         }
 
         public async Task<List<ListAvailabilityTutor>> ListarDisponibilidadPorTutor(int tutorId)

@@ -107,5 +107,20 @@ namespace MiTutor.Controllers.TutoringManagement
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("/listarDerivationsByTutorId/{idTutor}")]
+        public async Task<IActionResult> ListarDerivationsByTutorId(int idTutor)
+        {
+            List<ListDerivation> derivations;
+            try
+            {
+                derivations = await _derivationServices.SeleccionarPorTutor(idTutor);
+                return Ok(new { success = true, data = derivations });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            } 
+        }
     }
 }

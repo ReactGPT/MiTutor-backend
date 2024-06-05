@@ -51,12 +51,12 @@ namespace MiTutor.Controllers.TutoringManagement
         }
 
         [HttpGet("/listarCitasPorTutorPorAlumno/{tutorId}/{studentId}")]
-        public async Task<IActionResult> ListarCitasPorTutorPorAlumno(int tutorId,int studentId)
+        public async Task<IActionResult> ListarCitasPorTutorPorAlumno(int tutorId, int studentId)
         {
             try
             {
 
-                var citas = await _appointmentServices.ListarCitasPorTutorPorAlumno(tutorId,studentId);
+                var citas = await _appointmentServices.ListarCitasPorTutorPorAlumno(tutorId, studentId);
 
 
                 return Ok(new { success = true, data = citas });
@@ -68,8 +68,10 @@ namespace MiTutor.Controllers.TutoringManagement
             }
         }
 
+
         //ListarCitasPorAlumno
         [HttpGet("/listarCitasPorAlumnoId/{studentId}")]
+
         public async Task<IActionResult> ListarCitasPorAlumno(int studentId)
         {
             try
@@ -86,5 +88,6 @@ namespace MiTutor.Controllers.TutoringManagement
                 return BadRequest(ex.Message);
             }
         }
+
     }
 }
