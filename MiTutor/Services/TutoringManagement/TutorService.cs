@@ -407,5 +407,74 @@ namespace MiTutor.Services.TutoringManagement
                 throw new Exception("Error al obtener el Tutor: " + ex.Message);
             }
         }
+
+        public async Task<List<TutorContadorProgramasAcademicos>> ListarTutoresConCantidadDeProgramas()
+        {
+            List<TutorContadorProgramasAcademicos> tutores = new List<TutorContadorProgramasAcademicos>();
+
+            try
+            {
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_CONTADOR_PROGRAMAS_POR_TUTOR);
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        TutorContadorProgramasAcademicos tutor = new TutorContadorProgramasAcademicos
+                        {
+                            TutorId = Convert.ToInt32(row["TutorId"]),
+                            TutorName = row["TutorName"].ToString(),
+                            TutorLastName = row["LastName"].ToString(),
+                            TutorSecondLastName = row["SecondLastName"].ToString(),
+                            CantidadProgramas = Convert.ToInt32(row["ProgramCount"])
+                        };
+
+                        tutores.Add(tutor);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarTutoresConCantidadDeProgramas", ex);
+            }
+
+            return tutores;
+        }
+        public async Task<List<ListarCantidadAppointment>> ListarCantidadAppointments()
+        {
+            List<ListarCantidadAppointment> appointments = new List<ListarCantidadAppointment>();
+
+            try
+            {
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_CANTIDAD_CITAS_TUTOR);
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        ListarCantidadAppointment appointment = new ListarCantidadAppointment
+                        {
+                            TutorId = Convert.ToInt32(row["TutorId"]),
+                            TutorName = row["TutorName"].ToString(),
+                            TutorLastName = row["LastName"].ToString(),
+                            TutorSecondLastName = row["SecondLastName"].ToString(),
+                            TotalAppointments = Convert.ToInt32(row["TotalAppointments"]),
+                            RegisteredCount = Convert.ToInt32(row["RegisteredCount"]),
+                            PendingResultCount = Convert.ToInt32(row["PendingResultCount"]),
+                            CompletedCount = Convert.ToInt32(row["CompletedCount"])
+                        };
+
+                        appointments.Add(appointment);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarCantidadAppointments", ex);
+            }
+
+            return appointments;
+        }
+
+
+
     }
 }

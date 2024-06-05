@@ -167,5 +167,36 @@ namespace MiTutor.Controllers.TutoringManagement
             }
         }
 
+        [HttpGet("/listarTutoresConCantidadDeProgramas")]
+        public async Task<IActionResult> ListarTutoresConCantidadDeProgramas()
+        {
+            List<TutorContadorProgramasAcademicos> tutores;
+            try
+            {
+                tutores = await _tutorServices.ListarTutoresConCantidadDeProgramas();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, message = ex.Message });
+            }
+            return Ok(new { success = true, data = tutores });
+        }
+
+        [HttpGet("/listarCantidadAppointments")]
+        public async Task<IActionResult> ListarCantidadAppointments()
+        {
+            List<ListarCantidadAppointment> appointments;
+            try
+            {
+                appointments = await _tutorServices.ListarCantidadAppointments();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, message = ex.Message });
+            }
+            return Ok(new { success = true, data = appointments });
+        }
+
+
     }
 }

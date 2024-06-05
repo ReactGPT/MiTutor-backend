@@ -32,4 +32,39 @@ namespace MiTutor.Models.TutoringManagement
 
 
     }
+
+    //Indicadores 
+
+    public class TutorContadorProgramasAcademicos
+    {
+        public int TutorId { get; set; }
+        public string TutorName { get; set; }
+        public string TutorLastName { get;set; }
+
+        public string TutorSecondLastName { get; set;}
+
+        public int CantidadProgramas { get; set; }
+
+
+    }
+
+    //Indicador
+
+    public class ListarCantidadAppointment
+    {
+        public int TutorId { get; set; }
+        public string TutorName { get; set; }
+        public string TutorLastName { get; set; }
+
+        public string TutorSecondLastName { get; set; }
+
+        public int TotalAppointments { get; set; }
+
+        public int RegisteredCount { get; set; }    
+
+        public int PendingResultCount { get; set; }
+
+        public int CompletedCount { get; set; }
+    }
+
 }
