@@ -2,6 +2,22 @@
 {
     public static class StoredProcedure
     {
+        public const string LISTAR_ESPECIALIDAD = "ESP_ListarEspecialidades_Select";
+        public const string ACTUALIZAR_ESPECIALIDAD = "ESP_ActualizarEspecialidad_Update";
+
+        //PLAN DE ACCIÓN
+        public const string LISTAR_PLAN_ACTIONS = "sp_GetActionPlans";
+        public const string CREAR_ACTION_PLAN = "sp_InsertActionPlan";
+        public const string OBTENER_ACTION_PLAN_X_ID = "sp_GetActionPlansById";
+        public const string ACTUALIZAR_PLAN = "sp_UpdateActionPlan";
+        public const string LISTAR_ACTION_PLAN_ALUMNO = "sp_GetActionPlansStudent";
+        public const string ELIMINAR_ACTION_PLAN = "sp_DeleteActionPlan";
+
+        //COMPROMISOS
+        public const string LISTAR_COMMITMENT_X_ID_ACTION_PLAN = "sp_GetCommitmentsByActionPlanId";
+        public const string INSERTAR_COMMITMENT = "sp_InsertCommitment";
+        public const string ACTUALIZAR_COMMITMENT = "sp_UpdateCommitment";
+        public const string DELETE_COMMITMENT = "sp_DeleteCommitment";     
 
         //PERSONA
         public const string CREAR_PERSONA = "PERSON_INSERTAR_INSERT";
@@ -9,10 +25,15 @@
         //ESTUDIANTE
         public const string CREAR_ESTUDIANTE = "STUDENT_INSERTAR_INSERT";
         public const string LISTAR_ESTUDIANTES = "STUDENT_LISTAR_LIST";
+        public const string LISTAR_ESTUDIANTES_POR_PROGRAMA = "STUDENT_LISTARXTUTORINGPROGRAMXTUTOR_SELECT";
+        public const string SELECCIONAR_ESTUDIANTE_X_ID = "STUDENT_SELECCIONAR_SELECT";
+        public const string LISTAR_ESTUDIANTES_POR_PROGRAMA_TUTORIA = "STUDENT_LISTARXTUTORINGPROGRAM_SELECT";
+        public const string LISTAR_ESTUDIANTES_POR_ID = "STUDENT_LISTAR_BY_ID";
 
         //USUARIO
         public const string CREAR_USUARIO = "USER_ACCOUNT_INSERTAR_INSERT";
         public const string LISTAR_USUARIOS = "USER_LISTAR_SELECT";
+        public const string OBTENERINFO_USUARIO = "USER_OBTENERINFOUSUARIO_SELECT";
 
         //FACULTAD
         public const string CREAR_FACULTAD = "FACULTY_INSERTAR_INSERT";
@@ -27,6 +48,11 @@
         //TUTOR
         public const string CREAR_TUTOR = "TUTOR_INSERTAR_INSERT";
         public const string LISTAR_TUTORES = "TUTOR_LISTAR_SELECT";
+        public const string LISTAR_TUTORES_TIPO = "TUTOR_LISTATIPO_SELECT";
+        public const string SELECCIONAR_TUTOR_X_ID = "TUTOR_SELECCIONAR_X_ID_SELECT";
+        public const string LISTAR_TUTORES_PROGRAM = "TUTOR_PROGRAM_LISTAR_SELECT";
+        public const string LISTAR_TUTORES_PROGRAM_ALUMNO = "TUTOR_LISTARXIDPROGRAM";
+        public const string LISTAR_TUTORES_PROGRAM_VARIABLE = "TUTOR_LISTARXIDPROGRAMVARIABLE";
 
         //TUTORIA PROGRAM
         public const string CREAR_PROGRAMA_DE_TUTORIA = "TUTORINGPROGRAM_INSERTAR_INSERT";
@@ -34,6 +60,7 @@
 
         public const string LISTAR_PROGRAMA_POR_TUTOR = "TUTORINGPROGRAM_LISTARXTUTOR_SELECT";
         public const string LISTAR_PROGRAMA_POR_TIPOUSUARIO = "TUTORINGPROGRAM_LISTARXTIPOUSUARIO_SELECT";
+        public const string LISTAR_PROGRAMA_POR_ALUMNO = "TUTORINGPROGRAM_LISTARXALUMNO_SELECT";
 
         //PROGRAMA-TUTOR-TIPO_TUTOR
         public const string CREAR_PROGRAMA_TUTOR_TIPO_TUTOR = "TUTOR_PROGRAM_TYPE_INSERTAR_INSERT";
@@ -55,7 +82,10 @@
         public const string LISTAR_ARCHIVOS = "FILE_LISTAR_SELECT";
         public const string ACTUALIZAR_ARCHIVOS = "FILE_ACTUALIZAR_UPDATE";
         public const string ELIMINAR_ARCHIVO = "FILE_ELIMINAR_DELETE";
-        
+        public const string REACTIVAR_ARCHIVO = "FILE_ACTIVAR_UPDATE";
+        public const string INSERTAR_ARCHIVO = "InsertarArchivo";
+        public const string LISTAR_ARCHIVOS_ID_RESULTADO_TIPO = "FILES_LISTAR_POR_ID_RESULTADOCITA_TIPOPRIVACIDAD_SELECT";
+
         //AGREGAR_CITA
         public const string AGREGAR_CITA = "APPOINTMENT_INSERTAR_INSERT";
         public const string OBTENER_ID_STUDENT_PROGRAM = "GetStudentProgramId";
@@ -64,12 +94,34 @@
         public const string LISTAR_CITA_POR_TUTOR = "APPOINTMENT_LISTARXTUTOR_SELECT";
         public const string LISTAR_CITA_POR_TUTOR_POR_ALUMNO = "APPOINTMENT_LISTARXTUTORXALUMNO_SELECT";
 
+        public const string LISTAR_CITA_POR_ALUMNO = "APPOINTMENT_LISTARXALUMNO_X_ID_SELECT";
+        //APPOINTMENT_LISTARXALUMNO_X_ID_SELECT
+
 
         //DERIVATION
         public const string CREAR_DERIVACION = "DERIVATION_INSERTAR_INSERT";
         public const string LISTAR_DERIVACIONES = "DERIVATION_LISTAR_SELECT";
         public const string ACTUALIZAR_DERIVACION = "DERIVATION_ACTUALIZAR_UPDATE";
         public const string ELIMINAR_DERIVACION = "DERIVATION_ELIMINAR_DELETE";
+        public const string LISTAR_UNIDADES_DERIVACION = "UNITDERIVATION_LISTAR_SELECT";
+        public const string SELECCIONAR_DERIVATION_ID_CITA = "DERIVATION_SELECCIONAR_X_ID_CITA_SELECT";
 
+        //RESULTADO-CITA CON COMENTARIOS
+        public const string INSERTAR_RESULTADO_CITA= "APPOINTMENTRESULT_INSERTAR_INSERT"; 
+        public const string ACTUALIZAR_RESULTADO_CITA = "APPOINTMENTRESULT_ACTUALIZAR_UPDATE";
+        public const string CONSULTAR_RESULTADO_CITA = "APPOINTMENTRESULT_CONSULTAR";
+        public const string CONSULTAR_COMENTARIOS_X_ID_RESULTADO_CITA = "COMMENT_CONSULTAR_POR_ID_APPOINMENT_RESULT";
+        public const string ACTUALIZAR_COMMENT_X_ID = "COMMENT_ACTUALIZAR_X_ID_UPDATE";
+
+        //DISPONIBILIDAD TUTOR
+        public const string LISTAR_DISPONIBILIDADES_X_TUTOR = "AVAILABILITYTUTOR_LISTARXTUTOR_SELECT";
+        public const string ELIMINAR_DISPONIBILIDAD = "AVAILABILITYTUTOR_ELIMINAR_DELETE";
+        public const string CREAR_DISPONIBILIDAD = "AVAILABILITYTUTOR_INSERTAR_INSERT";
+
+
+        //TUTOR_STUDENT_PROGRAM
+        public const string CREAR_TUTOR_STUDENT_PROGRAM = "TUTOR_STUDENT_PROGRAM_INSERTAR_INSERT";
+        public const string CONSEGUIR_TUTOR_STUDENT_PROGRAM = "TUTOR_STUDENT_PROGRAM_Conseguir_FIND";
+        public const string LISTAR_SOLICITUDES_POR_FACULTAD = "TUTOR_STUDENT_PROGRAM_LISTARXFACULTAD_SELECT";
     }
 }

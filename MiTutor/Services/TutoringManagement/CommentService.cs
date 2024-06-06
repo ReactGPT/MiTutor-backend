@@ -9,10 +9,9 @@ namespace MiTutor.Services.TutoringManagement
     {
         private readonly DatabaseManager _databaseManager;
 
-
-        public CommentService()
+        public CommentService(DatabaseManager databaseManager)
         {
-            _databaseManager = new DatabaseManager();
+            _databaseManager = databaseManager ?? throw new ArgumentNullException(nameof(databaseManager));
         }
 
         public async Task CrearComentario(Comment comment)
@@ -85,6 +84,25 @@ namespace MiTutor.Services.TutoringManagement
             }
         }
 
+        public async Task ActualizarComentarioxID(int  id_comment, string message)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@id_comment", SqlDbType.Int) { Value = id_comment },
+                new SqlParameter("@message", SqlDbType.NVarChar) { Value = message } 
+            };
+
+            try
+            {
+                await _databaseManager.ExecuteStoredProcedure(StoredProcedure.ACTUALIZAR_COMMENT_X_ID, parameters);
+            }
+            catch
+            {
+                throw new Exception("ERROR en ActualizarComentarioService");
+            }
+        }
+
+
         public async Task EliminarComentario(int commentId)
         {
             SqlParameter[] parameters = new SqlParameter[]
@@ -102,6 +120,44 @@ namespace MiTutor.Services.TutoringManagement
             }
         }
 
+        public async Task ConsultarComentario_x_ID_ResultadoCita(int idAppointmentResult, List<Comment> comments)
+        {
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@id_appointment_result", SqlDbType.Int) { Value = idAppointmentResult }
+                };
 
+                // Ejecutar el procedimiento almacenado para obtener los comentarios filtrados por id_appointmentresult
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.CONSULTAR_COMENTARIOS_X_ID_RESULTADO_CITA, parameters);
+
+                // Verificar si se obtuvieron resultados
+                if (dataTable != null)
+                {
+                    // Recorrer cada fila del resultado
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        // Crear un nuevo objeto Comment y asignar los valores de la fila
+                        Comment comment = new Comment
+                        {
+                            CommentId = Convert.ToInt32(row["CommentId"]),
+                            Message = row["Message"].ToString(),
+                            IsActive = Convert.ToBoolean(row["IsActive"]),
+                            AppointmentResultId = Convert.ToInt32(row["AppointmentResultId"]),
+                            PrivacyTypeId = Convert.ToInt32(row["PrivacyTypeId"])
+                        };
+
+                        // Agregar el comentario a la lista
+                        comments.Add(comment);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar cualquier excepción que pueda ocurrir durante la ejecución del procedimiento almacenado
+                throw new Exception("Error al consultar comentarios: " + ex.Message);
+            }
+        }
     }
 }

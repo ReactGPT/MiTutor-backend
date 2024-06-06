@@ -8,9 +8,9 @@ namespace MiTutor.Services.UserManagement
     public class PersonService
     {
         private readonly DatabaseManager _databaseManager;
-        public PersonService()
+        public PersonService(DatabaseManager databaseManager)
         {
-            _databaseManager = new DatabaseManager();
+            _databaseManager = databaseManager ?? throw new ArgumentNullException(nameof(databaseManager));
         }
         public async Task CrearPersona(Person person)
         {

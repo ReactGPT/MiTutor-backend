@@ -5,6 +5,8 @@ using MiTutor.Models.GestionUsuarios;
 using MiTutor.Services;
 using MiTutor.Services.GestionUsuarios;
 using MiTutor.Services.UserManagement;
+using System.Data;
+using System.Text.Json;
 
 namespace MiTutor.Controllers.GestionUsuarios
 {
@@ -50,6 +52,34 @@ namespace MiTutor.Controllers.GestionUsuarios
                 return BadRequest(ex.Message);
             }
             return Ok(new { success = true, data = userAccounts });
+        }
+
+        [HttpGet("/userInfo")]
+        public async Task<IActionResult> ObtenerInfoUsuario(string email=null,string codigoPUCP=null)
+        {
+
+            UserAccount user=new UserAccount
+            {
+                isVerified = false
+            };
+            string json = "";
+            try
+            {
+                //var options = new JsonSerializerOptions
+                //{
+                //    Converters = { new UserGenericConverter() },
+                //    WriteIndented = true
+                //};
+                user = await _usuarioServices.ObtenerInfoUsuario(email,codigoPUCP);
+                //json = JsonSerializer.Serialize(user.Roles, options);
+                //var deserializedRoles = JsonSerializer.Deserialize<List<UserGeneric>>(json, options);
+                //user.Roles = deserializedRoles;
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new {success=false,message= ex.Message,data=user});
+            }
+            return Ok(new { success = true, data = user });
         }
 
 

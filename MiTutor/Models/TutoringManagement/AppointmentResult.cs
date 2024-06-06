@@ -7,16 +7,23 @@ namespace MiTutor.Models.TutoringManagement
     {
         public int AppointmentResultId { get; set; }
 
-        public DateTime StartTime { get; set; }
-
-        public DateTime EndTime { get; set; }
+        public bool Asistio {  get; set; }
 
         public bool IsActive { get; set; }
+        public TimeOnly StartTime { get; set; }
+        public TimeOnly EndTime { get; set; }
+        public List<Comment> Comments { get; set; } = new List<Comment>();
         [JsonIgnore]
-        public ICollection<Comment> Comments { get; set; } = new List<Comment>();
-        [JsonIgnore]
-        public  ICollection<File> Files { get; set; } = new List<File>();
-        [JsonIgnore]
-        public Appointment Appointment { get; set; }
+        public  ICollection<Files> Files { get; set; } = new List<Files>();
+         
+        //tienes el id de cita, alumno y el programa
+    }
+    public class InsertAppointmentResult
+    {
+        public AppointmentResult appointmentResult { get; set; } = new AppointmentResult();
+        public int studentId { get; set; }
+        public int tutoringProgramId { get; set; }
+        public int appointmentId { get; set; }
+
     }
 }

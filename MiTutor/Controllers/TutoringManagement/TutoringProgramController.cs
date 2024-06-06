@@ -34,8 +34,21 @@ namespace MiTutor.Controllers.TutoringManagement
             }
             return Ok(new { success = true, message = "Se inserto satisfactoriamente" });
         }
+        [HttpPost("/crearEditarProgramaDeTutoria")]
+        public async Task<IActionResult> CrearEditarProgramaTutoria([FromBody] TutoringProgram TutoringProgram)
+        {
+            try
+            {
+                await _TutoringProgramServices.CrearEditarProgramaDeTutoria(TutoringProgram);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new{ sucess=false,message=ex.Message});
+            }
+            return Ok(new { success = true, message = "Se inserto satisfactoriamente" });
+        }
 
-        [HttpGet("/listarProgramasDeTutoria")]
+        [HttpGet("listarProgramasDeTutoria")]   // Para Verificar el Endpoint en el Controlador
         public async Task<IActionResult> ListarProgramasDeTutoria()
         {
             List<TutoringProgram> faculties;
@@ -82,5 +95,22 @@ namespace MiTutor.Controllers.TutoringManagement
             }
         }
 
+        [HttpGet("/listarProgramasDeTutoriaPorAlumno/{studentId}")]
+        public async Task<IActionResult> ListarProgramasDeTutoriaPorAlumno(int studentId)
+        {
+            try
+            {
+
+                var programas = await _TutoringProgramServices.ListarProgramasDeTutoriaPorAlumno(studentId);
+
+
+                return Ok(new { success = true, data = programas });
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

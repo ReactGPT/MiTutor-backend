@@ -3,16 +3,19 @@ using MiTutor.Models.TutoringManagement;
 using MiTutor.Models.UniversityUnitManagement;
 using System.Data.SqlClient;
 using System.Data;
+using MiTutor.Models.GestionUsuarios;
+using System.ComponentModel;
 
 namespace MiTutor.Services.TutoringManagement
 {
     public class TutoringProgramService
     {
         private readonly DatabaseManager _databaseManager;
+        private readonly TutorService _tutorServices;
 
-        public TutoringProgramService()
+        public TutoringProgramService(DatabaseManager databaseManager)
         {
-            _databaseManager = new DatabaseManager();
+            _databaseManager = databaseManager ?? throw new ArgumentNullException(nameof(databaseManager));
         }
 
         public async Task CrearProgramaDeTutoria(TutoringProgram programa)
@@ -83,7 +86,57 @@ namespace MiTutor.Services.TutoringManagement
                 throw new Exception("Error al crear el programa de tutoría: " + ex.Message);
             }
         }
+        public async Task CrearEditarProgramaDeTutoria(TutoringProgram programa)
+        {
+            SqlParameter[] parameters;
 
+
+            parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@TutoringProgramID",SqlDbType.Int){ Value= (programa.TutoringProgramId==null?DBNull.Value:programa.TutoringProgramId)},
+                    new SqlParameter("@FaceToFace", SqlDbType.Bit) { Value = programa.FaceToFace },
+                    new SqlParameter("@Virtual", SqlDbType.Bit) { Value = programa.Virtual },
+                    new SqlParameter("@GroupBased", SqlDbType.Bit) { Value = programa.GroupBased },
+                    new SqlParameter("@IndividualBased", SqlDbType.Bit) { Value = programa.IndividualBased },
+                    new SqlParameter("@Optional", SqlDbType.Bit) { Value = programa.Optional },
+                    new SqlParameter("@Mandatory", SqlDbType.Bit) { Value = programa.Mandatory },
+                    new SqlParameter("@MembersCount", SqlDbType.Int) { Value = programa.MembersCount },
+                    new SqlParameter("@ProgramName", SqlDbType.NVarChar) { Value = programa.ProgramName },
+                    new SqlParameter("@Description", SqlDbType.NVarChar) { Value = programa.Description },
+                    new SqlParameter("@Duration", SqlDbType.Time) { Value = programa.Duration },
+                    new SqlParameter("@FacultyId", SqlDbType.Int) { Value = programa.Faculty.FacultyId },
+                    new SqlParameter("@SpecialtyId", SqlDbType.Int) { Value = programa.Specialty.SpecialtyId },
+                    new SqlParameter("@isActive", SqlDbType.Bit) { Value = programa.IsActive },
+                    new SqlParameter("@TutorTypeID", SqlDbType.Int) { Value = programa.TutorTypeId }
+
+                };
+            
+            /*{
+              "faceToFace": true,
+              "virtual": true,
+              "groupBased": true,
+              "individualBased": true,
+              "optional": true,
+              "mandatory": true,
+              "membersCount": 0,
+              "programName": "Programa575",
+              "description": "frrfrfr", 
+              "faculty": null,
+              "duration": "00:00:00",
+              "specialty":{
+                "specialtyId": 1
+              }
+            }*/
+
+            try
+            {
+                await _databaseManager.ExecuteStoredProcedure(StoredProcedure.CREAR_PROGRAMA_DE_TUTORIA, parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al crear el programa de tutoría: " + ex.Message);
+            }
+        }
         public async Task<List<TutoringProgram>> ListarProgramasDeTutoria()
         {
             List<TutoringProgram> programas = new List<TutoringProgram>();
@@ -97,8 +150,18 @@ namespace MiTutor.Services.TutoringManagement
                     {
 
                         TimeSpan duration = (TimeSpan)row["Duration"];
-                         
-                         
+
+                        Specialty speciality = new Specialty
+                        {
+                            SpecialtyId = Convert.ToInt32(row["SpecialtyId"]),
+                            Name = row["SpecialtyName"].ToString()
+                        };
+
+                        Faculty faculty = new Faculty
+                        {
+                            FacultyId = Convert.ToInt32(row["FacultyId"]),
+                            Name = row["FacultyName"].ToString()
+                        };
                         TutoringProgram programa = new TutoringProgram
                         {
                             TutoringProgramId = Convert.ToInt32(row["TutoringProgramId"]),
@@ -112,7 +175,13 @@ namespace MiTutor.Services.TutoringManagement
                             ProgramName = row["ProgramName"].ToString(),
                             Description = row["Description"].ToString(),
                             IsActive = Convert.ToBoolean(row["IsActive"]),
-                            Duration = (TimeSpan)row["Duration"]
+                            Duration = (TimeSpan)row["Duration"],
+                            StudentsNumber = Convert.ToInt32(row["CantAlumnos"]),
+                            TutorsNumber = Convert.ToInt32(row["CantTutores"]),
+                            TutorTypeId = Convert.ToInt32(row["TutorTypeId"]),
+                            TutorTypeDescription = row["TutorTypeDescription"].ToString(),
+                            Faculty = faculty,
+                            Specialty = speciality
                     };
 
                         programas.Add(programa);
@@ -217,7 +286,47 @@ namespace MiTutor.Services.TutoringManagement
             return programas;
         }
 
+        public async Task<List<TutoringProgramAlumno>> ListarProgramasDeTutoriaPorAlumno(int studentId)
+        {
+            List<TutoringProgramAlumno> programas = new List<TutoringProgramAlumno>();
 
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+                    new SqlParameter("@StudentId", SqlDbType.Int){
+                        Value = studentId
+                    }
+                };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_PROGRAMA_POR_ALUMNO, parameters);
+
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        TutoringProgramAlumno programa = new TutoringProgramAlumno
+                        {
+                            TutoringProgramId = Convert.ToInt32(row["TutoringProgramId"]),
+                            ProgramName = row["ProgramName"].ToString(),
+                            ProgramDescription = row["ProgramDescription"].ToString(),
+                            FaceToFace = Convert.ToBoolean(row["FaceToFace"]),
+                            Virtual = Convert.ToBoolean(row["Virtual"]),
+                            FacultyName = row["FacultyName"].ToString(),
+                            SpecialtyName = row["SpecialtyName"].ToString(),
+                            TutorType = row["TutorType"].ToString(),
+                        };
+
+                        programas.Add(programa);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al listar los programas de tutoría por alumno: " + ex.Message);
+            }
+
+            return programas;
+        }
 
     }
 }

@@ -10,11 +10,11 @@ namespace MiTutor.Services.TutoringManagement
     {
         private readonly DatabaseManager _databaseManager;
 
-        public StudentProgramService()
+        public StudentProgramService(DatabaseManager databaseManager)
         {
-            _databaseManager = new DatabaseManager();
+            _databaseManager = databaseManager ?? throw new ArgumentNullException(nameof(databaseManager));
         }
-         
+
         public async Task CrearProgramaEstudiante(StudentProgram studentProgram)
         {
             SqlParameter[] parameters = new SqlParameter[]
@@ -34,5 +34,38 @@ namespace MiTutor.Services.TutoringManagement
             }
         }
  
+        public async Task<StudentProgram> ObtenerStudentProgramPorId(int studentProgramId)
+        {
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@StudentProgramId", SqlDbType.Int) { Value = studentProgramId }
+                };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable("OBTENER_STUDENT_PROGRAM_POR_ID", parameters);
+
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    DataRow row = dataTable.Rows[0];
+
+                    StudentProgram studentProgram = new StudentProgram
+                    {
+                        StudentProgramId = Convert.ToInt32(row["StudentProgramId"]),
+                        // Asigna los demás campos según la estructura de tu tabla
+                    };
+
+                    return studentProgram;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el StudentProgram: " + ex.Message);
+            }
+        }
     }
 }

@@ -10,24 +10,32 @@ namespace MiTutor.Services.TutoringManagement
     {
         private readonly DatabaseManager _databaseManager;
 
-        public AppointmentService()
+        public AppointmentService(DatabaseManager databaseManager)
         {
-            _databaseManager = new DatabaseManager();
+            _databaseManager = databaseManager ?? throw new ArgumentNullException(nameof(databaseManager));
         }
 
         public async Task AgregarCita(RegisterAppointment registerAppointment)
         {
+            DateTime creationDate = DateTime.Parse(registerAppointment.Appointment.CreationDate);
+            DateTime startTime = DateTime.Parse(registerAppointment.Appointment.StartTime);
+            DateTime endTime = DateTime.Parse(registerAppointment.Appointment.EndTime);
+
+            startTime = new DateTime(creationDate.Year, creationDate.Month, creationDate.Day, startTime.Hour, startTime.Minute, startTime.Second);
+            endTime = new DateTime(creationDate.Year, creationDate.Month, creationDate.Day, endTime.Hour, endTime.Minute, endTime.Second);
+
+
             SqlParameter[] parameters = new SqlParameter[]
             {
-               // new SqlParameter("@StartTime", SqlDbType.DateTime) { Value = registerAppointment.appointment.StartTime },
-               // new SqlParameter("@EndTime", SqlDbType.DateTime) { Value = registerAppointment.appointment.EndTime},
-               // new SqlParameter("@CreationDate", SqlDbType.Date) { Value = registerAppointment.appointment.CreationDate },
-                new SqlParameter("@Reason", SqlDbType.NVarChar, 255) { Value = registerAppointment.appointment.Reason},
+                new SqlParameter("@StartTime", SqlDbType.DateTime) { Value = startTime },
+                new SqlParameter("@EndTime", SqlDbType.DateTime) { Value = endTime},
+                new SqlParameter("@CreationDate", SqlDbType.Date) { Value = creationDate },
+                new SqlParameter("@Reason", SqlDbType.NVarChar, 255) { Value = registerAppointment.Appointment.Reason},
                 new SqlParameter("@TutorId", SqlDbType.Int) { Value = registerAppointment.IdTutor },
                 new SqlParameter("@AppointmentStatusId", SqlDbType.Int) { Value = 1 },
                 new SqlParameter("@IsActive", SqlDbType.Bit) { Value = true },
-                new SqlParameter("@IsInPerson", SqlDbType.Bit) { Value = registerAppointment.appointment.IsInPerson },
-                new SqlParameter("@Classroom", SqlDbType.NVarChar, 255) { Value = registerAppointment.appointment.Classroom },
+                new SqlParameter("@IsInPerson", SqlDbType.Bit) { Value = registerAppointment.Appointment.IsInPerson },
+                new SqlParameter("@Classroom", SqlDbType.NVarChar, 255) { Value = registerAppointment.Appointment.Classroom },
                 new SqlParameter("@AppointmentId", SqlDbType.Int) { Direction = ParameterDirection.Output }
             };
 
@@ -37,7 +45,7 @@ namespace MiTutor.Services.TutoringManagement
                 await _databaseManager.ExecuteStoredProcedure(StoredProcedure.AGREGAR_CITA, parameters);
 
                 // Obtener el ID de la cita recién insertada
-                registerAppointment.appointment.AppointmentId = Convert.ToInt32(parameters[parameters.Length - 1].Value);
+                registerAppointment.Appointment.AppointmentId = Convert.ToInt32(parameters[parameters.Length - 1].Value);
 
                 // Llamar al método para realizar otra operación con el ID de la cita
                 await RealizarOtraOperacionConCitaId(registerAppointment);
@@ -45,28 +53,10 @@ namespace MiTutor.Services.TutoringManagement
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al agregar cita: " + registerAppointment.appointment.AppointmentId + ex.Message);
+                throw new Exception("Error al agregar cita: " + registerAppointment.Appointment.AppointmentId + "\n" + ex.Message);
             }
         }
-        /*{
-  "appointment": {
-    "appointmentId": 0,
-    "reason": "Razón de la cita",
-    "isActive": true,
-    "isInPerson": true,
-    "classroom": "Salón 101",
-    "appointmentStatus": {
-      "appointmentStatusId": 0,
-      "name": "string",
-      "isActive": true
-    }
-  },
-  "idProgramTutoring": 4,
-  "idTutor": 2,
-  "idStudent": [
-    2
-  ]
-}*/
+
         private async Task RealizarOtraOperacionConCitaId(RegisterAppointment registerAppointment)
         {
 
@@ -74,38 +64,44 @@ namespace MiTutor.Services.TutoringManagement
             // Llamar al procedimiento almacenado para obtener el ID del StudentProgram
             foreach (int studentId in registerAppointment.IdStudent)
             {
-                // Crear parámetros para llamar al procedimiento almacenado
-                SqlParameter[] parameters = new SqlParameter[]
-                {
-                    new SqlParameter("@StudentId", SqlDbType.Int) { Value = studentId },
-                    new SqlParameter("@TutoringProgramId", SqlDbType.Int) { Value = registerAppointment.IdProgramTutoring},
-                    new SqlParameter("@StudentProgramId", SqlDbType.Int) { Direction = ParameterDirection.Output }
-                };
-
+                int studentProgramId = -1;
                 try
                 {
+                    // Crear parámetros para llamar al procedimiento almacenado
+                    SqlParameter[] parameters = new SqlParameter[]
+                    {
+                        new SqlParameter("@StudentId", SqlDbType.Int) { Value = studentId },
+                        new SqlParameter("@TutoringProgramId", SqlDbType.Int) { Value = registerAppointment.IdProgramTutoring},
+                        new SqlParameter("@StudentProgramId", SqlDbType.Int) { Direction = ParameterDirection.Output }
+                    };
+
                     // Ejecutar el procedimiento almacenado
                     await _databaseManager.ExecuteStoredProcedure("GetStudentProgramId", parameters);
                     // Obtener el ID del StudentProgram generado
-                    int studentProgramId = Convert.ToInt32(parameters[parameters.Length - 1].Value);
+                    studentProgramId = Convert.ToInt32(parameters[parameters.Length - 1].Value);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error al obtener el ID del StudentProgram: " + ex.Message);
+                }
 
+                try
+                {
+                    if (studentProgramId == -1) throw new Exception("studentProgramId no tiene un id asignado\n");
 
                     // Crear nuevos parámetros para el procedimiento InsertarAppointmentStudentProgram
                     SqlParameter[] insertParameters = new SqlParameter[]
                     {
-                        new SqlParameter("@AppointmentId", SqlDbType.Int) { Value = registerAppointment.appointment.AppointmentId },
+                        new SqlParameter("@AppointmentId", SqlDbType.Int) { Value = registerAppointment.Appointment.AppointmentId },
                         new SqlParameter("@StudentProgramId", SqlDbType.Int) { Value = studentProgramId }
                     };
 
                     // Ejecutar el procedimiento almacenado para insertar en la tabla AppointmentStudentProgram
                     await _databaseManager.ExecuteStoredProcedure("InsertarAppointmentStudentProgram", insertParameters);
-
-
-                    // Aquí puedes realizar cualquier operación adicional con el ID del StudentProgram
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Error al obtener el ID del StudentProgram: " + ex.Message);
+                    throw new Exception("Error al insertar en AppointmentStudentProgram: " + ex.Message);
                 }
             }
         }
@@ -131,17 +127,18 @@ namespace MiTutor.Services.TutoringManagement
                         ListarAppointment cita = new ListarAppointment
                         {
                             AppointmentId = Convert.ToInt32(row["AppointmentId"]),
+                            ProgramId = Convert.ToInt32(row["TutoringProgramId"]),
                             ProgramName = row["ProgramName"].ToString(),
                             AppointmentStatus = row["AppointmentStatus"].ToString(),
                             GroupBased = Convert.ToBoolean(row["GroupBased"]),
-                            CreationDate = row["CreationDate"] != DBNull.Value ? (DateOnly)row["CreationDate"] : default(DateOnly),
+                            CreationDate = row["CreationDate"] != DBNull.Value ? DateOnly.FromDateTime(((DateTime)row["CreationDate"])) : default,
                             PersonId = Convert.ToInt32(row["PersonId"]),
                             Name = row["Name"].ToString(),
                             LastName = row["LastName"].ToString(),
                             SecondLastName = row["SecondLastName"].ToString(),
                             IsInPerson = Convert.ToBoolean(row["IsInPerson"]),
-                            StartTime = row["StartTime"] != DBNull.Value ? (TimeOnly)row["StartTime"] : default(TimeOnly),
-                            EndTime = row["EndTime"] != DBNull.Value ? (TimeOnly)row["EndTime"] : default(TimeOnly),
+                            StartTime = row["StartTime"] != DBNull.Value ? TimeOnly.FromTimeSpan(((DateTime)row["StartTime"]).TimeOfDay) : default,
+                            EndTime = row["EndTime"] != DBNull.Value ? TimeOnly.FromTimeSpan(((DateTime)row["EndTime"]).TimeOfDay) : default,
                             Reason = row["Reason"].ToString()
                         };
 
@@ -184,14 +181,14 @@ namespace MiTutor.Services.TutoringManagement
                             ProgramName = row["ProgramName"].ToString(),
                             AppointmentStatus = row["AppointmentStatus"].ToString(),
                             GroupBased = Convert.ToBoolean(row["GroupBased"]),
-                            CreationDate = row["CreationDate"] != DBNull.Value ? (DateOnly)row["CreationDate"] : default(DateOnly),
+                            CreationDate = row["CreationDate"] != DBNull.Value ? DateOnly.FromDateTime((DateTime)row["CreationDate"]) : default(DateOnly),
                             PersonId = Convert.ToInt32(row["PersonId"]),
                             Name = row["Name"].ToString(),
                             LastName = row["LastName"].ToString(),
                             SecondLastName = row["SecondLastName"].ToString(),
                             IsInPerson = Convert.ToBoolean(row["IsInPerson"]),
-                            StartTime = row["StartTime"] != DBNull.Value ? (TimeOnly)row["StartTime"] : default(TimeOnly),
-                            EndTime = row["EndTime"] != DBNull.Value ? (TimeOnly)row["EndTime"] : default(TimeOnly),
+                            StartTime = row["StartTime"] != DBNull.Value ? TimeOnly.FromDateTime((DateTime)row["StartTime"]) : default(TimeOnly),
+                            EndTime = row["EndTime"] != DBNull.Value ? TimeOnly.FromDateTime((DateTime)row["EndTime"]) : default(TimeOnly),
                             Reason = row["Reason"].ToString()
                         };
 
@@ -207,5 +204,71 @@ namespace MiTutor.Services.TutoringManagement
             return citas;
         }
 
+
+
+        public async Task<List<ListarAppointment>> ListarCitasPorAlumno(int studentId)
+        {
+            List<ListarAppointment> citas = new List<ListarAppointment>();
+
+            try
+            {
+
+                SqlParameter[] parameters = new SqlParameter[]{ 
+
+                    new SqlParameter("@StudentId", SqlDbType.Int){
+                        Value = studentId
+                    }
+                };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_CITA_POR_ALUMNO, parameters);
+
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        ListarAppointment cita = new ListarAppointment
+                        {
+                            AppointmentId = Convert.ToInt32(row["AppointmentId"]),
+
+                            ProgramId = Convert.ToInt32(row["TutoringProgramId"]),
+
+                            ProgramName = row["ProgramName"].ToString(),
+                            AppointmentStatus = row["AppointmentStatus"].ToString(),
+                            GroupBased = Convert.ToBoolean(row["GroupBased"]),
+                            CreationDate = row["CreationDate"] != DBNull.Value ? DateOnly.FromDateTime((DateTime)row["CreationDate"]) : default(DateOnly),
+                            PersonId = Convert.ToInt32(row["PersonId"]),
+                            Name = row["Name"].ToString(),
+                            LastName = row["LastName"].ToString(),
+                            SecondLastName = row["SecondLastName"].ToString(),
+                            IsInPerson = Convert.ToBoolean(row["IsInPerson"]),
+                            StartTime = row["StartTime"] != DBNull.Value ? TimeOnly.FromDateTime((DateTime)row["StartTime"]) : default(TimeOnly),
+                            EndTime = row["EndTime"] != DBNull.Value ? TimeOnly.FromDateTime((DateTime)row["EndTime"]) : default(TimeOnly),
+
+                            Reason = row["Reason"].ToString(),
+                            TutorId = Convert.ToInt32(row["TutorId"]),
+                            TutorName = row["TutorName"].ToString(),
+                            TutorLastName = row["TutorLastName"].ToString(),
+                            TutorSecondLastName = row["TutorSecondLastName"].ToString(),
+                            TutorEmail = row["TutorEmail"].ToString(),
+                            TutorMeetingRoom = row["MeetingRoom"].ToString() 
+
+                        };
+
+                        citas.Add(cita);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error al listar las citas por tutor y alumno: " + ex.Message);
+
+            }
+
+            return citas;
+        }
+
+
     }
 }
+

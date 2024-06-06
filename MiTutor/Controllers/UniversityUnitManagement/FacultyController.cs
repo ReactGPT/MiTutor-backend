@@ -20,7 +20,7 @@ namespace MiTutor.Controllers.UniversityUnitManagement
             _facultyServices = facultyService;
         }
 
-        [HttpPost("/crearFacultad")]
+        [HttpPost("crearFacultad")]  // Cambiado a ruta relativa
         public async Task<IActionResult> CrearFacultad([FromBody] Faculty faculty)
         {
             try
@@ -31,10 +31,10 @@ namespace MiTutor.Controllers.UniversityUnitManagement
             {
                 return BadRequest(ex.Message);
             }
-            return Ok(new { success = true, message = "Se inserto satisfactoriamente" });
+            return Ok(new { success = true, message = "Se insertó satisfactoriamente" });
         }
 
-        [HttpGet("/listarFacultades")]
+        [HttpGet("listarFacultades")]  // Cambiado a ruta relativa
         public async Task<IActionResult> ListarFacultades()
         {
             List<Faculty> faculties;

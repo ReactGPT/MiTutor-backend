@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\MiTutor.csproj": {}
+    "D:\\2024-1\\Ingeniería De Software\\Merge Main backend\\MiTutor-backend\\MiTutor\\MiTutor.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\MiTutor.csproj": {
+    "D:\\2024-1\\Ingeniería De Software\\Merge Main backend\\MiTutor-backend\\MiTutor\\MiTutor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\MiTutor.csproj",
+        "projectUniqueName": "D:\\2024-1\\Ingeniería De Software\\Merge Main backend\\MiTutor-backend\\MiTutor\\MiTutor.csproj",
         "projectName": "MiTutor",
-        "projectPath": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\MiTutor.csproj",
-        "packagesPath": "C:\\Users\\Diego\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\obj\\",
+        "projectPath": "D:\\2024-1\\Ingeniería De Software\\Merge Main backend\\MiTutor-backend\\MiTutor\\MiTutor.csproj",
+        "packagesPath": "C:\\Users\\Pocco\\.nuget\\packages\\",
+        "outputPath": "D:\\2024-1\\Ingeniería De Software\\Merge Main backend\\MiTutor-backend\\MiTutor\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Pocco\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -45,6 +46,22 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "SSH.NET": {
+              "target": "Package",
+              "version": "[2024.0.0, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Serilog.Sinks.Console": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Serilog.Sinks.File": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
@@ -73,7 +90,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

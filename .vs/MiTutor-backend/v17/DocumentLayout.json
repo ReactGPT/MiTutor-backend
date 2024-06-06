@@ -1,26 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\",
+  "WorkspaceRootPath": "D:\\2024-1\\Ingenier\u00EDa De Software\\Merge Main backend\\MiTutor-backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{16346B74-927D-4232-859F-B62D2DBC23C9}|MiTutor\\MiTutor.csproj|c:\\users\\diego\\documents\\visual studio projects\\mitutor-backend\\mitutor\\services\\tutoringmanagement\\tutoringprogramservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16346B74-927D-4232-859F-B62D2DBC23C9}|MiTutor\\MiTutor.csproj|solutionrelative:mitutor\\services\\tutoringmanagement\\tutoringprogramservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{16346B74-927D-4232-859F-B62D2DBC23C9}|MiTutor\\MiTutor.csproj|d:\\2024-1\\ingenier\u00EDa de software\\merge main backend\\mitutor-backend\\mitutor\\models\\usermanagement\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16346B74-927D-4232-859F-B62D2DBC23C9}|MiTutor\\MiTutor.csproj|solutionrelative:mitutor\\models\\usermanagement\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{16346B74-927D-4232-859F-B62D2DBC23C9}|MiTutor\\MiTutor.csproj|c:\\users\\diego\\documents\\visual studio projects\\mitutor-backend\\mitutor\\models\\tutoringmanagement\\tutoringprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16346B74-927D-4232-859F-B62D2DBC23C9}|MiTutor\\MiTutor.csproj|solutionrelative:mitutor\\models\\tutoringmanagement\\tutoringprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{16346B74-927D-4232-859F-B62D2DBC23C9}|MiTutor\\MiTutor.csproj|d:\\2024-1\\ingenier\u00EDa de software\\merge main backend\\mitutor-backend\\mitutor\\models\\usermanagement\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16346B74-927D-4232-859F-B62D2DBC23C9}|MiTutor\\MiTutor.csproj|solutionrelative:mitutor\\models\\usermanagement\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{16346B74-927D-4232-859F-B62D2DBC23C9}|MiTutor\\MiTutor.csproj|c:\\users\\diego\\documents\\visual studio projects\\mitutor-backend\\mitutor\\controllers\\tutoringmanagement\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16346B74-927D-4232-859F-B62D2DBC23C9}|MiTutor\\MiTutor.csproj|solutionrelative:mitutor\\controllers\\tutoringmanagement\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{16346B74-927D-4232-859F-B62D2DBC23C9}|MiTutor\\MiTutor.csproj|d:\\2024-1\\ingenier\u00EDa de software\\merge main backend\\mitutor-backend\\mitutor\\services\\usermanagement\\studentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16346B74-927D-4232-859F-B62D2DBC23C9}|MiTutor\\MiTutor.csproj|solutionrelative:mitutor\\services\\usermanagement\\studentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{16346B74-927D-4232-859F-B62D2DBC23C9}|MiTutor\\MiTutor.csproj|c:\\users\\diego\\documents\\visual studio projects\\mitutor-backend\\mitutor\\controllers\\tutoringmanagement\\studentprogramcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16346B74-927D-4232-859F-B62D2DBC23C9}|MiTutor\\MiTutor.csproj|solutionrelative:mitutor\\controllers\\tutoringmanagement\\studentprogramcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{16346B74-927D-4232-859F-B62D2DBC23C9}|MiTutor\\MiTutor.csproj|c:\\users\\diego\\documents\\visual studio projects\\mitutor-backend\\mitutor\\controllers\\tutoringmanagement\\tutoringprogramcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16346B74-927D-4232-859F-B62D2DBC23C9}|MiTutor\\MiTutor.csproj|solutionrelative:mitutor\\controllers\\tutoringmanagement\\tutoringprogramcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{16346B74-927D-4232-859F-B62D2DBC23C9}|MiTutor\\MiTutor.csproj|d:\\2024-1\\ingenier\u00EDa de software\\merge main backend\\mitutor-backend\\mitutor\\controllers\\usermanagement\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16346B74-927D-4232-859F-B62D2DBC23C9}|MiTutor\\MiTutor.csproj|solutionrelative:mitutor\\controllers\\usermanagement\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,68 +26,59 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "TutoringProgram.cs",
-              "DocumentMoniker": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\Models\\TutoringManagement\\TutoringProgram.cs",
-              "RelativeDocumentMoniker": "MiTutor\\Models\\TutoringManagement\\TutoringProgram.cs",
-              "ToolTip": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\Models\\TutoringManagement\\TutoringProgram.cs",
-              "RelativeToolTip": "MiTutor\\Models\\TutoringManagement\\TutoringProgram.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACsAAAAXAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-09T18:19:56.452Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "TutoringProgramService.cs",
-              "DocumentMoniker": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\Services\\TutoringManagement\\TutoringProgramService.cs",
-              "RelativeDocumentMoniker": "MiTutor\\Services\\TutoringManagement\\TutoringProgramService.cs",
-              "ToolTip": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\Services\\TutoringManagement\\TutoringProgramService.cs",
-              "RelativeToolTip": "MiTutor\\Services\\TutoringManagement\\TutoringProgramService.cs",
-              "ViewState": "AQIAAHUAAAAAAAAAAAAiwIAAAAA0AAAA",
+              "Title": "Person.cs",
+              "DocumentMoniker": "D:\\2024-1\\Ingenier\u00EDa De Software\\Merge Main backend\\MiTutor-backend\\MiTutor\\Models\\UserManagement\\Person.cs",
+              "RelativeDocumentMoniker": "MiTutor\\Models\\UserManagement\\Person.cs",
+              "ToolTip": "D:\\2024-1\\Ingenier\u00EDa De Software\\Merge Main backend\\MiTutor-backend\\MiTutor\\Models\\UserManagement\\Person.cs",
+              "RelativeToolTip": "MiTutor\\Models\\UserManagement\\Person.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAkwAwAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-09T18:05:54.257Z",
+              "WhenOpened": "2024-06-02T23:26:08.137Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TutoringProgramController.cs",
-              "DocumentMoniker": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\Controllers\\TutoringManagement\\TutoringProgramController.cs",
-              "RelativeDocumentMoniker": "MiTutor\\Controllers\\TutoringManagement\\TutoringProgramController.cs",
-              "ToolTip": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\Controllers\\TutoringManagement\\TutoringProgramController.cs",
-              "RelativeToolTip": "MiTutor\\Controllers\\TutoringManagement\\TutoringProgramController.cs",
-              "ViewState": "AQIAABsAAAAAAAAAAAAowDoAAABfAAAA",
+              "DocumentIndex": 1,
+              "Title": "Student.cs",
+              "DocumentMoniker": "D:\\2024-1\\Ingenier\u00EDa De Software\\Merge Main backend\\MiTutor-backend\\MiTutor\\Models\\UserManagement\\Student.cs",
+              "RelativeDocumentMoniker": "MiTutor\\Models\\UserManagement\\Student.cs",
+              "ToolTip": "D:\\2024-1\\Ingenier\u00EDa De Software\\Merge Main backend\\MiTutor-backend\\MiTutor\\Models\\UserManagement\\Student.cs",
+              "RelativeToolTip": "MiTutor\\Models\\UserManagement\\Student.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-09T18:05:48.899Z"
+              "WhenOpened": "2024-06-02T23:23:51.857Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "StudentProgramController.cs",
-              "DocumentMoniker": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\Controllers\\TutoringManagement\\StudentProgramController.cs",
-              "RelativeDocumentMoniker": "MiTutor\\Controllers\\TutoringManagement\\StudentProgramController.cs",
-              "ToolTip": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\Controllers\\TutoringManagement\\StudentProgramController.cs",
-              "RelativeToolTip": "MiTutor\\Controllers\\TutoringManagement\\StudentProgramController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "StudentController.cs",
+              "DocumentMoniker": "D:\\2024-1\\Ingenier\u00EDa De Software\\Merge Main backend\\MiTutor-backend\\MiTutor\\Controllers\\UserManagement\\StudentController.cs",
+              "RelativeDocumentMoniker": "MiTutor\\Controllers\\UserManagement\\StudentController.cs",
+              "ToolTip": "D:\\2024-1\\Ingenier\u00EDa De Software\\Merge Main backend\\MiTutor-backend\\MiTutor\\Controllers\\UserManagement\\StudentController.cs",
+              "RelativeToolTip": "MiTutor\\Controllers\\UserManagement\\StudentController.cs",
+              "ViewState": "AQIAAF0AAAAAAAAAAAAmwGkAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-09T18:05:43.034Z"
+              "WhenOpened": "2024-06-02T22:28:10.602Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "AppointmentController.cs",
-              "DocumentMoniker": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\Controllers\\TutoringManagement\\AppointmentController.cs",
-              "RelativeDocumentMoniker": "MiTutor\\Controllers\\TutoringManagement\\AppointmentController.cs",
-              "ToolTip": "C:\\Users\\Diego\\Documents\\Visual Studio Projects\\MiTutor-backend\\MiTutor\\Controllers\\TutoringManagement\\AppointmentController.cs",
-              "RelativeToolTip": "MiTutor\\Controllers\\TutoringManagement\\AppointmentController.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAAowDoAAABTAAAA",
+              "Title": "StudentService.cs",
+              "DocumentMoniker": "D:\\2024-1\\Ingenier\u00EDa De Software\\Merge Main backend\\MiTutor-backend\\MiTutor\\Services\\UserManagement\\StudentService.cs",
+              "RelativeDocumentMoniker": "MiTutor\\Services\\UserManagement\\StudentService.cs",
+              "ToolTip": "D:\\2024-1\\Ingenier\u00EDa De Software\\Merge Main backend\\MiTutor-backend\\MiTutor\\Services\\UserManagement\\StudentService.cs",
+              "RelativeToolTip": "MiTutor\\Services\\UserManagement\\StudentService.cs",
+              "ViewState": "AQIAAKkAAAAAAAAAAAAgwLQAAABOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-09T16:31:53.242Z"
+              "WhenOpened": "2024-06-02T22:26:52.38Z",
+              "EditorCaption": ""
             }
           ]
         }

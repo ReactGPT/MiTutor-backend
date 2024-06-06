@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MiTutor.Models.GestionUsuarios;
 using MiTutor.Services.GestionUsuarios;
+using MiTutor.Services.TutoringManagement;
 
 namespace MiTutor.Controllers.GestionUsuarios
 {
@@ -41,6 +42,72 @@ namespace MiTutor.Controllers.GestionUsuarios
             try
             {
                 students = await _estudianteServices.ListarEstudiantes();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, data = students });
+        }
+
+        [HttpGet("/listarEstudiantesPorProgramaDeTutoria/{tutoringProgramId}")]
+        public async Task<IActionResult> ListarProgramasDeTutoriaPorTutor(int tutoringProgramId)
+        {
+            try
+            {
+
+                var estudiantes = await _estudianteServices.ListarEstudiantesByTutoringProgram(tutoringProgramId);
+
+
+                return Ok(new { success = true, data = estudiantes });
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("/seleccionarEstudiantePorId/{studentId}")]
+        public async Task<IActionResult> SeleccionarDatosEstudiantesById(int studentId)
+        {
+            try
+            {
+
+                var estudiantes = await _estudianteServices.SeleccionarDatosEstudiantesById(studentId);
+
+
+                return Ok(new { success = true, data = estudiantes });
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("/listarEstudiantesPorIdProgramaTutoria")]
+        public async Task<IActionResult> ListarEstudiantesPorIdProgramaTutoria(int idProgramaTutoria)
+        {
+            List<Student> students;
+            try
+            {
+                students = await _estudianteServices.ListarEstudiantesPorIdProgramaTutoria(idProgramaTutoria);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, data = students });
+        }
+
+        [HttpPost("/listarEstudiantesPorId")]
+        public async Task<IActionResult> ListarEstudiantesPorId([FromBody] List<StudentIdVerified> studentsVerified)
+        {
+            List<Student> students;
+            try
+            {
+                students = await _estudianteServices.ListarEstudiantesPorId(studentsVerified);
             }
             catch (Exception ex)
             {
