@@ -153,5 +153,109 @@ namespace MiTutor.Services.GestionUsuarios
             return student;
         }
 
+        public async Task<List<Student>> ListarEstudiantesPorIdProgramaTutoria(int programaTutoriaId)
+        {
+            List<Student> students = new List<Student>();
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+                    new SqlParameter("@TutoringProgramId", SqlDbType.Int){
+                        Value = programaTutoriaId
+                    }
+                };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_ESTUDIANTES_POR_PROGRAMA_TUTORIA, parameters);
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        Student student = new Student();
+                        student.Usuario = new UserAccount();
+
+                        student.Id = Convert.ToInt32(row["StudentId"]);
+                        student.Name = row["Name"].ToString();
+                        student.LastName = row["LastName"].ToString();
+                        student.SecondLastName = row["SecondLastName"].ToString();
+                        student.IsActive = Convert.ToBoolean(row["IsActive"]);
+                        student.Usuario.PUCPCode = row["PUCPCode"].ToString();
+                        student.Usuario.InstitutionalEmail = row["InstitutionalEmail"].ToString();
+                        student.FacultyName = row["FacultyName"].ToString();
+                        if (!row.IsNull("TutorId"))
+                        {
+                            student.IdTutor = Convert.ToInt32(row["TutorId"]);
+                            student.TutorName = row["TutorName"].ToString() + " " + row["TutorLastName"].ToString() + " " + row["TutorSecondLastName"].ToString();
+                        }
+                        else
+                        {
+                            student.IdTutor = 0;
+                            student.TutorName = "";
+                        }
+                        students.Add(student);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarEstudiantesPorIdProgramaTutoria", ex);
+            }
+
+            return students;
+        }
+
+        public async Task<List<Student>> ListarEstudiantesPorId(List<StudentIdVerified> studentsVerified)
+        {
+            List<Student> students = new List<Student>();
+
+            try
+            {
+                foreach (StudentIdVerified s in studentsVerified)
+                {
+                    SqlParameter[] parameters = new SqlParameter[]{
+                        new SqlParameter("@StudentId", SqlDbType.Int){
+                            Value = s.pucpCode
+                        }
+                    };
+                    DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_ESTUDIANTES_POR_ID, parameters);
+                    if (dataTable != null)
+                    {
+                        Student student = new Student();
+                        student.Usuario = new UserAccount();
+                        if (dataTable.Rows.Count != 0)
+                        {
+                            foreach (DataRow row in dataTable.Rows)
+                            {
+                                student.Id = Convert.ToInt32(row["PersonId"]);
+                                student.Name = row["Name"].ToString();
+                                student.LastName = row["LastName"].ToString();
+                                student.SecondLastName = row["SecondLastName"].ToString();
+                                student.IsActive = Convert.ToBoolean(row["IsActive"]);
+                                student.Usuario.PUCPCode = row["PUCPCode"].ToString();
+                                student.Usuario.InstitutionalEmail = row["InstitutionalEmail"].ToString();
+                                student.FacultyName = row["FacultyName"].ToString();
+                                students.Add(student);
+                            }
+                        }
+                        else
+                        {
+                            student.Id = 0;
+                            student.Name = s.name;
+                            student.LastName = s.lastName;
+                            student.SecondLastName = s.secondLastName;
+                            student.IsActive = s.isActive;
+                            student.Usuario.PUCPCode = s.pucpCode;
+                            student.Usuario.InstitutionalEmail = s.institutionalEmail;
+                            student.FacultyName = s.facultyName;
+                            students.Add(student);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarEstudiantesPorId", ex);
+            }
+            return students;
+        }
     }
 }

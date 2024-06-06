@@ -85,5 +85,35 @@ namespace MiTutor.Controllers.GestionUsuarios
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("/listarEstudiantesPorIdProgramaTutoria")]
+        public async Task<IActionResult> ListarEstudiantesPorIdProgramaTutoria(int idProgramaTutoria)
+        {
+            List<Student> students;
+            try
+            {
+                students = await _estudianteServices.ListarEstudiantesPorIdProgramaTutoria(idProgramaTutoria);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, data = students });
+        }
+
+        [HttpPost("/listarEstudiantesPorId")]
+        public async Task<IActionResult> ListarEstudiantesPorId([FromBody] List<StudentIdVerified> studentsVerified)
+        {
+            List<Student> students;
+            try
+            {
+                students = await _estudianteServices.ListarEstudiantesPorId(studentsVerified);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, data = students });
+        }
     }
 }
