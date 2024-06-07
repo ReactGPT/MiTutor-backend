@@ -21,6 +21,7 @@ namespace MiTutor.Models.TutoringManagement
         public int StudentsNumber { get; set; }
         public int TutorsNumber { get; set; }
         public int TutorTypeId { get; set; }
+        public List<Tutor> Tutors { get; set; }
         public string TutorTypeDescription { get; set; }
     }
 
