@@ -11,16 +11,15 @@ using Serilog.Events;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var app = builder.Build();
-
-if (app.Environment.IsProduction())
+if (builder.Environment.IsProduction())
 {
+
     Log.Logger = new LoggerConfiguration()
-        .MinimumLevel.Debug()
-        .WriteTo.Console()
-        .WriteTo.File("logs/info-.txt", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Information)
-        .WriteTo.File("logs/error-.txt", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Error)
-        .CreateLogger();
+    .MinimumLevel.Debug()
+    .WriteTo.Console()
+    .WriteTo.File("logs/info-.txt", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Information)
+    .WriteTo.File("logs/error-.txt", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Error)
+    .CreateLogger();
 
     builder.Host.UseSerilog();
 }
@@ -71,6 +70,8 @@ services.AddScoped<AvailabilityTutorService>();
 services.AddScoped<TutorStudentProgramService>();
 services.AddScoped<ArchivosController>();
 services.AddScoped<FilesService>();
+
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
