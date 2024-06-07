@@ -6,8 +6,8 @@ namespace MiTutor.DataAccess
 {
     public class DatabaseManager
     {
-        private static string _connectionString = @"data source = reactgpt-db.cfi59sgrpoq2.us-east-1.rds.amazonaws.com;"
-                                + "initial catalog =mitutor; user id = admin; password = ErAnYelHZCWt55igAZZg";
+        private static string _connectionString = @"data source = react.cw9aj8lxrqii.us-east-1.rds.amazonaws.com;"
+                                + "initial catalog =mitutor; user id = admin; password = irwEguLpecJujhmCnKDg";
 
         public async Task ExecuteStoredProcedure(string storedProcedureName, SqlParameter[] parameters)
         {
