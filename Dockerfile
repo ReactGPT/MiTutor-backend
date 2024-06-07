@@ -24,7 +24,7 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 
-COPY mkdir -p /app/certificates
+RUN mkdir -p /app/certificates
 COPY MiTutor/certificates/cert.pfx /app/certificates
 
 ENTRYPOINT ["dotnet", "MiTutor.dll"]
