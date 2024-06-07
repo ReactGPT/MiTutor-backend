@@ -11,14 +11,19 @@ using Serilog.Events;
 
 var builder = WebApplication.CreateBuilder(args);
 
-Log.Logger = new LoggerConfiguration()
-    .MinimumLevel.Debug()
-    .WriteTo.Console()
-    .WriteTo.File("logs/info-.txt", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Information)
-    .WriteTo.File("logs/error-.txt", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Error)
-    .CreateLogger();
+var app = builder.Build();
 
-builder.Host.UseSerilog();
+if (app.Environment.IsProduction())
+{
+    Log.Logger = new LoggerConfiguration()
+        .MinimumLevel.Debug()
+        .WriteTo.Console()
+        .WriteTo.File("logs/info-.txt", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Information)
+        .WriteTo.File("logs/error-.txt", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Error)
+        .CreateLogger();
+
+    builder.Host.UseSerilog();
+}
 
 // Add services to the container.
 var services = builder.Services;
@@ -66,8 +71,6 @@ services.AddScoped<AvailabilityTutorService>();
 services.AddScoped<TutorStudentProgramService>();
 services.AddScoped<ArchivosController>();
 services.AddScoped<FilesService>();
-
-var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
