@@ -13,6 +13,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 if (builder.Environment.IsProduction())
 {
+    builder.WebHost.ConfigureKestrel((context, options) =>
+    {
+        options.Configure(context.Configuration.GetSection("Kestrel"));
+    });
+    
     Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Debug()
     .WriteTo.Console()
