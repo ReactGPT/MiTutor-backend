@@ -2,9 +2,6 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
 
-COPY fullchain.pem /etc/ssl/certs/fullchain.pem
-COPY privkey.pem /etc/ssl/private/privkey.pem
-
 EXPOSE 8080
 EXPOSE 8081
 
@@ -26,5 +23,8 @@ RUN dotnet publish "./MiTutor.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+COPY mkdir -p /app/certificates
+COPY MiTutor/certificates/cert.pfx /app/certificates
 
 ENTRYPOINT ["dotnet", "MiTutor.dll"]
