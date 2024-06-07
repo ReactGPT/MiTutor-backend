@@ -11,10 +11,10 @@ namespace MiTutor.Services.TutoringManagement
         private readonly DatabaseManager _databaseManager;
         private readonly CommentService _commentService;
 
-        public FilesService()
+        public FilesService(DatabaseManager databaseManager)
         {
-            _databaseManager = new DatabaseManager();
-            _commentService = new CommentService();
+            _databaseManager = databaseManager ?? throw new ArgumentNullException(nameof(databaseManager));
+            _commentService = new CommentService(_databaseManager);
         }
 
         public async Task<int> InsertarArchivo(Files archivo)

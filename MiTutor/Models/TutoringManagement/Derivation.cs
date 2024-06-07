@@ -18,7 +18,7 @@ namespace MiTutor.Models.TutoringManagement
 
         public int UnitDerivationId { get; set; }
 
-        public int UserAccountId { get; set; }
+        //public int TutorId { get; set; }
 
         public int AppointmentId { get; set; }
 
@@ -33,5 +33,24 @@ namespace MiTutor.Models.TutoringManagement
         [JsonIgnore]
         public UserAccount UserAccountDo { get; set; }
 
+    }
+
+    public class ListDerivation
+    {
+        public int DerivationId { get; set; }
+        public string Reason { get; set; }
+
+        public string Comment { get; set; }
+
+        public string Status { get; set; }
+
+        public DateOnly CreationDate { get; set; }
+
+        public string UnitDerivationName { get; set; }
+
+        public string NombreAlumno { get; set; }
+
+        public string Codigo { get; set; }
+        public string ProgramName { get; set; }
     }
 }

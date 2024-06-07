@@ -10,9 +10,9 @@ namespace MiTutor.Services
         private readonly DatabaseManager _databaseManager;
 
       
-        public EspecialidadService()
+        public EspecialidadService(DatabaseManager databaseManager)
         {
-            _databaseManager = new DatabaseManager();
+            _databaseManager = databaseManager ?? throw new ArgumentNullException(nameof(databaseManager));
         }
 
         public async Task CrearEspecialidad(Especialidad especialidad)

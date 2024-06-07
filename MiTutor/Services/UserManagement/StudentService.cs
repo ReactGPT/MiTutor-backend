@@ -11,10 +11,11 @@ namespace MiTutor.Services.GestionUsuarios
     {
         private readonly DatabaseManager _databaseManager;
 
-        public StudentService()
+        public StudentService(DatabaseManager databaseManager)
         {
-            _databaseManager = new DatabaseManager();
+            _databaseManager = databaseManager ?? throw new ArgumentNullException(nameof(databaseManager));
         }
+
         public async Task CrearEstudiante(Student student)
         {
             SqlParameter[] parameters = new SqlParameter[]

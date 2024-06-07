@@ -10,10 +10,9 @@ namespace MiTutor.Services.UniversityUnitManagement
     {
         private readonly DatabaseManager _databaseManager;
 
-
-        public FacultyService()
+        public FacultyService(DatabaseManager databaseManager)
         {
-            _databaseManager = new DatabaseManager();
+            _databaseManager = databaseManager ?? throw new ArgumentNullException(nameof(databaseManager));
         }
 
         public async Task CrearFacultad(Faculty facultad)
