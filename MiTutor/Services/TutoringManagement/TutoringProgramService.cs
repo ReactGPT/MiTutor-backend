@@ -13,9 +13,9 @@ namespace MiTutor.Services.TutoringManagement
         private readonly DatabaseManager _databaseManager;
         private readonly TutorService _tutorServices;
 
-        public TutoringProgramService()
+        public TutoringProgramService(DatabaseManager databaseManager)
         {
-            _databaseManager = new DatabaseManager();
+            _databaseManager = databaseManager ?? throw new ArgumentNullException(nameof(databaseManager));
         }
 
         public async Task CrearProgramaDeTutoria(TutoringProgram programa)
@@ -356,6 +356,49 @@ namespace MiTutor.Services.TutoringManagement
 
             return ;
         }
+
+        public async Task<List<TutorProgramaDeTutoria>> ListarProgramasDeTutoriaPorTutorId(int tutorId)
+        {
+            List<TutorProgramaDeTutoria> programas = new List<TutorProgramaDeTutoria>();
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+            new SqlParameter("@TutorId", SqlDbType.Int){
+                Value = tutorId
+            }
+        };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_PROGRAMAS_POR_TUTOR, parameters);
+
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        TutorProgramaDeTutoria programa = new TutorProgramaDeTutoria
+                        {
+                            TutoringProgramId = Convert.ToInt32(row["TutoringProgramId"]),
+                            ProgramName = row["ProgramName"].ToString(),
+                            ProgramDescription = row["Description"].ToString(),
+                            TutorName = row["TutorName"].ToString(),
+                            LastName = row["LastName"].ToString(),
+                            SecondLastName = row["SecondLastName"].ToString(),
+                            NameFaculty = row["NameFaculty"].ToString()
+                        };
+
+                        programas.Add(programa);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al listar los programas de tutoría por tutor: " + ex.Message);
+            }
+
+            return programas;
+        }
+
+
 
     }
 }

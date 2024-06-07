@@ -12,10 +12,9 @@ namespace MiTutor.Services.TutoringManagement
     {
         private readonly DatabaseManager _databaseManager;
 
-
-        public DerivationService()
+        public DerivationService(DatabaseManager databaseManager)
         {
-            _databaseManager = new DatabaseManager();
+            _databaseManager = databaseManager ?? throw new ArgumentNullException(nameof(databaseManager));
         }
 
         public async Task<int> CrearDerivacion(Derivation derivation)
@@ -30,7 +29,7 @@ namespace MiTutor.Services.TutoringManagement
                 new SqlParameter("@Status", SqlDbType.NVarChar) { Value = derivation.Status },
                 new SqlParameter("@CreationDate", SqlDbType.DateTime) { Value = creationDate },
                 new SqlParameter("@UnitDerivationId", SqlDbType.Int) { Value = derivation.UnitDerivationId },
-                new SqlParameter("@UserAccountId", SqlDbType.Int) { Value = derivation.UserAccountId },
+                //new SqlParameter("@TutorId", SqlDbType.Int) { Value = derivation.TutorId },
                 new SqlParameter("@AppointmentId", SqlDbType.Int) { Value = derivation.AppointmentId },
                 new SqlParameter("@DerivationId", SqlDbType.Int) { Direction = ParameterDirection.Output }
             };
@@ -68,7 +67,7 @@ namespace MiTutor.Services.TutoringManagement
                             Status = row["Status"].ToString(),
                             CreationDate = creationDate,
                             UnitDerivationId = Convert.ToInt32(row["UnitDerivationId"]),
-                            UserAccountId = Convert.ToInt32(row["UserAccountId"]),
+                            //TutorId = Convert.ToInt32(row["TutorId"]),
                             AppointmentId = Convert.ToInt32(row["AppointmentId"]),
                             IsActive = Convert.ToBoolean(row["IsActive"])
                         };
@@ -179,7 +178,7 @@ namespace MiTutor.Services.TutoringManagement
                         Status = row["Status"].ToString(),
                         CreationDate = creationDate,
                         UnitDerivationId = Convert.ToInt32(row["UnitDerivationId"]),
-                        UserAccountId = Convert.ToInt32(row["UserAccountId"]),
+                        //TutorId = Convert.ToInt32(row["TutorId"]),
                         AppointmentId = Convert.ToInt32(row["AppointmentId"]),
                         IsActive = Convert.ToBoolean(row["IsActive"])
                     };
@@ -193,5 +192,50 @@ namespace MiTutor.Services.TutoringManagement
 
             return derivation;
         }
+
+        public async Task<List<ListDerivation>> SeleccionarPorTutor(int idTutor)
+        {
+            List<ListDerivation> derivations = new List<ListDerivation>();
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+                    new SqlParameter("@TutorId", SqlDbType.Int){
+                        Value = idTutor
+                    }
+            };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.SELECCIONAR_DERIVATION_POR_ID_TUTOR, parameters);
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    DateTime dateTime = Convert.ToDateTime(row["CreationDate"]);
+                    DateOnly creationDate = new DateOnly(dateTime.Year, dateTime.Month, dateTime.Day);
+
+                    ListDerivation derivation = new ListDerivation()
+                    {
+                        DerivationId = Convert.ToInt32(row["DerivationId"]),
+                        Reason = row["Reason"].ToString(),
+                        Comment = row["Comment"].ToString(),
+                        UnitDerivationName = row["Name"].ToString(),
+                        NombreAlumno = row["NombreAlumno"].ToString(),
+                        Codigo= row["PUCPCode"].ToString(),
+                        Status = row["Status"].ToString(),
+                        CreationDate = creationDate,
+                        ProgramName = row["ProgramName"].ToString(),
+
+                    };
+
+                    derivations.Add(derivation);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en SeleccionarPorTutor", ex);
+            }
+
+            return derivations;
+        }
+
     }
 }

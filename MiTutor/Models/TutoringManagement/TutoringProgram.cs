@@ -47,5 +47,25 @@ namespace MiTutor.Models.TutoringManagement
         public string TutorType { get; set; }
     }
 
+    //Indicador
+    public class TutorProgramaDeTutoria
+    {
+        public int TutoringProgramId { get; set; }
+
+        public string ProgramName { get; set; } 
+
+        public string ProgramDescription { get; set; }
+
+        public string TutorName {  get; set; }
+
+        public string LastName { get; set; }
+
+        public string SecondLastName { get; set; }
+
+        public string NameFaculty {  get; set; }
+
+
+    }
+
 
 }

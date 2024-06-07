@@ -13,10 +13,10 @@ namespace MiTutor.Services.TutoringManagement
         private readonly DatabaseManager _databaseManager;
         private readonly CommentService _commentService;
 
-        public AppointmentResultService()
+        public AppointmentResultService(DatabaseManager databaseManager)
         {
-            _databaseManager = new DatabaseManager();
-            _commentService = new CommentService();
+            _databaseManager = databaseManager ?? throw new ArgumentNullException(nameof(databaseManager));
+            _commentService = new CommentService(_databaseManager);
         }
 
         public async Task AgregarResultadoCita(InsertAppointmentResult appointmentResult)

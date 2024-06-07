@@ -11,12 +11,13 @@ namespace MiTutor.Services.UserManagement
         private readonly DatabaseManager _databaseManager;
         private readonly PersonService _personService;
         private readonly StudentService _studentService;
-        public UserAccountService()
+        public UserAccountService(DatabaseManager databaseManager)
         {
-            _databaseManager = new DatabaseManager();
-            _personService = new PersonService();
-            _studentService = new StudentService();
+            _databaseManager = databaseManager ?? throw new ArgumentNullException(nameof(databaseManager));
+            _personService = new PersonService(_databaseManager);
+            _studentService = new StudentService(_databaseManager);
         }
+
         public async Task CrearUsuario(UserAccount userAccount)
         {
             await _personService.CrearPersona(userAccount.Persona);

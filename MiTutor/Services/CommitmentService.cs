@@ -10,11 +10,10 @@ namespace MiTutor.Services
     {
         private readonly DatabaseManager _databaseManager;
 
-        public CommitmentService()
+        public CommitmentService(DatabaseManager databaseManager)
         {
-            _databaseManager = new DatabaseManager();
+            _databaseManager = databaseManager ?? throw new ArgumentNullException(nameof(databaseManager));
         }
-
 
         public async Task<List<Commitment>> ListarCommitmentPorIdPlanAction(int actionPlanId)
         {
