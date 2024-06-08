@@ -71,7 +71,6 @@ namespace MiTutor.Controllers.TutoringManagement
 
         //ListarCitasPorAlumno
         [HttpGet("/listarCitasPorAlumnoId/{studentId}")]
-
         public async Task<IActionResult> ListarCitasPorAlumno(int studentId)
         {
             try
@@ -89,5 +88,25 @@ namespace MiTutor.Controllers.TutoringManagement
             }
         }
 
+        [HttpPut("/cancelarCita/{appointmentId}")]
+        public async Task<IActionResult> CancelarCita(int appointmentId)
+        {
+            try
+            {
+                Boolean ok = await _appointmentServices.CancelarCita(appointmentId);
+                if (ok)
+                {
+                    return Ok(new { success = true, message = "Se canceló la cita exitosamente." });
+                }
+                else
+                {
+                    return Ok(new { success = false, message = "No se pudo cancelar la cita." });
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
