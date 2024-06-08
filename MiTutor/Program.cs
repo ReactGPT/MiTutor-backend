@@ -11,14 +11,17 @@ using Serilog.Events;
 
 var builder = WebApplication.CreateBuilder(args);
 
-Log.Logger = new LoggerConfiguration()
+if (builder.Environment.IsProduction())
+{    
+    Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Debug()
     .WriteTo.Console()
     .WriteTo.File("logs/info-.txt", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Information)
     .WriteTo.File("logs/error-.txt", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Error)
     .CreateLogger();
 
-builder.Host.UseSerilog();
+    builder.Host.UseSerilog();
+}
 
 // Add services to the container.
 var services = builder.Services;
