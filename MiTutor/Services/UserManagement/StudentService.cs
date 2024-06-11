@@ -153,9 +153,9 @@ namespace MiTutor.Services.GestionUsuarios
             return student;
         }
 
-        public async Task<List<Student>> ListarEstudiantesPorIdProgramaTutoria(int programaTutoriaId)
+        public async Task<List<StudentTutoria>> ListarEstudiantesPorIdProgramaTutoria(int programaTutoriaId)
         {
-            List<Student> students = new List<Student>();
+            List<StudentTutoria> students = new List<StudentTutoria>();
 
             try
             {
@@ -170,13 +170,14 @@ namespace MiTutor.Services.GestionUsuarios
                 {
                     foreach (DataRow row in dataTable.Rows)
                     {
-                        Student student = new Student();
+                        StudentTutoria student = new StudentTutoria();
                         student.Usuario = new UserAccount();
+                        student.Person = new Person();
 
                         student.Id = Convert.ToInt32(row["StudentId"]);
-                        student.Name = row["Name"].ToString();
-                        student.LastName = row["LastName"].ToString();
-                        student.SecondLastName = row["SecondLastName"].ToString();
+                        student.Person.Name = row["Name"].ToString();
+                        student.Person.LastName = row["LastName"].ToString();
+                        student.Person.SecondLastName = row["SecondLastName"].ToString();
                         student.IsActive = Convert.ToBoolean(row["IsActive"]);
                         student.Usuario.PUCPCode = row["PUCPCode"].ToString();
                         student.Usuario.InstitutionalEmail = row["InstitutionalEmail"].ToString();
@@ -203,9 +204,9 @@ namespace MiTutor.Services.GestionUsuarios
             return students;
         }
 
-        public async Task<List<Student>> ListarEstudiantesPorId(List<StudentIdVerified> studentsVerified)
+        public async Task<List<StudentIdVerified>> ListarEstudiantesPorId(List<StudentIdVerified> studentsVerified)
         {
-            List<Student> students = new List<Student>();
+            List<StudentIdVerified> students = new List<StudentIdVerified>();
 
             try
             {
@@ -219,33 +220,32 @@ namespace MiTutor.Services.GestionUsuarios
                     DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_ESTUDIANTES_POR_ID, parameters);
                     if (dataTable != null)
                     {
-                        Student student = new Student();
-                        student.Usuario = new UserAccount();
+                        StudentIdVerified student = new StudentIdVerified();
                         if (dataTable.Rows.Count != 0)
                         {
                             foreach (DataRow row in dataTable.Rows)
                             {
-                                student.Id = Convert.ToInt32(row["PersonId"]);
-                                student.Name = row["Name"].ToString();
-                                student.LastName = row["LastName"].ToString();
-                                student.SecondLastName = row["SecondLastName"].ToString();
-                                student.IsActive = Convert.ToBoolean(row["IsActive"]);
-                                student.Usuario.PUCPCode = row["PUCPCode"].ToString();
-                                student.Usuario.InstitutionalEmail = row["InstitutionalEmail"].ToString();
-                                student.FacultyName = row["FacultyName"].ToString();
+                                student.studentId = Convert.ToInt32(row["PersonId"]);
+                                student.name = row["Name"].ToString();
+                                student.lastName = row["LastName"].ToString();
+                                student.secondLastName = row["SecondLastName"].ToString();
+                                student.isActive = Convert.ToBoolean(row["IsActive"]);
+                                student.pucpCode = row["PUCPCode"].ToString();
+                                student.institutionalEmail = row["InstitutionalEmail"].ToString();
+                                student.facultyName = row["FacultyName"].ToString();
                                 students.Add(student);
                             }
                         }
                         else
                         {
-                            student.Id = 0;
-                            student.Name = s.name;
-                            student.LastName = s.lastName;
-                            student.SecondLastName = s.secondLastName;
-                            student.IsActive = s.isActive;
-                            student.Usuario.PUCPCode = s.pucpCode;
-                            student.Usuario.InstitutionalEmail = s.institutionalEmail;
-                            student.FacultyName = s.facultyName;
+                            student.studentId = 0;
+                            student.name = s.name;
+                            student.lastName = s.lastName;
+                            student.secondLastName = s.secondLastName;
+                            student.isActive = s.isActive;
+                            student.pucpCode = s.pucpCode;
+                            student.institutionalEmail = s.institutionalEmail;
+                            student.facultyName = s.facultyName;
                             students.Add(student);
                         }
                     }

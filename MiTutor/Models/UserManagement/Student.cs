@@ -37,4 +37,17 @@
         public string facultyName { get; set; }
         public bool isRegistered { get; set; }
     }
+
+    public class StudentTutoria
+    {
+        public int Id { get; set; }
+        public bool IsRisk { get; set; }
+        public bool IsActive { get; set; }
+        public int SpecialityId { get; set; }
+        public string FacultyName { get; set; }
+        public Person Person { get; set; }
+        public UserAccount Usuario { get; set; }
+        public int IdTutor { get; set; }
+        public string TutorName { get; set; }
+    }
 }

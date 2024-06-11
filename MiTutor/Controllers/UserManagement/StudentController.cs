@@ -89,7 +89,7 @@ namespace MiTutor.Controllers.GestionUsuarios
         [HttpGet("/listarEstudiantesPorIdProgramaTutoria")]
         public async Task<IActionResult> ListarEstudiantesPorIdProgramaTutoria(int idProgramaTutoria)
         {
-            List<Student> students;
+            List<StudentTutoria> students;
             try
             {
                 students = await _estudianteServices.ListarEstudiantesPorIdProgramaTutoria(idProgramaTutoria);
@@ -104,7 +104,7 @@ namespace MiTutor.Controllers.GestionUsuarios
         [HttpPost("/listarEstudiantesPorId")]
         public async Task<IActionResult> ListarEstudiantesPorId([FromBody] List<StudentIdVerified> studentsVerified)
         {
-            List<Student> students;
+            List<StudentIdVerified> students;
             try
             {
                 students = await _estudianteServices.ListarEstudiantesPorId(studentsVerified);
