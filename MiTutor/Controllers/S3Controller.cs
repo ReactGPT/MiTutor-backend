@@ -6,7 +6,7 @@ using Amazon.S3.Model;
 
 namespace MiTutor.Controllers
 {
-    [Route("")]
+    [Route("api/[controller]")]
     [ApiController]
     public class S3Controller : ControllerBase
     {
