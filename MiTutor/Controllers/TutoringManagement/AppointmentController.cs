@@ -108,5 +108,19 @@ namespace MiTutor.Controllers.TutoringManagement
                 return BadRequest(ex.Message);
             }
         }
+         
+        [HttpPut("/actulizar_Estado_Insertar_Resultado")]
+        public async Task<IActionResult> actulizar_Estado_Insertar_Resultado([FromQuery] int id_appointment)
+        {
+            try
+            {
+                await _appointmentServices.Actulizar_Estado_Insertar_Resultado(id_appointment);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, message = "Se actualizaro la cita satisfactoriamente" });
+        }
     }
 }
