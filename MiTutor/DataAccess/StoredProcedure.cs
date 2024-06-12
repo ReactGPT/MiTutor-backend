@@ -27,11 +27,14 @@
         public const string LISTAR_ESTUDIANTES = "STUDENT_LISTAR_LIST";
         public const string LISTAR_ESTUDIANTES_POR_PROGRAMA = "STUDENT_LISTARXTUTORINGPROGRAMXTUTOR_SELECT";
         public const string SELECCIONAR_ESTUDIANTE_X_ID = "STUDENT_SELECCIONAR_SELECT";
+        public const string LISTAR_TODO_ESTUDIANTE = "STUDENT_LISTAR_TODO";
 
         //USUARIO
         public const string CREAR_USUARIO = "USER_ACCOUNT_INSERTAR_INSERT";
         public const string LISTAR_USUARIOS = "USER_LISTAR_SELECT";
         public const string OBTENERINFO_USUARIO = "USER_OBTENERINFOUSUARIO_SELECT";
+        public const string EDITAR_USUARIO = "USER_EDITAR_UPDATE";
+        public const string ELIMINAR_USUARIO = "USER_BORRAR_DELETE";
 
         //FACULTAD
         public const string CREAR_FACULTAD = "FACULTY_INSERTAR_INSERT";

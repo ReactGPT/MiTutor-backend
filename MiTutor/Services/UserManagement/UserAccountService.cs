@@ -20,23 +20,65 @@ namespace MiTutor.Services.UserManagement
 
         public async Task CrearUsuario(UserAccount userAccount)
         {
-            await _personService.CrearPersona(userAccount.Persona);
-
-            SqlParameter[] parameters = new SqlParameter[]
+            // Crear Usuario
+            if(userAccount.Id == -1)
             {
+                await _personService.CrearPersona(userAccount.Persona);
+
+                SqlParameter[] parameters = new SqlParameter[]
+                {
                 new SqlParameter("@UserAccountId", SqlDbType.Int) { Value= userAccount.Persona.Id },
                 new SqlParameter("@Phone", SqlDbType.NVarChar) { Value = userAccount.Persona.Phone },
                 new SqlParameter("@InstitutionalEmail", SqlDbType.NVarChar) { Value = userAccount.InstitutionalEmail },
                 new SqlParameter("@PUCPCode", SqlDbType.NVarChar) { Value = userAccount.PUCPCode}
-            };
+                };
 
+                try
+                {
+                    await _databaseManager.ExecuteStoredProcedure(StoredProcedure.CREAR_USUARIO, parameters);
+                }
+                catch
+                {
+                    throw new Exception("ERROR en CrearUsuario");
+                }
+            } else
+            {
+                // Editar usuario
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                new SqlParameter("@UserAccountId", SqlDbType.Int) { Value= userAccount.Persona.Id },
+                new SqlParameter("@Phone", SqlDbType.NVarChar) { Value = userAccount.Persona.Phone },
+                new SqlParameter("@InstitutionalEmail", SqlDbType.NVarChar) { Value = userAccount.InstitutionalEmail },
+                new SqlParameter("@PUCPCode", SqlDbType.NVarChar) { Value = userAccount.PUCPCode},
+                new SqlParameter("@Name", SqlDbType.NVarChar) { Value = userAccount.Persona.Name },
+                new SqlParameter("@LastName", SqlDbType.NVarChar) { Value = userAccount.Persona.LastName },
+                new SqlParameter("@SecondLastName", SqlDbType.NVarChar) { Value = userAccount.Persona.SecondLastName },
+                new SqlParameter("@UserAccountIsActive", SqlDbType.Bit) { Value = userAccount.IsActive }
+                };
+                try
+                {
+                    await _databaseManager.ExecuteStoredProcedure(StoredProcedure.EDITAR_USUARIO, parameters);
+                }
+                catch
+                {
+                    throw new Exception("ERROR en EditarUsuario");
+                }
+            }
+        }
+
+        public async Task EliminarUsuario(int id)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+            new SqlParameter("@PersonId", SqlDbType.Int) { Value = id }
+            };
             try
             {
-                await _databaseManager.ExecuteStoredProcedure(StoredProcedure.CREAR_USUARIO, parameters);
+                await _databaseManager.ExecuteStoredProcedure(StoredProcedure.ELIMINAR_USUARIO, parameters);
             }
             catch
             {
-                throw new Exception("ERROR en CrearUsuario");
+                throw new Exception("Error en EliminarUuario");
             }
         }
 
@@ -57,6 +99,8 @@ namespace MiTutor.Services.UserManagement
                             InstitutionalEmail = row["InstitutionalEmail"].ToString(),
                             PUCPCode = row["PUCPCode"].ToString(),
                             IsActive = Convert.ToBoolean(row["IsActive"]),
+                            CreationDate = Convert.ToDateTime(row["CreationDate"]).Date,
+                            ModificationDate = Convert.ToDateTime(row["ModificationDate"]).Date,
                             Persona = new Person
                             {
                                 Id = Convert.ToInt32(row["PersonId"]),

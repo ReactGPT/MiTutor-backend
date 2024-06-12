@@ -50,6 +50,21 @@ namespace MiTutor.Controllers.GestionUsuarios
             return Ok(new { success = true, data = students });
         }
 
+        [HttpGet("/listarEstudiantesTodo")]
+        public async Task<IActionResult> ListarEstudiantesTodo()
+        {
+            List<StudentTodo> students;
+            try
+            {
+                students = await _estudianteServices.ListarEstudiantesTodo();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, data = students });
+        }
+
         [HttpGet("/listarEstudiantesPorProgramaDeTutoria/{tutoringProgramId}")]
         public async Task<IActionResult> ListarProgramasDeTutoriaPorTutor(int tutoringProgramId)
         {
