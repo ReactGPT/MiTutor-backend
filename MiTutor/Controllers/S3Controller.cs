@@ -2,10 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Amazon.S3;
 using Amazon.S3.Transfer;
+using Amazon.S3.Model;
 
 namespace MiTutor.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("")]
     [ApiController]
     public class S3Controller : ControllerBase
     {
@@ -17,7 +18,7 @@ namespace MiTutor.Controllers
             _configuration = configuration;
             _s3Client = s3Client;
         }
-
+        //Prueba1
         [HttpPost("uploadS3")]
         public async Task<IActionResult> UploadFile(IFormFile file, string folderName)
         {
@@ -53,5 +54,122 @@ namespace MiTutor.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+
+        // Descargar archivo
+        [HttpGet("download/{fileName}")]
+        public async Task<IActionResult> DownloadFile(string fileName, string carpeta)
+        {
+            var keyName = $"{carpeta}/{fileName}";
+
+            try
+            {
+                var request = new GetObjectRequest
+                {
+                    BucketName = "bucket11-2",
+                    Key = keyName
+                };
+
+                using (var response = await _s3Client.GetObjectAsync(request))
+                using (var memoryStream = new MemoryStream())
+                {
+                    await response.ResponseStream.CopyToAsync(memoryStream);
+                    return File(memoryStream.ToArray(), "application/octet-stream", fileName);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+        // Descargar archivo con nombre falso
+        [HttpGet("downloadFalso/")]
+        public async Task<IActionResult> DownloadFile(string fileNameReal, string fileNameFalso, string carpeta)
+        {
+            var keyName = $"{carpeta}/{fileNameReal}";
+
+            try
+            {
+                var request = new GetObjectRequest
+                {
+                    BucketName = "bucket11-2",
+                    Key = keyName
+                };
+
+                using (var response = await _s3Client.GetObjectAsync(request))
+                using (var memoryStream = new MemoryStream())
+                {
+                    await response.ResponseStream.CopyToAsync(memoryStream);
+                    return File(memoryStream.ToArray(), "application/octet-stream", fileNameFalso);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+        // Subir archivo
+        [HttpPost("upload")]
+        public async Task<IActionResult> UploadFile(IFormFile file)
+        {
+            var keyName = $"archivos/{file.FileName}";
+
+            try
+            {
+                using (var fileStream = new MemoryStream())
+                {
+                    await file.CopyToAsync(fileStream);
+
+                    var request = new PutObjectRequest
+                    {
+                        BucketName = "bucket11-2",
+                        Key = keyName,
+                        InputStream = fileStream,
+                        ContentType = file.ContentType,
+                        CannedACL = S3CannedACL.Private
+                    };
+
+                    var response = await _s3Client.PutObjectAsync(request);
+                    return Ok("Archivo cargado exitosamente.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+        // Subir archivo con nombre y carpeta especificada
+        [HttpPost("uploadAutomatic")]
+        public async Task<IActionResult> UploadFile(IFormFile file, string fileName, string carpeta)
+        {
+            var keyName = $"{carpeta}/{fileName}";
+
+            try
+            {
+                using (var fileStream = new MemoryStream())
+                {
+                    await file.CopyToAsync(fileStream);
+
+                    var request = new PutObjectRequest
+                    {
+                        BucketName = "bucket11-2",
+                        Key = keyName,
+                        InputStream = fileStream,
+                        ContentType = file.ContentType,
+                        CannedACL = S3CannedACL.Private
+                    };
+
+                    var response = await _s3Client.PutObjectAsync(request);
+                    return Ok("Archivo cargado exitosamente.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
     }
 }
