@@ -69,7 +69,7 @@ namespace MiTutor.Controllers.TutoringManagement
             }
         }
 
-        [HttpPost("UpdateEstado")]
+        [HttpPost("updateEstado")]
         public async Task<IActionResult> UpdateEstado([FromBody] UpdateEstadoRequest request)
         {
             try
@@ -82,7 +82,7 @@ namespace MiTutor.Controllers.TutoringManagement
             {
                 return BadRequest(new { success = false, message = ex.Message });
             }
-        }
+        }        
     }
 
     public class UpdateEstadoRequest
