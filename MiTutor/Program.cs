@@ -8,6 +8,7 @@ using MiTutor.DataAccess;
 using MiTutor.Middleware;
 using Serilog;
 using Serilog.Events;
+using Amazon.S3;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +35,9 @@ var configuration = new ConfigurationBuilder()
 services.AddSingleton(configuration);
 
 services.AddTransient<DatabaseManager>();
+// Configurar AWS S3
+services.AddDefaultAWSOptions(configuration.GetAWSOptions());
+services.AddAWSService<IAmazonS3>();
 
 services.AddControllers();
 services.AddEndpointsApiExplorer();

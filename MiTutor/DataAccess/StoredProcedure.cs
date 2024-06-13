@@ -96,6 +96,12 @@
         public const string LISTAR_CITA_POR_ALUMNO = "APPOINTMENT_LISTARXALUMNO_X_ID_SELECT";
         //APPOINTMENT_LISTARXALUMNO_X_ID_SELECT
 
+        //CANCELAR CITa
+        public const string CANCELAR_CITA = "APPOINTMENT_CANCEL";
+
+        //ACTUALIZAR ESTADO CITA UpdateAppointmentStatus
+        public const string ACTUALIZAR_ESTADO_CITA = "UpdateAppointmentStatus";
+
 
         //DERIVATION
         public const string CREAR_DERIVACION = "DERIVATION_INSERTAR_INSERT";
