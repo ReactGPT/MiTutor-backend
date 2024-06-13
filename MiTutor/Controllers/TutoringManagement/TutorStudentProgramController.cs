@@ -58,6 +58,8 @@ namespace MiTutor.Controllers.TutoringManagement
         {
             try
             {
+                // lo nuevo es de johan amador
+                //var tutorStudentPrograms = await _tutorStudentProgramService.ListarTutorStudentProgram(tutorFirstName, tutorLastName, state, tutoringProgramId);
                 var tutorStudentPrograms = await _tutorStudentProgramService.ListarTutorStudentProgram();
                 return Ok(new { success = true, data = tutorStudentPrograms });
             }
@@ -74,7 +76,7 @@ namespace MiTutor.Controllers.TutoringManagement
             {
                 // Lógica para actualizar el estado en la base de datos
                 await _tutorStudentProgramService.UpdateEstadoAsync(request.TutorStudentProgramIds, request.NewState);
-                return Ok(new { success = true });
+                return Ok(new { success = true, message = "Estado actualizado correctamente" });
             }
             catch (Exception ex)
             {
