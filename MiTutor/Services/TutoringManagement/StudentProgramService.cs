@@ -3,6 +3,7 @@ using MiTutor.Models.TutoringManagement;
 using System.Data.SqlClient;
 using System.Data;
 using MiTutor.Models.UniversityUnitManagement;
+using MiTutor.Models;
 
 namespace MiTutor.Services.TutoringManagement
 {
@@ -67,5 +68,42 @@ namespace MiTutor.Services.TutoringManagement
                 throw new Exception("Error al obtener el StudentProgram: " + ex.Message);
             }
         }
+
+        public async Task<List<Notificacion>> ListarNotificacionesPorUserAcount(int UserAcountId)
+        {
+
+            List<Notificacion> notificaciones = new List<Notificacion>();
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@UserAcountId", SqlDbType.Int) { Value = UserAcountId}
+            };
+
+            try
+            {
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_NOTIFICACIONES_POR_USUARIO, parameters);
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        Notificacion notificacion = new Notificacion
+                        {
+                            resumen = row[0].ToString(),
+                            descripcion = row[1].ToString(),
+                            tipo = row[2].ToString()
+
+                        };
+                        notificaciones.Add(notificacion);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarNotificacionesPorUserAcount", ex);
+            }
+
+
+            return notificaciones;
+        }
+
     }
 }
