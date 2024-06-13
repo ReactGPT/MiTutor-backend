@@ -58,7 +58,7 @@ namespace MiTutor.Controllers.TutoringManagement
         {
             try
             {
-                var tutorStudentPrograms = await _tutorStudentProgramService.ListarTutorStudentProgram(tutorFirstName, tutorLastName, state, tutoringProgramId);
+                var tutorStudentPrograms = await _tutorStudentProgramService.ListarTutorStudentProgram();
                 return Ok(new { success = true, data = tutorStudentPrograms });
             }
             catch (Exception ex)
@@ -67,24 +67,26 @@ namespace MiTutor.Controllers.TutoringManagement
             }
         }
 
-        [HttpPost("UpdateEstado")]
         public async Task<IActionResult> UpdateEstado([FromBody] UpdateEstadoRequest request)
         {
             try
             {
-                await _tutorStudentProgramService.ActualizarEstadoTutorStudentProgram(request.TutorStudentProgramIds, request.NewState);
-                return Ok(new { success = true, message = "Estado actualizado correctamente" });
+                // Lógica para actualizar el estado en la base de datos
+                await _tutorStudentProgramService.UpdateEstadoAsync(request.TutorStudentProgramIds, request.NewState);
+                return Ok(new { success = true });
             }
             catch (Exception ex)
             {
                 return BadRequest(new { success = false, message = ex.Message });
             }
         }
+
+        
     }
 
     public class UpdateEstadoRequest
     {
-        public string TutorStudentProgramIds { get; set; }
+        public List<int> TutorStudentProgramIds { get; set; }
         public string NewState { get; set; }
     }
 }
