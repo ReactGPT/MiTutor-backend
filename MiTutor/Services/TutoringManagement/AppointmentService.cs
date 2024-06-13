@@ -268,6 +268,55 @@ namespace MiTutor.Services.TutoringManagement
             return citas;
         }
 
+        public async Task<Boolean> CancelarCita(int appointmentId)
+        {
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+                    new SqlParameter("@AppointmentId", SqlDbType.Int){
+                        Value = appointmentId
+                    },
+                    new SqlParameter("@RowsAffected", SqlDbType.Int){
+                        Direction = ParameterDirection.Output
+                    }
+                };
+
+                await _databaseManager.ExecuteStoredProcedureWithRowsAffected("APPOINTMENT_CANCEL", parameters);
+
+                int rowsAffected = (int)parameters[1].Value;
+
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al cancelar la cita: " + ex.Message);
+            }
+        }
+
+        //actulizar_Estado_Insertar_Resultado
+
+        public async Task Actulizar_Estado_Insertar_Resultado(int id_appointment)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@AppointmentId", SqlDbType.Int) { Value = id_appointment}
+            };
+            try
+            {
+                await _databaseManager.ExecuteStoredProcedure(StoredProcedure.ACTUALIZAR_ESTADO_CITA, parameters);
+            }
+            catch
+            {
+                throw new Exception("ERROR en Actulizar_Estado_Insertar_Resultado");
+            }
+        }
 
     }
 }

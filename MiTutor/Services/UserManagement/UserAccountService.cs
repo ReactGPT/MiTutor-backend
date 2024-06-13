@@ -183,7 +183,14 @@ namespace MiTutor.Services.UserManagement
                                 });
                                 break;
                             case "ADMIN":
-                                //userRol = null;
+                                userAccount.Roles.Add(new UserAdmin
+                                {
+                                    Id = Convert.ToInt32(row["UserAccountId"]),
+                                    AccountTypeId = Convert.ToInt32(row["UserAccountTypeId"]),
+                                    RolName = row["Description"].ToString(),
+                                    Type = row["Type"].ToString(),
+                                    IsAdmin= true
+                                });
                                 break;
                             default:
                                 //userRol = null;

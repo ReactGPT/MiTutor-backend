@@ -5,6 +5,7 @@ using MiTutor.Models.TutoringManagement;
 using MiTutor.Models.UniversityUnitManagement;
 using MiTutor.Services.TutoringManagement;
 using MiTutor.Services.UniversityUnitManagement;
+using Renci.SshNet.Messages;
 
 namespace MiTutor.Controllers.TutoringManagement
 {
@@ -112,6 +113,25 @@ namespace MiTutor.Controllers.TutoringManagement
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("/eliminarProgramaTutoria")]
+        public async Task<IActionResult> EliminarProgramaTutoria(int tutoringProgramId)
+        {
+            try
+            {
+
+                await _TutoringProgramServices.EliminarProgramaTutoria(tutoringProgramId);
+
+
+                return Ok(new { success = true, message = "Se elimino correctamente el programa de tutoria"});
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(new {success = false,message =ex.Message});
+            }
+        }
+
         [HttpGet("/listarProgramasDeTutoriaPorTutorId/{tutorId}")]
         public async Task<IActionResult> ListarProgramasDeTutoriaPorTutorId(int tutorId)
         {
@@ -126,6 +146,7 @@ namespace MiTutor.Controllers.TutoringManagement
                 return BadRequest(ex.Message);
             }
         }
+
 
 
 

@@ -8,17 +8,21 @@ using MiTutor.DataAccess;
 using MiTutor.Middleware;
 using Serilog;
 using Serilog.Events;
+using Amazon.S3;
 
 var builder = WebApplication.CreateBuilder(args);
 
-Log.Logger = new LoggerConfiguration()
+if (builder.Environment.IsProduction())
+{    
+    Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Debug()
     .WriteTo.Console()
     .WriteTo.File("logs/info-.txt", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Information)
     .WriteTo.File("logs/error-.txt", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Error)
     .CreateLogger();
 
-builder.Host.UseSerilog();
+    builder.Host.UseSerilog();
+}
 
 // Add services to the container.
 var services = builder.Services;
@@ -31,6 +35,9 @@ var configuration = new ConfigurationBuilder()
 services.AddSingleton(configuration);
 
 services.AddTransient<DatabaseManager>();
+// Configurar AWS S3
+services.AddDefaultAWSOptions(configuration.GetAWSOptions());
+services.AddAWSService<IAmazonS3>();
 
 services.AddControllers();
 services.AddEndpointsApiExplorer();
