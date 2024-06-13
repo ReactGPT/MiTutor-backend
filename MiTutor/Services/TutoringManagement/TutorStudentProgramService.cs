@@ -144,13 +144,12 @@ namespace MiTutor.Services.TutoringManagement
 
             return tutorStudentPrograms;
         }
-
-        // Método para actualizar el estado de varios TutorStudentProgram
-        public async Task UpdateEstadoAsync(List<int> ids, string newState)
+        
+        public async Task ActualizarEstadoTutorStudentProgram(string tutorStudentProgramIds, string newState)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
-                new SqlParameter("@TutorStudentProgramIds", SqlDbType.NVarChar) { Value = string.Join(",", ids) },
+                new SqlParameter("@TutorStudentProgramIds", SqlDbType.NVarChar) { Value = tutorStudentProgramIds },
                 new SqlParameter("@NewState", SqlDbType.NVarChar) { Value = newState }
             };
 
@@ -163,66 +162,5 @@ namespace MiTutor.Services.TutoringManagement
                 throw new Exception("Error al actualizar el estado: " + ex.Message);
             }
         }
-
-        public async Task<List<TutorStudentProgram>> ListarTutorStudentProgram()
-        {
-            List<TutorStudentProgram> tutorStudentPrograms = new List<TutorStudentProgram>();
-
-            try
-            {
-                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable("TUTOR_STUDENT_PROGRAM_LISTAR");
-
-                foreach (DataRow row in dataTable.Rows)
-                {
-                    TutorStudentProgram tutorStudentProgram = new TutorStudentProgram
-                    {
-                        TutorStudentProgramId = Convert.ToInt32(row["TutorStudentProgramId"]),
-                        State = row["State"].ToString(),
-                        IsActive = 1,
-                        TutorId = Convert.ToInt32(row["TutorId"]),
-                        StudentProgramId = Convert.ToInt32(row["TutoringProgramId"]),
-                        StudentProgram = new StudentProgram
-                        {
-                            StudentProgramId = Convert.ToInt32(row["TutoringProgramId"]),
-                            JoinDate = DateOnly.FromDateTime(Convert.ToDateTime(row["JoinDate"])),
-                            Student = new Student
-                            {
-                                Id = Convert.ToInt32(row["StudentId"]),
-                                Name = row["StudentFirstName"].ToString(),
-                                LastName = row["StudentLastName"].ToString(),
-                                SecondLastName = row["StudentSecondLastName"].ToString(),
-                                Specialty = new Models.UniversityUnitManagement.Specialty
-                                {
-                                    Name = row["SpecialtyName"].ToString()
-                                }
-                            }
-                        },
-                        Tutor = new Tutor
-                        {
-                            TutorId = Convert.ToInt32(row["TutorId"]),
-                            UserAccount = new UserAccount
-                            {
-                                Persona = new Person
-                                {
-                                    Name = row["TutorFirstName"].ToString(),
-                                    LastName = row["TutorLastName"].ToString(),
-                                    SecondLastName = row["TutorSecondLastName"].ToString()
-                                }
-                            }
-                        }
-                    };
-
-                    tutorStudentPrograms.Add(tutorStudentProgram);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al listar los TutorStudentProgram: " + ex.Message);
-            }
-
-            return tutorStudentPrograms;
-        }
-
-        
     }
 }
