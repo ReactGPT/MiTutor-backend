@@ -8,7 +8,7 @@ namespace MiTutor.Models.GestionUsuarios
         public bool IsRisk { get; set; }
         public bool IsActive { get; set; }
         public int SpecialityId { get; set; }
-        public Specialty Specialty { get; set; } // Nueva propiedad
+        public Specialty Specialty { get; set; }
     }
 
     public class ListarStudentJSON
