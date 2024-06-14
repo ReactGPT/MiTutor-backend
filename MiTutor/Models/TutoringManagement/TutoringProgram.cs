@@ -67,5 +67,22 @@ namespace MiTutor.Models.TutoringManagement
 
     }
 
+    public class StudentProgramaDeTutoria
+    {
+        public int StudentProgramId { get; set; }
+
+        public string ProgramName { get; set; } 
+
+        public string ProgramDescription { get; set; }
+
+        public string StudentName {  get; set; }
+
+        public string LastName { get; set; }
+
+        public string SecondLastName { get; set; }
+
+        public string NameFaculty {  get; set; }
+
+    }
 
 }

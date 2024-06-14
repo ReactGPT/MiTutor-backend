@@ -166,8 +166,8 @@ namespace MiTutor.Services.GestionUsuarios
                     {
                         StudentContadorProgramasAcademicos alumno = new StudentContadorProgramasAcademicos
                         {
-                            StudentId = Convert.ToInt32(row["TutorId"]),
-                            StudentName = row["TutorName"].ToString(),
+                            StudentId = Convert.ToInt32(row["StudentId"]),
+                            StudentName = row["StudentName"].ToString(),
                             StudentLastName = row["LastName"].ToString(),
                             StudentSecondLastName = row["SecondLastName"].ToString(),
                             CantidadProgramas = Convert.ToInt32(row["ProgramCount"])
@@ -233,7 +233,7 @@ namespace MiTutor.Services.GestionUsuarios
                     new SqlParameter("@EndDate", endDate.HasValue ? endDate.Value.ToDateTime(TimeOnly.MinValue) : (object)DBNull.Value)
                 };
 
-                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_TUTOR_FECHA_PROGRAMA, parameters.ToArray());
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_ALUMNO_FECHA_PROGRAMA, parameters.ToArray());
                 if (dataTable != null && dataTable.Rows.Count > 0)
                 {
                     foreach (DataRow row in dataTable.Rows)
@@ -264,13 +264,13 @@ namespace MiTutor.Services.GestionUsuarios
             try
             {
                 var parameters = new List<SqlParameter>
-            {
-                new SqlParameter("@StudentId", studentId),
-                new SqlParameter("@StartDate", startDate.HasValue ? startDate.Value.ToDateTime(TimeOnly.MinValue) : (object)DBNull.Value),
-                new SqlParameter("@EndDate", endDate.HasValue ? endDate.Value.ToDateTime(TimeOnly.MinValue) : (object)DBNull.Value)
-            };
+                {
+                    new SqlParameter("@StudentId", studentId),
+                    new SqlParameter("@StartDate", startDate.HasValue ? startDate.Value.ToDateTime(TimeOnly.MinValue) : (object)DBNull.Value),
+                    new SqlParameter("@EndDate", endDate.HasValue ? endDate.Value.ToDateTime(TimeOnly.MinValue) : (object)DBNull.Value)
+                };
 
-                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_TUTOR_FECHA_CITA, parameters.ToArray());
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_ALUMNO_FECHA_CITA, parameters.ToArray());
                 if (dataTable != null && dataTable.Rows.Count > 0)
                 {
                     foreach (DataRow row in dataTable.Rows)
@@ -278,7 +278,7 @@ namespace MiTutor.Services.GestionUsuarios
                         StudentAppointment appointment = new StudentAppointment
                         {
                             StudentId = Convert.ToInt32(row["StudentId"]),
-                            StudentName = row["StudebtName"].ToString(),
+                            StudentName = row["StudentName"].ToString(),
                             StudentLastName = row["LastName"].ToString(),
                             StudentSecondLastName = row["SecondLastName"].ToString(),
                             AppointmentId = Convert.ToInt32(row["AppointmentId"]),
@@ -322,7 +322,7 @@ namespace MiTutor.Services.GestionUsuarios
                     new SqlParameter("@EndDate", endDate.HasValue ? endDate.Value.ToDateTime(TimeOnly.MinValue) : (object)DBNull.Value)
                 };
 
-                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable("TUTOR_PROGRAM_VIRTUAL_FACE_SELECT", parameters.ToArray());
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable("STUDENT_PROGRAM_VIRTUAL_FACE_SELECT", parameters.ToArray());
 
                 if (dataTable != null && dataTable.Rows.Count > 0)
                 {
