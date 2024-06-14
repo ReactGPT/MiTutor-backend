@@ -32,5 +32,6 @@ namespace MiTutor.Models.GestionUsuarios
         public string SecondLastName { get; set; }
         public string PUCPCode { get; set; }
         public bool IsRisk { get; set; }
+        public bool Asistio { get; set; }
     }
 }

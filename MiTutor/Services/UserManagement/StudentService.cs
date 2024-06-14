@@ -177,7 +177,8 @@ namespace MiTutor.Services.GestionUsuarios
                             LastName = row["LastName"].ToString(),
                             SecondLastName = row["SecondLastName"].ToString(),
                             PUCPCode = row["PUCPCode"].ToString(),
-                            IsRisk = Convert.ToBoolean(row["IsRisk"])
+                            IsRisk = Convert.ToBoolean(row["IsRisk"]),
+                            Asistio = row["Asistio"] != DBNull.Value ? Convert.ToBoolean(row["Asistio"]) : false
                     };
 
                         students.Add(student);
