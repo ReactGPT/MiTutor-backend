@@ -107,7 +107,7 @@ namespace MiTutor.Services.TutoringManagement
             }
             parameters = new SqlParameter[]
                 {
-                    new SqlParameter("@TutoringProgramID",SqlDbType.Int){ Value= (programa.TutoringProgramId)},
+                    new SqlParameter("@TutoringProgramID",SqlDbType.Int){ Value= (programa.TutoringProgramId<=0?DBNull.Value:programa.TutoringProgramId)},
                     new SqlParameter("@FaceToFace", SqlDbType.Bit) { Value = programa.FaceToFace },
                     new SqlParameter("@Virtual", SqlDbType.Bit) { Value = programa.Virtual },
                     new SqlParameter("@GroupBased", SqlDbType.Bit) { Value = programa.GroupBased },
