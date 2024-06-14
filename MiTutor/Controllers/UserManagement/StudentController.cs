@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MiTutor.Models.GestionUsuarios;
+//using MiTutor.Models.GestionUsuarios;
 using MiTutor.Services.GestionUsuarios;
 using MiTutor.Services.TutoringManagement;
 using MiTutor.Services.UserManagement;
-
+using MiTutor.Models.GestionUsuarios;
 namespace MiTutor.Controllers.GestionUsuarios
 {
     [Route("api/[controller]")]
@@ -131,7 +131,7 @@ namespace MiTutor.Controllers.GestionUsuarios
                 return BadRequest(ex.Message);
             }
             return Ok(new { success = true, data = students });
-
+        }
         [HttpGet("/listarAlumnosConCantidadDeProgramas")]
         public async Task<IActionResult> ListarAlumnosConCantidadDeProgramas()
         {
