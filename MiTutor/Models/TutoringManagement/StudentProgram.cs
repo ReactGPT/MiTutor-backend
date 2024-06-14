@@ -12,7 +12,6 @@ namespace MiTutor.Models.TutoringManagement
         public int TutoringProgramId { get; set; }
         public int TutoringId { get; set; }
         public bool IsActive { get; set; }
-        [JsonIgnore]
         public Student Student { get; set; }
         [JsonIgnore]
         public TutoringProgram TutoringProgram { get; set; }
@@ -23,5 +22,12 @@ namespace MiTutor.Models.TutoringManagement
         [JsonIgnore]
         public ICollection<TutorStudentProgram> TutorStudentPrograms { get; set; } = new List<TutorStudentProgram>();
 
+    }
+
+    public class Notificacion
+    {
+        public string resumen { get; set; }
+        public string descripcion { get; set; }
+        public string tipo { get; set; }
     }
 }

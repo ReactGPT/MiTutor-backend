@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MiTutor.Models;
 using MiTutor.Models.TutoringManagement;
+using MiTutor.Services;
 using MiTutor.Services.TutoringManagement;
 
 namespace MiTutor.Controllers.TutoringManagement
@@ -32,5 +34,23 @@ namespace MiTutor.Controllers.TutoringManagement
             return Ok(new { success = true, message = "Se inserto satisfactoriamente" });
         }
 
+        [HttpGet("/listarNotificaciones/{userAcountId}")]
+        public async Task<IActionResult> ListarNotificaciones(int userAcountId)
+        {
+            List<Notificacion> notificaciones;
+
+            try
+            {
+                notificaciones = await _studentProgramService.ListarNotificacionesPorUserAcount(userAcountId);
+                return Ok(new { success = true, data = notificaciones });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en controller", ex);
+            }
+
+        }
+
     }
+
 }

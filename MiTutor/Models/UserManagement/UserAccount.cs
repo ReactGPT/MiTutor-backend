@@ -36,6 +36,10 @@ namespace MiTutor.Models.GestionUsuarios
         public string DepartmentName { get; set; }
         public string DepartmentAcronym { get; set; }
     }
+    public class UserAdmin : UserGeneric
+    {
+        public bool IsAdmin { get; set; }
+    }
     public class UserAccount
     {
         public int Id { get; set; }
@@ -51,7 +55,9 @@ namespace MiTutor.Models.GestionUsuarios
         public List<object> Roles { get; set; }
         public bool isVerified { get; set; }
 
+        public DateTime CreationDate { get; set; }
 
+        public DateTime ModificationDate { get; set; }
     }
     
 }
