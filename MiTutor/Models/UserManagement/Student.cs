@@ -1,4 +1,6 @@
-﻿namespace MiTutor.Models.GestionUsuarios
+﻿using MiTutor.Models.UniversityUnitManagement;
+
+namespace MiTutor.Models.GestionUsuarios
 {
     public class Student:Person
     {
@@ -6,6 +8,7 @@
         public bool IsRisk { get; set; }
         public bool IsActive { get; set; }
         public int SpecialityId { get; set; }
+        public Specialty Specialty { get; set; }
     }
 
     public class ListarStudentJSON
@@ -41,5 +44,15 @@
         public string PUCPCode { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime ModificationDate { get; set; }
+    }
+
+    public class ListarStudentJSON2
+    {
+        public int StudentId { get; set; }
+        public string Name { get; set; }
+        public string LastName { get; set; }
+        public string SecondLastName { get; set; }
+        public string PUCPCode { get; set; }
+        public bool IsRisk { get; set; }
     }
 }

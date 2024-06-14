@@ -202,5 +202,43 @@ namespace MiTutor.Services.GestionUsuarios
             return student;
         }
 
+        public async Task<List<ListarStudentJSON2>> ListarEstudiantesPorIdCita(int appointmentId)
+        {
+            List<ListarStudentJSON2> students = new List<ListarStudentJSON2>();
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+                    new SqlParameter("@AppointId", SqlDbType.Int){
+                        Value = appointmentId
+                    }
+                };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_ALUMNOS_POR_ID_CITA, parameters);
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        ListarStudentJSON2 student = new ListarStudentJSON2()
+                        {
+                            StudentId = Convert.ToInt32(row["PersonId"]),
+                            Name = row["Name"].ToString(),
+                            LastName = row["LastName"].ToString(),
+                            SecondLastName = row["SecondLastName"].ToString(),
+                            PUCPCode = row["PUCPCode"].ToString(),
+                            IsRisk = Convert.ToBoolean(row["IsRisk"])
+                    };
+
+                        students.Add(student);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarEstudiantesByTutoringProgram", ex);
+            }
+
+            return students;
+        }
     }
 }

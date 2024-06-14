@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using MiTutor.Models.GestionUsuarios;
 using System;
+using MiTutor.Models.UniversityUnitManagement;
 
 namespace MiTutor.Services.TutoringManagement
 {
@@ -95,21 +96,32 @@ namespace MiTutor.Services.TutoringManagement
             return solicitudes;
         }
 
-        public async Task<List<TutorStudentProgram>> ListarTutorStudentProgram(string tutorFirstName, string tutorLastName, string state, int? tutoringProgramId)
+        // Método para actualizar el estado de varios TutorStudentProgram
+        public async Task UpdateEstadoAsync(List<int> ids, string newState)
         {
-            List<TutorStudentProgram> tutorStudentPrograms = new List<TutorStudentProgram>();
-
             SqlParameter[] parameters = new SqlParameter[]
             {
-                new SqlParameter("@TutorFirstName", SqlDbType.NVarChar) { Value = (object)tutorFirstName ?? DBNull.Value },
-                new SqlParameter("@TutorLastName", SqlDbType.NVarChar) { Value = (object)tutorLastName ?? DBNull.Value },
-                new SqlParameter("@State", SqlDbType.NVarChar) { Value = (object)state ?? DBNull.Value },
-                new SqlParameter("@TutoringProgramId", SqlDbType.Int) { Value = (object)tutoringProgramId ?? DBNull.Value }
+                new SqlParameter("@TutorStudentProgramIds", SqlDbType.NVarChar) { Value = string.Join(",", ids) },
+                new SqlParameter("@NewState", SqlDbType.NVarChar) { Value = newState }
             };
 
             try
             {
-                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable("TUTOR_STUDENT_PROGRAM_LISTAR_X_FILTROS", parameters);
+                await _databaseManager.ExecuteStoredProcedure("TUTOR_STUDENT_PROGRAM_UPDATE_ESTADO", parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al actualizar el estado: " + ex.Message);
+            }
+        }
+
+        public async Task<List<TutorStudentProgram>> ListarTutorStudentProgram()
+        {
+            List<TutorStudentProgram> tutorStudentPrograms = new List<TutorStudentProgram>();
+
+            try
+            {
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable("TUTOR_STUDENT_PROGRAM_LISTAR");
 
                 foreach (DataRow row in dataTable.Rows)
                 {
@@ -117,20 +129,45 @@ namespace MiTutor.Services.TutoringManagement
                     {
                         TutorStudentProgramId = Convert.ToInt32(row["TutorStudentProgramId"]),
                         State = row["State"].ToString(),
-                        IsActive = Convert.ToInt32(row["IsActive"]),
+                        IsActive = 1,
                         TutorId = Convert.ToInt32(row["TutorId"]),
-                        StudentProgramId = Convert.ToInt32(row["StudentProgramId"]),
-                        Motivo = row.Table.Columns.Contains("Motivo") ? row["Motivo"].ToString() : null,
-                        // Cargar objetos relacionados
+                        StudentProgramId = Convert.ToInt32(row["TutoringProgramId"]),
                         StudentProgram = new StudentProgram
                         {
-                            StudentProgramId = Convert.ToInt32(row["StudentProgramId"]),
-                            // Cargar otras propiedades si es necesario
+                            StudentProgramId = Convert.ToInt32(row["TutoringProgramId"]),
+                            JoinDate = DateOnly.FromDateTime(Convert.ToDateTime(row["JoinDate"])),
+                            Student = new Student
+                            {                                
+                                Id = Convert.ToInt32(row["StudentId"]),                                
+                                Name = row["StudentFirstName"].ToString(),
+                                LastName = row["StudentLastName"].ToString(),
+                                SecondLastName = row["StudentSecondLastName"].ToString(),
+                                Specialty = new Models.UniversityUnitManagement.Specialty
+                                {
+                                    Name = row["SpecialtyName"].ToString(),
+                                    Faculty = new Faculty
+                                    {
+                                        Name = row["FacultyName"].ToString(),
+                                    }
+                                },
+                                Usuario = new UserAccount
+                                {
+                                    PUCPCode = row["PUCPCode"].ToString()
+                                }
+                            }
                         },
                         Tutor = new Tutor
                         {
                             TutorId = Convert.ToInt32(row["TutorId"]),
-                            // Cargar otras propiedades si es necesario
+                            UserAccount = new UserAccount
+                            {
+                                Persona = new Person
+                                {
+                                    Name = row["TutorFirstName"].ToString(),
+                                    LastName = row["TutorLastName"].ToString(),
+                                    SecondLastName = row["TutorSecondLastName"].ToString()
+                                }
+                            }
                         }
                     };
 
@@ -143,24 +180,6 @@ namespace MiTutor.Services.TutoringManagement
             }
 
             return tutorStudentPrograms;
-        }
-        
-        public async Task ActualizarEstadoTutorStudentProgram(string tutorStudentProgramIds, string newState)
-        {
-            SqlParameter[] parameters = new SqlParameter[]
-            {
-                new SqlParameter("@TutorStudentProgramIds", SqlDbType.NVarChar) { Value = tutorStudentProgramIds },
-                new SqlParameter("@NewState", SqlDbType.NVarChar) { Value = newState }
-            };
-
-            try
-            {
-                await _databaseManager.ExecuteStoredProcedure("TUTOR_STUDENT_PROGRAM_UPDATE_ESTADO", parameters);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al actualizar el estado: " + ex.Message);
-            }
         }
     }
 }
