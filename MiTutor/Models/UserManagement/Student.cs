@@ -8,6 +8,9 @@ namespace MiTutor.Models.GestionUsuarios
         public bool IsRisk { get; set; }
         public bool IsActive { get; set; }
         public int SpecialityId { get; set; }
+        public string FacultyName { get; set; }
+        public int IdTutor { get; set; }
+        public string TutorName { get; set; }
         public Specialty Specialty { get; set; }
     }
 
@@ -23,6 +26,33 @@ namespace MiTutor.Models.GestionUsuarios
         public string SpecialtyName { get; set; }
         public string FacultyName { get; set; }
     }
+
+
+    public class StudentIdVerified
+    {
+        public int studentId { get; set; }
+        public string name { get; set; }
+        public string lastName { get; set; }
+        public string secondLastName { get; set; }
+        public bool isActive { get; set; }
+        public string pucpCode { get; set; }
+        public string institutionalEmail { get; set; }
+        public string facultyName { get; set; }
+        public bool isRegistered { get; set; }
+    }
+
+    public class StudentTutoria
+    {
+        public int Id { get; set; }
+        public bool IsRisk { get; set; }
+        public bool IsActive { get; set; }
+        public int SpecialityId { get; set; }
+        public string FacultyName { get; set; }
+        public Person Person { get; set; }
+        public UserAccount Usuario { get; set; }
+        public int IdTutor { get; set; }
+        public string TutorName { get; set; }
+
     
     //Indicadores 
 
@@ -120,5 +150,6 @@ namespace MiTutor.Models.GestionUsuarios
         public string PUCPCode { get; set; }
         public bool IsRisk { get; set; }
         public bool Asistio { get; set; }
+
     }
 }

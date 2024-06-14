@@ -102,6 +102,36 @@ namespace MiTutor.Controllers.GestionUsuarios
             }
         }
 
+
+        [HttpGet("/listarEstudiantesPorIdProgramaTutoria")]
+        public async Task<IActionResult> ListarEstudiantesPorIdProgramaTutoria(int idProgramaTutoria)
+        {
+            List<StudentTutoria> students;
+            try
+            {
+                students = await _estudianteServices.ListarEstudiantesPorIdProgramaTutoria(idProgramaTutoria);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, data = students });
+        }
+
+        [HttpPost("/listarEstudiantesPorId")]
+        public async Task<IActionResult> ListarEstudiantesPorId([FromBody] List<StudentIdVerified> studentsVerified)
+        {
+            List<StudentIdVerified> students;
+            try
+            {
+                students = await _estudianteServices.ListarEstudiantesPorId(studentsVerified);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, data = students });
+
         [HttpGet("/listarAlumnosConCantidadDeProgramas")]
         public async Task<IActionResult> ListarAlumnosConCantidadDeProgramas()
         {
@@ -190,6 +220,7 @@ namespace MiTutor.Controllers.GestionUsuarios
 
                 return BadRequest(ex.Message);
             }
+
         }
     }
 }
