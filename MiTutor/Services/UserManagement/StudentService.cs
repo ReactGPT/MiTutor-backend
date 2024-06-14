@@ -5,6 +5,7 @@ using System.Data;
 using MiTutor.Models;
 using MiTutor.Models.TutoringManagement;
 using MiTutor.Services.UserManagement;
+using System.Linq.Expressions;
 
 namespace MiTutor.Services.GestionUsuarios
 {
@@ -261,6 +262,15 @@ namespace MiTutor.Services.GestionUsuarios
                             student.TutorName = "";
                         }
                         students.Add(student);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarAlumnosConCantidadDeProgramas", ex);
+            }
+            return students;
+        }
         public async Task<List<StudentContadorProgramasAcademicos>> ListarAlumnosConCantidadDeProgramas()
         {
             List<StudentContadorProgramasAcademicos> alumnos = new List<StudentContadorProgramasAcademicos>();
@@ -414,7 +424,7 @@ namespace MiTutor.Services.GestionUsuarios
                 throw new Exception("ERROR en ListarEstudiantesPorIdProgramaTutoria", ex);
             }
 
-            return students;
+            return appointments;
         }
 
         public async Task<List<StudentIdVerified>> ListarEstudiantesPorId(List<StudentIdVerified> studentsVerified)
@@ -461,10 +471,17 @@ namespace MiTutor.Services.GestionUsuarios
                             student.facultyName = s.facultyName;
                             students.Add(student);
                         }
-                throw new Exception("ERROR en ListarAppointmentPorFecha" + ex.Message, ex);
+                    }
+                }
             }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarAppointmentPorFecha" + ex.Message, ex);
+            }                
+                        
+            
 
-            return appointments;
+            return students;
         }     
 
         public async Task<List<StudentProgramVirtualFace>> ListarProgramaVirtualFaceStudent(int studentId, DateOnly? startDate = null, DateOnly? endDate = null)
