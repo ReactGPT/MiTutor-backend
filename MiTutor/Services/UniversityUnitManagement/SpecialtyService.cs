@@ -90,5 +90,64 @@ namespace MiTutor.Services.UniversityUnitManagement
             return specialties;
         }
 
+        public async Task<List<Specialty>> ListarEspecialidadesPorFacultad(int FacultyId)
+        {
+            List<Specialty> specialties = new List<Specialty>();
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+                    new SqlParameter("@FacultyId", SqlDbType.Int) { Value = FacultyId },
+                };
+
+                // Ejecutar procedimiento almacenado para obtener las facultades
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_ESPECIALIDAD_X_FACULTAD, parameters);
+
+                // Verificar si se obtuvieron datos
+                if (dataTable != null)
+                {
+                    // Recorrer cada fila del resultado y crear objetos Faculty
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        Specialty specialty = new Specialty
+                        {
+                            SpecialtyId = Convert.ToInt32(row["SpecialtyId"]),
+                            Name = row["Name"].ToString(),
+                            Acronym = row["Acronym"].ToString(),
+                            NumberOfStudents = Convert.ToInt32(row["NumberOfStudents"]),
+                            Faculty = new Faculty
+                            {
+                                FacultyId = Convert.ToInt32(row["FacultyId"]),
+                                //Name = row["FacultyName"].ToString(),
+                                //Acronym = row["FacultyAcronym"].ToString()
+                            }
+                        };
+
+                        if (row["SpecialtyManagerId"] != DBNull.Value)
+                        {
+                            specialty.SpecialtyManager = new Models.GestionUsuarios.UserAccount
+                            {
+                                Id = Convert.ToInt32(row["SpecialtyManagerId"]),
+                                InstitutionalEmail = row["InstitutionalEmail"].ToString(), // Agregar el correo electrónico del gerente de facultad
+                                PUCPCode = row["PUCPCode"].ToString(),
+                                Persona = new Models.GestionUsuarios.Person
+                                {
+                                    Name = row["ManagerName"].ToString(),
+                                    LastName = row["ManagerLastName"].ToString()
+                                }
+                            };
+                        };
+                        specialties.Add(specialty);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al listar las facultades: " + ex.Message);
+            }
+
+            return specialties;
+        }
+
     }
 }
