@@ -48,5 +48,33 @@ namespace MiTutor.Controllers.UniversityUnitManagement
             }
             return Ok(new { success = true, data = faculties });
         }
+
+        [HttpPut("actualizarFacultades")]  // Cambiado a ruta relativa
+        public async Task<IActionResult> ActualizarFacultad([FromBody] Faculty facultad)
+        {
+            try
+            {
+                await _facultyServices.ActualizarFacultad(facultad);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, message = "Se actualizaron satisfactoriamente datos de facultad." });
+        }
+
+        [HttpDelete("eliminarFacultad/{facultadId}")]
+        public async Task<IActionResult> EliminarFacultad(int facultadId)
+        {
+            try
+            {
+                await _facultyServices.EliminarFacultad(facultadId);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, message = "Se eliminó satisfactoriamente." });
+        }
     }
 }

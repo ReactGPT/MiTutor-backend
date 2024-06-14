@@ -46,5 +46,20 @@ namespace MiTutor.Controllers.UniversityUnitManagement
             }
             return Ok(new { success = true, data = specialties });
         }
+
+        [HttpGet("listarEspecialidadPorFacultad")] // Cambiado a ruta relativa
+        public async Task<IActionResult> ListarEspecialidadesPorFacultad(int FacultyId)
+        {
+            List<Specialty> specialties;
+            try
+            {
+                specialties = await _specialtyServices.ListarEspecialidadesPorFacultad(FacultyId);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, data = specialties });
+        }
     }
 }

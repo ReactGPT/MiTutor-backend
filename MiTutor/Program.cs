@@ -60,6 +60,7 @@ services.AddScoped<CommitmentService>();
 services.AddScoped<StudentService>();
 services.AddScoped<UserAccountService>();
 services.AddScoped<FacultyService>();
+services.AddScoped<UnitDerivationService>();
 services.AddScoped<SpecialtyService>();
 services.AddScoped<TutorService>();
 services.AddScoped<TutoringProgramService>();

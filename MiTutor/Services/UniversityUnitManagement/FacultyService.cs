@@ -67,7 +67,7 @@ namespace MiTutor.Services.UniversityUnitManagement
                                 PUCPCode = row["PUCPCode"].ToString(),
                                 Persona = new Models.GestionUsuarios.Person
                                 {
-                                    Name = row["Name"].ToString(),
+                                    Name = row["PersonName"].ToString(),
                                     LastName = row["LastName"].ToString()
                                 }
                             };
@@ -86,6 +86,43 @@ namespace MiTutor.Services.UniversityUnitManagement
             return facultades;
         }
 
+        public async Task ActualizarFacultad(Faculty facultad)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@FacultyId", SqlDbType.Int) { Value = facultad.FacultyId },
+                new SqlParameter("@Name", SqlDbType.NVarChar) { Value = facultad.Name },
+                new SqlParameter("@Acronym", SqlDbType.NVarChar) { Value = facultad.Acronym },
+                new SqlParameter("@NumberOfStudents", SqlDbType.Int) { Value = facultad.NumberOfStudents },
+                new SqlParameter("@NumberOfTutors", SqlDbType.Int) { Value = facultad.NumberOfTutors },
+                new SqlParameter("@FacultyManagerId", SqlDbType.Int) { Value = facultad.FacultyManager.Id },
+            };
+
+            try
+            {
+                await _databaseManager.ExecuteStoredProcedure(StoredProcedure.ACTUALIZAR_FACULTAD, parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al actualizar la facultad: " + ex.Message);
+            }
+        }
+
+        public async Task EliminarFacultad(int facultadId)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@FacultyId", SqlDbType.Int) { Value = facultadId },
+            };
+            try
+            {
+                await _databaseManager.ExecuteStoredProcedure(StoredProcedure.ELIMINAR_FACULTAD, parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en EliminarFacultad");
+            }
+       }
 
     }
 }

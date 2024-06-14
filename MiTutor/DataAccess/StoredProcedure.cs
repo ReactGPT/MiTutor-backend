@@ -46,11 +46,20 @@
         public const string CREAR_FACULTAD = "FACULTY_INSERTAR_INSERT";
         public const string LISTAR_FACULTADES = "FACULTY_LISTAR_SELECT";
         public const string ELIMINAR_FACULTAD = "FACULTY_ELIMINAR_DELETE";
+        public const string ACTUALIZAR_FACULTAD = "FACULTY_ACTUALIZAR_UPDATE";
 
         //ESPECIALIDAD
         public const string CREAR_ESPECIALIDAD = "SPECIALTY_INSERTAR_INSERT";
         public const string LISTAR_ESPECIALIDADES = "SPECIALTY_LISTAR_SELECT";
         public const string ELIMINAR_ESPECIALIDAD = "SPECIALTY_ELIMINAR_DELETE";
+        public const string LISTAR_ESPECIALIDAD_X_FACULTAD = "SPECIALTY_LISTAR_X_FACULTY";
+
+        //UNIDAD DE DERIVACION
+        public const string CREAR_UNIDAD = "UNITDERIVATION_INSERTAR_INSERT";
+        public const string LISTAR_UNIDADES = "UNITDERIVATION_LISTAR_LIST";
+        public const string ELIMINAR_UNIDAD = "UNITDERIVATION_ELIMINAR_DELETE";
+        public const string LISTAR_SUB_UNIDADES = "SUBUNIT_LISTAR_X_UNITDERIVATION";
+        public const string ACTUALIZAR_UNIDAD = "UNITDERIVATION_ACTUALIZAR_UPDATE";
 
         //TUTOR
         public const string CREAR_TUTOR = "TUTOR_INSERTAR_INSERT";
