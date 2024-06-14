@@ -22,7 +22,7 @@ namespace MiTutor.Controllers.GestionUsuarios
         }
 
         [HttpPost("/crearEstudiante")]
-        public async Task<IActionResult> CrearEstudiante([FromBody] Student estudiante)
+        public async Task<IActionResult> CrearEstudiante([FromBody] StudentTodo estudiante)
         {
             try
             {

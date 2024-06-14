@@ -10,12 +10,10 @@ namespace MiTutor.Services.UserManagement
     {
         private readonly DatabaseManager _databaseManager;
         private readonly PersonService _personService;
-        private readonly StudentService _studentService;
         public UserAccountService(DatabaseManager databaseManager)
         {
             _databaseManager = databaseManager ?? throw new ArgumentNullException(nameof(databaseManager));
             _personService = new PersonService(_databaseManager);
-            _studentService = new StudentService(_databaseManager);
         }
 
         public async Task CrearUsuario(UserAccount userAccount)
@@ -36,6 +34,7 @@ namespace MiTutor.Services.UserManagement
                 try
                 {
                     await _databaseManager.ExecuteStoredProcedure(StoredProcedure.CREAR_USUARIO, parameters);
+                    userAccount.Id = userAccount.Persona.Id;
                 }
                 catch
                 {
