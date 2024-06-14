@@ -197,6 +197,46 @@ namespace MiTutor.Controllers.TutoringManagement
             return Ok(new { success = true, data = appointments });
         }
 
+        [HttpGet("/listarProgramaFecha/{tutorId}")]
+        public async Task<IActionResult> ListarProgramaFecha(int tutorId, [FromQuery] DateOnly? startDate = null, [FromQuery] DateOnly? endDate = null)
+        {
+            try
+            {
+                List<TutorProgram> programs = await _tutorServices.ListarProgramaFecha(tutorId, startDate, endDate);
+                return Ok(new { success = true, data = programs });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, message = "Error al listar los programas por fecha: " + ex.Message });
+            }
+        }
+        [HttpGet("/listarAppointmentPorFecha/{tutorId}")]
+        public async Task<IActionResult> ListarAppointmentPorFecha(int tutorId, [FromQuery] DateOnly? startDate = null, [FromQuery] DateOnly? endDate = null)
+        {
+            try
+            {
+                List<TutorAppointment> appointments = await _tutorServices.ListarAppointmentPorFecha(tutorId, startDate, endDate);
+                return Ok(new { success = true, data = appointments });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, message = "Error al listar las citas por fecha: " + ex.Message });
+            }
+        }
+        [HttpGet("/listarProgramaVirtualFace/{tutorId}")]
+        public async Task<IActionResult> ListarProgramaVirtualFace(int tutorId, [FromQuery] DateOnly? startDate = null, [FromQuery] DateOnly? endDate = null)
+        {
+            try
+            {
+                var programasVirtualFace = await _tutorServices.ListarProgramaVirtualFace(tutorId, startDate, endDate);
+                return Ok(new { success = true, data = programasVirtualFace });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, message = "Error al listar los programas virtuales y presenciales: " + ex.Message });
+            }
+        }
+
 
     }
 }
