@@ -158,5 +158,23 @@ namespace MiTutor.Controllers.GestionUsuarios
                 return BadRequest(new { success = false, message = "Error al listar los programas virtuales y presenciales: " + ex.Message });
             }
         }
+        
+        [HttpGet("/listarEstudiantePorIdCita/{idAppointmen}")]
+        public async Task<IActionResult> ListarEstudiantesPorIdCita(int idAppointmen)
+        {
+            try
+            {
+
+                var estudiantes = await _estudianteServices.ListarEstudiantesPorIdCita(idAppointmen);
+
+
+                return Ok(new { success = true, data = estudiantes });
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

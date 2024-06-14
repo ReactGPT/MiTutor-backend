@@ -23,7 +23,7 @@ namespace MiTutor.Models.GestionUsuarios
         public string SpecialtyName { get; set; }
         public string FacultyName { get; set; }
     }
-
+    
     //Indicadores 
 
     public class StudentContadorProgramasAcademicos
@@ -87,5 +87,15 @@ namespace MiTutor.Models.GestionUsuarios
     {
         public int CantidadPresenciales { get; set; }
         public int CantidadVirtuales { get; set; }
+    }
+
+    public class ListarStudentJSON2
+    {
+        public int StudentId { get; set; }
+        public string Name { get; set; }
+        public string LastName { get; set; }
+        public string SecondLastName { get; set; }
+        public string PUCPCode { get; set; }
+        public bool IsRisk { get; set; }
     }
 }

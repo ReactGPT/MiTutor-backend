@@ -33,6 +33,20 @@ namespace MiTutor.Controllers.TutoringManagement
             return Ok(new { success = true, message = "Se inserto satisfactoriamente" });
         }
 
+        [HttpPost("/agregarResultadoCitaOriginal")]
+        public async Task<IActionResult> AgregarResultadoCitaOriginal([FromBody] InsertAppointmentResult appointmentResult, DateTime startTime, DateTime endTime) { 
+            try
+            { 
+                List<int> ids = await _appointmentResultServices.AgregarResultadoCitaOriginal(appointmentResult,startTime,endTime);
+                // Devolver el ID de la derivación creada en la respuesta
+                return Ok(new { success = true, message = "Se insertaron satisfactoriamente", data = ids });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            } 
+        }
+
         [HttpGet("/consultarResultadoCita")]
         public async Task<IActionResult> ConsultarResultadoCita([FromQuery] int appointmentId, [FromQuery] int studentId, [FromQuery] int tutoringProgramId)
         {
