@@ -546,8 +546,11 @@ namespace MiTutor.Services.GestionUsuarios
                             SecondLastName = row["SecondLastName"].ToString(),
                             PUCPCode = row["PUCPCode"].ToString(),
                             IsRisk = Convert.ToBoolean(row["IsRisk"]),
-                            Asistio = row["Asistio"] != DBNull.Value ? Convert.ToBoolean(row["Asistio"]) : false
-                    };
+                            Asistio = row["Asistio"] != DBNull.Value ? Convert.ToBoolean(row["Asistio"]) : false,
+                            AppointmentResultId = row["AppointmentResultId"] != DBNull.Value ? Convert.ToInt32(row["AppointmentResultId"]) : 0,
+                            AppointmentId = Convert.ToInt32(row["AppointmentId"]),
+                            TutoringProgramId = Convert.ToInt32(row["TutoringProgramId"])
+                        };
 
                         students.Add(student);
                     }

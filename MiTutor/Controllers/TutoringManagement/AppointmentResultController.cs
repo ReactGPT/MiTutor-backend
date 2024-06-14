@@ -76,5 +76,38 @@ namespace MiTutor.Controllers.TutoringManagement
             }
             return Ok(new { success = true, message = "Se actualizaron satisfactoriamente" });
         }
+
+        [HttpPost("/guardarAsistenciasCitaGrupal")]
+        public async Task<ActionResult<List<int>>> GuardarAsistencias([FromBody] List<ListarStudentJSON2> estudiantes)
+        {
+            if (estudiantes == null || estudiantes.Count == 0)
+            {
+                return BadRequest("No se proporcionaron datos de estudiantes.");
+            }
+
+            try
+            {
+                var idsInsertados = await _appointmentResultServices.AgregarResultadosCitaGrupal(estudiantes);
+                return Ok(idsInsertados);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error al guardar asistencias: {ex.Message}");
+            }
+        }
+
+        [HttpPut("/actualizarResultadoCitaGrupal")]
+        public async Task<IActionResult> ActualizarResultadoCitaGrupal([FromQuery] List<ListarStudentJSON2> estudiantes) 
+        {
+            try
+            {
+                await _appointmentResultServices.ActualizarResultadosCitaGrupal(estudiantes);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, message = "Se actualizaron satisfactoriamente" });
+        }
     }
 }
