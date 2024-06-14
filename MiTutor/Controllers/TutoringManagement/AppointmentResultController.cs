@@ -20,17 +20,31 @@ namespace MiTutor.Controllers.TutoringManagement
         }
 
         [HttpPost("/agregarResultadoCita")]
-        public async Task<IActionResult> AgregarResultadoCita([FromBody] InsertAppointmentResult appointmentResult)
+        public async Task<IActionResult> AgregarResultadoCita([FromQuery] int studentId, [FromQuery] int tutoringProgramId, [FromQuery] int id_appointment)
         {
             try
             {
-                await _appointmentResultServices.AgregarResultadoCita(appointmentResult);
+                await _appointmentResultServices.AgregarResultadoCita(studentId,tutoringProgramId, id_appointment);
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
             return Ok(new { success = true, message = "Se inserto satisfactoriamente" });
+        }
+
+        [HttpPost("/agregarResultadoCitaOriginal")]
+        public async Task<IActionResult> AgregarResultadoCitaOriginal([FromBody] InsertAppointmentResult appointmentResult, DateTime startTime, DateTime endTime) { 
+            try
+            { 
+                List<int> ids = await _appointmentResultServices.AgregarResultadoCitaOriginal(appointmentResult,startTime,endTime);
+                // Devolver el ID de la derivación creada en la respuesta
+                return Ok(new { success = true, message = "Se insertaron satisfactoriamente", data = ids });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            } 
         }
 
         [HttpGet("/consultarResultadoCita")]

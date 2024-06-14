@@ -12,7 +12,6 @@ namespace MiTutor.Models.TutoringManagement
         public int TutoringProgramId { get; set; }
         public int TutoringId { get; set; }
         public bool IsActive { get; set; }
-        [JsonIgnore]
         public Student Student { get; set; }
         [JsonIgnore]
         public TutoringProgram TutoringProgram { get; set; }
