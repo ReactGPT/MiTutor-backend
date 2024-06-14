@@ -23,4 +23,11 @@ namespace MiTutor.Models.TutoringManagement
         public ICollection<TutorStudentProgram> TutorStudentPrograms { get; set; } = new List<TutorStudentProgram>();
 
     }
+
+    public class Notificacion
+    {
+        public string resumen { get; set; }
+        public string descripcion { get; set; }
+        public string tipo { get; set; }
+    }
 }
