@@ -23,7 +23,7 @@ namespace MiTutor.Controllers.GestionUsuarios
         }
 
         [HttpPost("/crearEstudiante")]
-        public async Task<IActionResult> CrearEstudiante([FromBody] Student estudiante)
+        public async Task<IActionResult> CrearEstudiante([FromBody] StudentTodo estudiante)
         {
             try
             {
@@ -43,6 +43,21 @@ namespace MiTutor.Controllers.GestionUsuarios
             try
             {
                 students = await _estudianteServices.ListarEstudiantes();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, data = students });
+        }
+
+        [HttpGet("/listarEstudiantesTodo")]
+        public async Task<IActionResult> ListarEstudiantesTodo()
+        {
+            List<StudentTodo> students;
+            try
+            {
+                students = await _estudianteServices.ListarEstudiantesTodo();
             }
             catch (Exception ex)
             {
