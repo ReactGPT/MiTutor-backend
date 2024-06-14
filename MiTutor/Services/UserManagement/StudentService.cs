@@ -153,5 +153,197 @@ namespace MiTutor.Services.GestionUsuarios
             return student;
         }
 
+        public async Task<List<StudentContadorProgramasAcademicos>> ListarAlumnosConCantidadDeProgramas()
+        {
+            List<StudentContadorProgramasAcademicos> alumnos = new List<StudentContadorProgramasAcademicos>();
+
+            try
+            {
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_CONTADOR_PROGRAMAS_POR_ALUMNO);
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        StudentContadorProgramasAcademicos alumno = new StudentContadorProgramasAcademicos
+                        {
+                            StudentId = Convert.ToInt32(row["TutorId"]),
+                            StudentName = row["TutorName"].ToString(),
+                            StudentLastName = row["LastName"].ToString(),
+                            StudentSecondLastName = row["SecondLastName"].ToString(),
+                            CantidadProgramas = Convert.ToInt32(row["ProgramCount"])
+                        };
+
+                        alumnos.Add(alumno);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarAlumnosConCantidadDeProgramas", ex);
+            }
+
+            return alumnos;
+        }
+
+        public async Task<List<ListarCantidadAppointmentsStudent>> ListarCantidadAppointmentsStudent()
+        {
+            List<ListarCantidadAppointmentsStudent> appointments = new List<ListarCantidadAppointmentsStudent>();
+
+            try
+            {
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_CANTIDAD_CITAS_ALUMNO);
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        ListarCantidadAppointmentsStudent appointment = new ListarCantidadAppointmentsStudent
+                        {
+                            StudentId = Convert.ToInt32(row["StudentId"]),
+                            StudentName = row["StudentName"].ToString(),
+                            StudentLastName = row["LastName"].ToString(),
+                            StudentSecondLastName = row["SecondLastName"].ToString(),
+                            TotalAppointments = Convert.ToInt32(row["TotalAppointments"]),
+                            RegisteredCount = Convert.ToInt32(row["RegisteredCount"]),
+                            PendingResultCount = Convert.ToInt32(row["PendingResultCount"]),
+                            CompletedCount = Convert.ToInt32(row["CompletedCount"])
+                        };
+
+                        appointments.Add(appointment);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarCantidadAppointmentsStudent", ex);
+            }
+
+            return appointments;
+        }
+
+        public async Task<List<StudentTutoringProgram>> ListarProgramaFechaStudent(int studentId, DateOnly? startDate = null, DateOnly? endDate = null)
+        {
+            List<StudentTutoringProgram> programs = new List<StudentTutoringProgram>();
+
+            try
+            {
+                var parameters = new List<SqlParameter>
+        {
+            new SqlParameter("@StudentId", studentId),
+            new SqlParameter("@StartDate", startDate.HasValue ? startDate.Value.ToDateTime(TimeOnly.MinValue) : (object)DBNull.Value),
+            new SqlParameter("@EndDate", endDate.HasValue ? endDate.Value.ToDateTime(TimeOnly.MinValue) : (object)DBNull.Value)
+        };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_TUTOR_FECHA_PROGRAMA, parameters.ToArray());
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        StudentTutoringProgram program = new StudentTutoringProgram
+                        {
+                            TutoringProgramId = Convert.ToInt32(row["TutoringProgramId"]),
+                            ProgramName = row["ProgramName"].ToString(),
+                            StudentCount = Convert.ToInt32(row["StudentCount"])
+                        };
+
+                        programs.Add(program);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en GetTutorPrograms", ex);
+            }
+
+            return programs;
+        }     
+
+        public async Task<List<StudentAppointment>> ListarAppointmentPorFechaStudent(int studentId, DateOnly? startDate = null, DateOnly? endDate = null)
+        {
+            List<StudentAppointment> appointments = new List<StudentAppointment>();
+
+            try
+            {
+                var parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@StudentId", studentId),
+                new SqlParameter("@StartDate", startDate.HasValue ? startDate.Value.ToDateTime(TimeOnly.MinValue) : (object)DBNull.Value),
+                new SqlParameter("@EndDate", endDate.HasValue ? endDate.Value.ToDateTime(TimeOnly.MinValue) : (object)DBNull.Value)
+            };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_TUTOR_FECHA_CITA, parameters.ToArray());
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        StudentAppointment appointment = new StudentAppointment
+                        {
+                            StudentId = Convert.ToInt32(row["StudentId"]),
+                            StudentName = row["StudebtName"].ToString(),
+                            StudentLastName = row["LastName"].ToString(),
+                            StudentSecondLastName = row["SecondLastName"].ToString(),
+                            AppointmentId = Convert.ToInt32(row["AppointmentId"]),
+                            StartTime = Convert.ToDateTime(row["StartTime"]),
+                            EndTime = Convert.ToDateTime(row["EndTime"]),
+                            CreationDate = DateOnly.FromDateTime(Convert.ToDateTime(row["CreationDate"])),
+
+                            Reason = row["Reason"].ToString(),
+                            AppointmentTutorId = Convert.ToInt32(row["AppointmentTutorId"]),
+                            AppointmentStatusId = Convert.ToInt32(row["AppointmentStatusId"]),
+                            Classroom = string.IsNullOrEmpty(row["Classroom"].ToString()) ? "NoHayLink" : row["Classroom"].ToString(),
+
+                            IsInPerson = Convert.ToInt32(row["IsInPerson"]),
+                            AppointmentStatusName = row["AppointmentStatusName"].ToString(),
+                            FacultyName = row["FacultyName"].ToString(),
+                            StudentCount = Convert.ToInt32(row["StudentCount"])
+                        };
+
+                        appointments.Add(appointment);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarAppointmentPorFecha" + ex.Message, ex);
+            }
+
+            return appointments;
+        }     
+
+        public async Task<List<StudentProgramVirtualFace>> ListarProgramaVirtualFaceStudent(int studentId, DateOnly? startDate = null, DateOnly? endDate = null)
+        {
+            List<StudentProgramVirtualFace> programasVirtualFace = new List<StudentProgramVirtualFace>();
+
+            try
+            {
+                var parameters = new List<SqlParameter>
+        {
+            new SqlParameter("@StudentId", studentId),
+            new SqlParameter("@StartDate", startDate.HasValue ? startDate.Value.ToDateTime(TimeOnly.MinValue) : (object)DBNull.Value),
+            new SqlParameter("@EndDate", endDate.HasValue ? endDate.Value.ToDateTime(TimeOnly.MinValue) : (object)DBNull.Value)
+        };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable("TUTOR_PROGRAM_VIRTUAL_FACE_SELECT", parameters.ToArray());
+
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        StudentProgramVirtualFace programaVirtualFace = new StudentProgramVirtualFace
+                        {
+                            CantidadPresenciales = Convert.ToInt32(row["CantidadPresenciales"]),
+                            CantidadVirtuales = Convert.ToInt32(row["CantidadVirtuales"])
+                        };
+
+                        programasVirtualFace.Add(programaVirtualFace);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarProgramaVirtualFace" + ex.Message, ex);
+            }
+
+            return programasVirtualFace;
+        }      
     }
 }
