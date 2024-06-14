@@ -28,30 +28,66 @@ namespace MiTutor.Services.GestionUsuarios
             _userAccount.PUCPCode = student.PUCPCode;
 
             _userAccount.Persona = new Person();
+            _userAccount.Persona.Id = student.PersonId;
             _userAccount.Persona.Name = student.Name;
             _userAccount.Persona.LastName = student.LastName;
             _userAccount.Persona.SecondLastName = student.SecondLastName;
             _userAccount.Persona.Phone = student.Phone;
+            _userAccount.IsActive = student.UserIsActive;
 
-            await _userAccountService.CrearUsuario(_userAccount);
-            if(_userAccount.Id != -1)
+            if(_userAccount.Id == -1)
             {
-                SqlParameter[] parameters = new SqlParameter[]
-            {
+                //crear Estudiante
+                await _userAccountService.CrearUsuario(_userAccount);
+                if (_userAccount.Id != -1)
+                {
+                    //verificamos que se haya creado correctamente el usuario y persona, debe tener asignado un id
+                    SqlParameter[] parameters = new SqlParameter[]
+                {
                 new SqlParameter("@StudentId", SqlDbType.Int) { Value = _userAccount.Id },
                 new SqlParameter("@IsRisk", SqlDbType.Bit) { Value = 0 },
                 new SqlParameter("@SpecialtyId", SqlDbType.Int) { Value = student.SpecialityId }
-            };
+                };
 
-                try
-                {
-                    await _databaseManager.ExecuteStoredProcedure(StoredProcedure.CREAR_ESTUDIANTE, parameters);
-                }
-                catch
-                {
-                    throw new Exception("ERROR en CrearEstudiante");
+                    try
+                    {
+                        await _databaseManager.ExecuteStoredProcedure(StoredProcedure.CREAR_ESTUDIANTE, parameters);
+                    }
+                    catch
+                    {
+                        throw new Exception("ERROR en CrearEstudiante");
+                    }
                 }
             }
+            else
+            {
+                //editar estudiante
+                try
+                {
+                    await _userAccountService.CrearUsuario(_userAccount);
+                    SqlParameter[] parameters = new SqlParameter[]
+                    {
+                        new SqlParameter("@StudentId", SqlDbType.Int) { Value = _userAccount.Id },
+                        new SqlParameter("@IsRisk", SqlDbType.Bit) { Value = 0 },
+                        new SqlParameter("@IsActive", SqlDbType.Bit) { Value = student.UserIsActive },
+                        new SqlParameter("@SpecialtyId", SqlDbType.Int) { Value = student.SpecialityId}
+                    };
+                    try
+                    {
+                        await _databaseManager.ExecuteStoredProcedure(StoredProcedure.EDITAR_ESTUDIANTE, parameters);
+                    }
+                    catch
+                    {
+                        throw new Exception("ERROR en EditarDatosEstudiante");
+                    }
+
+                } catch
+                {
+                    throw new Exception("ERROR en EditarUsuariodeEstudiante");
+                }
+            }
+
+            
         }
 
         public async Task<List<Student>> ListarEstudiantes()

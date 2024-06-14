@@ -32,6 +32,7 @@
         public const string LISTAR_ESTUDIANTES_POR_ID = "STUDENT_LISTAR_BY_ID";
 
         public const string LISTAR_TODO_ESTUDIANTE = "STUDENT_LISTAR_TODO";
+        public const string EDITAR_ESTUDIANTE = "STUDENT_EDITAR_UPDATE";
 
 
         //USUARIO
