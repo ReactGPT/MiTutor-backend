@@ -20,18 +20,20 @@ namespace MiTutor.Services.TutoringManagement
             {
                 new SqlParameter("@Message", SqlDbType.NVarChar) { Value = comment.Message },
                 new SqlParameter("@AppointmentResultId", SqlDbType.Int) { Value = comment.AppointmentResultId },
-                new SqlParameter("@PrivacyTypeId", SqlDbType.Int) { Value = comment.PrivacyTypeId }
+                new SqlParameter("@PrivacyTypeId", SqlDbType.Int) { Value = comment.PrivacyTypeId },//CommentId
+                new SqlParameter("@CommentId", SqlDbType.Int) { Direction = ParameterDirection.Output }
             };
 
             try
             {
                 await _databaseManager.ExecuteStoredProcedure(StoredProcedure.CREAR_COMENTARIO, parameters);
+                comment.CommentId=Convert.ToInt32(parameters[parameters.Length - 1].Value);
             }
             catch
             {
                 throw new Exception("ERROR en CrearComentarioService");
             }
-        }
+         }
 
         public async Task<List<Comment>> ListarComments()
         {

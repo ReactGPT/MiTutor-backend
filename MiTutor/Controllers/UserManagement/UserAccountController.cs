@@ -39,6 +39,20 @@ namespace MiTutor.Controllers.GestionUsuarios
             return Ok(new { success = true, message = "Se insertaron satisfactoriamente" });
         }
 
+        [HttpPost("/eliminarUsuario")]
+        public async Task<IActionResult> EliminarUsuario(int id)
+        {
+            try
+            {
+                await _usuarioServices.EliminarUsuario(id);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, message = "Se eliminó correctamente el usuario" });
+        }
+
         [HttpGet("/listarUsuarios")]
         public async Task<IActionResult> ListarUsuarios()
         {

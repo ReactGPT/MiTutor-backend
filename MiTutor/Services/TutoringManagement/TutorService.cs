@@ -475,6 +475,135 @@ namespace MiTutor.Services.TutoringManagement
         }
 
 
+        public async Task<List<TutorProgram>> ListarProgramaFecha(int tutorId, DateOnly? startDate = null, DateOnly? endDate = null)
+        {
+            List<TutorProgram> programs = new List<TutorProgram>();
+
+            try
+            {
+                var parameters = new List<SqlParameter>
+        {
+            new SqlParameter("@TutorId", tutorId),
+            new SqlParameter("@StartDate", startDate.HasValue ? startDate.Value.ToDateTime(TimeOnly.MinValue) : (object)DBNull.Value),
+            new SqlParameter("@EndDate", endDate.HasValue ? endDate.Value.ToDateTime(TimeOnly.MinValue) : (object)DBNull.Value)
+        };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_TUTOR_FECHA_PROGRAMA, parameters.ToArray());
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        TutorProgram program = new TutorProgram
+                        {
+                            TutoringProgramId = Convert.ToInt32(row["TutoringProgramId"]),
+                            ProgramName = row["ProgramName"].ToString(),
+                            StudentCount = Convert.ToInt32(row["StudentCount"])
+                        };
+
+                        programs.Add(program);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en GetTutorPrograms", ex);
+            }
+
+            return programs;
+        }
+
+
+        public async Task<List<TutorAppointment>> ListarAppointmentPorFecha(int tutorId, DateOnly? startDate = null, DateOnly? endDate = null)
+        {
+            List<TutorAppointment> appointments = new List<TutorAppointment>();
+
+            try
+            {
+                var parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@TutorId", tutorId),
+                new SqlParameter("@StartDate", startDate.HasValue ? startDate.Value.ToDateTime(TimeOnly.MinValue) : (object)DBNull.Value),
+                new SqlParameter("@EndDate", endDate.HasValue ? endDate.Value.ToDateTime(TimeOnly.MinValue) : (object)DBNull.Value)
+            };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_TUTOR_FECHA_CITA, parameters.ToArray());
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        TutorAppointment appointment = new TutorAppointment
+                        {
+                            TutorId = Convert.ToInt32(row["TutorId"]),
+                            TutorName = row["TutorName"].ToString(),
+                            TutorLastName = row["LastName"].ToString(),
+                            TutorSecondLastName = row["SecondLastName"].ToString(),
+                            AppointmentId = Convert.ToInt32(row["AppointmentId"]),
+                            StartTime = Convert.ToDateTime(row["StartTime"]),
+                            EndTime = Convert.ToDateTime(row["EndTime"]),
+                            CreationDate = DateOnly.FromDateTime(Convert.ToDateTime(row["CreationDate"])),
+
+                            Reason = row["Reason"].ToString(),
+                            AppointmentTutorId = Convert.ToInt32(row["AppointmentTutorId"]),
+                            AppointmentStatusId = Convert.ToInt32(row["AppointmentStatusId"]),
+                            Classroom = string.IsNullOrEmpty(row["Classroom"].ToString()) ? "NoHayLink" : row["Classroom"].ToString(),
+
+                            IsInPerson = Convert.ToInt32(row["IsInPerson"]),
+                            AppointmentStatusName = row["AppointmentStatusName"].ToString(),
+                            FacultyName = row["FacultyName"].ToString(),
+                            StudentCount = Convert.ToInt32(row["StudentCount"])
+                        };
+
+                        appointments.Add(appointment);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarAppointmentPorFecha" + ex.Message, ex);
+            }
+
+            return appointments;
+        }
+
+
+        public async Task<List<TutorProgramVirtualFace>> ListarProgramaVirtualFace(int tutorId, DateOnly? startDate = null, DateOnly? endDate = null)
+        {
+            List<TutorProgramVirtualFace> programasVirtualFace = new List<TutorProgramVirtualFace>();
+
+            try
+            {
+                var parameters = new List<SqlParameter>
+        {
+            new SqlParameter("@TutorId", tutorId),
+            new SqlParameter("@StartDate", startDate.HasValue ? startDate.Value.ToDateTime(TimeOnly.MinValue) : (object)DBNull.Value),
+            new SqlParameter("@EndDate", endDate.HasValue ? endDate.Value.ToDateTime(TimeOnly.MinValue) : (object)DBNull.Value)
+        };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable("TUTOR_PROGRAM_VIRTUAL_FACE_SELECT", parameters.ToArray());
+
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        TutorProgramVirtualFace programaVirtualFace = new TutorProgramVirtualFace
+                        {
+                            CantidadPresenciales = Convert.ToInt32(row["CantidadPresenciales"]),
+                            CantidadVirtuales = Convert.ToInt32(row["CantidadVirtuales"])
+                        };
+
+                        programasVirtualFace.Add(programaVirtualFace);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarProgramaVirtualFace" + ex.Message, ex);
+            }
+
+            return programasVirtualFace;
+        }
+
+
 
     }
 }

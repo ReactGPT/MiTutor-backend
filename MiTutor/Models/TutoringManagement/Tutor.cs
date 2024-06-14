@@ -67,4 +67,39 @@ namespace MiTutor.Models.TutoringManagement
         public int CompletedCount { get; set; }
     }
 
+    //INDICADOR TUTOR-DETALLE
+    public class TutorProgram
+    {
+        public int TutoringProgramId { get; set; }
+        public string ProgramName { get; set; }
+        public int StudentCount { get; set; }
+    }
+
+
+    //INDICADOR CITA-DETALLE
+    public class TutorAppointment
+    {
+        public int TutorId { get; set; }
+        public string TutorName { get; set; }
+        public string TutorLastName { get; set; }
+        public string TutorSecondLastName { get; set; }
+        public int AppointmentId { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public DateOnly CreationDate { get; set; }
+        public string Reason { get; set; }
+        public int AppointmentTutorId { get; set; }
+        public int AppointmentStatusId { get; set; }
+        public string Classroom { get; set; }
+        public int IsInPerson { get; set; }
+        public string AppointmentStatusName { get; set; }
+        public string FacultyName { get; set; }
+        public int StudentCount { get; set; }
+    }
+
+    public class TutorProgramVirtualFace 
+    {
+        public int CantidadPresenciales { get; set; }
+        public int CantidadVirtuales { get; set; }
+    }
 }

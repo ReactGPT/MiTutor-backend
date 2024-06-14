@@ -96,7 +96,15 @@ namespace MiTutor.Services.TutoringManagement
             {
                 dtTutores.Rows.Add(tutor.TutorId);
             }
+            
+            DataTable dtStudentProgram = new DataTable();
+            dtStudentProgram.Columns.Add("Id", typeof(int));
+            dtStudentProgram.Columns.Add("IdTutor", typeof(int));
 
+            foreach(StudentTutoria student in programa.Students)
+            {
+                dtStudentProgram.Rows.Add(student.Id, student.IdTutor);
+            }
             parameters = new SqlParameter[]
                 {
                     new SqlParameter("@TutoringProgramID",SqlDbType.Int){ Value= (programa.TutoringProgramId)},
@@ -114,7 +122,8 @@ namespace MiTutor.Services.TutoringManagement
                     new SqlParameter("@SpecialtyId", SqlDbType.Int) { Value = programa.Specialty.SpecialtyId },
                     new SqlParameter("@isActive", SqlDbType.Bit) { Value = programa.IsActive },
                     new SqlParameter("@TutorTypeID", SqlDbType.Int) { Value = programa.TutorTypeId },
-                    new SqlParameter("@TutorIdList", SqlDbType.Structured) {Value= dtTutores}
+                    new SqlParameter("@TutorIdList", SqlDbType.Structured) {Value= dtTutores},
+                    new SqlParameter("@StudentProgramList",SqlDbType.Structured)  {Value= dtStudentProgram}
 
                 };
             
@@ -336,7 +345,7 @@ namespace MiTutor.Services.TutoringManagement
         }
         public async Task EliminarProgramaTutoria(int tutoringProgramId)
         {
-            List<TutoringProgramAlumno> programas = new List<TutoringProgramAlumno>();
+            //List<TutoringProgramAlumno> programas = new List<TutoringProgramAlumno>();
 
             try
             {
@@ -398,7 +407,68 @@ namespace MiTutor.Services.TutoringManagement
             return programas;
         }
 
+        public async Task<List<StudentProgramaDeTutoria>> ListarProgramasDeTutoriaPorStudentId(int studentId)
+        {
+            List<StudentProgramaDeTutoria> programas = new List<StudentProgramaDeTutoria>();
 
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+                    new SqlParameter("@StudentId", SqlDbType.Int){
+                    Value = studentId
+                }
+                };
 
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_PROGRAMAS_POR_ALUMNO, parameters);
+
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        StudentProgramaDeTutoria programa = new StudentProgramaDeTutoria
+                        {
+                            StudentProgramId = Convert.ToInt32(row["StudentProgramId"]),
+                            ProgramName = row["ProgramName"].ToString(),
+                            ProgramDescription = row["Description"].ToString(),
+                            StudentName = row["StudentName"].ToString(),
+                            LastName = row["LastName"].ToString(),
+                            SecondLastName = row["SecondLastName"].ToString(),
+                            NameFaculty = row["NameFaculty"].ToString()
+                        };
+
+                        programas.Add(programa);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al listar los programas de tutoría por tutor: " + ex.Message);
+            }
+
+            return programas;
+        }
+
+        public async Task EliminarEstudiantesDePrograma(int tutoringProgramId)
+        {
+            List<TutoringProgramAlumno> programas = new List<TutoringProgramAlumno>();
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+                    new SqlParameter("@tutoringProgramId", SqlDbType.Int){
+                        Value = tutoringProgramId
+                    }
+                };
+
+                await _databaseManager.ExecuteStoredProcedure(StoredProcedure.PROGRAMATUTORIA_ELIMINAR_ESTUDIANTES, parameters);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al eliminar estudiantes del programa de tutoria: " + ex.Message);
+            }
+
+            return;
+        }
     }
 }

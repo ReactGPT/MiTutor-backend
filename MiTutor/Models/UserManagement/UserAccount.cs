@@ -55,7 +55,9 @@ namespace MiTutor.Models.GestionUsuarios
         public List<object> Roles { get; set; }
         public bool isVerified { get; set; }
 
+        public DateTime CreationDate { get; set; }
 
+        public DateTime ModificationDate { get; set; }
     }
     
 }
