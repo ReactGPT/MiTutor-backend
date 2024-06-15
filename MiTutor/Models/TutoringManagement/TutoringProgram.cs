@@ -32,6 +32,8 @@ namespace MiTutor.Models.TutoringManagement
         public int TutoringProgramId { get; set; }
         public string ProgramName { get; set; }
         public string Description { get; set; }
+        public bool FaceToFace { get; set; }
+        public bool Virtual { get; set; }
         public string FacultyName { get; set; }
         public string SpecialtyName { get; set; }
         public string tutorType { get; set; }
