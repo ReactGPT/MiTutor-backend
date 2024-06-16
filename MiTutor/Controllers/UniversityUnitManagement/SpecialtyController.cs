@@ -32,6 +32,21 @@ namespace MiTutor.Controllers.UniversityUnitManagement
             return Ok(new { success = true, message = "Se inserto satisfactoriamente" });
         }
 
+        [HttpPost("modificarEspecialidad")] // Cambiado a ruta relativa
+        public async Task<IActionResult> ModificarEspecialidad([FromBody] Specialty specialty)
+        {
+            try
+            {
+                await _specialtyServices.ModificarEspecialidad(specialty);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, message = "Se modificó satisfactoriamente" });
+        }
+
+
         [HttpGet("listarEspecialidad")] // Cambiado a ruta relativa
         public async Task<IActionResult> ListarEspecialidades()
         {
@@ -39,6 +54,21 @@ namespace MiTutor.Controllers.UniversityUnitManagement
             try
             {
                 specialties = await _specialtyServices.ListarEspecialidades();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, data = specialties });
+        }
+
+        [HttpGet("listarEspecialidadXNombre")] // Cambiado a ruta relativa
+        public async Task<IActionResult> ListarEspecialidadesXNombre([FromQuery(Name = "name")] string name)
+        {
+            List<Specialty> specialties;
+            try
+            {
+                specialties = await _specialtyServices.ListarEspecialidadesXNombre(name==null?"":name);
             }
             catch (Exception ex)
             {

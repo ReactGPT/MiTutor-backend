@@ -11,6 +11,8 @@ namespace MiTutor.Models.UniversityUnitManagement
 
         public string Acronym { get; set; }
 
+        public DateTime CreationDate { get; set; }
+        public DateTime ModificationDate { get; set; }
         public int NumberOfStudents { get; set; }  
         public Faculty Faculty { get; set; }
         public bool IsActive { get; set; } 

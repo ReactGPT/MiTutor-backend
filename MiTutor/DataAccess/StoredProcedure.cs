@@ -40,6 +40,7 @@
         public const string OBTENERINFO_USUARIO = "USER_OBTENERINFOUSUARIO_SELECT";
         public const string EDITAR_USUARIO = "USER_EDITAR_UPDATE";
         public const string ELIMINAR_USUARIO = "USER_BORRAR_DELETE";
+        public const string LISTAR_USUARIOS_SIN_ALUMNOS = "USER_LISTAR_SIN_ALUMNOS";
 
         //FACULTAD
         public const string CREAR_FACULTAD = "FACULTY_INSERTAR_INSERT";
@@ -50,7 +51,8 @@
         public const string CREAR_ESPECIALIDAD = "SPECIALTY_INSERTAR_INSERT";
         public const string LISTAR_ESPECIALIDADES = "SPECIALTY_LISTAR_SELECT";
         public const string ELIMINAR_ESPECIALIDAD = "SPECIALTY_ELIMINAR_DELETE";
-
+        public const string MODIFICAR_ESPECIALIDAD = "SPECIALTY_ACTUALIZAR_UPDATE";
+        public const string LISTAR_ESPECIALIDADESXNOMBRE = "SPECIALTY_LISTAR_X_NAME";
         //TUTOR
         public const string CREAR_TUTOR = "TUTOR_INSERTAR_INSERT";
         public const string LISTAR_TUTORES = "TUTOR_LISTAR_SELECT";
