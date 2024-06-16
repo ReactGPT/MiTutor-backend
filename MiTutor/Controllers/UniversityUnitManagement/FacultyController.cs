@@ -49,6 +49,21 @@ namespace MiTutor.Controllers.UniversityUnitManagement
             return Ok(new { success = true, data = faculties });
         }
 
+        [HttpGet("listarFacultadesTodos")]  // Cambiado a ruta relativa
+        public async Task<IActionResult> ListarFacultadesTodos()
+        {
+            List<Faculty> faculties;
+            try
+            {
+                faculties = await _facultyServices.ListarFacultadesTodos();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, data = faculties });
+        }
+
         [HttpPut("actualizarFacultades")]  // Cambiado a ruta relativa
         public async Task<IActionResult> ActualizarFacultad([FromBody] Faculty facultad)
         {

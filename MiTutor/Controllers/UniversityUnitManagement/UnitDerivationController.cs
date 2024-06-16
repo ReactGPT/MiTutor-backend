@@ -89,5 +89,19 @@ namespace MiTutor.Controllers.UniversityUnitManagement
             }
             return Ok(new { success = true, message = "Se eliminó la derivación satisfactoriamente" });
         }
+
+        [HttpPost("/crearSubUnidadDerivacion")]
+        public async Task<IActionResult> CrearSubUnidadDerivacion([FromBody] UnitDerivation unidad)
+        {
+            try
+            {
+                await _unitDerivationService.CrearSubUnidadDerivacion(unidad);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, message = "Se inserto la unidad satisfactoriamente" });
+        }
     }
 }

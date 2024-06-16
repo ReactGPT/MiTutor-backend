@@ -41,12 +41,14 @@
         public const string OBTENERINFO_USUARIO = "USER_OBTENERINFOUSUARIO_SELECT";
         public const string EDITAR_USUARIO = "USER_EDITAR_UPDATE";
         public const string ELIMINAR_USUARIO = "USER_BORRAR_DELETE";
+        public const string LISTAR_USUARIOS_SIN_ALUMNOS = "USER_LISTAR_SIN_ALUMNOS";
 
         //FACULTAD
         public const string CREAR_FACULTAD = "FACULTY_INSERTAR_INSERT";
         public const string LISTAR_FACULTADES = "FACULTY_LISTAR_SELECT";
         public const string ELIMINAR_FACULTAD = "FACULTY_ELIMINAR_DELETE";
         public const string ACTUALIZAR_FACULTAD = "FACULTY_ACTUALIZAR_UPDATE";
+        public const string LISTAR_FACULTADES_TODOS = "FACULTY_LISTAR_TODOS";
 
         //ESPECIALIDAD
         public const string CREAR_ESPECIALIDAD = "SPECIALTY_INSERTAR_INSERT";
@@ -60,6 +62,7 @@
         public const string ELIMINAR_UNIDAD = "UNITDERIVATION_ELIMINAR_DELETE";
         public const string LISTAR_SUB_UNIDADES = "SUBUNIT_LISTAR_X_UNITDERIVATION";
         public const string ACTUALIZAR_UNIDAD = "UNITDERIVATION_ACTUALIZAR_UPDATE";
+        public const string CREAR_SUBUNIDAD = "SUBUNIT_INSERTAR_INSERT";
 
         //TUTOR
         public const string CREAR_TUTOR = "TUTOR_INSERTAR_INSERT";

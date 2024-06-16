@@ -147,5 +147,27 @@ namespace MiTutor.Services.UniversityUnitManagement
             }
         }
 
+        public async Task CrearSubUnidadDerivacion(UnitDerivation unidad)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@Name", SqlDbType.NVarChar) { Value = unidad.Name },
+                new SqlParameter("@Acronym", SqlDbType.NVarChar) { Value = unidad.Acronym },
+                new SqlParameter("@Responsible", SqlDbType.NVarChar) { Value = unidad.Responsible },
+                new SqlParameter("@Email", SqlDbType.NVarChar) { Value = unidad.Email },
+                new SqlParameter("@Phone", SqlDbType.NVarChar) { Value = unidad.Phone },
+                new SqlParameter("@UnitDerivationId", SqlDbType.Int) { Value = unidad.ParentId },
+                new SqlParameter("@SubUnitDerivationId", SqlDbType.Int) { Value = 0 }
+            };
+
+            try
+            {
+                await _databaseManager.ExecuteStoredProcedure(StoredProcedure.CREAR_SUBUNIDAD, parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al crear la Subunidad: " + ex.Message);
+            }
+        }
     }
 }

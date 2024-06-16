@@ -19,6 +19,7 @@
         public DateTime CreationDate { get; set; }
 
         public bool IsParent { get; set; }
+        public int ParentId { get; set; }
 
         //public virtual ICollection<Derivation> Derivations { get; set; } = new List<Derivation>();
 
