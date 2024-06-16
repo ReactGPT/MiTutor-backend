@@ -234,6 +234,8 @@ namespace MiTutor.Services.TutoringManagement
                             TutoringProgramId = Convert.ToInt32(row["TutoringProgramId"]),
                             ProgramName = row["ProgramName"].ToString(),
                             Description = row["Description"].ToString(),
+                            FaceToFace = Convert.ToBoolean(row["FaceToFace"]),
+                            Virtual = Convert.ToBoolean(row["Virtual"]),
                             FacultyName = row["FacultyName"].ToString(),
                             SpecialtyName = row["SpecialtyName"].ToString(),
                             tutorType = row["TutorType"].ToString()

@@ -97,17 +97,25 @@ namespace MiTutor.Controllers.TutoringManagement
         }
 
         [HttpPut("/actualizarResultadoCitaGrupal")]
-        public async Task<IActionResult> ActualizarResultadoCitaGrupal([FromQuery] List<ListarStudentJSON2> estudiantes) 
+        public async Task<IActionResult> ActualizarResultadoCitaGrupal([FromBody] List<ListarStudentJSON2> estudiantes)
         {
+            if (estudiantes == null || estudiantes.Count == 0)
+            {
+                return BadRequest("La lista de estudiantes está vacía o no se ha recibido correctamente.");
+            }
+
             try
             {
                 await _appointmentResultServices.ActualizarResultadosCitaGrupal(estudiantes);
+                return Ok(new { success = true, message = "Se actualizaron satisfactoriamente" });
             }
             catch (Exception ex)
             {
+                // Log para depuración
+                Console.WriteLine($"Error al actualizar resultados: {ex.Message}");
                 return BadRequest(ex.Message);
             }
-            return Ok(new { success = true, message = "Se actualizaron satisfactoriamente" });
         }
+
     }
 }

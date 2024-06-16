@@ -161,7 +161,8 @@ namespace MiTutor.Services.TutoringManagement
         public async Task<List<int>> AgregarResultadosCitaGrupal(List<ListarStudentJSON2> estudiantes)
         {
             var idResults = new List<int>();
-
+            string mensaje1nueevo = estudiantes[0].Message1;
+            string mensaje2nueevo = estudiantes[0].Message2;
             foreach (var estudiante in estudiantes)
             {
                 int idResult = 0;
@@ -186,11 +187,14 @@ namespace MiTutor.Services.TutoringManagement
                     Comment comentVacio = new Comment
                     {
                         PrivacyTypeId = 1,
-                        AppointmentResultId = idResult
+                        AppointmentResultId = idResult,
+                        Message = mensaje1nueevo,
+
                     };
                     await _commentService.CrearComentario(comentVacio);
 
                     comentVacio.PrivacyTypeId = 2;
+                    comentVacio.Message = mensaje2nueevo;
                     await _commentService.CrearComentario(comentVacio);
                 }
                 catch (Exception ex)
@@ -205,15 +209,17 @@ namespace MiTutor.Services.TutoringManagement
         //ACTUALIZAR GRUPAL
         public async Task ActualizarResultadosCitaGrupal(List<ListarStudentJSON2> estudiantes)
         {
-            var idResults = new List<int>();
-
+            string mensaje1nueevo=estudiantes[0].Message1;
+            string mensaje2nueevo = estudiantes[0].Message2;
             foreach (var estudiante in estudiantes)
             { 
 
                 SqlParameter[] parameters = new SqlParameter[]
-                { 
+                {
                     new SqlParameter("@asistio", SqlDbType.Bit) { Value = estudiante.Asistio },
-                    new SqlParameter("@appointment_result_id", SqlDbType.Int) { Value= estudiante.AppointmentResultId }
+                    new SqlParameter("@id_appointment_result", SqlDbType.Int) { Value= estudiante.AppointmentResultId },
+                    new SqlParameter("@message", SqlDbType.NVarChar) { Value = mensaje1nueevo },
+                    new SqlParameter("@message2", SqlDbType.NVarChar) { Value = mensaje2nueevo }
                 };
 
                 try
