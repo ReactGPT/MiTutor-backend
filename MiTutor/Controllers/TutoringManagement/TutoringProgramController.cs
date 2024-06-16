@@ -161,5 +161,23 @@ namespace MiTutor.Controllers.TutoringManagement
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("/eliminarEstudiantesPrograma")]
+        public async Task<IActionResult> EliminarEstudiantesDeProgramaTutoria(int tutoringProgramId)
+        {
+            try
+            {
+
+                await _TutoringProgramServices.EliminarEstudiantesDePrograma(tutoringProgramId);
+
+
+                return Ok(new { success = true, message = "Se eliminaron correctamente los estudiantes del programa de tutoria" });
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(new { success = false, message = ex.Message });
+            }
+        }
     }
 }

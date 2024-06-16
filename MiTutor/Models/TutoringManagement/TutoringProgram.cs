@@ -1,4 +1,5 @@
-﻿using MiTutor.Models.UniversityUnitManagement;
+﻿using MiTutor.Models.GestionUsuarios;
+using MiTutor.Models.UniversityUnitManagement;
 
 namespace MiTutor.Models.TutoringManagement
 {
@@ -22,6 +23,7 @@ namespace MiTutor.Models.TutoringManagement
         public int TutorsNumber { get; set; }
         public int TutorTypeId { get; set; }
         public List<Tutor> Tutors { get; set; }
+        public List<StudentTutoria> Students { get; set; } 
         public string TutorTypeDescription { get; set; }
     }
 
@@ -30,6 +32,8 @@ namespace MiTutor.Models.TutoringManagement
         public int TutoringProgramId { get; set; }
         public string ProgramName { get; set; }
         public string Description { get; set; }
+        public bool FaceToFace { get; set; }
+        public bool Virtual { get; set; }
         public string FacultyName { get; set; }
         public string SpecialtyName { get; set; }
         public string tutorType { get; set; }

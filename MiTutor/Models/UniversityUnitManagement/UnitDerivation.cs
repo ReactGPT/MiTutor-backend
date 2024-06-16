@@ -6,15 +6,20 @@
 
         public string Name { get; set; }
 
-        //public string Acronym { get; set; }
+        public string Acronym { get; set; }
 
-        //public string Responsible { get; set; }
+        public string Responsible { get; set; }
 
-        //public bool IsActive { get; set; }
+        public bool IsActive { get; set; }
 
-        //public string Email { get; set; }
+        public string Email { get; set; }
 
-        //public string Phone { get; set; }
+        public string Phone { get; set; }
+
+        public DateTime CreationDate { get; set; }
+
+        public bool IsParent { get; set; }
+        public int ParentId { get; set; }
 
         //public virtual ICollection<Derivation> Derivations { get; set; } = new List<Derivation>();
 

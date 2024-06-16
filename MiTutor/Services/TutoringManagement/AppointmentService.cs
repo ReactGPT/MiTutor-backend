@@ -178,6 +178,7 @@ namespace MiTutor.Services.TutoringManagement
                         ListarAppointment cita = new ListarAppointment
                         {
                             AppointmentId = Convert.ToInt32(row["AppointmentId"]),
+                            ProgramId = Convert.ToInt32(row["TutoringProgramId"]),
                             ProgramName = row["ProgramName"].ToString(),
                             AppointmentStatus = row["AppointmentStatus"].ToString(),
                             GroupBased = Convert.ToBoolean(row["GroupBased"]),

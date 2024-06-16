@@ -62,13 +62,22 @@ namespace MiTutor.Controllers.UniversityUnitManagement
             return Ok(new { success = true, data = specialties });
         }
 
+<<<<<<< HEAD
         [HttpGet("listarEspecialidadXNombre")] // Cambiado a ruta relativa
         public async Task<IActionResult> ListarEspecialidadesXNombre([FromQuery(Name = "name")] string name)
+=======
+        [HttpGet("listarEspecialidadPorFacultad")] // Cambiado a ruta relativa
+        public async Task<IActionResult> ListarEspecialidadesPorFacultad(int FacultyId)
+>>>>>>> 7b548bdb7f50c21eca390c6269087d8a2dee3d38
         {
             List<Specialty> specialties;
             try
             {
+<<<<<<< HEAD
                 specialties = await _specialtyServices.ListarEspecialidadesXNombre(name==null?"":name);
+=======
+                specialties = await _specialtyServices.ListarEspecialidadesPorFacultad(FacultyId);
+>>>>>>> 7b548bdb7f50c21eca390c6269087d8a2dee3d38
             }
             catch (Exception ex)
             {

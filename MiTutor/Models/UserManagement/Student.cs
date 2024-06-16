@@ -151,6 +151,13 @@ namespace MiTutor.Models.GestionUsuarios
             public string PUCPCode { get; set; }
             public bool IsRisk { get; set; }
             public bool Asistio { get; set; }
+            
+            public int AppointmentResultId { get; set; }
+            public int TutoringProgramId { get; set; }
 
+            public int AppointmentId { get; set;}
+            public string Message1 { get; set; }
+            public string Message2 { get; set;}
+ 
         }
     }

@@ -118,6 +118,7 @@ namespace MiTutor.Services.UniversityUnitManagement
             return specialties;
         }
 
+<<<<<<< HEAD
         public async Task<List<Specialty>> ListarEspecialidadesXNombre(string specialtyName)
         {
             List<Specialty> specialties = new List<Specialty>();
@@ -129,6 +130,20 @@ namespace MiTutor.Services.UniversityUnitManagement
             {
                 // Ejecutar procedimiento almacenado para obtener las facultades
                 DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_ESPECIALIDADESXNOMBRE,parameters);
+=======
+        public async Task<List<Specialty>> ListarEspecialidadesPorFacultad(int FacultyId)
+        {
+            List<Specialty> specialties = new List<Specialty>();
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+                    new SqlParameter("@FacultyId", SqlDbType.Int) { Value = FacultyId },
+                };
+
+                // Ejecutar procedimiento almacenado para obtener las facultades
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_ESPECIALIDAD_X_FACULTAD, parameters);
+>>>>>>> 7b548bdb7f50c21eca390c6269087d8a2dee3d38
 
                 // Verificar si se obtuvieron datos
                 if (dataTable != null)
@@ -142,6 +157,7 @@ namespace MiTutor.Services.UniversityUnitManagement
                             Name = row["Name"].ToString(),
                             Acronym = row["Acronym"].ToString(),
                             NumberOfStudents = Convert.ToInt32(row["NumberOfStudents"]),
+<<<<<<< HEAD
                             CreationDate = Convert.ToDateTime(row["CreationDate"]),
                             ModificationDate = Convert.ToDateTime(row["ModificationDate"]),
                             IsActive = Convert.ToBoolean(row["IsActive"]),
@@ -151,6 +167,13 @@ namespace MiTutor.Services.UniversityUnitManagement
                                 Name = row["FacultyName"].ToString(),
                                 Acronym = row["FacultyAcronym"].ToString(),
 
+=======
+                            Faculty = new Faculty
+                            {
+                                FacultyId = Convert.ToInt32(row["FacultyId"]),
+                                //Name = row["FacultyName"].ToString(),
+                                //Acronym = row["FacultyAcronym"].ToString()
+>>>>>>> 7b548bdb7f50c21eca390c6269087d8a2dee3d38
                             }
                         };
 
@@ -164,8 +187,12 @@ namespace MiTutor.Services.UniversityUnitManagement
                                 Persona = new Models.GestionUsuarios.Person
                                 {
                                     Name = row["ManagerName"].ToString(),
+<<<<<<< HEAD
                                     LastName = row["ManagerLastName"].ToString(),
                                     Phone = row["Phone"].ToString()
+=======
+                                    LastName = row["ManagerLastName"].ToString()
+>>>>>>> 7b548bdb7f50c21eca390c6269087d8a2dee3d38
                                 }
                             };
                         };

@@ -157,5 +157,82 @@ namespace MiTutor.Services.TutoringManagement
             }
         }
 
+        //INSERTAR GRUPAL
+        public async Task<List<int>> AgregarResultadosCitaGrupal(List<ListarStudentJSON2> estudiantes)
+        {
+            var idResults = new List<int>();
+            string mensaje1nueevo = estudiantes[0].Message1;
+            string mensaje2nueevo = estudiantes[0].Message2;
+            foreach (var estudiante in estudiantes)
+            {
+                int idResult = 0;
+
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@id_student", SqlDbType.Int) { Value = estudiante.StudentId },
+                    new SqlParameter("@id_program", SqlDbType.Int) { Value = estudiante.TutoringProgramId },
+                    new SqlParameter("@id_appointment", SqlDbType.Int) { Value = estudiante.AppointmentId },
+                    new SqlParameter("@asistio", SqlDbType.Bit) { Value = estudiante.Asistio },
+                    new SqlParameter("@appointment_result_id", SqlDbType.Int) { Direction = ParameterDirection.Output }
+                };
+
+                try
+                {
+                    await _databaseManager.ExecuteStoredProcedure(StoredProcedure.INSERTAR_RESULTADO_CITA, parameters);
+
+                    // Obtener el ID del resultado recién insertado
+                    idResult = Convert.ToInt32(parameters[parameters.Length - 1].Value);
+                    idResults.Add(idResult);
+
+                    Comment comentVacio = new Comment
+                    {
+                        PrivacyTypeId = 1,
+                        AppointmentResultId = idResult,
+                        Message = mensaje1nueevo,
+
+                    };
+                    await _commentService.CrearComentario(comentVacio);
+
+                    comentVacio.PrivacyTypeId = 2;
+                    comentVacio.Message = mensaje2nueevo;
+                    await _commentService.CrearComentario(comentVacio);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error al agregar el resultado de cita", ex);
+                }
+            }
+
+            return idResults;
+        }
+
+        //ACTUALIZAR GRUPAL
+        public async Task ActualizarResultadosCitaGrupal(List<ListarStudentJSON2> estudiantes)
+        {
+            string mensaje1nueevo=estudiantes[0].Message1;
+            string mensaje2nueevo = estudiantes[0].Message2;
+            foreach (var estudiante in estudiantes)
+            { 
+
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@asistio", SqlDbType.Bit) { Value = estudiante.Asistio },
+                    new SqlParameter("@id_appointment_result", SqlDbType.Int) { Value= estudiante.AppointmentResultId },
+                    new SqlParameter("@message", SqlDbType.NVarChar) { Value = mensaje1nueevo },
+                    new SqlParameter("@message2", SqlDbType.NVarChar) { Value = mensaje2nueevo }
+                };
+
+                try
+                {
+                    await _databaseManager.ExecuteStoredProcedure(StoredProcedure.ACTUALIZAR_RESULTADO_CITA_GRUPAL, parameters);
+
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error al actualizar el resultado de cita", ex);
+                }
+            }
+        }
+
     }
 }
