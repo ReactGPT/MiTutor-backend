@@ -585,7 +585,9 @@ namespace MiTutor.Services.GestionUsuarios
                             Asistio = row["Asistio"] != DBNull.Value ? Convert.ToBoolean(row["Asistio"]) : false,
                             AppointmentResultId = row["AppointmentResultId"] != DBNull.Value ? Convert.ToInt32(row["AppointmentResultId"]) : 0,
                             AppointmentId = Convert.ToInt32(row["AppointmentId"]),
-                            TutoringProgramId = Convert.ToInt32(row["TutoringProgramId"])
+                            TutoringProgramId = Convert.ToInt32(row["TutoringProgramId"]),
+                            Message1 = row["Message1"].ToString(),
+                            Message2 = row["Message2"].ToString()
                         };
 
                         students.Add(student);

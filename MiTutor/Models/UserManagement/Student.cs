@@ -156,6 +156,8 @@ namespace MiTutor.Models.GestionUsuarios
             public int TutoringProgramId { get; set; }
 
             public int AppointmentId { get; set;}
-
+            public string Message1 { get; set; }
+            public string Message2 { get; set;}
+ 
         }
     }
