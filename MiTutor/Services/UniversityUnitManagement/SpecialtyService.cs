@@ -2,6 +2,7 @@
 using MiTutor.Models.UniversityUnitManagement;
 using System.Data.SqlClient;
 using System.Data;
+using MiTutor.Controllers.UniversityUnitManagement;
 
 namespace MiTutor.Services.UniversityUnitManagement
 {
@@ -21,8 +22,8 @@ namespace MiTutor.Services.UniversityUnitManagement
                 new SqlParameter("@Name", SqlDbType.NVarChar) { Value = specialty.Name },
                 new SqlParameter("@Acronym", SqlDbType.NVarChar) { Value = specialty.Acronym },
                 new SqlParameter("@NumberOfStudents", SqlDbType.Int) { Value = specialty.NumberOfStudents },
-                new SqlParameter("@FacultyId", SqlDbType.Int) { Value = specialty.Faculty.FacultyId }
-
+                new SqlParameter("@FacultyId", SqlDbType.Int) { Value = specialty.Faculty.FacultyId },
+                new SqlParameter("@ManagerId", SqlDbType.Int) { Value = specialty.SpecialtyManager.Id }
             };
 
             try
@@ -32,6 +33,28 @@ namespace MiTutor.Services.UniversityUnitManagement
             catch (Exception ex)
             {
                 throw new Exception("Error al crear la facultad: " + ex.Message);
+            }
+        }
+
+        public async Task ModificarEspecialidad(Specialty specialty)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@SpecialtyId", SqlDbType.Int) { Value = specialty.SpecialtyId },
+                new SqlParameter("@Name", SqlDbType.NVarChar) { Value = specialty.Name },
+                new SqlParameter("@Acronym", SqlDbType.NVarChar) { Value = specialty.Acronym },
+                new SqlParameter("@IsActive",SqlDbType.Bit) { Value = specialty.IsActive },
+                new SqlParameter("@ManagerId", SqlDbType.Int) { Value = specialty.SpecialtyManager.Id }
+            };
+
+            try
+            {
+                await _databaseManager.ExecuteStoredProcedure(StoredProcedure.MODIFICAR_ESPECIALIDAD, parameters);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al modificar la facultad: " + ex.Message);
             }
         }
 
@@ -56,6 +79,9 @@ namespace MiTutor.Services.UniversityUnitManagement
                             Name = row["Name"].ToString(),
                             Acronym = row["Acronym"].ToString(),
                             NumberOfStudents = Convert.ToInt32(row["NumberOfStudents"]),
+                            CreationDate = Convert.ToDateTime(row["CreationDate"]),
+                            ModificationDate = Convert.ToDateTime(row["ModificationDate"]),
+                            IsActive = Convert.ToBoolean(row["IsActive"]),
                             Faculty = new Faculty
                             {
                                 FacultyId = Convert.ToInt32(row["FacultyId"]),
@@ -74,7 +100,8 @@ namespace MiTutor.Services.UniversityUnitManagement
                                 Persona = new Models.GestionUsuarios.Person
                                 {
                                     Name = row["ManagerName"].ToString(),
-                                    LastName = row["ManagerLastName"].ToString()
+                                    LastName = row["ManagerLastName"].ToString(),
+                                    Phone = row["Phone"].ToString()
                                 }
                             };
                         }; 
@@ -149,5 +176,67 @@ namespace MiTutor.Services.UniversityUnitManagement
             return specialties;
         }
 
+        public async Task<List<Specialty>> ListarEspecialidadesXNombre(string specialtyName)
+        {
+            List<Specialty> specialties = new List<Specialty>();
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@Name", SqlDbType.NVarChar) { Value = specialtyName }
+            };
+            try
+            {
+                // Ejecutar procedimiento almacenado para obtener las facultades
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_ESPECIALIDADESXNOMBRE, parameters);
+
+                // Verificar si se obtuvieron datos
+                if (dataTable != null)
+                {
+                    // Recorrer cada fila del resultado y crear objetos Faculty
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        Specialty specialty = new Specialty
+                        {
+                            SpecialtyId = Convert.ToInt32(row["SpecialtyId"]),
+                            Name = row["Name"].ToString(),
+                            Acronym = row["Acronym"].ToString(),
+                            NumberOfStudents = Convert.ToInt32(row["NumberOfStudents"]),
+                            CreationDate = Convert.ToDateTime(row["CreationDate"]),
+                            ModificationDate = Convert.ToDateTime(row["ModificationDate"]),
+                            IsActive = Convert.ToBoolean(row["IsActive"]),
+                            Faculty = new Faculty
+                            {
+                                FacultyId = Convert.ToInt32(row["FacultyId"]),
+                                Name = row["FacultyName"].ToString(),
+                                Acronym = row["FacultyAcronym"].ToString(),
+
+                            }
+                        };
+
+                        if (row["SpecialtyManagerId"] != DBNull.Value)
+                        {
+                            specialty.SpecialtyManager = new Models.GestionUsuarios.UserAccount
+                            {
+                                Id = Convert.ToInt32(row["SpecialtyManagerId"]),
+                                InstitutionalEmail = row["InstitutionalEmail"].ToString(), // Agregar el correo electrónico del gerente de facultad
+                                PUCPCode = row["PUCPCode"].ToString(),
+                                Persona = new Models.GestionUsuarios.Person
+                                {
+                                    Name = row["ManagerName"].ToString(),
+                                    LastName = row["ManagerLastName"].ToString(),
+                                    Phone = row["Phone"].ToString()
+                                }
+                            };
+                        };
+                        specialties.Add(specialty);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al listar las facultades: " + ex.Message);
+            }
+
+            return specialties;
+        }
     }
 }
