@@ -157,6 +157,11 @@ namespace MiTutor.Controllers.TutoringManagement
                         //tutor solicitado
                         estado = "SOLICITUD_PENDIENTE";
                     }
+                    else if (tutores[0].State == "RECHAZADO")
+                    {
+                        //tutor solicitado
+                        estado = "SIN_TUTOR";
+                    }
                 }
 
                 return Ok(new { success = true, data = new { estado = estado, tutores = tutores } });
