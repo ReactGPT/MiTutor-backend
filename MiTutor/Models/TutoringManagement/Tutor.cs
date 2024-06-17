@@ -12,6 +12,7 @@ namespace MiTutor.Models.TutoringManagement
 
         public bool IsActive { get; set; }
 
+        public string ModificationDate { get; set; }
         public UserAccount UserAccount { get; set; }
         [JsonIgnore]
         public ICollection<AvailabilityTutor> AvailabilityTutors { get; set; } = new List<AvailabilityTutor>();
@@ -19,7 +20,7 @@ namespace MiTutor.Models.TutoringManagement
         public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
         public Faculty Faculty { get; set; }
 
-        public TutoringProgram TutoringProgram { get; set; }
+        public TutoringProgram TutoringProgram { get; set; } 
     }
 
     public class TutorXtutoringProgramXalumno

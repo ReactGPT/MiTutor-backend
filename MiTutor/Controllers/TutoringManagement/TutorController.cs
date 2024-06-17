@@ -35,19 +35,33 @@ namespace MiTutor.Controllers.TutoringManagement
             return Ok(new { success = true, message = "Se inserto satisfactoriamente" });
         }
 
-        [HttpGet("/listarTutores")]
-        public async Task<IActionResult> ListarTutores(int idProgramaTutoria=-1)
+        [HttpPost("/crearTutorBatch")]
+        public async Task<IActionResult> CrearTutoresBatch([FromBody] List<Tutor> tutores)
         {
-            List<Tutor> faculties;
             try
             {
-                faculties = await _tutorServices.ListarTutores(idProgramaTutoria);
+                await _tutorServices.CrearTutoresBatch(tutores);
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
-            return Ok(new { success = true, data = faculties });
+            return Ok(new { success = true, message = "Se insertaron satisfactoriamente " + tutores.Count.ToString() + " tutores"});
+        }
+
+        [HttpGet("/listarTutores")]
+        public async Task<IActionResult> ListarTutores(int idProgramaTutoria=-1)
+        {
+            List<Tutor> tutores;
+            try
+            {
+                tutores = await _tutorServices.ListarTutores(idProgramaTutoria);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, data = tutores });
         }
 
         [HttpGet("listarTutoresPorNombreApellido/{nombreApellido?}")]
