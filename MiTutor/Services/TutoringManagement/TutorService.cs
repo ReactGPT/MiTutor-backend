@@ -33,7 +33,34 @@ namespace MiTutor.Services.TutoringManagement
                 throw new Exception("Error al crear el tutor: " + ex.Message);
             }
         }
+        public async Task CrearTutoresBatch(List<Tutor> tutores)
+        {
+            SqlParameter[] parameters;
 
+            DataTable dtTutores = new DataTable();
+            dtTutores.Columns.Add("IdTutor", typeof(int));
+            dtTutores.Columns.Add("IdAccount", typeof(int));
+            
+            
+            try
+            {
+                foreach (Tutor tutor in tutores)
+                {
+                    dtTutores.Rows.Add(tutor.TutorId, tutor.UserAccount.Id);
+                }
+
+                parameters = new SqlParameter[]
+                {
+                new SqlParameter("@TableTutores", SqlDbType.Structured) { Value = dtTutores }
+                };
+
+                await _databaseManager.ExecuteStoredProcedure(StoredProcedure.CREARBORRAR_TUTORES, parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al crear los tutores: " + ex.Message);
+            }
+        }
         public async Task<List<Tutor>> ListarTutores(int IdProgramaTutoria)
         {
             List<Tutor> tutores = new List<Tutor>();
@@ -58,8 +85,10 @@ namespace MiTutor.Services.TutoringManagement
                                     LastName = row["PersonLastName"].ToString(),
                                     SecondLastName = row["PersonSecondLastName"].ToString()
                                 },
-                                InstitutionalEmail = row["InstitutionalEmail"].ToString()
-                            }
+                                InstitutionalEmail = row["InstitutionalEmail"].ToString(),
+                                PUCPCode = row["PUCPCode"].ToString()
+                            },
+                            ModificationDate = row["ModificationDate"].ToString()
                         };
 
                         tutores.Add(tutor);
