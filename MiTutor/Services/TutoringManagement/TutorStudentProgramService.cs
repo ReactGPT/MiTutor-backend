@@ -129,6 +129,7 @@ namespace MiTutor.Services.TutoringManagement
                     {
                         TutorStudentProgramId = Convert.ToInt32(row["TutorStudentProgramId"]),
                         State = row["State"].ToString(),
+                        Motivo = row["Motivo"].ToString(),
                         IsActive = 1,
                         TutorId = Convert.ToInt32(row["TutorId"]),
                         StudentProgramId = Convert.ToInt32(row["TutoringProgramId"]),
