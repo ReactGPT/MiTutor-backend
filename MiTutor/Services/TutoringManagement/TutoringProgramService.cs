@@ -146,7 +146,7 @@ namespace MiTutor.Services.TutoringManagement
 
             try
             {
-                await _databaseManager.ExecuteStoredProcedure(StoredProcedure.CREAR_PROGRAMA_DE_TUTORIA, parameters);
+                //await _databaseManager.ExecuteStoredProcedure(StoredProcedure.CREAR_PROGRAMA_DE_TUTORIA, parameters);
             }
             catch (Exception ex)
             {
