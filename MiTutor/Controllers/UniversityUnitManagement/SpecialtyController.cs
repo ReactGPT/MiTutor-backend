@@ -96,7 +96,7 @@ namespace MiTutor.Controllers.UniversityUnitManagement
         {
             try
             {
-                await _specialtyServices.EliminarEspecialidad(SpecialtyId);n
+                await _specialtyServices.EliminarEspecialidad(SpecialtyId);
             }
             catch (Exception ex)
             {
