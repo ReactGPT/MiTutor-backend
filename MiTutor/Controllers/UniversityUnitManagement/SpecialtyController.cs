@@ -90,5 +90,19 @@ namespace MiTutor.Controllers.UniversityUnitManagement
             }
             return Ok(new { success = true, data = specialties });
         }
+
+        [HttpPut("eliminarEspecialidad")]
+        public async Task<IActionResult> EliminarEspecialidad(int SpecialtyId)
+        {
+            try
+            {
+                await _specialtyServices.EliminarEspecialidad(SpecialtyId);n
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, message = "Se modificó satisfactoriamente" });
+        }
     }
 }

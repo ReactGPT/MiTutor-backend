@@ -238,5 +238,23 @@ namespace MiTutor.Services.UniversityUnitManagement
 
             return specialties;
         }
+
+        public async Task EliminarEspecialidad(int SpecialtyId)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@SpecialtyId", SqlDbType.Int) { Value = SpecialtyId },
+            };
+
+            try
+            {
+                await _databaseManager.ExecuteStoredProcedure(StoredProcedure.ELIMINAR_ESPECIALIDAD, parameters);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al eliminar la facultad: " + ex.Message);
+            }
+        }
     }
 }
