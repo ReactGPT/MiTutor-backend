@@ -18,7 +18,7 @@ namespace MiTutor.Controllers.UniversityUnitManagement
             _specialtyServices = specialtyService;
         }
 
-        [HttpPost("crearEspecialidad")] // Cambiado a ruta relativa
+        [HttpPost("crearEspecialidad")]
         public async Task<IActionResult> CrearEspecialidad([FromBody] Specialty specialty)
         {
             try

@@ -23,7 +23,7 @@ namespace MiTutor.Services.UniversityUnitManagement
                 new SqlParameter("@Acronym", SqlDbType.NVarChar) { Value = specialty.Acronym },
                 new SqlParameter("@NumberOfStudents", SqlDbType.Int) { Value = specialty.NumberOfStudents },
                 new SqlParameter("@FacultyId", SqlDbType.Int) { Value = specialty.Faculty.FacultyId },
-                new SqlParameter("@ManagerId", SqlDbType.Int) { Value = specialty.SpecialtyManager.Id }
+                new SqlParameter("@ManagerId", SqlDbType.Int) { Value = (object)specialty.SpecialtyManager.Id ?? DBNull.Value }
             };
 
             try
