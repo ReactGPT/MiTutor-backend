@@ -43,8 +43,7 @@ namespace MiTutor.Services.UniversityUnitManagement
                 new SqlParameter("@SpecialtyId", SqlDbType.Int) { Value = specialty.SpecialtyId },
                 new SqlParameter("@Name", SqlDbType.NVarChar) { Value = specialty.Name },
                 new SqlParameter("@Acronym", SqlDbType.NVarChar) { Value = specialty.Acronym },
-                new SqlParameter("@IsActive",SqlDbType.Bit) { Value = specialty.IsActive },
-                new SqlParameter("@ManagerId", SqlDbType.Int) { Value = specialty.SpecialtyManager.Id }
+                new SqlParameter("@ManagerId", SqlDbType.Int) { Value = (object)specialty.SpecialtyManager.Id ?? DBNull.Value }
             };
 
             try
@@ -54,7 +53,7 @@ namespace MiTutor.Services.UniversityUnitManagement
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al modificar la facultad: " + ex.Message);
+                throw new Exception("Error al modificar la especialidad: " + ex.Message);
             }
         }
 
