@@ -235,6 +235,16 @@ namespace MiTutor.Services.UserManagement
                                     IsAdmin= true
                                 });
                                 break;
+                            case "DERIVATION":
+                                userAccount.Roles.Add(new UserDerivation
+                                {
+                                    Id = Convert.ToInt32(row["UserAccountId"]),
+                                    AccountTypeId = Convert.ToInt32(row["UserAccountTypeId"]),
+                                    RolName = row["Description"].ToString(),
+                                    Type = row["Type"].ToString(),
+                                    IsDerivation = true
+                                });
+                                break;
                             default:
                                 //userRol = null;
                                 break;
