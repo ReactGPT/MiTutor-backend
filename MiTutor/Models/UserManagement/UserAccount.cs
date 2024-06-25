@@ -40,6 +40,10 @@ namespace MiTutor.Models.GestionUsuarios
     {
         public bool IsAdmin { get; set; }
     }
+    public class UserDerivation: UserGeneric
+    {
+        public bool IsDerivation { get; set; }
+    }
     public class UserAccount
     {
         public int? Id { get; set; } //puse el ?
