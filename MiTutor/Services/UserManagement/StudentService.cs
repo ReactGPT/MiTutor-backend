@@ -601,5 +601,63 @@ namespace MiTutor.Services.GestionUsuarios
 
             return students;
         }
+
+        public async Task<List<int>> ListarEstudiantesPorIdFacultad(int idFaculty)
+        {
+            List<int> studentsIds = new List<int>();
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+                    new SqlParameter("@FacultadId", SqlDbType.Int){
+                        Value = idFaculty
+                    }
+                };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_ALUMNO_ID_FACULTAD, parameters);
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        int id = Convert.ToInt32(row["StudentId"]);
+                        studentsIds.Add(id);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarAlumnosConCantidadDeProgramas", ex);
+            }
+            return studentsIds;
+        }
+
+        public async Task<List<int>> ListarEstudiantesPorIdEspecialidad(int idSpecialty)
+        {
+            List<int> studentsIds = new List<int>();
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+                    new SqlParameter("@EspecialidadId", SqlDbType.Int){
+                        Value = idSpecialty
+                    }
+                };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_ALUMNO_ID_ESPECIALIDAD, parameters);
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        int id = Convert.ToInt32(row["StudentId"]);
+                        studentsIds.Add(id);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarAlumnosConCantidadDeProgramas", ex);
+            }
+            return studentsIds;
+        }
     }
 }
