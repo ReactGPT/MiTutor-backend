@@ -632,6 +632,64 @@ namespace MiTutor.Services.TutoringManagement
             return programasVirtualFace;
         }
 
+        public async Task<List<int>> ListarTutoresPorIdFacultad(int idFaculty)
+        {
+            List<int> tutorIds = new List<int>();
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+            new SqlParameter("@FacultyId", SqlDbType.Int){
+                Value = idFaculty
+            }
+        };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_TUTOR_ID_FACULTAD, parameters);
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        int id = Convert.ToInt32(row["TutorId"]);
+                        tutorIds.Add(id);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarTutoresPorIdFacultad", ex);
+            }
+            return tutorIds;
+        }
+
+        public async Task<List<int>> ListarTutoresPorIdEspecialidad(int idSpeciality)
+        {
+            List<int> tutorIds = new List<int>();
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+            new SqlParameter("@SpecialityId", SqlDbType.Int){
+                Value = idSpeciality
+            }
+        };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_TUTOR_ID_ESPECIALIDAD, parameters);
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        int id = Convert.ToInt32(row["TutorId"]);
+                        tutorIds.Add(id);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarTutoresPorIdEspecialidad", ex);
+            }
+            return tutorIds;
+        }
+
 
 
     }

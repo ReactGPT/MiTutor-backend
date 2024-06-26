@@ -256,6 +256,34 @@ namespace MiTutor.Controllers.TutoringManagement
             }
         }
 
+        [HttpGet("/listarTutoresPorIdFacultad/{idFaculty}")]
+        public async Task<IActionResult> ListarTutoresPorIdFacultad(int idFaculty)
+        {
+            try
+            {
+                var tutores = await _tutorServices.ListarTutoresPorIdFacultad(idFaculty);
+                return Ok(new { success = true, data = tutores });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("/listarTutoresPorIdEspecialidad/{idSpeciality}")]
+        public async Task<IActionResult> ListarTutoresPorIdEspecialidad(int idSpeciality)
+        {
+            try
+            {
+                var tutores = await _tutorServices.ListarTutoresPorIdEspecialidad(idSpeciality);
+                return Ok(new { success = true, data = tutores });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
 
     }
 }
