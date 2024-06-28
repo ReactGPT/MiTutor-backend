@@ -63,5 +63,11 @@ namespace MiTutor.Models.GestionUsuarios
 
         public DateTime ModificationDate { get; set; }
     }
+
+    public class AccountType
+    {
+        public int Id { get; set; }
+        public string description { get; set; }
+    }
     
 }

@@ -3,6 +3,7 @@ using MiTutor.Models.GestionUsuarios;
 using System.Data.SqlClient;
 using System.Data;
 using MiTutor.Services.GestionUsuarios;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MiTutor.Services.UserManagement
 {
@@ -302,6 +303,108 @@ namespace MiTutor.Services.UserManagement
             }
 
             return usuarios;
+        }
+
+        public async Task<List<AccountType>> ListarTiposCuenta(int userId)
+        {
+            List<AccountType> tiposCuenta = new List<AccountType>();
+            
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+            new SqlParameter("@UserId", SqlDbType.Int) { Value = userId }
+            };
+
+            try
+            {
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_TIPOSCUENTA_TODOS, parameters);
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        AccountType tipoCuenta = new AccountType
+                        {
+                            Id = Convert.ToInt32(row["UserAccountTypeId"]),
+                            description = row["Description"].ToString(),
+                        };
+
+                        tiposCuenta.Add(tipoCuenta);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en Listar Tipos de cuenta: " + ex.Message);
+            }
+            return tiposCuenta;
+        }
+        public async Task ModificarRolUsuario(int userId , List<AccountType> roles, int facultyId, int specialtyId,int unitDerivationId)
+        {
+            foreach(AccountType rol in roles)
+            {
+                try
+                {
+                    SqlParameter[] parameters=new SqlParameter[]
+                    {
+
+                    };
+                    switch (rol.Id)
+                    {
+                        case 1: //Adm
+                            parameters = new SqlParameter[]
+                            {
+                                new SqlParameter("@idRol",SqlDbType.Int) { Value = rol.Id },
+                                new SqlParameter("idUser",SqlDbType.Int) {Value = userId}
+                            };
+                            break;
+                        case 2: //Coord Facultad
+                            parameters = new SqlParameter[]
+                            {
+                                new SqlParameter("@idRol",SqlDbType.Int) { Value = rol.Id },
+                                new SqlParameter("idUser",SqlDbType.Int) {Value = userId},
+                                new SqlParameter("@idFaculty",SqlDbType.Int) {Value = facultyId}
+                            };
+                            break;
+                        case 3://Coord Specialidad
+                            parameters = new SqlParameter[]
+                            {
+                                new SqlParameter("@idRol",SqlDbType.Int) { Value = rol.Id },
+                                new SqlParameter("idUser",SqlDbType.Int) {Value = userId},
+                                new SqlParameter("@@idSpecialty",SqlDbType.Int) {Value = specialtyId}
+                            };
+                            break;
+                        case 4: //Alumno
+                            parameters = new SqlParameter[]
+                            {
+                                new SqlParameter("@idRol",SqlDbType.Int) { Value = rol.Id },
+                                new SqlParameter("idUser",SqlDbType.Int) {Value = userId},
+                                new SqlParameter("@idSpecialty",SqlDbType.Int) {Value = specialtyId}
+                            };
+                            break;
+                        case 5://Tutor
+                            parameters = new SqlParameter[]
+                            {
+                                new SqlParameter("@idRol",SqlDbType.Int) { Value = rol.Id },
+                                new SqlParameter("idUser",SqlDbType.Int) {Value = userId}
+                            };
+                            break;
+                        case 11:
+                            parameters = new SqlParameter[]
+                            {
+                                new SqlParameter("@idRol",SqlDbType.Int) { Value = rol.Id },
+                                new SqlParameter("idUser",SqlDbType.Int) {Value = userId},
+                                new SqlParameter("@@idDerivationUnit",SqlDbType.Int) {Value = unitDerivationId}
+                            };
+                            break;
+                    }
+                    await _databaseManager.ExecuteStoredProcedure(StoredProcedure.INSERTAR_ROL_USUARIO, parameters);
+                }
+                catch(Exception ex)
+                {
+                    throw new Exception("ERROR en Crear Rol: " + ex.Message);
+                }
+                
+            }
+            return;
         }
     }
 }
