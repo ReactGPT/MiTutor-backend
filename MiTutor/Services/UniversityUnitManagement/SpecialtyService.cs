@@ -23,7 +23,7 @@ namespace MiTutor.Services.UniversityUnitManagement
                 new SqlParameter("@Acronym", SqlDbType.NVarChar) { Value = specialty.Acronym },
                 new SqlParameter("@NumberOfStudents", SqlDbType.Int) { Value = specialty.NumberOfStudents },
                 new SqlParameter("@FacultyId", SqlDbType.Int) { Value = specialty.Faculty.FacultyId },
-                new SqlParameter("@ManagerId", SqlDbType.Int) { Value = specialty.SpecialtyManager.Id }
+                new SqlParameter("@ManagerId", SqlDbType.Int) { Value = (object)specialty.SpecialtyManager.Id ?? DBNull.Value }
             };
 
             try
@@ -43,8 +43,7 @@ namespace MiTutor.Services.UniversityUnitManagement
                 new SqlParameter("@SpecialtyId", SqlDbType.Int) { Value = specialty.SpecialtyId },
                 new SqlParameter("@Name", SqlDbType.NVarChar) { Value = specialty.Name },
                 new SqlParameter("@Acronym", SqlDbType.NVarChar) { Value = specialty.Acronym },
-                new SqlParameter("@IsActive",SqlDbType.Bit) { Value = specialty.IsActive },
-                new SqlParameter("@ManagerId", SqlDbType.Int) { Value = specialty.SpecialtyManager.Id }
+                new SqlParameter("@ManagerId", SqlDbType.Int) { Value = (object)specialty.SpecialtyManager.Id ?? DBNull.Value }
             };
 
             try
@@ -54,7 +53,7 @@ namespace MiTutor.Services.UniversityUnitManagement
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al modificar la facultad: " + ex.Message);
+                throw new Exception("Error al modificar la especialidad: " + ex.Message);
             }
         }
 
@@ -237,6 +236,24 @@ namespace MiTutor.Services.UniversityUnitManagement
             }
 
             return specialties;
+        }
+
+        public async Task EliminarEspecialidad(int SpecialtyId)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@SpecialtyId", SqlDbType.Int) { Value = SpecialtyId },
+            };
+
+            try
+            {
+                await _databaseManager.ExecuteStoredProcedure(StoredProcedure.ELIMINAR_ESPECIALIDAD, parameters);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al eliminar la facultad: " + ex.Message);
+            }
         }
     }
 }

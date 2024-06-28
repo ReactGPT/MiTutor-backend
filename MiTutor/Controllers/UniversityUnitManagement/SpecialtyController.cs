@@ -18,7 +18,7 @@ namespace MiTutor.Controllers.UniversityUnitManagement
             _specialtyServices = specialtyService;
         }
 
-        [HttpPost("crearEspecialidad")] // Cambiado a ruta relativa
+        [HttpPost("crearEspecialidad")]
         public async Task<IActionResult> CrearEspecialidad([FromBody] Specialty specialty)
         {
             try
@@ -89,6 +89,20 @@ namespace MiTutor.Controllers.UniversityUnitManagement
                 return BadRequest(ex.Message);
             }
             return Ok(new { success = true, data = specialties });
+        }
+
+        [HttpPut("eliminarEspecialidad")]
+        public async Task<IActionResult> EliminarEspecialidad(int SpecialtyId)
+        {
+            try
+            {
+                await _specialtyServices.EliminarEspecialidad(SpecialtyId);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, message = "Se modificó satisfactoriamente" });
         }
     }
 }

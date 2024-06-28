@@ -54,12 +54,10 @@ namespace MiTutor.Controllers.TutoringManagement
         }
 
         [HttpGet("listarTutorStudentProgram")]
-        public async Task<IActionResult> ListarTutorStudentProgram([FromQuery] string tutorFirstName = null, [FromQuery] string tutorLastName = null, [FromQuery] string state = null, [FromQuery] int? tutoringProgramId = null)
+        public async Task<IActionResult> ListarTutorStudentProgram()
         {
             try
             {
-                // lo nuevo es de johan amador
-                //var tutorStudentPrograms = await _tutorStudentProgramService.ListarTutorStudentProgram(tutorFirstName, tutorLastName, state, tutoringProgramId);
                 var tutorStudentPrograms = await _tutorStudentProgramService.ListarTutorStudentProgram();
                 return Ok(new { success = true, data = tutorStudentPrograms });
             }

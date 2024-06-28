@@ -28,7 +28,7 @@ namespace MiTutor.Controllers
             try
             {
                 // Nombre del bucket y clave del archivo
-                string bucketName = "bucket11-2"; // Reemplaza con el nombre de tu bucket
+                string bucketName = "reactgptbucket"; // Reemplaza con el nombre de tu bucket
                 string keyName = $"{folderName}/{file.FileName}";
 
                 // Subir el archivo a S3
@@ -65,7 +65,7 @@ namespace MiTutor.Controllers
             {
                 var request = new GetObjectRequest
                 {
-                    BucketName = "bucket11-2",
+                    BucketName = "reactgptbucket",
                     Key = keyName
                 };
 
@@ -92,7 +92,7 @@ namespace MiTutor.Controllers
             {
                 var request = new GetObjectRequest
                 {
-                    BucketName = "bucket11-2",
+                    BucketName = "reactgptbucket",
                     Key = keyName
                 };
 
@@ -123,7 +123,7 @@ namespace MiTutor.Controllers
 
                     var request = new PutObjectRequest
                     {
-                        BucketName = "bucket11-2",
+                        BucketName = "reactgptbucket",
                         Key = keyName,
                         InputStream = fileStream,
                         ContentType = file.ContentType,
@@ -154,7 +154,7 @@ namespace MiTutor.Controllers
 
                     var request = new PutObjectRequest
                     {
-                        BucketName = "bucket11-2",
+                        BucketName = "reactgptbucket",
                         Key = keyName,
                         InputStream = fileStream,
                         ContentType = file.ContentType,
