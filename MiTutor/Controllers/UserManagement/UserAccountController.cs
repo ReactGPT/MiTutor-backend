@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using MiTutor.Models;
 using MiTutor.Models.GestionUsuarios;
+using MiTutor.Models.TutoringManagement;
 using MiTutor.Services;
 using MiTutor.Services.GestionUsuarios;
+using MiTutor.Services.TutoringManagement;
 using MiTutor.Services.UserManagement;
 using System.Data;
 using System.Text.Json;
@@ -109,6 +111,36 @@ namespace MiTutor.Controllers.GestionUsuarios
                 return BadRequest(ex.Message);
             }
             return Ok(new { success = true, data = userAccounts });
+        }
+
+        [HttpGet("/listarTiposCuenta")]
+        public async Task<IActionResult> ListarTiposCuenta(int userId=-1)
+        {
+            List<AccountType> tiposCuenta;
+            try
+            {
+                tiposCuenta = await _usuarioServices.ListarTiposCuenta(userId);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, data = tiposCuenta });
+        }
+        
+        [HttpPost("/crearRolesUsuario")]
+        public async Task<IActionResult> CrearTutoresBatch([FromBody] List<AccountType> listaRoles, [FromQuery] int userId, [FromQuery] int facultyId, [FromQuery] int specialtyId, [FromQuery] int unitDerivationId)
+        {
+            try
+            {
+                await _usuarioServices.ModificarRolUsuario(userId, listaRoles,facultyId,specialtyId,unitDerivationId);
+                //await _usuarioServices.ListarTiposCuenta(userId);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, message = "Roles modificados satisfactoriamente" });
         }
     }
 }
