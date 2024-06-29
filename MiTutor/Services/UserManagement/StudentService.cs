@@ -244,8 +244,9 @@ namespace MiTutor.Services.GestionUsuarios
                         InstitutionalEmail = row["InstitutionalEmail"].ToString(),
                         Phone = row["Phone"].ToString(),
                         SpecialtyName = row["SpecialtyName"].ToString(),
-                        FacultyName = row["FacultyName"].ToString()
-                    };
+                        FacultyName = row["FacultyName"].ToString(),
+                        FacultyId = Convert.ToInt32(row["FacultyId"])
+                };
                     student.StudentId = studentId;
                 }
             }

@@ -31,7 +31,9 @@ namespace MiTutor.Services.TutoringManagement
                 new SqlParameter("@UnitDerivationId", SqlDbType.Int) { Value = derivation.UnitDerivationId },
                 //new SqlParameter("@TutorId", SqlDbType.Int) { Value = derivation.TutorId },
                 new SqlParameter("@AppointmentId", SqlDbType.Int) { Value = derivation.AppointmentId },
-                new SqlParameter("@DerivationId", SqlDbType.Int) { Direction = ParameterDirection.Output }
+                new SqlParameter("@DerivationId", SqlDbType.Int) { Direction = ParameterDirection.Output },
+                new SqlParameter("@FacultyId", SqlDbType.Int) { Value = derivation.FacultyId }
+                //FacultyId
             };
 
             try
