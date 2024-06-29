@@ -690,6 +690,305 @@ namespace MiTutor.Services.TutoringManagement
             return tutorIds;
         }
 
+        //UPDATE
+
+        public async Task<List<StudentInfo>> ListarAlumnosPorIdTutor(int tutorId)
+        {
+            List<StudentInfo> studentInfos = new List<StudentInfo>();
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+            new SqlParameter("@TutorId", SqlDbType.Int){
+                Value = tutorId
+            }
+        };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_ALUMNOS_POR_TUTOR_UPDATE, parameters);
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        StudentInfo studentInfo = new StudentInfo
+                        {
+                            StudentId = Convert.ToInt32(row["StudentId"]),
+                            Name = row["Name"].ToString(),
+                            LastName = row["LastName"].ToString(),
+                            SecondLastName = row["SecondLastName"].ToString(),
+                            Phone = row["Phone"].ToString(),
+                            SpecialtyName = row["SpecialtyName"].ToString(),
+                            FacultyName = row["FacultyName"].ToString()
+                        };
+                        studentInfos.Add(studentInfo);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarAlumnosPorIdTutor", ex);
+            }
+            return studentInfos;
+        }
+
+
+        public async Task<int> ContarEstudiantesPorIdTutor(int tutorId)
+        {
+            int studentCount = 0;
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+            new SqlParameter("@TutorId", SqlDbType.Int){
+                Value = tutorId
+            }
+        };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.ALUMNOS_CANTIDAD_POR_TUTOR, parameters);
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    studentCount = Convert.ToInt32(dataTable.Rows[0]["StudentCount"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ContarEstudiantesPorIdTutor", ex);
+            }
+            return studentCount;
+        }
+
+
+        public async Task<List<TutoringProgramInfo>> ListarTodosProgramasDeTutoriaPorIdTutor(int tutorId)
+        {
+            List<TutoringProgramInfo> programInfos = new List<TutoringProgramInfo>();
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+            new SqlParameter("@TutorId", SqlDbType.Int){
+                Value = tutorId
+            }
+        };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_PROGRAMAS_TUTOR, parameters);
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        TutoringProgramInfo programInfo = new TutoringProgramInfo
+                        {
+                            TutoringProgramId = Convert.ToInt32(row["TutoringProgramId"]),
+                            ProgramName = row["ProgramName"].ToString(),
+                            Description = row["Description"].ToString(),
+                            FaceToFace = Convert.ToBoolean(row["FaceToFace"]),
+                            Virtual = Convert.ToBoolean(row["Virtual"]),
+                            FacultyName = row["FacultyName"].ToString(),
+                            SpecialtyName = row["SpecialtyName"].ToString()
+                        };
+                        programInfos.Add(programInfo);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarTodosProgramasDeTutoriaPorIdTutor", ex);
+            }
+            return programInfos;
+        }
+
+
+        public async Task<List<AppointmentInfo>> ListarTodasCitasPorIdTutor(int tutorId)
+        {
+            List<AppointmentInfo> appointmentInfos = new List<AppointmentInfo>();
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+            new SqlParameter("@TutorId", SqlDbType.Int){
+                Value = tutorId
+            }
+        };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_CITAS_TUTOR_UPDATE, parameters);
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        AppointmentInfo appointmentInfo = new AppointmentInfo
+                        {
+                            AppointmentId = Convert.ToInt32(row["AppointmentId"]),
+                            TutorId = Convert.ToInt32(row["TutorId"]),
+                            StudentName = row["StudentName"].ToString(),
+                            StudentLastName = row["StudentLastName"].ToString(),
+                            StudentSecondLastName = row["StudentSecondLastName"].ToString(),
+                            IsActive = Convert.ToBoolean(row["IsActive"])
+                        };
+                        appointmentInfos.Add(appointmentInfo);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarTodasCitasPorIdTutor", ex);
+            }
+            return appointmentInfos;
+        }
+
+
+        public async Task<List<StudentProgramInfo>> ListarProgramasPorEstudianteYTutor(int tutorId, int studentId)
+        {
+            List<StudentProgramInfo> programInfos = new List<StudentProgramInfo>();
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+            new SqlParameter("@TutorId", SqlDbType.Int){
+                Value = tutorId
+            },
+            new SqlParameter("@StudentId", SqlDbType.Int){
+                Value = studentId
+            }
+        };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_PROGRAMAS_TUTOR_ESTUDIANTE, parameters);
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        StudentProgramInfo programInfo = new StudentProgramInfo
+                        {
+                            TutoringProgramId = Convert.ToInt32(row["TutoringProgramId"]),
+                            ProgramName = row["ProgramName"].ToString(),
+                            Description = row["Description"].ToString(),
+                            FaceToFace = Convert.ToBoolean(row["FaceToFace"]),
+                            Virtual = Convert.ToBoolean(row["Virtual"]),
+                            FacultyName = row["FacultyName"].ToString(),
+                            SpecialtyName = row["SpecialtyName"].ToString()
+                        };
+                        programInfos.Add(programInfo);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarProgramasPorEstudianteYTutor", ex);
+            }
+            return programInfos;
+        }
+
+        public async Task<List<StudentAppointmentInfo>> ListarCitasPorEstudianteYTutor(int tutorId, int studentId)
+        {
+            List<StudentAppointmentInfo> appointmentInfos = new List<StudentAppointmentInfo>();
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+            new SqlParameter("@TutorId", SqlDbType.Int){
+                Value = tutorId
+            },
+            new SqlParameter("@StudentId", SqlDbType.Int){
+                Value = studentId
+            }
+        };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_CITAS_TUTOR_ESTUDIANTE, parameters);
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        StudentAppointmentInfo appointmentInfo = new StudentAppointmentInfo
+                        {
+                            AppointmentId = Convert.ToInt32(row["AppointmentId"]),
+                            TutorId = Convert.ToInt32(row["TutorId"]),
+                            StudentName = row["StudentName"].ToString(),
+                            StudentLastName = row["StudentLastName"].ToString(),
+                            StudentSecondLastName = row["StudentSecondLastName"].ToString(),
+                            IsActive = Convert.ToBoolean(row["IsActive"])
+                        };
+                        appointmentInfos.Add(appointmentInfo);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarCitasPorEstudianteYTutor", ex);
+            }
+            return appointmentInfos;
+        }
+
+        public async Task<int> ContarCitasPorEstudianteYTutor(int tutorId, int studentId)
+        {
+            int appointmentCount = 0;
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+            new SqlParameter("@TutorId", SqlDbType.Int)
+            {
+                Value = tutorId
+            },
+            new SqlParameter("@StudentId", SqlDbType.Int)
+            {
+                Value = studentId
+            }
+                };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.CONTAR_CITAS_TUTOR_ESTUDIANTE, parameters);
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    appointmentCount = Convert.ToInt32(dataTable.Rows[0]["AppointmentCount"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ContarCitasPorEstudianteYTutor", ex);
+            }
+            return appointmentCount;
+        }
+
+        public async Task<StudentDetailedInfo> ObtenerInfoEstudiantePorTutor(int tutorId, int studentId)
+        {
+            StudentDetailedInfo studentInfo = null;
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+            new SqlParameter("@TutorId", SqlDbType.Int)
+            {
+                Value = tutorId
+            },
+            new SqlParameter("@StudentId", SqlDbType.Int)
+            {
+                Value = studentId
+            }
+                };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.OBTENER_INFO_TUTOR_ESTUDIANTE, parameters);
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    DataRow row = dataTable.Rows[0];
+                    studentInfo = new StudentDetailedInfo
+                    {
+                        StudentId = Convert.ToInt32(row["StudentId"]),
+                        Name = row["Name"].ToString(),
+                        LastName = row["LastName"].ToString(),
+                        SecondLastName = row["SecondLastName"].ToString(),
+                        Phone = row["Phone"].ToString(),
+                        SpecialtyName = row["SpecialtyName"].ToString(),
+                        FacultyName = row["FacultyName"].ToString(),
+                        TutoringProgramId = Convert.ToInt32(row["TutoringProgramId"]),
+                        ProgramName = row["ProgramName"].ToString(),
+                        Description = row["Description"].ToString()
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ObtenerInfoEstudiantePorTutor", ex);
+            }
+            return studentInfo;
+        }
 
 
     }

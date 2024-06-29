@@ -284,6 +284,121 @@ namespace MiTutor.Controllers.TutoringManagement
             }
         }
 
+        //UPDATE
+        [HttpGet("/listarAlumnosPorIdTutor/{tutorId}")]
+        public async Task<IActionResult> ListarAlumnosPorIdTutor(int tutorId)
+        {
+            try
+            {
+                var alumnos = await _tutorServices.ListarAlumnosPorIdTutor(tutorId);
+                return Ok(new { success = true, data = alumnos });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("/contarEstudiantesPorIdTutor/{tutorId}")]
+        public async Task<IActionResult> ContarEstudiantesPorIdTutor(int tutorId)
+        {
+            try
+            {
+                var studentCount = await _tutorServices.ContarEstudiantesPorIdTutor(tutorId);
+                return Ok(new { success = true, data = studentCount });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("/listarProgramasDeTutoriaPorIdTutor/{tutorId}")]
+        public async Task<IActionResult> ListarTodosProgramasDeTutoriaPorIdTutor(int tutorId)
+        {
+            try
+            {
+                var programas = await _tutorServices.ListarTodosProgramasDeTutoriaPorIdTutor(tutorId);
+                return Ok(new { success = true, data = programas });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        [HttpGet("/listarCitasPorIdTutor/{tutorId}")]
+        public async Task<IActionResult> ListarTodasCitasPorIdTutor(int tutorId)
+        {
+            try
+            {
+                var citas = await _tutorServices.ListarTodasCitasPorIdTutor(tutorId);
+                return Ok(new { success = true, data = citas });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        [HttpGet("/listarProgramasPorEstudianteYTutor/{tutorId}/{studentId}")]
+        public async Task<IActionResult> ListarProgramasPorEstudianteYTutor(int tutorId, int studentId)
+        {
+            try
+            {
+                var programas = await _tutorServices.ListarProgramasPorEstudianteYTutor(tutorId, studentId);
+                return Ok(new { success = true, data = programas });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("/listarCitasPorEstudianteYTutor/{tutorId}/{studentId}")]
+        public async Task<IActionResult> ListarCitasPorEstudianteYTutor(int tutorId, int studentId)
+        {
+            try
+            {
+                var citas = await _tutorServices.ListarCitasPorEstudianteYTutor(tutorId, studentId);
+                return Ok(new { success = true, data = citas });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("/contarCitasPorEstudianteYTutor/{tutorId}/{studentId}")]
+        public async Task<IActionResult> ContarCitasPorEstudianteYTutor(int tutorId, int studentId)
+        {
+            try
+            {
+                var citasCount = await _tutorServices.ContarCitasPorEstudianteYTutor(tutorId, studentId);
+                return Ok(new { success = true, data = citasCount });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("/obtenerInfoEstudiantePorTutor/{tutorId}/{studentId}")]
+        public async Task<IActionResult> ObtenerInfoEstudiantePorTutor(int tutorId, int studentId)
+        {
+            try
+            {
+                var infoEstudiante = await _tutorServices.ObtenerInfoEstudiantePorTutor(tutorId, studentId);
+                return Ok(new { success = true, data = infoEstudiante });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
 
     }
 }
