@@ -33,6 +33,8 @@ namespace MiTutor.Models.TutoringManagement
         [JsonIgnore]
         public UserAccount UserAccountDo { get; set; }
 
+        public int FacultyId { get; set; }
+
     }
 
     public class ListDerivation

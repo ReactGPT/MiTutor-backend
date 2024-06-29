@@ -126,27 +126,11 @@ namespace MiTutor.Services.TutoringManagement
                     new SqlParameter("@StudentProgramList",SqlDbType.Structured)  {Value= dtStudentProgram}
 
                 };
-            
-            /*{
-              "faceToFace": true,
-              "virtual": true,
-              "groupBased": true,
-              "individualBased": true,
-              "optional": true,
-              "mandatory": true,
-              "membersCount": 0,
-              "programName": "Programa575",
-              "description": "frrfrfr", 
-              "faculty": null,
-              "duration": "00:00:00",
-              "specialty":{
-                "specialtyId": 1
-              }
-            }*/
+          
 
             try
             {
-                //await _databaseManager.ExecuteStoredProcedure(StoredProcedure.CREAR_PROGRAMA_DE_TUTORIA, parameters);
+               await _databaseManager.ExecuteStoredProcedure(StoredProcedure.CREAR_PROGRAMA_DE_TUTORIA, parameters);
             }
             catch (Exception ex)
             {

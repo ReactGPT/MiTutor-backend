@@ -25,6 +25,8 @@ namespace MiTutor.Models.GestionUsuarios
         public string Phone { get; set; }
         public string SpecialtyName { get; set; }
         public string FacultyName { get; set; }
+
+        public int FacultyId { get; set; }
     }
 
 
