@@ -18,6 +18,7 @@ namespace MiTutor.Models.UniversityUnitManagement
         public bool IsActive { get; set; }
 
         public UserAccount FacultyManager { get; set; }
+        public UserAccount? BienestarManager { get; set; }
 
         public ICollection<Specialty> Specialties { get; set; } = new List<Specialty>();
 

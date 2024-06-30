@@ -123,7 +123,20 @@ namespace MiTutor.Services.UniversityUnitManagement
                                     LastName = row["LastName"].ToString()
                                 }
                             };
-
+                        };
+                        if (row["BienestarManagerId"] != DBNull.Value)
+                        {
+                            facultad.BienestarManager = new Models.GestionUsuarios.UserAccount
+                            {
+                                Id = Convert.ToInt32(row["BienestarManagerId"]),
+                                InstitutionalEmail = row["BienestarInstitutionalEmail"].ToString(),
+                                PUCPCode = row["BienestarPUCPCode"].ToString(),
+                                Persona = new Models.GestionUsuarios.Person
+                                {
+                                    Name = row["BienestarName"].ToString(),
+                                    LastName = row["BienestarLastName"].ToString()
+                                }
+                            };
                         };
 
                         facultades.Add(facultad);
@@ -148,6 +161,7 @@ namespace MiTutor.Services.UniversityUnitManagement
                 new SqlParameter("@NumberOfStudents", SqlDbType.Int) { Value = facultad.NumberOfStudents },
                 new SqlParameter("@NumberOfTutors", SqlDbType.Int) { Value = facultad.NumberOfTutors },
                 new SqlParameter("@FacultyManagerId", SqlDbType.Int) { Value = (object)facultad.FacultyManager.Id ?? DBNull.Value },
+                new SqlParameter("@BienestarManagerId", SqlDbType.Int) { Value = (object)facultad.BienestarManager.Id ?? DBNull.Value },
             };
 
             try
