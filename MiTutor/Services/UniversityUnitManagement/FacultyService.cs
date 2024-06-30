@@ -147,7 +147,7 @@ namespace MiTutor.Services.UniversityUnitManagement
                 new SqlParameter("@Acronym", SqlDbType.NVarChar) { Value = facultad.Acronym },
                 new SqlParameter("@NumberOfStudents", SqlDbType.Int) { Value = facultad.NumberOfStudents },
                 new SqlParameter("@NumberOfTutors", SqlDbType.Int) { Value = facultad.NumberOfTutors },
-                new SqlParameter("@FacultyManagerId", SqlDbType.Int) { Value = facultad.FacultyManager.Id },
+                new SqlParameter("@FacultyManagerId", SqlDbType.Int) { Value = (object)facultad.FacultyManager.Id ?? DBNull.Value },
             };
 
             try
