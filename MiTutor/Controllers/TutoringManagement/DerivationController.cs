@@ -122,5 +122,33 @@ namespace MiTutor.Controllers.TutoringManagement
                 return BadRequest(ex.Message);
             } 
         }
+
+        [HttpGet("/listarDerivacionesPorResponsableBienestar/{idResponsableBienestar}")]
+        public async Task<IActionResult> ListarDerivacionesPorResponsableBienestar(int idResponsableBienestar)
+        {
+            try
+            {
+                List<DerivationBienestar> derivations = await _derivationServices.SeleccionarPorResponsableBienestar(idResponsableBienestar);
+                return Ok(new { success = true, data = derivations });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, message = ex.Message });
+            }
+        }
+
+        [HttpPut("/actualizarDerivacionResponsableBienestar")]
+        public async Task<IActionResult> ActualizarDerivacionResponsableBienestar([FromBody] DerivationBienestar derivation)
+        {
+            try
+            {
+                await _derivationServices.ActualizarDerivacionResponsableBienestar(derivation);
+                return Ok(new { success = true, message = "Se actualizó la derivación satisfactoriamente" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, message = ex.Message });
+            }
+        }
     }
 }

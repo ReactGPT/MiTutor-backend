@@ -239,5 +239,68 @@ namespace MiTutor.Services.TutoringManagement
             return derivations;
         }
 
+        public async Task<List<DerivationBienestar>> SeleccionarPorResponsableBienestar(int idResponsableBienestar)
+        {
+            List<DerivationBienestar> derivations = new List<DerivationBienestar>();
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+                new SqlParameter("@IdBienestar", SqlDbType.Int){
+                    Value = idResponsableBienestar
+                }
+            };
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_DERIVACIONES_POR_RESPONSABLE_BIENESTAR, parameters);
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    DateTime dateTime = Convert.ToDateTime(row["CreationDate"]);
+                    DateOnly creationDate = new DateOnly(dateTime.Year, dateTime.Month, dateTime.Day);
+                    DerivationBienestar derivation = new DerivationBienestar()
+                    {
+                        DerivationId = Convert.ToInt32(row["DerivationId"]),
+                        Reason = row["Reason"].ToString(),
+                        Comment = row["Comment"].ToString(),
+                        Status = row["Status"].ToString(),
+                        CreationDate = creationDate,
+                        UnitDerivationName = row["NombreUnidad"].ToString(),
+                        IdUsuarioAlumno = Convert.ToInt32(row["IdUsuarioAlumno"]),
+                        CorreoAlumno = row["CorreoAlumno"].ToString(),
+                        NombreAlumno = row["NombreAlumno"].ToString(),
+                        CodigoAlumno = row["CodigoAlumno"].ToString(),
+                        IdTutor = Convert.ToInt32(row["TutorId"]),
+                        IdUsuarioTutor = Convert.ToInt32(row["IdUsuarioTutor"]),
+                        CorreoTutor = row["CorreoTutor"].ToString(),
+                        NombreTutor = row["NombreTutor"].ToString(),
+                        CodigoTutor = row["CodigoTutor"].ToString(),
+                        ProgramName = row["ProgramName"].ToString(),
+                        Observaciones = row["Observacion"].ToString()
+                    };
+                    derivations.Add(derivation);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en SeleccionarPorResponsableBienestar", ex);
+            }
+            return derivations;
+        }
+
+        public async Task ActualizarDerivacionResponsableBienestar(DerivationBienestar derivation)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+            new SqlParameter("@DerivationId", SqlDbType.Int) { Value = derivation.DerivationId },
+            new SqlParameter("@NuevoEstado", SqlDbType.VarChar, 50) { Value = derivation.Status },
+            new SqlParameter("@Observacion", SqlDbType.Text) { Value = derivation.Observaciones ?? (object)DBNull.Value }
+            };
+
+            try
+            {
+                await _databaseManager.ExecuteStoredProcedure(StoredProcedure.ACTUALIZAR_DERIVACION_RESPONSABLE_BIENESTAR, parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ActualizarDerivacionResponsableBienestarService", ex);
+            }
+        }
     }
 }
