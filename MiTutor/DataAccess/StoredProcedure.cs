@@ -44,6 +44,9 @@
         public const string LISTAR_USUARIOS_SIN_ALUMNOS = "USER_LISTAR_SIN_ALUMNOS";
         public const string LISTAR_TIPOSCUENTA_TODOS = "USERACCOUNTTYPE_LISTARTODOS_SELECT";
         public const string INSERTAR_ROL_USUARIO = "ACCOUNTROLE_INSERTARROL_INSERT";
+        public const string VALIDAR_CODIGO_USUARIO = "spValidateUserByPUCPCode";
+        public const string VALIDAR_CORREO_USUARIO = "spValidateUserByEmail";
+
         //FACULTAD
         public const string CREAR_FACULTAD = "FACULTY_INSERTAR_INSERT";
         public const string LISTAR_FACULTADES = "FACULTY_LISTAR_SELECT";

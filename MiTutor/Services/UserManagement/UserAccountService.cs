@@ -406,5 +406,77 @@ namespace MiTutor.Services.UserManagement
             }
             return;
         }
+
+        public async Task<List<UserAccount>> validateUserByEmail(string email)
+        {
+            List<UserAccount> usuarios = new List<UserAccount>();
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@InstitutionalEmail", SqlDbType.NVarChar) { Value = email }
+                };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.VALIDAR_CORREO_USUARIO, parameters);
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        UserAccount userAccount = new UserAccount
+                        {
+                            Id = Convert.ToInt32(row["UserAccountId"]),
+                            InstitutionalEmail = row["InstitutionalEmail"].ToString(),
+                            PUCPCode = row["PUCPCode"].ToString(),
+                            IsActive = Convert.ToBoolean(row["IsActive"]),
+                            CreationDate = Convert.ToDateTime(row["CreationDate"]).Date,
+                            ModificationDate = Convert.ToDateTime(row["ModificationDate"]).Date
+                        };
+                        usuarios.Add(userAccount);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarUsuariosValidacionCorreo: " + ex.Message);
+            }
+
+            return usuarios;
+        }
+
+        public async Task<List<UserAccount>> validateUserByPUCPCode(string pucpCode)
+        {
+            List<UserAccount> usuarios = new List<UserAccount>();
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@PUCPCode", SqlDbType.NVarChar) { Value = pucpCode }
+                };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.VALIDAR_CODIGO_USUARIO, parameters);
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        UserAccount userAccount = new UserAccount
+                        {
+                            Id = Convert.ToInt32(row["UserAccountId"]),
+                            InstitutionalEmail = row["InstitutionalEmail"].ToString(),
+                            PUCPCode = row["PUCPCode"].ToString(),
+                            IsActive = Convert.ToBoolean(row["IsActive"]),
+                            CreationDate = Convert.ToDateTime(row["CreationDate"]).Date,
+                            ModificationDate = Convert.ToDateTime(row["ModificationDate"]).Date
+                        };
+                        usuarios.Add(userAccount);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarUsuariosValidacionCODIGO: " + ex.Message);
+            }
+
+            return usuarios;
+        }
     }
 }
