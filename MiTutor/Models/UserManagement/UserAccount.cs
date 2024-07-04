@@ -44,6 +44,12 @@ namespace MiTutor.Models.GestionUsuarios
     {
         public bool IsDerivation { get; set; }
     }
+    public class UserCaringManager : UserGeneric
+    {
+        public bool IsCaringManager { get; set; }
+        public int FacultyId { get; set; }
+        public string FacultyName { get; set; }
+    }
     public class UserAccount
     {
         public int? Id { get; set; } //puse el ?
