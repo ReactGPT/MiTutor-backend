@@ -181,7 +181,8 @@ namespace MiTutor.Services.UserManagement
                         //UserGeneric userRol= null;
                         switch (row["Type"].ToString())
                         {
-                            case "MANAGER":
+                            case "FACULTYMANAGER":
+                            case "SPECIALTYMANAGER":
                                 //userRol = 
                                 userAccount.Roles.Add(new UserGenericManager
                                 {
@@ -244,6 +245,18 @@ namespace MiTutor.Services.UserManagement
                                     RolName = row["Description"].ToString(),
                                     Type = row["Type"].ToString(),
                                     IsDerivation = true
+                                });
+                                break;
+                            case "CAREMANAGER":
+                                userAccount.Roles.Add(new UserCaringManager
+                                {
+                                    Id = Convert.ToInt32(row["UserAccountId"]),
+                                    AccountTypeId = Convert.ToInt32(row["UserAccountTypeId"]),
+                                    RolName = row["Description"].ToString(),
+                                    Type = row["Type"].ToString(),
+                                    IsCaringManager = true,
+                                    FacultyId= Convert.ToInt32(row["BienestarFacId"]),
+                                    FacultyName = row["BienestarFacName"].ToString()
                                 });
                                 break;
                             default:
