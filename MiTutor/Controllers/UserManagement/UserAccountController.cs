@@ -142,5 +142,35 @@ namespace MiTutor.Controllers.GestionUsuarios
             }
             return Ok(new { success = true, message = "Roles modificados satisfactoriamente" });
         }
+
+        [HttpGet("/validarCorreoUusario")]
+        public async Task<IActionResult> validateUserByEmail(string email)
+        {
+            List<UserAccount> userAccounts;
+            try
+            {
+                userAccounts = await _usuarioServices.validateUserByEmail(email);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, data = userAccounts });
+        }
+
+        [HttpGet("/validarCodigoUusario")]
+        public async Task<IActionResult> validateUserByPUCPCode(string code)
+        {
+            List<UserAccount> userAccounts;
+            try
+            {
+                userAccounts = await _usuarioServices.validateUserByPUCPCode(code);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, data = userAccounts });
+        }
     }
 }
