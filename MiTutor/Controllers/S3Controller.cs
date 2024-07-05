@@ -12,10 +12,12 @@ namespace MiTutor.Controllers
     {
         private readonly IConfiguration _configuration;
         private readonly IAmazonS3 _s3Client;
+        private string bucketNameDef;
 
         public S3Controller(IConfiguration configuration, IAmazonS3 s3Client)
         {
             _configuration = configuration;
+            bucketNameDef = _configuration["S3:BucketName"];
             _s3Client = s3Client;
         }
         //Prueba1
@@ -28,7 +30,7 @@ namespace MiTutor.Controllers
             try
             {
                 // Nombre del bucket y clave del archivo
-                string bucketName = "reactgptbucket"; // Reemplaza con el nombre de tu bucket
+                string bucketName = bucketNameDef; // Reemplaza con el nombre de tu bucket
                 string keyName = $"{folderName}/{file.FileName}";
 
                 // Subir el archivo a S3
@@ -65,7 +67,7 @@ namespace MiTutor.Controllers
             {
                 var request = new GetObjectRequest
                 {
-                    BucketName = "reactgptbucket",
+                    BucketName = bucketNameDef,
                     Key = keyName
                 };
 
@@ -92,7 +94,7 @@ namespace MiTutor.Controllers
             {
                 var request = new GetObjectRequest
                 {
-                    BucketName = "reactgptbucket",
+                    BucketName = bucketNameDef,
                     Key = keyName
                 };
 
@@ -123,7 +125,7 @@ namespace MiTutor.Controllers
 
                     var request = new PutObjectRequest
                     {
-                        BucketName = "reactgptbucket",
+                        BucketName = bucketNameDef,
                         Key = keyName,
                         InputStream = fileStream,
                         ContentType = file.ContentType,
@@ -154,7 +156,7 @@ namespace MiTutor.Controllers
 
                     var request = new PutObjectRequest
                     {
-                        BucketName = "reactgptbucket",
+                        BucketName = bucketNameDef,
                         Key = keyName,
                         InputStream = fileStream,
                         ContentType = file.ContentType,
