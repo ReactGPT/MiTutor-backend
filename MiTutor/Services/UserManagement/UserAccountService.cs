@@ -318,6 +318,49 @@ namespace MiTutor.Services.UserManagement
             return usuarios;
         }
 
+        public async Task<List<UserAccount>> ListarUsuariosSinAdminSinAlumnos()
+        {
+            List<UserAccount> usuarios = new List<UserAccount>();
+
+            try
+            {
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_USUARIOS_SIN_ADMIN_ALUMNOS, null);
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        UserAccount userAccount = new UserAccount
+                        {
+                            Id = Convert.ToInt32(row["PersonId"]),
+                            InstitutionalEmail = row["InstitutionalEmail"].ToString(),
+                            PUCPCode = row["PUCPCode"].ToString(),
+                            IsActive = Convert.ToBoolean(row["IsActive"]),
+                            CreationDate = Convert.ToDateTime(row["CreationDate"]).Date,
+                            ModificationDate = Convert.ToDateTime(row["ModificationDate"]).Date,
+                            Persona = new Person
+                            {
+                                Id = Convert.ToInt32(row["PersonId"]),
+                                Name = row["Name"].ToString(),
+                                LastName = row["LastName"].ToString(),
+                                SecondLastName = row["SecondLastName"].ToString(),
+                                Phone = row["Phone"].ToString(),
+                                IsActive = Convert.ToBoolean(row["IsActive"])
+                            }
+                        };
+
+                        usuarios.Add(userAccount);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarUsuarios: " + ex.Message);
+            }
+
+            return usuarios;
+        }
+
+
         public async Task<List<AccountType>> ListarTiposCuenta(int userId)
         {
             List<AccountType> tiposCuenta = new List<AccountType>();

@@ -46,6 +46,7 @@
         public const string INSERTAR_ROL_USUARIO = "ACCOUNTROLE_INSERTARROL_INSERT";
         public const string VALIDAR_CODIGO_USUARIO = "spValidateUserByPUCPCode";
         public const string VALIDAR_CORREO_USUARIO = "spValidateUserByEmail";
+        public const string LISTAR_USUARIOS_SIN_ADMIN_ALUMNOS = "USER_LISTAR_TODOS_SIN_ADMIN_ALUMNOS";
 
         //FACULTAD
         public const string CREAR_FACULTAD = "FACULTY_INSERTAR_INSERT";
