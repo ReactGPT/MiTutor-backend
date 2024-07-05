@@ -119,7 +119,7 @@ namespace MiTutor.Services.TutoringManagement
                     new SqlParameter("@Description", SqlDbType.NVarChar) { Value = programa.Description },
                     new SqlParameter("@Duration", SqlDbType.Time) { Value = programa.Duration },
                     new SqlParameter("@FacultyId", SqlDbType.Int) { Value = programa.Faculty.FacultyId },
-                     new SqlParameter("@SpecialtyId", SqlDbType.Int) { Value = programa.Specialty?.SpecialtyId == 0 ? DBNull.Value : (object)programa.Specialty.SpecialtyId },
+                    new SqlParameter("@SpecialtyId", SqlDbType.Int) { Value = programa.Specialty?.SpecialtyId == 0 ? DBNull.Value : (object)programa.Specialty.SpecialtyId },
                     new SqlParameter("@isActive", SqlDbType.Bit) { Value = programa.IsActive },
                     new SqlParameter("@TutorTypeID", SqlDbType.Int) { Value = programa.TutorTypeId },
                     new SqlParameter("@TutorIdList", SqlDbType.Structured) {Value= dtTutores},
@@ -151,11 +151,12 @@ namespace MiTutor.Services.TutoringManagement
 
                         TimeSpan duration = (TimeSpan)row["Duration"];
 
-                        Specialty speciality = new Specialty
+                        Specialty specialty = new Specialty
                         {
-                            SpecialtyId = Convert.ToInt32(row["SpecialtyId"]),
-                            Name = row["SpecialtyName"].ToString()
+                            SpecialtyId = row["SpecialtyId"] != DBNull.Value ? Convert.ToInt32(row["SpecialtyId"]) : 0,
+                            Name = row["SpecialtyName"] != DBNull.Value ? row["SpecialtyName"].ToString() : string.Empty
                         };
+                         
 
                         Faculty faculty = new Faculty
                         {
@@ -181,8 +182,8 @@ namespace MiTutor.Services.TutoringManagement
                             TutorTypeId = Convert.ToInt32(row["TutorTypeId"]),
                             TutorTypeDescription = row["TutorTypeDescription"].ToString(),
                             Faculty = faculty,
-                            Specialty = speciality
-                    };
+                            Specialty = specialty
+                        };
 
                         programas.Add(programa);
                     }
