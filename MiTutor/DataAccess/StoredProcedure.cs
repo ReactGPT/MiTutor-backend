@@ -229,5 +229,10 @@
 
         public const string OBTENER_INFO_TUTOR_ESTUDIANTE = "OBTENER_INFO_ESTUDIANTE_BY_TUTOR";
 
+        // INSTITUCION
+        public const string INSERTAR_INSTITUCION = "INSTITUTION_INSERTAR_INSERT";
+        public const string ACTUALIZAR_INSTITUCION = "INSTITUTION_ACTUALIZAR_UPDATE";
+        public const string LISTAR_INSTITUCION = "INSTITUTION_LISTAR";
+
     }
 }
