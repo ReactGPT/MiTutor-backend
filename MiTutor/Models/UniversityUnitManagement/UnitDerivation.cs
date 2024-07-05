@@ -20,7 +20,6 @@
 
         public bool IsParent { get; set; }
         public int ParentId { get; set; }
-
         //public virtual ICollection<Derivation> Derivations { get; set; } = new List<Derivation>();
 
         //public virtual ICollection<UnitSubUnit> UnitSubUnitSubUnitDerivations { get; set; } = new List<UnitSubUnit>();
