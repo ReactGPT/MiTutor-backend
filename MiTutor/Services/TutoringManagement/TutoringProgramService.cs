@@ -119,7 +119,7 @@ namespace MiTutor.Services.TutoringManagement
                     new SqlParameter("@Description", SqlDbType.NVarChar) { Value = programa.Description },
                     new SqlParameter("@Duration", SqlDbType.Time) { Value = programa.Duration },
                     new SqlParameter("@FacultyId", SqlDbType.Int) { Value = programa.Faculty.FacultyId },
-                    new SqlParameter("@SpecialtyId", SqlDbType.Int) { Value = programa.Specialty.SpecialtyId },
+                     new SqlParameter("@SpecialtyId", SqlDbType.Int) { Value = programa.Specialty?.SpecialtyId == 0 ? DBNull.Value : (object)programa.Specialty.SpecialtyId },
                     new SqlParameter("@isActive", SqlDbType.Bit) { Value = programa.IsActive },
                     new SqlParameter("@TutorTypeID", SqlDbType.Int) { Value = programa.TutorTypeId },
                     new SqlParameter("@TutorIdList", SqlDbType.Structured) {Value= dtTutores},
