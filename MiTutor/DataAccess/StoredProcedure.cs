@@ -42,6 +42,7 @@
         public const string EDITAR_USUARIO = "USER_EDITAR_UPDATE";
         public const string ELIMINAR_USUARIO = "USER_BORRAR_DELETE";
         public const string LISTAR_USUARIOS_SIN_ALUMNOS = "USER_LISTAR_SIN_ALUMNOS";
+        public const string LISTAR_USUARIOS_SIN_ROLES = "USER_LISTAR_SIN_ROLES";
         public const string LISTAR_TIPOSCUENTA_TODOS = "USERACCOUNTTYPE_LISTARTODOS_SELECT";
         public const string INSERTAR_ROL_USUARIO = "ACCOUNTROLE_INSERTARROL_INSERT";
         public const string VALIDAR_CODIGO_USUARIO = "spValidateUserByPUCPCode";

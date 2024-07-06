@@ -113,6 +113,21 @@ namespace MiTutor.Controllers.GestionUsuarios
             return Ok(new { success = true, data = userAccounts });
         }
 
+        [HttpGet("/listarUsuariosSinRoles")]
+        public async Task<IActionResult> ListarUsuariosSinRoles()
+        {
+            List<UserAccount> userAccounts;
+            try
+            {
+                userAccounts = await _usuarioServices.ListarUsuariosSinRoles();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, data = userAccounts });
+        }
+
         [HttpGet("/listarUsuariosSinAdminSinAlumnos")]
         public async Task<IActionResult> ListarUsuariosSinAdminSinAlumnos()
         {
