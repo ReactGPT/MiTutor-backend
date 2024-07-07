@@ -254,5 +254,39 @@ namespace MiTutor.Controllers.GestionUsuarios
             }
 
         }
+
+        [HttpGet("/listarEstudiantesPorEspecialidad/{idEspecialidad}")]
+        public async Task<IActionResult> ListarEstudiantesPorEspecialidad(int idEspecialidad)
+        {
+            try
+            {
+
+                var estudiantes = await _estudianteServices.ListarEstudiantesPorEspecialidad(idEspecialidad);
+
+                return Ok(new { success = true, data = estudiantes });
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("/listarEstudiantesPorFacultad/{idFacultad}")]
+        public async Task<IActionResult> ListarEstudiantesPorFacultad(int idFacultad)
+        {
+            try
+            {
+
+                var estudiantes = await _estudianteServices.ListarEstudiantesPorFacultad(idFacultad);
+
+                return Ok(new { success = true, data = estudiantes });
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
