@@ -33,7 +33,8 @@
 
         public const string LISTAR_TODO_ESTUDIANTE = "STUDENT_LISTAR_TODO";
         public const string EDITAR_ESTUDIANTE = "STUDENT_EDITAR_UPDATE";
-
+        public const string LISTAR_ESTUDIANTE_X_ESPECIALIDAD = "STUDENT_LISTAR_X_ESPECIALIDAD";
+        public const string LISTAR_ESTUDIANTE_X_FACULTAD = "STUDENT_LISTAR_X_FACULTAD";
 
         //USUARIO
         public const string CREAR_USUARIO = "USER_ACCOUNT_INSERTAR_INSERT";

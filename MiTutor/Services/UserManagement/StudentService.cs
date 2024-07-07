@@ -660,5 +660,109 @@ namespace MiTutor.Services.GestionUsuarios
             }
             return studentsIds;
         }
+
+        public async Task<List<StudentTodo>> ListarEstudiantesPorEspecialidad(int idEspecialidad)
+        {
+            List<StudentTodo> students = new List<StudentTodo>();
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+                    new SqlParameter("@IdSpecialty", SqlDbType.Int){ Value = idEspecialidad }
+                };
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_ESTUDIANTE_X_ESPECIALIDAD, parameters);
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        StudentTodo student = new StudentTodo();
+
+                        student.PersonId = Convert.ToInt32(row["PersonId"]);
+                        student.Name = row["Name"].ToString();
+                        student.LastName = row["LastName"].ToString();
+                        student.SecondLastName = row["SecondLastName"].ToString();
+                        student.Phone = row["Phone"].ToString();
+                        student.PersonIsActive = Convert.ToBoolean(row["PersonIsActive"]);
+
+                        student.IsRisk = Convert.ToBoolean(row["IsRisk"]);
+
+                        student.SpecialityId = Convert.ToInt32(row["SpecialtyId"]);
+                        student.SpecialtyName = Convert.ToString(row["SpecialtyName"]);
+                        student.SpecialtyAcronym = Convert.ToString(row["SpecialtyAcronym"]);
+
+                        student.FacultyId = Convert.ToInt32(row["FacultyId"]);
+                        student.FacultyName = Convert.ToString(row["FacultyName"]);
+                        student.FacultyAcronym = Convert.ToString(row["FacultyAcronym"]);
+
+
+                        student.UserIsActive = Convert.ToBoolean(row["UserIsActive"]);
+                        student.InstitutionalEmail = row["InstitutionalEmail"].ToString();
+                        student.PUCPCode = row["PUCPCode"].ToString();
+                        student.CreationDate = Convert.ToDateTime(row["CreationDate"]).Date;
+                        student.ModificationDate = Convert.ToDateTime(row["ModificationDate"]).Date;
+
+                        students.Add(student);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarEstudiantesPorEspecialidad", ex);
+            }
+
+            return students;
+        }
+
+        public async Task<List<StudentTodo>> ListarEstudiantesPorFacultad(int idFacultad)
+        {
+            List<StudentTodo> students = new List<StudentTodo>();
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]{
+                    new SqlParameter("@IdFaculty", SqlDbType.Int){ Value = idFacultad }
+                };
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_ESTUDIANTE_X_FACULTAD, parameters);
+                if (dataTable != null)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        StudentTodo student = new StudentTodo();
+
+                        student.PersonId = Convert.ToInt32(row["PersonId"]);
+                        student.Name = row["Name"].ToString();
+                        student.LastName = row["LastName"].ToString();
+                        student.SecondLastName = row["SecondLastName"].ToString();
+                        student.Phone = row["Phone"].ToString();
+                        student.PersonIsActive = Convert.ToBoolean(row["PersonIsActive"]);
+
+                        student.IsRisk = Convert.ToBoolean(row["IsRisk"]);
+
+                        student.SpecialityId = Convert.ToInt32(row["SpecialtyId"]);
+                        student.SpecialtyName = Convert.ToString(row["SpecialtyName"]);
+                        student.SpecialtyAcronym = Convert.ToString(row["SpecialtyAcronym"]);
+
+                        student.FacultyId = Convert.ToInt32(row["FacultyId"]);
+                        student.FacultyName = Convert.ToString(row["FacultyName"]);
+                        student.FacultyAcronym = Convert.ToString(row["FacultyAcronym"]);
+
+
+                        student.UserIsActive = Convert.ToBoolean(row["UserIsActive"]);
+                        student.InstitutionalEmail = row["InstitutionalEmail"].ToString();
+                        student.PUCPCode = row["PUCPCode"].ToString();
+                        student.CreationDate = Convert.ToDateTime(row["CreationDate"]).Date;
+                        student.ModificationDate = Convert.ToDateTime(row["ModificationDate"]).Date;
+
+                        students.Add(student);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarEstudiantesPorFacultad", ex);
+            }
+
+            return students;
+        }
     }
 }
