@@ -991,5 +991,90 @@ namespace MiTutor.Services.TutoringManagement
         }
 
 
+        /*INDICADOR FACULTAD*/
+        public async Task<List<TutorContadorProgramasAcademicos>> ListarTutoresConCantidadDeProgramasMod(int facultyId, DateOnly? startDate = null, DateOnly? endDate = null)
+        {
+            List<TutorContadorProgramasAcademicos> tutores = new List<TutorContadorProgramasAcademicos>();
+
+            try
+            {
+                var parameters = new List<SqlParameter>
+        {
+            new SqlParameter("@FacultyId", facultyId),
+            new SqlParameter("@StartDate", startDate.HasValue ? startDate.Value.ToDateTime(TimeOnly.MinValue) : (object)DBNull.Value),
+            new SqlParameter("@EndDate", endDate.HasValue ? endDate.Value.ToDateTime(TimeOnly.MinValue) : (object)DBNull.Value)
+        };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable("TUTOR_TUTORINGPROGRAMS_LISTARXTUTOR_SELECT_MOD", parameters.ToArray());
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        TutorContadorProgramasAcademicos tutor = new TutorContadorProgramasAcademicos
+                        {
+                            TutorId = Convert.ToInt32(row["TutorId"]),
+                            TutorName = row["TutorName"].ToString(),
+                            TutorLastName = row["LastName"].ToString(),
+                            TutorSecondLastName = row["SecondLastName"].ToString(),
+                            CantidadProgramas = Convert.ToInt32(row["ProgramCount"])
+                        };
+
+                        tutores.Add(tutor);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarTutoresConCantidadDeProgramas", ex);
+            }
+
+            return tutores;
+        }
+
+        public async Task<List<ListarCantidadAppointment>> ListarCantidadAppointmentsMod(int facultyId, DateOnly? startDate = null, DateOnly? endDate = null)
+        {
+            List<ListarCantidadAppointment> appointments = new List<ListarCantidadAppointment>();
+
+            try
+            {
+                var parameters = new List<SqlParameter>
+        {
+            new SqlParameter("@FacultyId", facultyId),
+            new SqlParameter("@StartDate", startDate.HasValue ? startDate.Value.ToDateTime(TimeOnly.MinValue) : (object)DBNull.Value),
+            new SqlParameter("@EndDate", endDate.HasValue ? endDate.Value.ToDateTime(TimeOnly.MinValue) : (object)DBNull.Value)
+        };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable("TUTOR_APPOINTMENTS_STATUS_COUNT_SELECT_MOD", parameters.ToArray());
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        ListarCantidadAppointment appointment = new ListarCantidadAppointment
+                        {
+                            TutorId = Convert.ToInt32(row["TutorId"]),
+                            TutorName = row["TutorName"].ToString(),
+                            TutorLastName = row["LastName"].ToString(),
+                            TutorSecondLastName = row["SecondLastName"].ToString(),
+                            TotalAppointments = Convert.ToInt32(row["TotalAppointments"]),
+                            RegisteredCount = Convert.ToInt32(row["RegisteredCount"]),
+                            PendingResultCount = Convert.ToInt32(row["PendingResultCount"]),
+                            CompletedCount = Convert.ToInt32(row["CompletedCount"])
+                        };
+
+                        appointments.Add(appointment);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarCantidadAppointments", ex);
+            }
+
+            return appointments;
+        }
+
+
+
+
     }
 }
