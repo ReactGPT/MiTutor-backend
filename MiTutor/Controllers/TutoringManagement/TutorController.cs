@@ -427,7 +427,34 @@ namespace MiTutor.Controllers.TutoringManagement
             }
         }
 
+        //INDICADOR POR ESPECIALIDAD
+        [HttpGet("/listarTutoresConCantidadDeProgramasEspecialidad/{specialtyId}")]
+        public async Task<IActionResult> ListarTutoresConCantidadDeProgramasEspecialidad(int specialtyId, [FromQuery] DateOnly? startDate = null, [FromQuery] DateOnly? endDate = null)
+        {
+            try
+            {
+                var tutores = await _tutorServices.ListarTutoresEspecialidadConCantidadDeProgramasMod(specialtyId, startDate, endDate);
+                return Ok(new { success = true, data = tutores });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, message = "Error al listar los tutores con cantidad de programas: " + ex.Message });
+            }
+        }
 
+        [HttpGet("/listarCantidadAppointmentsEspecialidad/{specialtyId}")]
+        public async Task<IActionResult> ListarCantidadAppointmentsEspecialidad(int specialtyId, [FromQuery] DateOnly? startDate = null, [FromQuery] DateOnly? endDate = null)
+        {
+            try
+            {
+                var appointments = await _tutorServices.ListarCantidadAppointmentsEspecialidadMod(specialtyId, startDate, endDate);
+                return Ok(new { success = true, data = appointments });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, message = "Error al listar las citas: " + ex.Message });
+            }
+        }
 
     }
 }
