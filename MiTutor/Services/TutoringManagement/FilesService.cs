@@ -42,6 +42,32 @@ namespace MiTutor.Services.TutoringManagement
             }
         }
 
+        public async Task<int> InsertarArchivoAlumno(Files archivo)
+        {
+            try
+            {
+                DateTime creationDate = DateTime.Parse(archivo.Date); 
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@FilesName", SqlDbType.VarChar, 255) { Value = archivo.FilesName },
+                    new SqlParameter("@StudentId", SqlDbType.Int) { Value = archivo.StudentId },
+                    new SqlParameter("@Date", SqlDbType.Date) { Value = creationDate },
+                    new SqlParameter("@PrivacyTypeId", SqlDbType.Int) { Value = archivo.PrivacyTypeId },
+                    new SqlParameter("@FileId", SqlDbType.Int) { Direction = ParameterDirection.Output }
+                };
+
+                // Llamar al procedimiento almacenado
+                await _databaseManager.ExecuteStoredProcedure(StoredProcedure.INSERTAR_ARCHIVO_ALUMNO, parameters);
+
+                archivo.FilesId = Convert.ToInt32(parameters[parameters.Length - 1].Value);
+                return archivo.FilesId;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al agregar el archivo", ex);
+            }
+        }
+
         public async Task<List<FileBD>> ListarArchivosPorIdResultadoTipo(int idResultado, int idTipo)
         {
             List<FileBD> archivos = new List<FileBD>();
@@ -74,6 +100,44 @@ namespace MiTutor.Services.TutoringManagement
             catch (Exception ex)
             {
                 throw new Exception("ERROR en ListarArchivosPorIdResultadoTipo", ex);
+            }
+
+            return archivos;
+        }
+
+        public async Task<List<FileBD>> ListarArchivosPorIdAlumno(int idAlumno)
+        {
+            List<FileBD> archivos = new List<FileBD>();
+
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@StudentId", SqlDbType.Int) { Value = idAlumno } 
+                };
+
+                DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable("FILES_LISTAR_POR_ID_ALUMNO", parameters);
+
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        FileBD archivo = new FileBD()
+                        {
+                            FilesId = Convert.ToInt32(row["FilesId"]),
+                            FilesName = row["FilesName"].ToString(),
+                            Activo = Convert.ToBoolean(row["IsActive"]),
+                            Date = row["Date"] != DBNull.Value ? DateOnly.FromDateTime(((DateTime)row["Date"])) : default,
+
+                        };
+
+                        archivos.Add(archivo);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR en ListarArchivosPorIdAlumno", ex);
             }
 
             return archivos;

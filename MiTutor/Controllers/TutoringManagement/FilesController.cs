@@ -33,12 +33,40 @@ namespace MiTutor.Controllers.TutoringManagement
             }
         }
 
+        [HttpPost("/insertarArchivoAlumnoBD")]
+        public async Task<IActionResult> InsertarArchivoAlumno([FromBody] Files file)
+        {
+            try
+            {
+                int id = await _filesServices.InsertarArchivoAlumno(file);
+                return Ok(new { success = true, message = "Se insertó satisfactoriamente", idArchivo = id });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, message = "Error al insertar el archivo", error = ex.Message });
+            }
+        }
+
         [HttpGet("/listarArchivos/{idResultado}/{idTipo}")]
         public async Task<IActionResult> ListarArchivosPorIdResultadoTipo(int idResultado, int idTipo)
         {
             try
             {
                 List<FileBD> archivos = await _filesServices.ListarArchivosPorIdResultadoTipo(idResultado, idTipo);
+                return Ok(new { success = true, data = archivos });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("/listarArchivosAlumno/{idAlumno}")]
+        public async Task<IActionResult> ListarArchivosPorIdAlumno(int idAlumno)
+        {
+            try
+            {
+                List<FileBD> archivos = await _filesServices.ListarArchivosPorIdAlumno(idAlumno);
                 return Ok(new { success = true, data = archivos });
             }
             catch (Exception ex)

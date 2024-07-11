@@ -10,7 +10,12 @@
 
         public int AppointmentResultId { get; set; }
 
+        public int StudentId { get; set; }
+
         public int PrivacyTypeId { get; set; }
+
+        public String Date { get; set; }
+
     }
 
     public class FileBD
@@ -18,6 +23,7 @@
         public int FilesId { get; set; }
         public string FilesName { get; set; }
         public bool Activo { get; set; }
+        public DateOnly Date { get; set; }
 
     }
 }

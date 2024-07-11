@@ -113,6 +113,7 @@
         public const string ELIMINAR_ARCHIVO = "FILE_ELIMINAR_DELETE";
         public const string REACTIVAR_ARCHIVO = "FILE_ACTIVAR_UPDATE";
         public const string INSERTAR_ARCHIVO = "InsertarArchivo";
+        public const string INSERTAR_ARCHIVO_ALUMNO = "FILE_INSERT_ALUMNO";
         public const string LISTAR_ARCHIVOS_ID_RESULTADO_TIPO = "FILES_LISTAR_POR_ID_RESULTADOCITA_TIPOPRIVACIDAD_SELECT";
 
         //AGREGAR_CITA
