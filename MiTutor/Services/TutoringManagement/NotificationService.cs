@@ -51,5 +51,23 @@ namespace MiTutor.Services
                 throw new Exception("ERROR en CreateStudentCancellationNotification");
             }
 		}
-	}
+
+        public async void crearNotificacionDeCancelacionPorAppointmentId(int AppointmentId)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@AppointmentId", SqlDbType.Int) { Value = AppointmentId }
+            };
+
+            try
+            {
+                await _databaseManager.ExecuteStoredProcedure(StoredProcedure.CREAR_NOTIFICCACION_CANCELACION, parameters);
+            }
+            catch
+            {
+                throw new Exception("ERROR en crearNotificacionDeCancelacionPorAppointmentId");
+            }
+        }
+
+    }
 }
