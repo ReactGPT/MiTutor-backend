@@ -221,6 +221,8 @@ namespace MiTutor.Services.TutoringManagement
                             Description = row["Description"].ToString(),
                             FaceToFace = Convert.ToBoolean(row["FaceToFace"]),
                             Virtual = Convert.ToBoolean(row["Virtual"]),
+                            GroupBased = Convert.ToBoolean(row["GroupBased"]),
+                            IndividualBased = Convert.ToBoolean(row["IndividualBased"]),
                             FacultyName = row["FacultyName"].ToString(),
                             SpecialtyName = row["SpecialtyName"].ToString(),
                             tutorType = row["TutorType"].ToString()
