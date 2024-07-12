@@ -40,7 +40,21 @@ namespace MiTutor.Controllers.TutoringManagement
 				return StatusCode(500, $"Error al crear la notificación: {ex.Message}");
 			}
 		}
-	}
+
+        [HttpPost("crearCancelNotificacionByAppointmentId/{AppointmentId}")]
+        public IActionResult CreateNotification(int AppointmentId)
+        {
+            try
+            {
+				_notificationService.crearNotificacionDeCancelacionPorAppointmentId(AppointmentId);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error al crear la notificación: {ex.Message}");
+            }
+        }
+    }
 
 	public class CancellationNotificationRequest
 	{
