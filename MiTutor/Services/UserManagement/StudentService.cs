@@ -6,6 +6,7 @@ using MiTutor.Models;
 using MiTutor.Models.TutoringManagement;
 using MiTutor.Services.UserManagement;
 using System.Linq.Expressions;
+using MiTutor.Models.UniversityUnitManagement;
 
 namespace MiTutor.Services.GestionUsuarios
 {
@@ -473,10 +474,17 @@ namespace MiTutor.Services.GestionUsuarios
                 foreach (StudentIdVerified s in studentsVerified)
                 {
                     SqlParameter[] parameters = new SqlParameter[]{
-                        new SqlParameter("@StudentId", SqlDbType.Int){
-                            Value = s.pucpCode
-                        }
-                    };
+                    new SqlParameter("@StudentId", SqlDbType.NVarChar) {
+                        Value = s.pucpCode
+                    },
+                    new SqlParameter("@FacultyId", SqlDbType.Int) {
+                        Value = s.facultyId
+                    },
+                    new SqlParameter("@SpecialtyId", SqlDbType.Int) {
+                        Value = (object)s.specialtyId ?? DBNull.Value
+                    }
+                };
+
                     DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.LISTAR_ESTUDIANTES_POR_ID, parameters);
                     if (dataTable != null)
                     {

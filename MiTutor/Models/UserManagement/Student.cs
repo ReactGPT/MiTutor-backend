@@ -41,6 +41,9 @@ namespace MiTutor.Models.GestionUsuarios
         public string institutionalEmail { get; set; }
         public string facultyName { get; set; }
         public bool isRegistered { get; set; }
+        public int facultyId { get; set; }
+        public int specialtyId { get; set; }
+
     }
 
     public class StudentTutoria
