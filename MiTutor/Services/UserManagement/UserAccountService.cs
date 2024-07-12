@@ -138,21 +138,6 @@ namespace MiTutor.Services.UserManagement
                 {
                     email==null?new SqlParameter("@codigoPUCPToVerify", SqlDbType.NVarChar) { Value = codigPUCP }:new SqlParameter("@emailToVerify", SqlDbType.NVarChar) { Value= email }
                 };
-                //if (email == null)
-                //{
-                //    SqlParameter[] parameters = new SqlParameter[]
-                //    {
-                //        new SqlParameter("@codigoPUCPToVerify", SqlDbType.NVarChar) { Value = codigPUCP }
-                //    };
-                //}
-                //else if(codigPUCP == null)
-                //{
-                //    SqlParameter[] parameters = new SqlParameter[]
-                //    {
-                //        new SqlParameter("@emailToVerify", SqlDbType.NVarChar) { Value= email }
-                //    };
-                //}
-                
 
                 DataTable dataTable = await _databaseManager.ExecuteStoredProcedureDataTable(StoredProcedure.OBTENERINFO_USUARIO, parameters);
                 if (dataTable != null && dataTable.Rows.Count>0)
@@ -183,6 +168,8 @@ namespace MiTutor.Services.UserManagement
                         {
                             case "FACULTYMANAGER":
                             case "SPECIALTYMANAGER":
+                            case "SUPPORTFACULTY":
+                            case "SUPPORTSPECIALTY":
                                 //userRol = 
                                 userAccount.Roles.Add(new UserGenericManager
                                 {
