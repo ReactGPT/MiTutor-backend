@@ -478,10 +478,10 @@ namespace MiTutor.Services.GestionUsuarios
                         Value = s.pucpCode
                     },
                     new SqlParameter("@FacultyId", SqlDbType.Int) {
-                        Value = s.facultyId
+                        Value = s.facultyId == 0 ? DBNull.Value : (object)s.facultyId
                     },
                     new SqlParameter("@SpecialtyId", SqlDbType.Int) {
-                        Value = (object)s.specialtyId ?? DBNull.Value
+                        Value = s.specialtyId == 0 ? DBNull.Value : (object)s.specialtyId
                     }
                 };
 
