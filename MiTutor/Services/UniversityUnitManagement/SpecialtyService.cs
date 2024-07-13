@@ -43,7 +43,8 @@ namespace MiTutor.Services.UniversityUnitManagement
                 new SqlParameter("@SpecialtyId", SqlDbType.Int) { Value = specialty.SpecialtyId },
                 new SqlParameter("@Name", SqlDbType.NVarChar) { Value = specialty.Name },
                 new SqlParameter("@Acronym", SqlDbType.NVarChar) { Value = specialty.Acronym },
-                new SqlParameter("@ManagerId", SqlDbType.Int) { Value = (object)specialty.SpecialtyManager.Id ?? DBNull.Value }
+                new SqlParameter("@ManagerId", SqlDbType.Int) { Value = (object)specialty.SpecialtyManager.Id ?? DBNull.Value },
+                new SqlParameter("@PersonalApoyoId", SqlDbType.Int) { Value = (object)specialty.PersonalApoyo.Id ?? DBNull.Value },
             };
 
             try
@@ -226,6 +227,23 @@ namespace MiTutor.Services.UniversityUnitManagement
                                 }
                             };
                         };
+
+                        if (row["PersonalApoyoId"] != DBNull.Value)
+                        {
+                            specialty.SpecialtyManager = new Models.GestionUsuarios.UserAccount
+                            {
+                                Id = Convert.ToInt32(row["PersonalApoyoId"]),
+                                InstitutionalEmail = row["PersonalApoyoInstitutionalEmail"].ToString(), // Agregar el correo electrónico del gerente de facultad
+                                PUCPCode = row["PersonalApoyoPUCPCode"].ToString(),
+                                Persona = new Models.GestionUsuarios.Person
+                                {
+                                    Name = row["PersonalApoyoName"].ToString(),
+                                    LastName = row["PersonalApoyoLastName"].ToString(),
+                                    Phone = row["PersonalApoyoPhone"].ToString()
+                                }
+                            };
+                        };
+
                         specialties.Add(specialty);
                     }
                 }

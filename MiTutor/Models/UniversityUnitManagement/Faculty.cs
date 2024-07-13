@@ -19,6 +19,7 @@ namespace MiTutor.Models.UniversityUnitManagement
 
         public UserAccount FacultyManager { get; set; }
         public UserAccount? BienestarManager { get; set; }
+        public UserAccount? PersonalApoyo { get; set; }
 
         public ICollection<Specialty> Specialties { get; set; } = new List<Specialty>();
 
