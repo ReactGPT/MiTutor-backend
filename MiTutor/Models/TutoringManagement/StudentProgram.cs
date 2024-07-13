@@ -26,8 +26,11 @@ namespace MiTutor.Models.TutoringManagement
 
     public class Notificacion
     {
+        public int id {  get; set; }
         public string resumen { get; set; }
         public string descripcion { get; set; }
         public string tipo { get; set; }
+        public bool? visto { get; set; }
+        public DateTime? horaFecha { get; set; }
     }
 }

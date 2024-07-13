@@ -87,10 +87,12 @@ namespace MiTutor.Services.TutoringManagement
                     {
                         Notificacion notificacion = new Notificacion
                         {
-                            resumen = row[0].ToString(),
-                            descripcion = row[1].ToString(),
-                            tipo = row[2].ToString()
-
+                            id = Convert.ToInt32(row[0]),
+                            resumen = row[1].ToString(),
+                            descripcion = row[2].ToString(),
+                            tipo = row[3].ToString(),
+                            visto = Convert.ToBoolean(row[4]),
+                            horaFecha = Convert.ToDateTime(row[5])
                         };
                         notificaciones.Add(notificacion);
                     }
