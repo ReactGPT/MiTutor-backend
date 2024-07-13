@@ -15,7 +15,8 @@ namespace MiTutor.Models.UniversityUnitManagement
         public int NumberOfStudents { get; set; }  
         public Faculty Faculty { get; set; }
         public bool IsActive { get; set; } 
-        public UserAccount SpecialtyManager { get; set; } 
+        public UserAccount SpecialtyManager { get; set; }
+        public UserAccount? PersonalApoyo { get; set; }
         public ICollection<Student> Students { get; set; } = new List<Student>();
         public ICollection<TutoringProgram> TutoringPrograms { get; set; } = new List<TutoringProgram>();
 

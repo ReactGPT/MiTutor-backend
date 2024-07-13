@@ -138,6 +138,20 @@ namespace MiTutor.Services.UniversityUnitManagement
                                 }
                             };
                         };
+                        if (row["PersonalApoyoId"] != DBNull.Value)
+                        {
+                            facultad.PersonalApoyo = new Models.GestionUsuarios.UserAccount
+                            {
+                                Id = Convert.ToInt32(row["PersonalApoyoId"]),
+                                InstitutionalEmail = row["PersonalApoyoInstitutionalEmail"].ToString(),
+                                PUCPCode = row["PersonalApoyoPUCPCode"].ToString(),
+                                Persona = new Models.GestionUsuarios.Person
+                                {
+                                    Name = row["PersonalApoyoName"].ToString(),
+                                    LastName = row["PersonalApoyoLastName"].ToString()
+                                }
+                            };
+                        };
 
                         facultades.Add(facultad);
                     }
@@ -162,6 +176,7 @@ namespace MiTutor.Services.UniversityUnitManagement
                 new SqlParameter("@NumberOfTutors", SqlDbType.Int) { Value = facultad.NumberOfTutors },
                 new SqlParameter("@FacultyManagerId", SqlDbType.Int) { Value = (object)facultad.FacultyManager.Id ?? DBNull.Value },
                 new SqlParameter("@BienestarManagerId", SqlDbType.Int) { Value = (object)facultad.BienestarManager.Id ?? DBNull.Value },
+                new SqlParameter("@PersonalApoyoId", SqlDbType.Int) { Value = (object)facultad.PersonalApoyo.Id ?? DBNull.Value },
             };
 
             try
