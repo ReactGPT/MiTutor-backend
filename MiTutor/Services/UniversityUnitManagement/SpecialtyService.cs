@@ -230,7 +230,7 @@ namespace MiTutor.Services.UniversityUnitManagement
 
                         if (row["PersonalApoyoId"] != DBNull.Value)
                         {
-                            specialty.SpecialtyManager = new Models.GestionUsuarios.UserAccount
+                            specialty.PersonalApoyo = new Models.GestionUsuarios.UserAccount
                             {
                                 Id = Convert.ToInt32(row["PersonalApoyoId"]),
                                 InstitutionalEmail = row["PersonalApoyoInstitutionalEmail"].ToString(), // Agregar el correo electrónico del gerente de facultad
