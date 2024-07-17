@@ -456,5 +456,33 @@ namespace MiTutor.Controllers.TutoringManagement
             }
         }
 
+        [HttpPut("/actualizarMeetingRoom")]
+        public async Task<IActionResult> ActualizarMeetingRoom(int tutorId, string MeetingRoom)
+        {
+            try
+            {
+                await _tutorServices.ActualizarMeetingRoom(tutorId, MeetingRoom);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(new { success = true, message = "MeetingRoom actualizado satisfactoriamente" });
+        }
+
+        [HttpGet("/obtenerMeetingRoom")]
+        public async Task<IActionResult> ObtenerMeetingRoom(int tutorId)
+        {
+            try
+            {
+                string meetingRoom = await _tutorServices.ObtenerMeetingRoom(tutorId);
+                return Ok(new { meetingRoom = meetingRoom });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }

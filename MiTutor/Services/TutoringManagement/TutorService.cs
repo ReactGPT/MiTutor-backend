@@ -1158,5 +1158,47 @@ namespace MiTutor.Services.TutoringManagement
         }
 
 
+        public async Task ActualizarMeetingRoom(int tutorId, string MeetingRoom)
+        {
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@TutorId", SqlDbType.Int) { Value = tutorId },
+                    new SqlParameter("@MeetingRoom", SqlDbType.NVarChar, 100) { Value = MeetingRoom }
+                };
+
+                await _databaseManager.ExecuteStoredProcedure("UPDATE_MEETING_ROOM_BY_TUTOR", parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al actualizar el MeetingRoom del tutor: " + ex.Message);
+            }
+        }
+
+        public async Task<string> ObtenerMeetingRoom(int tutorId)
+        {
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+            new SqlParameter("@TutorId", SqlDbType.Int) { Value = tutorId }
+                };
+
+                string result = await _databaseManager.ExecuteStoredProcedureWithResult<string>("GET_MEETING_ROOM_BY_TUTOR", parameters);
+
+                if (string.IsNullOrEmpty(result))
+                {
+                    throw new Exception("No se encontró el MeetingRoom para el tutor especificado.");
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el MeetingRoom del tutor: " + ex.Message);
+            }
+        }
+
     }
 }
