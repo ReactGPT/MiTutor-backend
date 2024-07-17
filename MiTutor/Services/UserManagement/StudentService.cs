@@ -177,7 +177,7 @@ namespace MiTutor.Services.GestionUsuarios
             return students;
         }
 
-        public async Task<List<ListarStudentJSON>> ListarEstudiantesByTutoringProgram(int tutoringProgramId)
+        public async Task<List<ListarStudentJSON>> ListarEstudiantesByTutoringProgram(int tutoringProgramId, int? tutorId = null)
         {
             List<ListarStudentJSON> students = new List<ListarStudentJSON>();
 
@@ -186,6 +186,10 @@ namespace MiTutor.Services.GestionUsuarios
                 SqlParameter[] parameters = new SqlParameter[]{
                     new SqlParameter("@TutoringProgramId", SqlDbType.Int){
                         Value = tutoringProgramId
+                    },
+                    new SqlParameter("@TutorId", SqlDbType.Int)
+                    {
+                        Value = (object)tutorId ?? DBNull.Value
                     }
                 };
 
