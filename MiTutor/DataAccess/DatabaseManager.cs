@@ -124,6 +124,38 @@ namespace MiTutor.DataAccess
             }
         }
 
+        public async Task<T> ExecuteStoredProcedureWithResult<T>(string storedProcedureName, SqlParameter[] parameters)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    if (parameters != null)
+                    {
+                        command.Parameters.AddRange(parameters);
+                    }
+
+                    try
+                    {
+                        await connection.OpenAsync();
+                        object result = await command.ExecuteScalarAsync();
+
+                        if (result == DBNull.Value)
+                        {
+                            return default(T);
+                        }
+
+                        return (T)Convert.ChangeType(result, typeof(T));
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception($"Error al ejecutar el Stored Procedure: {storedProcedureName}", ex);
+                    }
+                }
+            }
+        }
+
 
     }
 }
